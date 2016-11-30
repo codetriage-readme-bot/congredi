@@ -1,0 +1,9 @@
+pymongo
+flask
+PGPy
+stem
+pyjwt
+pyyaml
+tornado
+fernet
+urwid

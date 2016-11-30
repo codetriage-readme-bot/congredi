@@ -1,0 +1,102 @@
+/ [GET]
+/sync/
+    /index/<hash>
+    /data/<hash>
+/gis/
+    /jurisdiction/
+        /search
+        /splitline
+        /new
+        /<doc>/edit
+    /user/
+        /search
+        /new
+        /<doc>/edit
+/docs/
+    /search
+    /new
+    /<doc>/edit
+/feed/
+    /delegate
+    /issues
+    /polls
+    /votes
+	/<user>/
+		/trust/ - update your pgp keys
+		/avatar/ - png/jpeg avatar
+		/profile/ - json dict profile strings
+		/<user>/ - return user dict
+			/avatar/ - return user image
+			/trust/ - sign their key with yours
+	/search/ - return key:value from a value search
+		{ type:["~"|"<"|">"|"=="], amount:int, offset: int, subset: "key", search: "string" }
+		{ meta:{offset:int,amount:int}, key: base64, value: { json } }
+		/peers/ - /peer/ indexes, some meta searches
+		/govts/
+		/votes/
+		/options/
+/peer/ - return idx
+	/<hash>/ - current onion addresses
+		/trust/ - pgp key chain
+		/uptime/ - reputation
+		/stake/ - stake proof blocks
+/govt/ - return idx
+	/<jurisdiction>/ - return active vote/user blocks (signed by jurisdiction)
+		/validated/ - issues signed on by consensus (multiple winners)
+		/ordered/ - distributed block (data secure)
+		/unordered/ - idx proposed issues
+		/denied/ - idx of issues denied entrance
+		/<issueid>/ - return an issue signature
+/vote/ - return idx
+	/<hash>/ - genesis block
+		/validated/ - idx of asserted
+		/ordered/ - idx of consensus-ordered
+		/unordered/ - idx of proposed blocks
+		/open/ - idx of voters who have not voted
+		/<blockid>/ - return a block and its contents
+
+connections
+	Tor connection
+		hidden site
+		client queries
+	Mongo connection
+		compression
+		queries
+languages
+	API query
+	doc format
+	db format
+libs
+	fernet
+	pgp
+	SSS
+	
+
+Gui
+	Mapping-window
+	User-editor
+	User viewer
+	Timeline
+	Doc viewer
+	Doc editor
+	Voter
+
+area Map of users & districts
+	districts
+point Map of users & initiatives
+
+Feed of initiatives
+
+Authenticate yourself to this portal with a PGP key
+
+district -> location -> users
+bill -> legislation -> initiatives
+polls/votes mentor/observer map / issue graph
+legislation - passed/expired/floor/committee/proposed/issues
+surogate endores / feed / current affairs
+
+gis edit documents users governments voting polling
+
+
+You are responsible for the use, replication, and adaptation of these tools. How you chose to use, study, share, or improve it should benefit others to whatever moral philosophy you ascribe to. I cannot prevent you from bad judgement. Remember that, in terms of security, you shouldn't hide its problems. I would suggest reproducible builds of all the components, unit tests, uniform code-styling, and documentation.
+
