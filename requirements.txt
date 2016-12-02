@@ -1,9 +1,3 @@
-pymongo
-flask
-PGPy
-stem
-pyjwt
-pyyaml
 tornado
+PGPy
 fernet
-urwid

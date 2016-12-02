@@ -1,0 +1,30 @@
+PSC: - Proxy Server Cache (DHT or onion peers we connect with)
+	:aquiresession:
+	:rankpeer:
+SHA: - Secure Hash Algorithm (content blobs we pull along)
+	:send:
+	:recieve:
+	:piece:
+	:shard:
+VER: - Version (git tree of things to keep or delete)
+	:send::head:
+	:recieve::clone:
+	:keep:
+	:delete:
+ENT: - Entity (persons to rank as important)
+	:proclaim:
+	:view:
+	:subscribe:
+	:unsubscribe:
+STV: - Single Transferable Vote (rankings of consensus)
+	:correction:
+	:known:
+	:rank:
+	:denounce:
+AGR: - Agregates (groups of people who gather votes)
+	:memberproof:
+	:stvproof:
+	:proposemember:
+	:proposestv:
+
+

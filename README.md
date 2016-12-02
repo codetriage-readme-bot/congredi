@@ -1,10 +1,14 @@
 # Congredi
 > a law-via-cryptography application
 
-Congredi is a python based client/server library for
-modifying and ranking text. It runs on a settings file
-(`.congredi.yml`), a mongo database, and a tor connection.
+Congredi is a Twisted protocol for groups to representationally agree on things.
 
-It gives you a text-based GUI as well as a server daemon
-to run commands on. `congredi daemon|curses -c <config>`
+This application uses DHT/.onion rendesvous to provide peerage, and some DB.
+
+This is the functionality for how they'd talk together, not how a client
+would go about using it, or a provider scaling it. I leave that to you.
+
+Hopefully, with any luck, the files written here will be well-documented, unit
+tested, & cohesive/decoupled.
+
 
