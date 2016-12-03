@@ -3,6 +3,10 @@
 
 Congredi is a Twisted protocol for groups to representationally agree on things.
 
+It behaves like gittorrent and gitchain, but with more onion-like proxying,
+incentives to prove they stored a git object (i.e. filecoin), and ranking of which git objects
+& trees they want to keep around.
+
 * Requirements: Python Cryptography (Fernet & EC), Twisted
 * Addons: Stem, Flask, PyJWT
 
