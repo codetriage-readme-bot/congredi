@@ -21,10 +21,12 @@ client-side encryption
     storage-nodes-cannot-grab
 storage?
     encrypted disks, mostly
-
+priveledges
 kleptographically
-
+    non-random encryption (compromised CSPRNG)
 post-quantum crypto (ring learning with errors) - add homomorphic
-
+    newhope
 
 zero-knowledge proofs
+
+keybase - search 
