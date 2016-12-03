@@ -1,0 +1,34 @@
+site_name: Congredi / Delegito / Komento
+docs_dir: docs
+theme: journal
+site_favicon: favicon.ico
+extra_templates: []
+formats:
+    - none
+pages:
+    - 'Home': 'index.md'
+    - 'User Guide':
+        - 'Overview': 'UserGuide/index.md'
+        - 'Installing': 'UserGuide/Installation.md'
+        - 'System Administrators': 'UserGuide/SysAdmin.md'
+        - 'Your Profile': 'UserGuide/Yourself.md'
+        - 'Jurisdictions': 'UserGuide/Groups.md'
+        - 'Voting': 'UserGuide/Votes.md'
+    - 'Building':
+        - 'Overview': 'Building/index.md'
+        - 'Style': 'Building/Style.md'
+        - 'Documentation': 'Building/Docs.md'
+        - 'Testing': 'Building/Testing.md'
+        - 'Builders': 'Building/Builds.md'
+    - 'APIs':
+        - 'Overview': 'APIs/index.md'
+        - 'Load Balancing': 'APIs/Load_Balancing.md'
+        - 'JSON': 'APIs/JSON.md'
+        - 'Crypto': 'APIs/Cryptography.md'
+        - 'DB': 'APIs/Data_Structures.md'
+        - 'Routes': 'APIs/Routes.md'
+    - 'Methodology':
+        - 'Overview': 'Methodology/index.md'
+        - 'Chained Data': 'Methodology/ChainedData.md'
+        - 'Sybil Attacks': 'Methodology/SybilAttacks.md'
+        - 'Zero Knowledge': 'Methodology/ZeroKnowledge.md'

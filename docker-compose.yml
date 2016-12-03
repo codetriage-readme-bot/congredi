@@ -1,0 +1,7 @@
+redis:
+    image: redis:alpine
+    ports: ["6379"]
+    volumes:
+    - /data/redis:/data
+congredi:
+    build: .
