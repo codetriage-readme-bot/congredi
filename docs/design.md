@@ -216,3 +216,35 @@ https://github.com/blockstack/pybitcoin
 https://github.com/Bitmessage/PyBitmessage
 https://github.com/miguelfreitas/twister-core
 https://github.com/feross/webtorrent
+
+
+kleptography / outside obfuscation - filler syncing
+    priority packets vs consensus
+    OAEP all or nothing, compress diff tree
+        content filter rules (markdown)
+steno analysis, client storage encryption, purge unneded content
+session symkeys + ip + pubkey
+subset challenge zero knowledge proof + nounce,
+tor + gitchain _ gittorrent
+
+individual relay records (reliable, fast)
+content-subscribers, content broadcasters
+DHT
+search/list
+message authentication (symkey + hash Hmac)
+Ratchet proto
+ringlearn new hope homomorphic
+jwt
+
+half-leg all or nothing (ask for route)
+
+latest DB (resolve commits)
+
+stat db (offers,experience)
+O(1) block git tree (compression, voting data, entities, agrs)
+
+latest consensus (rename)
+libgit2 redis (get through reactor)
+KV - list, read, add(k,v), delete(k)
+
+PSC/SHA/VER/ENT/STV/AGR
