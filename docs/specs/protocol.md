@@ -1,3 +1,19 @@
+protocol
+    session-key
+    shmac function
+    decrypt (all or nothing)
+    key-up
+listener
+    wantsSomething
+broadcaster
+    givingSomething
+checkUpOnPeers
+    for peers available:
+        connect to peer or mark as offline
+        ask peer what's new
+
+
+
 add peer:
     if in peers:
         delete,
@@ -130,19 +146,14 @@ Your public key fingerprint is SF.
 You will need your PGP key for interacting with Congredi.
 
 https://github.com/gsko/mdht
-https://github.com/kenosis/kenosis_project
 https://github.com/microserv/entangled-dht
-https://github.com/skywind3000/pyp2p
-https://github.com/StorjOld/pyp2p
+https://github.com/StorjOld/pyp2p/blob/master/pyp2p/rendezvous_server.py
 https://github.com/wiedi/khashmir
-https://github.com/asdil12/darkdns
 https://github.com/bmuller/kademlia
 https://github.com/bmuller/rpcudp
 https://github.com/csm/khashmir
-https://github.com/darka/p2pfs
+>https://github.com/darka/p2pfs
 https://github.com/debanshu/ResearchShareP2P
-https://github.com/entangle/example-py2
-https://github.com/entangle/pyentangle
 https://github.com/twisted/vertex
 https://github.com/twisted/twisted
 
