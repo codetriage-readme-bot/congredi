@@ -1,10 +1,3 @@
-Twisted:
-    txredisapi
-        redis server (key/value/sort)
-
-libgit2-redis
-
-
 add peer:
     if in peers:
         delete,
@@ -113,23 +106,6 @@ pull subscriber statements
 
 query content subset hashes
 
-
-
-
-# Congredi
-
-[![Stories in Ready](https://badge.waffle.io/Thetoxicarcade/congredi.svg?label=ready&title=Ready)](http://waffle.io/Thetoxicarcade/congredi)
-[![Build Status](https://travis-ci.org/Thetoxicarcade/congredi.svg?branch=master)](https://travis-ci.org/Thetoxicarcade/congredi)
-[![Documentation Status](https://readthedocs.org/projects/congredi/badge/?version=latest)](http://congredi.readthedocs.io/en/latest/?badge=latest)
-[![GitHub commits](https://img.shields.io/github/commits-since/thetoxicarcade/congredi/v0.0.1.svg?maxAge=2592000)](https://github.com/thetoxicarcade/congredi)
-[![Code Climate](https://codeclimate.com/github/Thetoxicarcade/congredi/badges/gpa.svg)](https://codeclimate.com/github/Thetoxicarcade/congredi)
-[![Issue Count](https://codeclimate.com/github/Thetoxicarcade/congredi/badges/issue_count.svg)](https://codeclimate.com/github/Thetoxicarcade/congredi)
-
-[![PyPI version](https://badge.fury.io/py/delegito.svg)](https://badge.fury.io/py/delegito)
-[![Gratipay User](https://img.shields.io/gratipay/user/Thetoxicarcade.svg?maxAge=2592000)](https://gratipay.com/~Thetoxicarcade/)
-`congredi-interface` [![Docker Pulls](https://img.shields.io/docker/pulls/ericoflondon/congredi-interface.svg?maxAge=2592000)](https://hub.docker.com/r/ericoflondon/congredi-interface/) `congredi-api` [![Docker Pulls](https://img.shields.io/docker/pulls/ericoflondon/congredi-api.svg?maxAge=2592000)](https://hub.docker.com/r/ericoflondon/congredi-api/)
-[Website](//delegito.io)/[Onion](//aldskfj.onion) ***offline***
-
 Congredi handles customizable STV elections for federated "assertions".
 
 1. Visit a Congredi host / install the extension
@@ -139,32 +115,12 @@ Congredi handles customizable STV elections for federated "assertions".
 5. rank those assertions in an election, deciding which you would prefer if you cannot have your choice next
 
 
-The technology involves:
-* [ ] docker swarm scaling with traefik dynamic reverse proxying
-* [x] nginx served angular app
-* [x] a JSON Web Token authorized Flask API connected to a Redis Celery queue
-* [ ] Tor hidden services with OnionBalance publishing
-* [x] Celery workers connected to a Mongo DB and crypto functions (`Delegito`)
-* [ ] a mail server
-* [ ] a firefox extension (signed js is safer for crypto)
-
-The crypto involves:
-
-* threshold-signature OpenPGP for jurisdiction appointments
-* threshold-encrypted Secure Secret Sharing for jurisdiction admin
-* Shuffle-Sum for private vote results
-* OpenPGP signatures for public polls
-* OpenPGP Key Signing & keyservers for authorizations
-* Tor & WebRTC / Sockets for peer communications
 
 
 
 > Helping out? Check out the github [issues](//github.com/thetoxicarcade/congredi/issues)
 
 
-
-no need for secure secret sharing,
-but possibly for zero knowledge proofs
 
 
 Congradulations SN! We've set up an account for you!
@@ -211,40 +167,7 @@ https://whispersystems.org/docs/specifications/doubleratchet/
     ratchet
 https://github.com/bitcoin-abe/bitcoin-abe
     browser
-
 https://github.com/blockstack/pybitcoin
 https://github.com/Bitmessage/PyBitmessage
 https://github.com/miguelfreitas/twister-core
 https://github.com/feross/webtorrent
-
-
-kleptography / outside obfuscation - filler syncing
-    priority packets vs consensus
-    OAEP all or nothing, compress diff tree
-        content filter rules (markdown)
-steno analysis, client storage encryption, purge unneded content
-session symkeys + ip + pubkey
-subset challenge zero knowledge proof + nounce,
-tor + gitchain _ gittorrent
-
-individual relay records (reliable, fast)
-content-subscribers, content broadcasters
-DHT
-search/list
-message authentication (symkey + hash Hmac)
-Ratchet proto
-ringlearn new hope homomorphic
-jwt
-
-half-leg all or nothing (ask for route)
-
-latest DB (resolve commits)
-
-stat db (offers,experience)
-O(1) block git tree (compression, voting data, entities, agrs)
-
-latest consensus (rename)
-libgit2 redis (get through reactor)
-KV - list, read, add(k,v), delete(k)
-
-PSC/SHA/VER/ENT/STV/AGR

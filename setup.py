@@ -6,7 +6,7 @@ def readme():
 setup(name='congredi',
 	version='0.1',
 	description='BASE representation-of-law-via-cryptography protocol',
-	long_description=readme()
+	long_description=readme(),
 	classifiers=[
 		'Development Status :: 1 - Planning',
 		'Intended Audience :: Science/Research',

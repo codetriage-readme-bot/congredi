@@ -12,7 +12,6 @@ before_script:
  - sudo pip install setuptools-lint mkdocs
 script:
  - docker build -t api delegito
- - docker build -t proxy interface
  - python setup.py build
  - python setup.py test
  - sudo python setup.py install
