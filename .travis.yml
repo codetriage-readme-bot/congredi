@@ -8,7 +8,7 @@ addons:
     - python-nose2
     - python-pip
 before_script:
- - sudo pip install -r delegito/requirements.txt
+ - sudo pip install -r requirements.txt
  - sudo pip install setuptools-lint mkdocs
 script:
  - docker build -t api delegito
