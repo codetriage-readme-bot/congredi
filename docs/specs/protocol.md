@@ -1,3 +1,26 @@
+## Protocol
+
+Axolotl ratchet (but with EC & Fernet) I.e. `[handshake][packet][changekey][packet][changekey]...`
+
+`<all-or-nothing><shmac>`
+
+State machine:
+
+```
+start proto
+    respond
+click ratchet
+    be-clicked
+proxy-send - use next node's public key (have decrypted a layer)
+    proxy-recieve - must be able to decrypt two (decrypted a layer)
+send file   - git object transfer
+    recieve file -  (must be valid gzip'd diff of markdown)
+query db - if objecting to query, don't send
+    respond - respond with offset
+announcements - new file searches, new objects in db
+    events - listen to new events, add to knowledge db
+```
+
 protocol
     session-key
     shmac function

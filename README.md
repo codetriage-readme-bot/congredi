@@ -26,12 +26,12 @@ I leave design of a perusing/issuing client to you. I tried angular with routes,
 as well as traefik + nginx/flask. Others have made things with QT?
 
 
-[![Stories in Ready](https://badge.waffle.io/Thetoxicarcade/congredi.svg?label=ready&title=Ready)](http://waffle.io/Thetoxicarcade/congredi)
-[![Build Status](https://travis-ci.org/Thetoxicarcade/congredi.svg?branch=master)](https://travis-ci.org/Thetoxicarcade/congredi)
-[![Documentation Status](https://readthedocs.org/projects/congredi/badge/?version=latest)](http://congredi.readthedocs.io/en/latest/?badge=latest)
-[![GitHub commits](https://img.shields.io/github/commits-since/thetoxicarcade/congredi/v0.0.1.svg?maxAge=2592000)](https://github.com/thetoxicarcade/congredi)
-[![Code Climate](https://codeclimate.com/github/Thetoxicarcade/congredi/badges/gpa.svg)](https://codeclimate.com/github/Thetoxicarcade/congredi)
-[![Issue Count](https://codeclimate.com/github/Thetoxicarcade/congredi/badges/issue_count.svg)](https://codeclimate.com/github/Thetoxicarcade/congredi)
+[![Stories in Ready](https://badge.waffle.io/Thetoxicarcade/ac.svg?label=ready&title=Ready)](http://waffle.io/Thetoxicarcade/ac)
+[![Build Status](https://travis-ci.org/Thetoxicarcade/ac.svg?branch=master)](https://travis-ci.org/Thetoxicarcade/ac)
+[![Documentation Status](https://readthedocs.org/projects/ac/badge/?version=latest)](http://congredi.readthedocs.io/en/latest/?badge=latest)
+[![GitHub commits](https://img.shields.io/github/commits-since/thetoxicarcade/ac/v0.0.1.svg?maxAge=2592000)](https://github.com/thetoxicarcade/ac)
+[![Code Climate](https://codeclimate.com/github/Thetoxicarcade/ac/badges/gpa.svg)](https://codeclimate.com/github/Thetoxicarcade/ac)
+[![Issue Count](https://codeclimate.com/github/Thetoxicarcade/ac/badges/issue_count.svg)](https://codeclimate.com/github/Thetoxicarcade/ac)
 [![PyPI version](https://badge.fury.io/py/delegito.svg)](https://badge.fury.io/py/delegito)
 
 * `congredi-interface` [![Docker Pulls](https://img.shields.io/docker/pulls/ericoflondon/congredi-interface.svg?maxAge=2592000)](https://hub.docker.com/r/ericoflondon/congredi-interface/)
