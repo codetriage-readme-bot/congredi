@@ -11,7 +11,7 @@ before_script:
  - sudo pip install -r requirements.txt
  - sudo pip install setuptools-lint mkdocs
 script:
- - docker build -t api delegito
+ - docker build .
  - python setup.py build
  - python setup.py test
  - sudo python setup.py install
