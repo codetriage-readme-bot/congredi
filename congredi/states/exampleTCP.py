@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from twisted.internet.protocol import Factory
+from twisted.internet.protocol import Protocol, Factory
+from twisted.internet.endpoints import TCP4ServerEndpoint
 from twisted.protocols.basic import LineReceiver
 from twisted.internet import reactor
-
+# pylint: disable=signature-differs
 class Chat(LineReceiver):
 
 	def __init__(self, users):
@@ -28,16 +29,16 @@ class Chat(LineReceiver):
 		if name in self.users:
 			self.sendLine("Name taken, please choose another.")
 			return
-		self.sendLine("Welcome, %s!" % (name,))
+		self.sendLine("Welcome, %s!" % (name, ))
 		self.name = name
 		self.users[name] = self
 		self.state = "CHAT"
 
 	def handle_CHAT(self, message):
 		message = "<%s> %s" % (self.name, message)
-		for name, protocol in self.users.iteritems():
-			if protocol != self:
-				protocol.sendLine(message)
+		# for name, protocol in self.users.iteritems():
+		# 	if protocol != self:
+		# 		protocol.sendLine(message)
 
 
 class ChatFactory(Factory):
@@ -52,9 +53,6 @@ class ChatFactory(Factory):
 reactor.listenTCP(8123, ChatFactory())
 reactor.run()
 
-from twisted.internet.protocol import Protocol, Factory
-from twisted.internet.endpoints import TCP4ServerEndpoint
-from twisted.internet import reactor
 
 class Onion(Protocol):
 	# def __init__(self, factory):
@@ -64,10 +62,11 @@ class Onion(Protocol):
 		self.transport.write("Now {}".format(self.factory.numProtocols))
 	def connectionLost(self, reason):
 		self.factory.numProtocols = self.factory.numProtocols - 1
-	def dataReceived(Self, data):
+	def dataReceived(self, data):
 		self.transport.write(data)
 class OnionFactory(Factory):
 	# init
+	online = False
 	def buildProtocol(self, addr):
 		return Onion()
 	def startFactory(self):

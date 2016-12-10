@@ -7,15 +7,15 @@ from cryptography.fernet import Fernet
 class fc():
 	secret = None
 	lock = None
-	def __init__(self,secret=None):
-		if secret not None:
+	def __init__(self, secret=None):
+		if secret is not None:
 			self.lock = Fernet(secret)
 		else:
 			self.secret = Fernet.generate_key()
 			self.lock = Fernet(self.secret)
-	def encrypt(self,bytes):
-		return self.lock.encrypt(bytes)
-	def decrypt(self,bytes):
-		return self.lock.decrypt(bytes)
+	def encrypt(self, data):
+		return self.lock.encrypt(data)
+	def decrypt(self, data):
+		return self.lock.decrypt(data)
 	def disclose(self):
 		return self.secret

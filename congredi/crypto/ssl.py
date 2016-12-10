@@ -5,7 +5,6 @@
 # strports.service("tcp:79", factory, reactor=reactor).setServiceParent(
 #	 service.IServiceCollection(application))
 
-def main(reactor, host, port=8560):
-	return endpoints.connectProtocol(endpoints.SSL())
-task.react(main, sys.argv[1:])
-
+#def main(reactor, host, port=8560):
+#	return endpoints.connectProtocol(endpoints.SSL())
+#task.react(main, sys.argv[1:])

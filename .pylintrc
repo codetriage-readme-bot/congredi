@@ -1,10 +1,14 @@
-# Warning! keep congredi/.pylintrc and congredi/delegito/.pylintrc synced!
 [MASTER]
 profile=no
 persistent=yes
 ignore=migrations
 cache-size=500
 [BASIC]
+#just grabbing errors:
+#disable=C, R, W
+disable=C, W0301
+#verbose
+#disable=W0301
 # rgxs
 module-rgx=([a-z][a-z0-9_]*)$
 attr-rgx=[a-z_][a-z0-9_]{,30}
@@ -44,7 +48,7 @@ max-module-lines=500
 ignore-long-lines=^\s*(# )?<?https?://\S+>?$
 single-line-if-stmt=no
 no-space-check=trailing-comma,dict-separator
-indent-after-paren=0
+indent-after-paren=1
 expected-line-ending-format=LF
 #CRLF
 [DESIGN]

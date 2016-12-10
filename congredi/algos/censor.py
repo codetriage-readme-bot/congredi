@@ -3,6 +3,6 @@
 """
 censor things objectionable to you, rather than store/query/communicate them
 """
-import logging, traceback
+import logging
 logger = logging.getLogger('delegito')
 logger.info('loaded congredi/algos/censor.py')

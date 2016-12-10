@@ -3,7 +3,7 @@
 # -*- coding: utf-8 -*-
 from twisted.internet import protocol, reactor, endpoints, defer #, utils
 from twisted.protocols import basic
-from twisted.web import client
+#from twisted.web import client
 class BogusProtocol(basic.LineReceiver):#protocol.Protocol):
 	def lineReceived(self, user):
 		d = self.factory.getUser(user)
@@ -29,9 +29,9 @@ BogusEndpoint = endpoints.serverFromString(reactor, "tcp:1079")
 BogusEndpoint.listen(BogusFactory(bog="us"))
 #def f(s):
 # print(s)
-#reactor.callLater(3.4,f,"hello, world")
+#reactor.callLater(3.4, f, "hello, world")
 
-#d = task.deferLater(reactor,3.4,f,"hi")
+#d = task.deferLater(reactor, 3.4, f, "hi")
 #def called(result): print result
 # d.addCallback(called)
 

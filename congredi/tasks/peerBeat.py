@@ -4,6 +4,7 @@
 Repeated tasks
 """
 
+#import random
 from twisted.internet import task
 from twisted.internet import reactor
 
@@ -15,7 +16,7 @@ def runEverySecond():
 	"""
 	Called at ever loop interval.
 	"""
-	global _loopCounter
+	#global _loopCounter
 
 	if _loopCounter < loopTimes:
 		_loopCounter += 1
@@ -57,10 +58,6 @@ loopDeferred.addErrback(ebLoopFailed)
 
 reactor.run()
 
-
-
-from twisted.internet import reactor
-
 def f():
 	print("I'll never run.")
 
@@ -70,22 +67,20 @@ reactor.run()
 
 
 
-import random
-from twisted.internet import task
 
-def f():
+def f2():
 	return "Hopefully this will be called in 3 seconds or less"
 
-def main(reactor):
-	delay = random.uniform(1, 5)
+# def main(reactor):
+# 	delay = random.uniform(1, 5)
 
-	def called(result):
-		print("{0} seconds later:".format(delay), result)
+# 	def called(result):
+# 		print("{0} seconds later:".format(delay), result)
 
-	d = task.deferLater(reactor, delay, f)
-	d.addTimeout(3, reactor).addBoth(called)
+# 	d = task.deferLater(reactor, delay, f)
+# 	d.addTimeout(3, reactor).addBoth(called)
 
-	return d
+# 	return d
 
-# f() will be timed out if the random delay is greater than 3 seconds
-task.react(main)
+# # f() will be timed out if the random delay is greater than 3 seconds
+# task.react(main)

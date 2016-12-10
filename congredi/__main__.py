@@ -1,6 +1,6 @@
 #import pudb
 #pu.db
-import logging, traceback
+import logging
 logger = logging.getLogger('delegito')
 logger.setLevel(1)
 fh = logging.StreamHandler()
@@ -14,5 +14,6 @@ fh.setFormatter(fm)
 logger.addHandler(fh)
 
 logger.info('Congredi __main__ in use.')
+# pylint: disable=unused-import
 from .main.client import CongrediClient as client
 from .main.peer import CongrediPeer as peer

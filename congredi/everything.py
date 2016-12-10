@@ -36,13 +36,13 @@ class User():
 		self.email = email
 		self.pubkey = pubkey
 		self.onion = onion
-		data = {'email':email,'pubkey':pubkey,'onion':onion}
-		db_insert.apply_async(['users',data])
-	def poll(jurisdiction,declared):
-		pgp_verify(declared,self.pubkey)
+		data = {'email':email, 'pubkey':pubkey, 'onion':onion}
+		db_insert.apply_async(['users', data])
+	def poll(jurisdiction, declared):
+		pgp_verify(declared, self.pubkey)
 		jurisdiction.has(poll) # ugh...
-		data = {'pubkey':pubkey,'declared':declared}
-		db_insert.apply_async(['votes',data])
+		data = {'pubkey':pubkey, 'declared':declared}
+		db_insert.apply_async(['votes', data])
 	def vote(jurisdiction, chain, privvote):
 		pass
 class Jurisdiction():
@@ -57,9 +57,9 @@ def rank_01_trust():
 def rank_latest_version():
 def rank_denounce_accuracy():
 	# send them proof they did it wrong
-{voucher:abc,nonce:def,time:qbc,field:tc,sig:bc}
-{count:10,offset:10,nonce:abc,time:abc,sig:abc,items:[],order:abc}
-{count:10,offset:10,nonce:abc,time:abc,sig:abc,items:[],order:abc,field:abc}
+{voucher:abc, nonce:def, time:qbc, field:tc, sig:bc}
+{count:10, offset:10, nonce:abc, time:abc, sig:abc, items:[], order:abc}
+{count:10, offset:10, nonce:abc, time:abc, sig:abc, items:[], order:abc, field:abc}
 class interlocutor():
 	def __init__(self, config):
 		self.ec = config

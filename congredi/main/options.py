@@ -3,24 +3,23 @@
 """
 command line options
 """
-
-
+import sys
 from twisted.python import usage
 
 class UsualOptions(usage.Options):
-	optFlags = [["quiet","q", None]]
+	optFlags = [["quiet", "q", None]]
 class WalkerOptions(usage.Options):
-	optParameters = [['module','m',None,None]]
+	optParameters = [['module', 'm', None, None]]
 class Options(UsualOptions):
 	optFlags = [
-		["port","p","protocol port"],
-		["control","c","control port"]
+			["port", "p", "protocol port"],
+			["control", "c", "control port"]
 		]
 	optParameters = [
-		["debug","d", False, "Debug to console"],#, int
+			["debug", "d", False, "Debug to console"], #, int
 		]
 	optSubcommands = [
-		["walk",None,WalkerOptions,"Run Walk"]
+			["walk", None, WalkerOptions, "Run Walk"]
 		]
 	def postOptions(self):
 		if not self['port'] and not self['flag']:
@@ -33,7 +32,7 @@ def getOpts():
 	except usage.UsageError, errortext:
 		print '%s: %s' % (sys.argv[0], errortext)
 		sys.exit(1)
-	if config.subCommand =='walk':
-		doWalk(config.subOptions)
-	if options['port']: app.port = options['port']
-	app.debug = options['debug']
+	# if config.subCommand =='walk':
+	# 	doWalk(config.subOptions)
+	# if options['port']: app.port = options['port']
+	# app.debug = options['debug']

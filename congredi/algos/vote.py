@@ -3,6 +3,6 @@
 """
 compute a vote
 """
-import logging, traceback
+import logging
 logger = logging.getLogger('delegito')
 logger.info('loaded congredi/main/vote.py')

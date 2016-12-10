@@ -5,7 +5,7 @@ from tokens import app
 from tor import prox
 class api(multiprocessing.Process):
 	def run(self):
-		app.run(host="0.0.0.0",port=5000,debug=False)
+		app.run(host="0.0.0.0", port=5000, debug=False)
 class proxy(multiprocessing.Process):
 	def run(self):
 		prox()

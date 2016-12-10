@@ -1,7 +1,3 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from ..algos import *
-from ..crypto import *
-from ..states import *
-from ..storage import *
-from ..tasks import *
+# possibly set main variables in import here...

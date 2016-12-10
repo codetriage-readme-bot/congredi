@@ -6,9 +6,9 @@ Command line interface for using Congredi.
 print('bin: congredi-shell begins')
 from .main.options import getOpts
 from .main.client import CongrediClient
-def CongrediRunClient(host,port,clientKey=None):
+def CongrediRunClient(host, port, clientKey=None):
 	try:
-		client = CongrediClient(host,port,clientKey)
+		client = CongrediClient(host, port, clientKey)
 		while True:
 			cmd = raw_input("> ")
 			client.cmd(cmd)
@@ -16,5 +16,5 @@ def CongrediRunClient(host,port,clientKey=None):
 		print("Congredi failed: {}".format(e.message))
 def CongrediClientCommandLine():
 	"""Grab arguments from command line, call Daemon"""
-	CongrediRunClient(host,port,clientKey)
+	CongrediRunClient(host, port, clientKey)
 print('bin: congredi-shell ends')

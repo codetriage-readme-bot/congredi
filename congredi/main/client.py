@@ -3,26 +3,26 @@
 """
 main client class
 """
-import logging, traceback, os
+import logging, os
 logger = logging.getLogger('delegito')
-from ..crypto.asym import eq as asym
+from ..crypto.asym import asym
 from ..crypto.padding import AONTdecrypt, AONTencrypt
 class CongrediClient():
 	host = None; port = None; key = None
-	def __init__(self,host="localhost",port=4400,
-				 clientKey=None,clientPass=None):
+	def __init__(self, host="localhost", port=4400,
+				 clientKey=None, clientPass=None):
 		self.host = host; self.port = port;
 		if clientKey: self.key = clientKey
 		else: self.key = asym()
 		if clientPass: self.password = clientPass
 		else: self.password = os.urandom(16)
 		logger.debug('built client')
-	def wrapRequest(self,request,serverKey):
-		paddedRequest = AONTencrypt(request,self.password)
-		encryptedRequest = self.key.encrypt(paddedRequest,serverKey)
+	def wrapRequest(self, request, serverKey):
+		paddedRequest = AONTencrypt(request, self.password)
+		encryptedRequest = self.key.encrypt(paddedRequest, serverKey)
 		return encryptedRequest
-	def unwrapRequest(self,encryptedRequest):
-		decryptedPadding = self.key.decrypt(encryptedRequest,self.key)
+	def unwrapRequest(self, encryptedRequest):
+		decryptedPadding = self.key.decrypt(encryptedRequest, self.key)
 		request = AONTdecrypt(decryptedPadding)
 		return request
 

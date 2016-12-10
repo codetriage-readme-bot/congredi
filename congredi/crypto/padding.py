@@ -17,7 +17,7 @@ def make_hash(message):
 	print('32 hash: ' + base64.urlsafe_b64encode(result))
 	return result
 
-def AONTencrypt(content,password):
+def AONTencrypt(content, password):
 	"""
 	generate a key using deriviation,
 	although you won't need to remember
@@ -56,7 +56,7 @@ def AONTdecrypt(cyphertext):
 					cyphertext[-32:])]))
 	print('32 key was: {}'.format(key2))
 	return Fernet(key2).decrypt(base64.urlsafe_b64encode(cyphertext[:-32]))
-# cyphertext = AONTencrypt(b"Secret Message!",b"password")
+# cyphertext = AONTencrypt(b"Secret Message!", b"password")
 # print("cyphertext is {}".format(cyphertext))
 # plaintext = AONTdecrypt(cyphertext)
 # print("plaintext is: " + plaintext)
