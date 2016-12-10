@@ -2,7 +2,9 @@
 
 Axolotl ratchet (but with EC & Fernet) I.e. `[handshake][packet][changekey][packet][changekey]...`
 
-`<all-or-nothing><shmac>`
+OAEP/AONT
+
+`<all-or-nothing<hamming4:7?>><shmac>`
 
 State machine:
 
