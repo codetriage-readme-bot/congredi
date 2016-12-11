@@ -1,20 +1,10 @@
-site_name: Congredi / Delegito
+site_name: Congredi
 docs_dir: docs
 theme: journal
 formats:
     - none
 pages:
-    - 'Home': 'index.md'
-    - 'Use':
-        - 'Site Admins':'use/loading.md'
-        - 'User Guide':'use/guide.md'
-    - 'Specs':
-        - 'Protocol Communication':'use/protocol.md'
-        - 'Database Format':'use/database.md'
-    - 'Contributing':
-        - 'Getting Involved':'contrib/GetInvolved.md'
-        - 'Code Styling':'contrib/linting.md'
-        - 'Unit Tests':'contrib/unittests.md'
-    - 'Extras':
-        - 'Angular UI':'extras/AngularUI.md'
-        - 'Cryptography Extensions':'extras/CryptoExtensions.md'
+    - 'Home': 'README.md'
+    - 'Contributing': 'docs/contributing.md'
+    - 'Specification': 'docs/specification.md'
+    - 'Extending':'docs/extending.md'

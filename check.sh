@@ -11,7 +11,8 @@ chmod -x -R congredi/
     # trailing spaces
     find congredi/ -type f -exec sed -i "s/\s*$//g" {} \;
     # duplicate lines
-    '/./,/^$/!d'
+    #'/./,/^$/!d'
     # comments with spaces
-    -i -e 's/ #\([^ ]\)/ # \1/g'
+    #-i -e 's/ #\([^ ]\)/ # \1/g'
 pylint congredi
+nose2 congredi

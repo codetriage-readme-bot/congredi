@@ -24,20 +24,20 @@ encoded_random = binascii.hexlify(actual_random)
 phonetic_random = " ".join(hexy[a] for a in encoded_random)
 
 def test_obvious_catch():
-    print('Should block:')
-    res = test.check(actual_random)
-    assert not res
+	print('Should block:')
+	res = test.check(actual_random)
+	assert not res
 def test_encode():
-    print('Should safe:')
-    assert test.encoding(encoded_random) == 'ascii'
-    assert test.encoding('hello 你好') == 'utf-8'
+	print('Should safe:')
+	assert test.encoding(encoded_random) == 'ascii'
+	assert test.encoding('hello 你好') == 'utf-8'
 def test_trivial_bypass():
-    print('Should safe:')
-    assert test.check(phonetic_random)
+	print('Should safe:')
+	assert test.check(phonetic_random)
 #def test_steno_check():
 def test_valid_english():
-    print('Should safe:')
-    assert test.check('#This *is* valid content')
+	print('Should safe:')
+	assert test.check('#This *is* valid content')
 #def test_valid_chinese():
 #    print('Should pass:')
 #    print(test.block('#Hello 你好'))
