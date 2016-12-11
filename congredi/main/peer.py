@@ -5,7 +5,7 @@ main peer class
 """
 import logging
 logger = logging.getLogger('delegito')
-
+from ..algos.censor import censor
 class CongrediPeer():
 	commandKeys = []
 	state = "BEGIN"

@@ -1,3 +1,7 @@
 tornado
 PGPy
 fernet
+profanity
+entropy
+pycld2
+chardet

@@ -29,6 +29,12 @@ setup(name='congredi',
 		'stem',
 		'pyjwt'
 		],
+	entry_points = {
+        'console_scripts': [
+        	'congredi-peer=congredi.main.peer:CongrediPeerCommandLine',
+        	'congredi-cli=congredi.main.client:CongrediPeerCommandLine'
+        	],
+	    },
 	include_package_data=True,
 	#packages = ['.','delegito','docs','security','service','tests'],
 	#package_data={'delegito':['*'],'docs':['*/*'],},

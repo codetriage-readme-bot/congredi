@@ -17,3 +17,4 @@ logger.info('Congredi __main__ in use.')
 # pylint: disable=unused-import
 from .main.client import CongrediClient as client
 from .main.peer import CongrediPeer as peer
+from .algos.router import router
