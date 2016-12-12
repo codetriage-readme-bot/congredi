@@ -1,5 +1,5 @@
 site_name: Congredi
-docs_dir: docs
+docs_dir: '.'
 theme: journal
 formats:
     - none
@@ -7,4 +7,4 @@ pages:
     - 'Home': 'README.md'
     - 'Contributing': 'docs/contributing.md'
     - 'Specification': 'docs/specification.md'
-    - 'Extending':'docs/extending.md'
+    - 'Extending': 'docs/extending.md'

@@ -18,8 +18,8 @@ serving via traefik, nginx, flask, and angular (originally).
 
 ## Running
 
-* `python -m congredi peer`
-* `python -m congredi client`
+* `python -m congredi peer --redis 6379 --neo4j 7474 --port 8800`
+* `python -m congredi client --host localhost --port 8800`
 
 
 [![Stories in Ready](https://badge.waffle.io/Thetoxicarcade/ac.svg?label=ready&title=Ready)](http://waffle.io/Thetoxicarcade/ac)

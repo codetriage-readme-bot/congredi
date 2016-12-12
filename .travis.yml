@@ -2,19 +2,10 @@ sudo: required
 language: C
 services:
  - docker
-addons:
-  apt:
-    packages:
-    - python-nose2
-    - python-pip
-before_script:
- - sudo pip install -r requirements.txt
- - sudo pip install setuptools-lint mkdocs
 script:
- - docker build .
- - sudo pip install -r requirements.txt
- - python setup.py build
- - python setup.py test
- - sudo python setup.py install
- - python setup.py lint || echo "Lint failing..."
- - mkdocs build || echo "Docs failing..."
+ - docker build -t test .
+ - docker run test python setup.py build
+ - docker run test python setup.py test
+ - docker run test python setup.py install
+ - docker run test pip install setuptools-lint python setup.py lint || echo "Lint failing..."
+ - docker run test pip install mkdocs && mkdocs build || echo "Docs failing..."
