@@ -1,4 +1,4 @@
-from ..algos.router import router
+from ...algos.router import router
 
 def test_routing():
 	r = router('e')

@@ -8,7 +8,7 @@ from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 # Class instances for the Asymetric crypto inside Congredi.
-logger = logging.getLogger('delegito')
+logger = logging.getLogger('congredi')
 
 class asym():
 	private_key = None

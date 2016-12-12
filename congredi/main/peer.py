@@ -8,7 +8,7 @@ from twisted.internet import defer #, utils
 #from twisted.web import client
 from twisted.internet.protocol import Factory
 from twisted.protocols.basic import LineReceiver
-logger = logging.getLogger('delegito')
+logger = logging.getLogger('congredi')
 class CongrediPeer(Factory):
 	# init
 	online = False

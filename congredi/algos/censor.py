@@ -7,7 +7,7 @@ the current library is old and might simply need to include regexes...
 import logging, entropy, chardet
 import pycld2 as cld2
 from profanity import profanity
-logger = logging.getLogger('delegito')
+logger = logging.getLogger('congredi')
 
 def stateProfanity(statement):
 	return profanity.contains_profanity(statement)

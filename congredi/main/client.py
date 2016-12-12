@@ -4,7 +4,7 @@
 main client class
 """
 import logging, os
-logger = logging.getLogger('delegito')
+logger = logging.getLogger('congredi')
 from ..crypto.asym import asym
 from ..crypto.padding import AONTdecrypt, AONTencrypt
 from ..storage.redis import redis_test

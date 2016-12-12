@@ -1,7 +1,7 @@
 # import pudb
 # pu.db
 import logging
-logger = logging.getLogger('delegito')
+logger = logging.getLogger('congredi')
 logger.setLevel(1)
 fh = logging.StreamHandler()
 fh.setLevel(1)

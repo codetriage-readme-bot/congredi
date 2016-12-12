@@ -43,7 +43,7 @@ https://github.com/wiedi/khashmir
 https://github.com/bmuller/kademlia
 https://github.com/bmuller/rpcudp
 https://github.com/csm/khashmir
->https://github.com/darka/p2pfs
+https://github.com/darka/p2pfs
 https://github.com/debanshu/ResearchShareP2P
 https://github.com/twisted/vertex
 https://github.com/twisted/twisted

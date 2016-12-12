@@ -3,8 +3,8 @@
 """
 tests on the simplistic censor library.
 """
-from ..algos.censor import censor
-from ..algos.censor import stateEncoding
+from ...algos.censor import censor
+from ...algos.censor import stateEncoding
 import binascii, os
 
 hexy = {

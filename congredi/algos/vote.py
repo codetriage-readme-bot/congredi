@@ -4,5 +4,5 @@
 compute a vote
 """
 import logging
-logger = logging.getLogger('delegito')
+logger = logging.getLogger('congredi')
 logger.info('loaded congredi/main/vote.py')

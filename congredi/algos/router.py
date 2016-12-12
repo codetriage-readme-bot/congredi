@@ -4,7 +4,7 @@
 generate a route to an introduction node
 """
 import logging, random
-logger = logging.getLogger('delegito')
+logger = logging.getLogger('congredi')
 class router():
 	nodes = []
 	def __init__(self, routerKey):
