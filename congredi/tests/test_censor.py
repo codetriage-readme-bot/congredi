@@ -4,6 +4,7 @@
 tests on the simplistic censor library.
 """
 from ..algos.censor import censor
+from ..algos.censor import stateEncoding
 import binascii, os
 
 hexy = {
@@ -18,7 +19,7 @@ hexy = {
 "S": "Sierra", "T": "Tango", "U": "Uniform", "V": "Victor",
 "W": "Whiskey", "X": "X-ray", "Y": "Yankee", "Z": "Zulu"
 }
-test = censor(encodings=['UTF-8', 'ascii'], languages=['ENGLISH','CHINESE'])
+test = censor(encodings=['UTF-8', 'ascii'], languages=['ENGLISH', 'CHINESE'])
 actual_random = os.urandom(15)
 encoded_random = binascii.hexlify(actual_random)
 phonetic_random = " ".join(hexy[a] for a in encoded_random)
@@ -29,8 +30,8 @@ def test_obvious_catch():
 	assert not res
 def test_encode():
 	print('Should safe:')
-	assert test.encoding(encoded_random) == 'ascii'
-	assert test.encoding('hello 你好') == 'utf-8'
+	assert stateEncoding(encoded_random) == 'ascii'
+	assert stateEncoding('hello 你好') == 'utf-8'
 def test_trivial_bypass():
 	print('Should safe:')
 	assert test.check(phonetic_random)
@@ -39,6 +40,6 @@ def test_valid_english():
 	print('Should safe:')
 	assert test.check('#This *is* valid content')
 #def test_valid_chinese():
-#    print('Should pass:')
-#    print(test.block('#Hello 你好'))
-#    assert test.check('#Hello 你好')
+#	print('Should pass:')
+#	print(test.block('#Hello 你好'))
+#	assert test.check('#Hello 你好')

@@ -4,12 +4,10 @@
 main peer class
 """
 import logging
-from twisted.internet import protocol, reactor, endpoints, defer #, utils
+from twisted.internet import defer #, utils
 #from twisted.web import client
-from twisted.internet.protocol import Protocol, Factory
-from twisted.internet.endpoints import TCP4ServerEndpoint
+from twisted.internet.protocol import Factory
 from twisted.protocols.basic import LineReceiver
-from twisted.internet import reactor
 logger = logging.getLogger('delegito')
 class CongrediPeer(Factory):
 	# init

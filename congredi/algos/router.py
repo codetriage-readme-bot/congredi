@@ -7,10 +7,10 @@ import logging, random
 logger = logging.getLogger('delegito')
 class router():
 	nodes = []
-	def __init__(self,routerKey):
+	def __init__(self, routerKey):
 		self.key = routerKey
 	# routes will have a key and an IP
-	def route(self,rendesvousKey,hops=3):
+	def route(self, rendesvousKey, hops=3):
 		# self, node, returnaddr, rendesvous
 		tempNodes = list(self.nodes)
 		result = []

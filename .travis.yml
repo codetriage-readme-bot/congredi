@@ -7,5 +7,5 @@ script:
  - docker run test python setup.py build
  - docker run test python setup.py test
  - docker run test python setup.py install
- - docker run test pip install setuptools-lint python setup.py lint || echo "Lint failing..."
+ - docker run test pip install setuptools-lint && python setup.py lint || echo "Lint failing..."
  - docker run test pip install mkdocs && mkdocs build || echo "Docs failing..."

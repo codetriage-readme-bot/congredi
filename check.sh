@@ -2,7 +2,7 @@
 # remove old .pyc clutter
 find congredi/ -type f -name "*.pyc" -delete -print
 # not executable
-chmod -x -R congredi/
+chmod -x congredi/ -R 
 # Corrective regexes
     # use tabs
     find congredi/ -type f -exec sed -i "s/    /\t/g" {} \;
@@ -16,3 +16,4 @@ chmod -x -R congredi/
     #-i -e 's/ #\([^ ]\)/ # \1/g'
 pylint congredi
 nose2 congredi
+find congredi/ -type f -name "*.pyc" -delete -print

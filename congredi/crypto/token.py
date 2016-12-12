@@ -26,7 +26,6 @@ class token():
 				}
 		json = jwt.encode(payload, self.secret, algorithm='HS256')
 		return json.decode('unicode_escape')
-"""
 # simple use of this with Flask
 from flask import Flask
 gate = token('password')
@@ -41,4 +40,3 @@ def jwt_use():
 	response, checks = gate.check(token)
 	if checks: return func(response) # response is pgp fingerprint
 	else: return response # response is token error
-"""
