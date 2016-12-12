@@ -16,6 +16,12 @@ serving via traefik, nginx, flask, and angular (originally).
 * docker: `ericoflondon/congredi-api` and `ericoflondon/congredi-cluster`
 * git: `git clone https://github.com/thetoxicarcade/ac.git && cd ac`
 
+## Running
+
+* `python -m congredi peer`
+* `python -m congredi client`
+
+
 [![Stories in Ready](https://badge.waffle.io/Thetoxicarcade/ac.svg?label=ready&title=Ready)](http://waffle.io/Thetoxicarcade/ac)
 [![Build Status](https://travis-ci.org/Thetoxicarcade/ac.svg?branch=master)](https://travis-ci.org/Thetoxicarcade/ac)
 [![Documentation Status](https://readthedocs.org/projects/ac/badge/?version=latest)](http://congredi.readthedocs.io/en/latest/?badge=latest)

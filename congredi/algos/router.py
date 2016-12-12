@@ -5,8 +5,6 @@ generate a route to an introduction node
 """
 import logging, random
 logger = logging.getLogger('delegito')
-logger.info('loaded congredi/algos/route.py')
-
 class router():
 	nodes = []
 	def __init__(self,routerKey):

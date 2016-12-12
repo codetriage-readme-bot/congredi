@@ -7,7 +7,22 @@ import logging, os
 logger = logging.getLogger('delegito')
 from ..crypto.asym import asym
 from ..crypto.padding import AONTdecrypt, AONTencrypt
-class CongrediClient():
+from ..storage.redis import redis_test
+from twisted.internet import stdio
+from twisted.protocols.basic import LineReceiver
+class CongrediClient(LineReceiver):
+	from os import linesep as delimiter
+
+	def connectionMade(self):
+		self.transport.write('>>> ')
+
+	def lineReceived(self, line):
+		if line == 'test': redis_test()
+		self.sendLine('Echo: ' + line)
+		self.transport.write('>>> ')
+	def cmd(self,options):
+		print(options)
+		if options == 'test': redis_test()
 	host = None; port = None; key = None
 	def __init__(self, host="localhost", port=4400,
 				 clientKey=None, clientPass=None):
@@ -25,4 +40,3 @@ class CongrediClient():
 		decryptedPadding = self.key.decrypt(encryptedRequest, self.key)
 		request = AONTdecrypt(decryptedPadding)
 		return request
-

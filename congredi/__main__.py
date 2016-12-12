@@ -1,5 +1,5 @@
-#import pudb
-#pu.db
+# import pudb
+# pu.db
 import logging
 logger = logging.getLogger('delegito')
 logger.setLevel(1)
@@ -18,3 +18,4 @@ logger.info('Congredi __main__ in use.')
 from .main.client import CongrediClient as client
 from .main.peer import CongrediPeer as peer
 from .algos.router import router
+from .main.options import run

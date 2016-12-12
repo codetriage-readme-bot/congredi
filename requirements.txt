@@ -5,3 +5,8 @@ profanity
 entropy
 pycld2
 chardet
+stem
+flask
+pymongo
+urwid
+txredisapi

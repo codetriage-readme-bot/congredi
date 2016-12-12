@@ -1,4 +1,0 @@
-stem
-flask
-pymongo
-urwid

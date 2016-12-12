@@ -31,8 +31,7 @@ setup(name='congredi',
 		],
 	entry_points = {
         'console_scripts': [
-        	'congredi-peer=congredi.main.peer:CongrediPeerCommandLine',
-        	'congredi-cli=congredi.main.client:CongrediPeerCommandLine'
+        	'congredi=congredi.main.options:run'
         	],
 	    },
 	include_package_data=True,
