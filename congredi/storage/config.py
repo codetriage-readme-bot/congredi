@@ -9,9 +9,9 @@ logger = logging.getLogger('congredi')
 def configArr():
 	config = {}
 	try:
-		with open(os.path.expanduser('~') + '/.congredi.yml','r') as f:
+		with open(os.path.expanduser('~') + '/.congredi.yml', 'r') as f:
 			config = yaml.load(f.read())
-		if any (k not in config for k in ('admins','users')):
+		if any (k not in config for k in ('admins', 'users')):
 			logger.warning('Config does not contain "admins" or "users"')
 	except:
 		trace = traceback.format_exc()

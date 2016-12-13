@@ -31,7 +31,7 @@ def tick(md1, md2):
 	unified = resolveDiff(md1, md2)
 	compressed = compressDiff(unified)
 	return compressed
-def tock(compressed,direction):
+def tock(compressed, direction):
 	uncompressed = uncompressDiff(compressed)
 	original = '\n'.join(list(restore(uncompressed, direction)))
 	return original

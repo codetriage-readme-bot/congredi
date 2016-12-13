@@ -5,10 +5,10 @@ main client class
 """
 import logging, os
 logger = logging.getLogger('congredi')
+from twisted.protocols.basic import LineReceiver
 from ..crypto.asym import asym
 from ..crypto.padding import AONTdecrypt, AONTencrypt
-from ..storage.redis import redis_test
-from twisted.protocols.basic import LineReceiver
+from ..storage.redis import get, set, delete
 class CongrediClient(LineReceiver):
 	from os import linesep as delimiter
 
@@ -16,8 +16,9 @@ class CongrediClient(LineReceiver):
 		self.transport.write('>>> ')
 
 	def lineReceived(self, line):
-		if line == 'test': redis_test()
-		self.sendLine('Echo: ' + line)
+		params = line.split(" ")
+		if line[0] == 'get': res = get(line[1:])
+		self.sendLine('Echo: ' + res)
 		self.transport.write('>>> ')
 
 	host = None; port = None; key = None

@@ -3,28 +3,30 @@
 """
 Repeated tasks
 """
+import logging
+logger = logging.getLogger('congredi')
 
 #import random
 from twisted.internet import task
+from twisted.internet import defer
 from twisted.internet import reactor
 
-from ..storage.redis import RedisMixin
-from ..storage.redis import RedisMethods
-
+import txredisapi as redis
+from ..storage.redis import get, set, delete
 from ..storage.config import configArr
 
 shutDown = False
-print('beat loading')
+@defer.inlineCallbacks
 def peerBeat(): # repeating peer-beat task
 	config = configArr()
-	print('beat')
-	RedisMixin.setup()
-	print('setup')
-	conn = RedisMethods()
-	print('methods')
+	logger.info('heartbeat')
 	for admin in config['admins']:
-		print(conn.set('admins',admin))
-		print(conn.get(admin))
+		retset = yield set('admins', admin)
+		retget = yield get('admins')
+		retdel = yield delete('admins')
+		logger.info('set response:' + retset)
+		logger.info('get response:' + retget)
+		logger.info('delete response: {}'.format(retdel))
 	#if shutDown:
 	#	loop.stop()
 def peerSuccess():

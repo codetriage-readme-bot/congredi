@@ -13,6 +13,7 @@ from .peer import CongrediPeer
 from .client import CongrediClient
 from ..storage.config import configArr
 from ..tasks.peerBeat import peerBeat, peerSuccess, peerFailure
+from ..storage.redis import get, set, delete
 #from ..tasks import garbageCollect
 
 MainOptions = argparse.ArgumentParser(add_help=False)
@@ -37,6 +38,8 @@ def run():
 	initialUsers = config['users']
 	print('Settings contain initial key(s): {}'.format(initialKey))
 	print('Settings contains the following user(s): {}'.format(initialUsers))
+
+	#reactor.callLater(2,redis_test)
 
 	loop = task.LoopingCall(peerBeat)
 	loopDeferred = loop.start(10.0)

@@ -3,40 +3,33 @@
 """
 Functions for using Redis
 """
+import logging
+logger = logging.getLogger('congredi')
 import sys
 from twisted.internet import defer
 from twisted.internet import reactor
 from twisted.python import log
 import txredisapi as redis
 
-@defer.inlineCallbacks
-def redis_test():
-	rc = yield redis.Connection("10.230.78.120")
-	yield rc.set("foo", "bar")
-	v = yield rc.get("foo")
-	print "foo:", repr(v)
-	yield rc.disconnect()
-
-class RedisMixin(object):
-	redis_conn = None
-	@classmethod
-	def setup(self):
-		RedisMixin.redis_conn = redis.lazyConnectionPool()
-
-
 # Condensed txredisapi example... but where should yield go?
-class RedisMethods(RedisMixin):
-	@defer.inlineCallbacks
-	def get(self, key):
-		print('getting')
-		value = self.redis_conn.get(key)
-		print('got')
-		yield key, value
-	@defer.inlineCallbacks
-	def set(self, key, value):
-		res = self.redis_conn.set(key, value)
-		yield res, key, value
-	@defer.inlineCallbacks
-	def delete(self, key):
-		n = self.redis_conn.delete(key)
-		yield key, n
+@defer.inlineCallbacks
+def get(key):
+	rc = yield redis.Connection("10.230.78.120")
+	value = yield rc.get(key)
+	logger.info('got {}:{}'.format(key,value))
+	yield rc.disconnect()
+	defer.returnValue(value)
+@defer.inlineCallbacks
+def set(key, value):
+	rc = yield redis.Connection("10.230.78.120")
+	res = yield rc.set(key, value)
+	logger.info('set ({}) {}:{}'.format(res,key,value))
+	yield rc.disconnect()
+	defer.returnValue(res)
+@defer.inlineCallbacks
+def delete(key):
+	rc = yield redis.Connection("10.230.78.120")
+	n = yield rc.delete(key)
+	logger.info('deleted ({}) {}'.format(n,key))
+	yield rc.disconnect()
+	defer.returnValue(n)

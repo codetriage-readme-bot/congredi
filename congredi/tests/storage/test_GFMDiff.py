@@ -51,14 +51,14 @@ def test_html():
 	print(html)
 def test_resolve_ndiff():
 	print('The Diff:')
-	result = resolveDiff(source,source2)
+	result = resolveDiff(source, source2)
 	print(''.join(result))
 	print('The Original:')
-	orig = rebuildFile(result,1)
+	orig = rebuildFile(result, 1)
 	print(''.join(orig))
 def test_compression():
 	# Direct conversion
-	res = tick(source,source2)
-	beep = tock(res,1)
+	res = tick(source, source2)
+	beep = tock(res, 1)
 	print('Compression test:')
 	print(beep)
