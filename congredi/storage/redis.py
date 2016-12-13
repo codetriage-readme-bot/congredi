@@ -16,20 +16,20 @@ import txredisapi as redis
 def get(key):
 	rc = yield redis.Connection("10.230.78.120")
 	value = yield rc.get(key)
-	logger.info('got {}:{}'.format(key,value))
+	logger.info('got {}:{}'.format(key, value))
 	yield rc.disconnect()
 	defer.returnValue(value)
 @defer.inlineCallbacks
 def set(key, value):
 	rc = yield redis.Connection("10.230.78.120")
 	res = yield rc.set(key, value)
-	logger.info('set ({}) {}:{}'.format(res,key,value))
+	logger.info('set ({}) {}:{}'.format(res, key, value))
 	yield rc.disconnect()
 	defer.returnValue(res)
 @defer.inlineCallbacks
 def delete(key):
 	rc = yield redis.Connection("10.230.78.120")
 	n = yield rc.delete(key)
-	logger.info('deleted ({}) {}'.format(n,key))
+	logger.info('deleted ({}) {}'.format(n, key))
 	yield rc.disconnect()
 	defer.returnValue(n)

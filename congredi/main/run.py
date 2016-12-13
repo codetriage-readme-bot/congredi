@@ -26,7 +26,7 @@ def run():
 	print('Settings contain initial key(s): {}'.format(initialKey))
 	print('Settings contains the following user(s): {}'.format(initialUsers))
 
-	#reactor.callLater(2,redis_test)
+	#reactor.callLater(2, redis_test)
 
 	loop = task.LoopingCall(peerBeat)
 	loopDeferred = loop.start(10.0)

@@ -1,6 +1,7 @@
 import markdown
 from mdx_gfm import GithubFlavoredMarkdownExtension
 from difflib import unified_diff, ndiff, restore
+from patch import fromstring
 import sys
 import zlib
 
@@ -10,11 +11,13 @@ def chunkSplit(compressed): #restore: ''.join()
 def resolveHtml(md):
 	return markdown.markdown(md, extensions=[GithubFlavoredMarkdownExtension()])
 # gosh I wish this would just work..
-def resolveUnifiedDiff(contents, patch, direction):
+def resolveUnifiedDiff(md1, md2, l1, l2):
 	# must use python-patch to use unified diffs...
-	pass
+	diff = unified_diff(md1.splitlines(1), md2.splitlines(1), l1, l2, lineterm='', n=0)
+	result = '\n'.join(list(diff))
+	print(result)
+	return result
 def resolveDiff(md1, md2):
-	#diff = unified_diff
 	diff = ndiff(md1.splitlines(1), md2.splitlines(1))#, lineterm='', n=0)
 	result = list(diff)
 	#result = '\n'.join(list(diff))

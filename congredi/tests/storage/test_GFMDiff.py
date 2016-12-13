@@ -3,7 +3,8 @@
 """
 tests on the simplistic censor library.
 """
-import hashlib
+import hashlib#, pudb
+from StringIO import StringIO
 from ...storage.GFMDiff import resolveHtml
 from ...storage.GFMDiff import resolveUnifiedDiff
 from ...storage.GFMDiff import resolveDiff
@@ -13,6 +14,7 @@ from ...storage.GFMDiff import uncompressDiff
 from ...storage.GFMDiff import tick
 from ...storage.GFMDiff import tock
 from ...storage.GFMDiff import chunkSplit
+from patch import PatchSet
 
 
 
@@ -60,7 +62,7 @@ Maecenas congue suscipit lacus vitae rhoncus. Donec dictum lacinia elementum. Pr
 
 Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus molestie nibh vel felis consequat, ut consectetur arcu porta. Duis in tortor ultrices mi malesuada mattis at quis turpis. Morbi enim nunc, accumsan id leo eget, egestas blandit dolor. Aenean id sapien quis quam sollicitudin laoreet in in lacus. Suspendisse potenti. Donec ut erat malesuada, tempus nunc ac, sodales ante. Phasellus ac felis ultricies, ullamcorper ipsum sed, vehicula urna. Nullam ac lacus euismod, fermentum justo a, ornare massa. Vestibulum sed mollis nulla. Nulla turpis tellus, porttitor a sodales ac, lacinia sodales ex. Donec scelerisque magna vel nisi cursus malesuada. Aenean vehicula dictum enim, eu semper nisi dictum nec. Nunc in leo varius, sagittis odio in, rhoncus purus.
 
-Nulla facilisi. Vestibulum aliquet est a ex lobortis vulputate. Curabitur at ultrices orci. Vestibulum varius nulla eu aliquet finibus. Donec id posuere est. Donec sit amet lacus vitae nulla dapibus imperdiet sed id ante. Nullam vitae lorem tristique, lobortis justo sit amet, porta erat. Donec quam lorem, ullamcorper sit amet tortor hendrerit, tempor dapibus magna. Cras viverra consectetur odio, quis iaculis lacus ornare vel. Pellentesque id lorem eu sapien vehicula molestie in vitae purus. Sed ac sapien non purus dapibus lacinia. Integer vel nunc vel tortor tempor accumsan. Integer tempor sit amet dolor in posuere. Etiam maximus odio quis felis blandit scelerisque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. 
+Nulla facilisi. Vestibulum aliquet est a ex lobortis vulputate. Curabitur at ultrices orci. Vestibulum varius nulla eu aliquet finibus. Donec id posuere est. Donec sit amet lacus vitae nulla dapibus imperdiet sed id ante. Nullam vitae lorem tristique, lobortis justo sit amet, porta erat. Donec quam lorem, ullamcorper sit amet tortor hendrerit, tempor dapibus magna. Cras viverra consectetur odio, quis iaculis lacus ornare vel. Pellentesque id lorem eu sapien vehicula molestie in vitae purus. Sed ac sapien non purus dapibus lacinia. Integer vel nunc vel tortor tempor accumsan. Integer tempor sit amet dolor in posuere. Etiam maximus odio quis felis blandit scelerisque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
 """
 
 def test_html():
@@ -81,7 +83,7 @@ def test_compression():
 	print(beep)
 def test_splits():
 	data = {'pieces':{}}
-	comp = tick(empty,empty2)
+	comp = tick(empty, empty2)
 	print('compressed {}'.format(len(comp)))
 	data['length'] = len(comp)
 	data['hash'] = hashlib.sha256(comp).digest()
@@ -90,9 +92,17 @@ def test_splits():
 		key = hashlib.sha256(c).digest()
 		data['pieces'][key] = c
 	for k, v in data['pieces'].items():
-		print(k.encode('hex'),v.encode('hex'))
+		print(k.encode('hex'), v.encode('hex'))
 	jnd = ''.join(splt)
 	final = hashlib.sha256(jnd).digest()
 	print('join {}'.format(len(jnd)))
 	print('hash: {}\nhash: {}'.format(
 		data['hash'].encode('hex'), final.encode('hex')))
+
+def test_uni():
+	# pu.db
+	diff = resolveUnifiedDiff(source, source2, 'a.txt', 'b.txt')
+	patch = PatchSet(StringIO(diff))
+	print(patch.errors)
+	patch.revert(0, root='.')
+	patch.apply(0, root=".")
