@@ -12,6 +12,7 @@ logger = logging.getLogger('congredi')
 class CongrediPeer(Factory):
 	# init
 	online = False
+	users = {}
 	def __init__(self, port=4400, redisPort=6379, neo4jPort=7474, initialKey=None):
 		self.users = {} # maps user names to Chat instances
 		self.redisPort = redisPort

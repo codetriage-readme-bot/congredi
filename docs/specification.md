@@ -18,6 +18,10 @@ LIST <type> ORDER <> OFFSET <> COUNT <> TERM <>	| return <contents>
 EXACT/chain/get
 BLOCK/current
 ```
+Blobs will probably be zlib compressed ndiffs, even if I want them to be
+unified diffs.
+
+
 ```
 
 
