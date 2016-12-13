@@ -4,6 +4,8 @@ from difflib import unified_diff, ndiff, restore
 import sys
 import zlib
 
+def chunkSplit(compressed): #restore: ''.join()
+	return [compressed[k:k+250] for k in xrange(0, len(compressed), 250)]
 
 def resolveHtml(md):
 	return markdown.markdown(md, extensions=[GithubFlavoredMarkdownExtension()])

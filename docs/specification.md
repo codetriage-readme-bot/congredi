@@ -10,116 +10,74 @@ the final node and the rendesvous node, either of which may object to the query.
 Since the serve stores data in plaintext, if it finds something objectionable,
 or of no use, it can censor that content as well.
 ```
-GET <type> <hash>				| return <contents>
-SET <type> <hash> <contents>	| return <subset proof>
-CURRENT <type> <hash>			| return <contents>
-LIST <type> ORDER <> OFFSET <> COUNT <> TERM <>	| return <contents>
+'SET'
+	PUBLISH - permissions, long lasting item
+	DEPLOY - no permissions, publish key, may soon be deleted
 
-EXACT/chain/get
-BLOCK/current
+'GET'
+	SUBSCRIBE - permissions set rendesvous to pull updates
+	MONITOR - no permissions, query for key, request expires
+
+	PAST - grab all previous versions
+	CURRENT - grab signed latest
+	FUTURE - grab all newer versions
+
+SEARCH <> ORDER <> OFFSET <> COUNT <> TERM <>
 ```
 Blobs will probably be zlib compressed ndiffs, even if I want them to be
 unified diffs.
 
 
 ```
-
-
-GET/SET USER <hash> : KEY
-	END: next fingerprint
-	LOCATION/BIO/TREE/POLL/VOTE/AGGREGATE/PROPOSE/KEEP
-		- location zkp, add/delete, expires
-		CURRENT/<hash>
-			: current, previous
-SET COMMIT <hash> SIG <> PUBKEY <> CHUNKS <> PREVIOUS <> : PROOF
-SET COMMIT <hash> META NEXT <hash> <sig>
-GET COMMIT <hash> : SIG PUBKEY CHUNKS PREVIOUS META NEXT
-
-SET CHUNK <hash> <contents> : PROOF
-GET CHUNK <hash> : contents
-SET VOTE <hash> <trees> : expires
-GET VOTE <hash> : trees
-SET POLL <hash> <trees> : expires
-GET POLL <hash> : trees
-
-SET ROUTE <hash> <key> : expires
-GET ROUTE <hash> : <key>
-
-SET ROUTE <hash> IP <ip,p> : expires
-
-GET ROUTE <hash> IP CURRENT/<hash> : META NEXT
-SET ROUTE <hash> IP <hash> NEXT <hash> : expires
-
-SET ROUTE <hash> BLACKLIST ADD/REMOVE <hash,p> : expires
-
-GET ROUTE <hash> BLACKLIST CURRENT/<hash> : META NEXT
-SET ROUTE <hash> BLACKLIST <hash> NEXT <hash> : expires
-
-SET ROUTE <hash> WHITELIST ADD/REMOVE <hash,p> : expires
-
-GET ROUTE <hash> WHITELIST CURRENT/<hash> : META NEXT
-SET ROUTE <hash> WHITELIST <hash> NEXT <hash> : expires
-
-```
-
-
-```
-USER : FINGERPRINT
-	BEGINS: KEY
-	LOCATION: chain<ZKP>
-	BIO: tree
-	TREE: chain<trees>
-	POLL: chain<poll>
-	VOTE: chain<shuffle-sum>
-	AGGREGATE: chain<aggregate> // join/leave
-	PROPOSE: chain<stv/poll/tree> //add/remove
-	KEEP: chain<objects> // REQUESTS UNTIL EXPIRE
-	ENDS: next fingerprint
-TREE : {
-	chains<commits>
-	meta: users have current pointers
-COMMIT :
-	SIG
-	PUBKEY
-	CHUNKS
-	PREVIOUS
-CHUNK : content
-	BEGINS: content
-	meta: commits use
-VOTE : HASH
-	BEGINS: TREES
-	meta: users have current votes
-	meta: aggregations have current results
-POLL : HASH
-	BEGINS: TREES
-	meta: users have current votes
-	meta: aggregations have current results
-ROUTE : FINGERPRINT
-	BEGINS: KEY
-	IP: chain<ip>
-	private ADMINS: admins
-	BLACKLIST/WHITELIST loosechain<>
-	PENDING delete/download
-	RENDESVOUS: chain<routes> // add/remove
-	SEEN: <time>
-	UPTIME: block<time>
-	RANK: block<rank> // unknown, trusted, untrusted, compromised
-	WANTS: block<wants> // hash time expires - delimited
-	HAS: block<has> // hash time expires - delimited
-	PROOF: subset hash parameters nounce sig time expires
-AGGREGATION :
-	BEGINS : admins
-	MANIFESTO : tree
-	BORDERS: block<data> // update
-	VOTERS: block<fingerprints> // add/remove
-	POLLS: block<polls> // add/remove
-	VOTES: block<votes> // add/remove
-	TREES: block<trees> // add/remove
-	KEEP: chain<objects> // REQUESTS UNTIL EXPIRE
-	ENDS : new admins
+structures & query language (i.e. PUBLISH CACHE HAS <object>)
+CACHE
+	HAS				- list(hash:key:sig:begins:expires)
+	WANTS			- list(hash:key:sig:begins:expires)
+	PROOF			- list(nonce:proof:date:sig)
+	SEEN			- list(prev:time:date:sig)
+	UPTIME			- list(prev:time:date:sig)
+	RANK			- list(prev:rank:date:sig)
+COMPUTATION
+	POLL			- list(polls,date,threshsig)
+	VOTE			- list(votes,date,threshsig)
+	TREES			- list(trees,date,threshsig)
+	SAVES			- list(list(hash,begins,expires),date,threshsig)
+	VOTERS			- list(proofs,date,threshsig)
+HISTORY
+	TREES			- list(list(CURRENT,PREVIOUS,SIG))
+	POLLS			- list(list(CURRENT,PREVIOUS,SIG))
+	VOTES			- list(list(CURRENT,PREVIOUS,SIG))
+	MEMBERSHIPS		- list(list(CURRENT,PREVIOUS,SIG))
+	PROPOSALS		- list(list(CURRENT,PREVIOUS,SIG))
+	SAVES			- list(list(list(hash,begins,expires),PREVIOUS,SIG))
+IDENTITY
+	ROUTE			- KEY, PREVIOUS, SIG
+	USER			- KEY, PREVIOUS, SIG
+	AGGREGATE		- list(KEYS), PREVIOUS, SIG
+	IP				- IP, PREVIOUS, SIG
+	RENDESVOUS		- list(IPS), PREVIOUS, SIG
+	LOCATION		- ZKP, PREVIOUS, SIG
+	BORDERS			- CURRENT, PREVIOUS, THRESHSIG
+CONTENT
+	BIO				- COMMIT,PREVIOUS,SIG
+	MANIFESTO		- COMMIT,PREVIOUS,THRESHSIG
+	COMMIT			- hash,list(CHUNKS),list(PREVIOUS),SIG, KEY
+	CHUNK			- truncated-gzip-ndiff-markdown
+	POLL			- list(TREES)
+	VOTE			- list(TREES)
+SETTING
+	IP				- previous:sig:ip
+	RENDESVOUS		- previous:sig:list(fp)
+	ADMIN			- list(fp)
+	USER			- list(fp)
+	PEER			- list(fp)
+	WHITELIST		- list(fp)
+	BLACKLIST		- list(fp)
 ```
 
 ```
+users -> agg -> polls/votes/trees -> commits -> chunks
+
 "directed graph":{
 	"user":{
 		"trusts":"users",
@@ -129,8 +87,13 @@ AGGREGATION :
 
 ```
 kleptography / outside obfuscation / steganalisis
-RATCHET sessionkey, prekey, ONION FROM <route> TO <route> <contents>
-ratchet:onion:AONT:Axolotl EC AES new hope ring learning homomorphic garlic, sign time+nounce, OAEP/AONT/hamming4:7
+RATCHET sessionkey, prekey,
+ONION FROM <route> TO <route> <contents>
+ratchet:onion:AONT:Axolotl EC AES new hope
+ring learning homomorphic garlic, sign time+nounce,
+OAEP/AONT/hamming4:7
 nonce, prekey, session key, hash, time, pubkey, p2p, dht
-libgit2-redis/txredisapi / redis / neo4j; if in peers, delete, add peer 0(1) nettrust KV - list, read, add(k,v), delete(k)
+libgit2-redis/txredisapi / redis / neo4j; if in peers,
+delete, add peer 0(1) nettrust KV - list,
+read, add(k,v), delete(k)
 ```
