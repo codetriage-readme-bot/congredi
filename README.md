@@ -7,14 +7,20 @@ as a community of git databases where groups of people rank their choices
 on how fictional repos should be constructed. Like an STV version of reddit
 for documents.
 
-This repository doesn't include a client, or scaling. I would suggest
-serving via traefik, nginx, flask, and angular (originally).
+For a website/javascript style client, head over to
+[github.com/thetoxicarcade/delegito](//github.com/thetoxicarcade/delegito).
 
 ## Installing
 
 * library: `pip install congredi`
-* docker: `ericoflondon/congredi-api` and `ericoflondon/congredi-cluster`
 * git: `git clone https://github.com/thetoxicarcade/ac.git && cd ac`
+* docker:
+
+```
+ericoflondon/
+    congredi                - individual peer/clients
+    delegito                - static content, swarmable
+```
 
 ## Running
 
@@ -22,33 +28,20 @@ serving via traefik, nginx, flask, and angular (originally).
 * `python -m congredi.main.run client --host localhost --port 8800`
 
 
-[![Stories in Ready](https://badge.waffle.io/Thetoxicarcade/ac.svg?label=ready&title=Ready)](http://waffle.io/Thetoxicarcade/ac)
-[![Build Status](https://travis-ci.org/Thetoxicarcade/ac.svg?branch=master)](https://travis-ci.org/Thetoxicarcade/ac)
-[![Documentation Status](https://readthedocs.org/projects/ac/badge/?version=latest)](http://congredi.readthedocs.io/en/latest/?badge=latest)
-[![GitHub commits](https://img.shields.io/github/commits-since/thetoxicarcade/ac/v0.0.1.svg?maxAge=2592000)](https://github.com/thetoxicarcade/ac)
-[![Code Climate](https://codeclimate.com/github/Thetoxicarcade/ac/badges/gpa.svg)](https://codeclimate.com/github/Thetoxicarcade/ac)
-[![Issue Count](https://codeclimate.com/github/Thetoxicarcade/ac/badges/issue_count.svg)](https://codeclimate.com/github/Thetoxicarcade/ac)
-[![PyPI version](https://badge.fury.io/py/delegito.svg)](https://badge.fury.io/py/delegito)
+[![Stories in Ready](https://badge.waffle.io/Thetoxicarcade/congredi.svg?label=ready&title=Ready)](http://waffle.io/Thetoxicarcade/congredi)
+[![Build Status](https://travis-ci.org/Thetoxicarcade/congredi.svg?branch=master)](https://travis-ci.org/Thetoxicarcade/congredi)
+[![Documentation Status](https://readthedocs.org/projects/congredi/badge/?version=latest)](http://congredi.readthedocs.io/en/latest/?badge=latest)
+[![GitHub commits](https://img.shields.io/github/commits-since/thetoxicarcade/congredi/v0.0.1.svg?maxAge=2592000)](https://github.com/thetoxicarcade/congredi)
+[![PyPI version](https://badge.fury.io/py/congredi.svg)](https://badge.fury.io/py/congredi)
 
-* `congredi-interface` [![Docker Pulls](https://img.shields.io/docker/pulls/ericoflondon/congredi-interface.svg?maxAge=2592000)](https://hub.docker.com/r/ericoflondon/congredi-interface/)
-* `congredi-api` [![Docker Pulls](https://img.shields.io/docker/pulls/ericoflondon/congredi-api.svg?maxAge=2592000)](https://hub.docker.com/r/ericoflondon/congredi-api/)
 
-**NOTE. [Congredi](//github.com/thetoxicarcade/congredi) is the regular**
+* `congredi` [![Docker Pulls](https://img.shields.io/docker/pulls/ericoflondon/congredi.svg?maxAge=2592000)](https://hub.docker.com/r/ericoflondon/congredi/)
+* `delegito` [![Docker Pulls](https://img.shields.io/docker/pulls/ericoflondon/delegito.svg?maxAge=2592000)](https://hub.docker.com/r/ericoflondon/delegito/)
+
 
 ```
-https://github.com/gsko/mdht
-https://github.com/microserv/entangled-dht
-https://github.com/StorjOld/pyp2p/blob/master/pyp2p/rendezvous_server.py
-https://github.com/wiedi/khashmir
-https://github.com/bmuller/kademlia
-https://github.com/bmuller/rpcudp
-https://github.com/csm/khashmir
-https://github.com/darka/p2pfs
-https://github.com/debanshu/ResearchShareP2P
+Projects I'm still looking at:
 https://github.com/twisted/vertex
-https://github.com/twisted/twisted
-
-
 https://github.com/indigo-dc/udocker
     pull docker containers, decompress, run in PRoot/chroot?
 https://github.com/jamercee/signet
@@ -60,19 +53,11 @@ https://github.com/JarrodCTaylor/steganopy
     steganography
 https://github.com/barseghyanartur/ska
     - signed (symetric then HMACed)
-
-https://github.com/WhisperSystems/Signal-Desktop
 https://github.com/WhisperSystems/libsignal-protocol-javascript
 https://whispersystems.org/docs/specifications/xeddsa/
 https://whispersystems.org/docs/specifications/x3dh/
 https://whispersystems.org/docs/specifications/doubleratchet/
     ratchet
-https://github.com/bitcoin-abe/bitcoin-abe
-    browser
-https://github.com/blockstack/pybitcoin
-https://github.com/Bitmessage/PyBitmessage
-https://github.com/miguelfreitas/twister-core
-https://github.com/feross/webtorrent
 
 
 ```
