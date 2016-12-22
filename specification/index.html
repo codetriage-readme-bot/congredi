@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://toxik.io/congredi/specification/">
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Specification - Congredi</title>
+	<title>About - Congredi</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -62,8 +62,35 @@
             
             
             
-                <li class="active">
-                    <a href="./">Specification</a>
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Specification <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+<li class="active">
+    <a href="./">About</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="commands/">commands</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="data/">data</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="packets/">packets</a>
+</li>
+
+                    
+                    </ul>
                 </li>
             
             
@@ -88,7 +115,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../extending/">
+                    <a rel="prev" href="commands/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -111,106 +138,15 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#protocol">Protocol</a></li>
-        
-    
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h2 id="protocol">Protocol</h2>
-<p>Congredi deals with a hash-value structure and a directed graph structure,
-with both redis and neo4j.</p>
-<p>Congredi uses a simplified onion-routing system to discourage some censorship.
-Servers, once active on the network, ask 3 nodes to be their rendesvous, and
-then sign a statement that gets advertised around the network. Clients can
-make a query to those nodes through a set of layered encryptions, until
-the final node and the rendesvous node, either of which may object to the query.
-Since the serve stores data in plaintext, if it finds something objectionable,
-or of no use, it can censor that content as well.</p>
-<pre><code>'SET'
-    PUBLISH - permissions, long lasting item
-    DEPLOY - no permissions, publish key, may soon be deleted
-
-'GET'
-    SUBSCRIBE - permissions set rendesvous to pull updates
-    MONITOR - no permissions, query for key, request expires
-
-    PAST - grab all previous versions
-    CURRENT - grab signed latest
-    FUTURE - grab all newer versions
-
-SEARCH &lt;&gt; ORDER &lt;&gt; OFFSET &lt;&gt; COUNT &lt;&gt; TERM &lt;&gt;
-</code></pre>
-
-<p>Blobs will probably be zlib compressed ndiffs, even if I want them to be
-unified diffs.</p>
-<pre><code>structures &amp; query language (i.e. PUBLISH CACHE HAS &lt;object&gt;)
-CACHE
-    HAS             - list(hash:key:sig:begins:expires)
-    WANTS           - list(hash:key:sig:begins:expires)
-    PROOF           - list(nonce:proof:date:sig)
-    SEEN            - list(prev:time:date:sig)
-    UPTIME          - list(prev:time:date:sig)
-    RANK            - list(prev:rank:date:sig)
-COMPUTATION
-    POLL            - list(polls,date,threshsig)
-    VOTE            - list(votes,date,threshsig)
-    TREES           - list(trees,date,threshsig)
-    SAVES           - list(list(hash,begins,expires),date,threshsig)
-    VOTERS          - list(proofs,date,threshsig)
-HISTORY
-    TREES           - list(list(CURRENT,PREVIOUS,SIG))
-    POLLS           - list(list(CURRENT,PREVIOUS,SIG))
-    VOTES           - list(list(CURRENT,PREVIOUS,SIG))
-    MEMBERSHIPS     - list(list(CURRENT,PREVIOUS,SIG))
-    PROPOSALS       - list(list(CURRENT,PREVIOUS,SIG))
-    SAVES           - list(list(list(hash,begins,expires),PREVIOUS,SIG))
-IDENTITY
-    ROUTE           - KEY, PREVIOUS, SIG
-    USER            - KEY, PREVIOUS, SIG
-    AGGREGATE       - list(KEYS), PREVIOUS, SIG
-    IP              - IP, PREVIOUS, SIG
-    RENDESVOUS      - list(IPS), PREVIOUS, SIG
-    LOCATION        - ZKP, PREVIOUS, SIG
-    BORDERS         - CURRENT, PREVIOUS, THRESHSIG
-CONTENT
-    BIO             - COMMIT,PREVIOUS,SIG
-    MANIFESTO       - COMMIT,PREVIOUS,THRESHSIG
-    COMMIT          - hash,list(CHUNKS),list(PREVIOUS),SIG, KEY
-    CHUNK           - truncated-gzip-ndiff-markdown
-    POLL            - list(TREES)
-    VOTE            - list(TREES)
-SETTING
-    IP              - previous:sig:ip
-    RENDESVOUS      - previous:sig:list(fp)
-    ADMIN           - list(fp)
-    USER            - list(fp)
-    PEER            - list(fp)
-    WHITELIST       - list(fp)
-    BLACKLIST       - list(fp)
-</code></pre>
-
-<pre><code>users -&gt; agg -&gt; polls/votes/trees -&gt; commits -&gt; chunks
-
-&quot;directed graph&quot;:{
-    &quot;user&quot;:{
-        &quot;trusts&quot;:&quot;users&quot;,
-        &quot;follows&quot;:&quot;repos&quot;
-    &quot;repo&quot;:&quot;commits&quot;
-</code></pre>
-
-<pre><code>kleptography / outside obfuscation / steganalisis
-RATCHET sessionkey, prekey,
-ONION FROM &lt;route&gt; TO &lt;route&gt; &lt;contents&gt;
-ratchet:onion:AONT:Axolotl EC AES new hope
-ring learning homomorphic garlic, sign time+nounce,
-OAEP/AONT/hamming4:7
-nonce, prekey, session key, hash, time, pubkey, p2p, dht
-libgit2-redis/txredisapi / redis / neo4j; if in peers,
-delete, add peer 0(1) nettrust KV - list,
-read, add(k,v), delete(k)
-</code></pre></div>
+<p>Congredi operates on exchanging packets for hashes of content.</p>
+<p>The commands include <code>PUBLISH</code> <code>DEPLOY</code> <code>SUBSCRIBE</code> <code>MONITOR</code>
+<code>PAST</code> <code>CURRENT</code> <code>FUTURE</code> &amp; <code>SEARCH</code> </p>
+<p>Packets are of the <code>Onion</code> and <code>Command</code> variety.</p>
+<p>Data stored includes many types, explained under "data".</p></div>
         </div>
 
         <footer class="col-md-12">

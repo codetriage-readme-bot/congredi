@@ -18,11 +18,31 @@
     
 
     
+        
     <url>
      <loc>http://toxik.io/congredi/specification/</loc>
      <lastmod>2016-12-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/specification/commands/</loc>
+     <lastmod>2016-12-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/specification/data/</loc>
+     <lastmod>2016-12-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/specification/packets/</loc>
+     <lastmod>2016-12-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
