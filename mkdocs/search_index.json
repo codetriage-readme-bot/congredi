@@ -1,0 +1,74 @@
+{
+    "docs": [
+        {
+            "location": "/contributing/", 
+            "text": "Get Involved\n\n\n\n\nHop on Waffle to view the current GitHub issues:\n    \n.\n\n\nClone repo:\n    \ngit clone github.com/thetoxicarcade/congredi \n cd congredi\n\n\npre-fetch npm/bower, gulp\n\n\ndocker run -ti --rm -u $UID -v `pwd`/interface/:/srv/ marmelab/bower bash -c \"npm install \n bower --allow-root --config.interactive install\"\n\n\ndocker run -ti --rm -u $UID -v `pwd`/interface/:/srv/ marmelab/bower bash -c \"npm install -g gulp \n gulp\"\n\n*\n\n\n\n\n\n\nHack some things\n\n\nsetup.py build test install\n\n\nsetup.py metadata sdist upload\n\n\ndocker-compose build \n docker-compose up -d \n docker-compose scale workers=2\n\n\n\n\n\n\nSubmit some pull requests\n\n\n\n\nStyle guides\n\n\nI'm not currently conforming to the results\nfrom \neslint\n or \npylint\n, but I could be.\n\n\nPython\n\n\nPep8 excepting Tabs. Running \ncheck.sh\n can replace lots of it.\n\n\nJS\n\n\nsingle-quote, tab, 1tbs camelCase\n\n\nCI / Unit Tests\n\n\nTravis runs compilation, unit tests, a docker assembly, \n mkdocs builds.\n\n\nNose2 - \ntest directory\n\n\nby-file/library tests, \ntest_flask.py\n -\n \napi.py\n for instance.\n\n\nJasmine - \ntest directory\n\n\nby-file/library tests, \ndemo.js\n -\n \napp.js\n for instance.", 
+            "title": "Contributing"
+        }, 
+        {
+            "location": "/contributing/#get-involved", 
+            "text": "Hop on Waffle to view the current GitHub issues:\n     .  Clone repo:\n     git clone github.com/thetoxicarcade/congredi   cd congredi  pre-fetch npm/bower, gulp  docker run -ti --rm -u $UID -v `pwd`/interface/:/srv/ marmelab/bower bash -c \"npm install   bower --allow-root --config.interactive install\"  docker run -ti --rm -u $UID -v `pwd`/interface/:/srv/ marmelab/bower bash -c \"npm install -g gulp   gulp\" \n*    Hack some things  setup.py build test install  setup.py metadata sdist upload  docker-compose build   docker-compose up -d   docker-compose scale workers=2    Submit some pull requests", 
+            "title": "Get Involved"
+        }, 
+        {
+            "location": "/contributing/#style-guides", 
+            "text": "I'm not currently conforming to the results\nfrom  eslint  or  pylint , but I could be.", 
+            "title": "Style guides"
+        }, 
+        {
+            "location": "/contributing/#python", 
+            "text": "Pep8 excepting Tabs. Running  check.sh  can replace lots of it.", 
+            "title": "Python"
+        }, 
+        {
+            "location": "/contributing/#js", 
+            "text": "single-quote, tab, 1tbs camelCase", 
+            "title": "JS"
+        }, 
+        {
+            "location": "/contributing/#ci-unit-tests", 
+            "text": "Travis runs compilation, unit tests, a docker assembly,   mkdocs builds.", 
+            "title": "CI / Unit Tests"
+        }, 
+        {
+            "location": "/contributing/#nose2-test-directory", 
+            "text": "by-file/library tests,  test_flask.py  -   api.py  for instance.", 
+            "title": "Nose2 - test directory"
+        }, 
+        {
+            "location": "/contributing/#jasmine-test-directory", 
+            "text": "by-file/library tests,  demo.js  -   app.js  for instance.", 
+            "title": "Jasmine - test directory"
+        }, 
+        {
+            "location": "/specification/", 
+            "text": "Protocol\n\n\nCongredi deals with a hash-value structure and a directed graph structure,\nwith both redis and neo4j.\n\n\nCongredi uses a simplified onion-routing system to discourage some censorship.\nServers, once active on the network, ask 3 nodes to be their rendesvous, and\nthen sign a statement that gets advertised around the network. Clients can\nmake a query to those nodes through a set of layered encryptions, until\nthe final node and the rendesvous node, either of which may object to the query.\nSince the serve stores data in plaintext, if it finds something objectionable,\nor of no use, it can censor that content as well.\n\n\n'SET'\n    PUBLISH - permissions, long lasting item\n    DEPLOY - no permissions, publish key, may soon be deleted\n\n'GET'\n    SUBSCRIBE - permissions set rendesvous to pull updates\n    MONITOR - no permissions, query for key, request expires\n\n    PAST - grab all previous versions\n    CURRENT - grab signed latest\n    FUTURE - grab all newer versions\n\nSEARCH \n ORDER \n OFFSET \n COUNT \n TERM \n\n\n\n\n\nBlobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.\n\n\nstructures \n query language (i.e. PUBLISH CACHE HAS \nobject\n)\nCACHE\n    HAS             - list(hash:key:sig:begins:expires)\n    WANTS           - list(hash:key:sig:begins:expires)\n    PROOF           - list(nonce:proof:date:sig)\n    SEEN            - list(prev:time:date:sig)\n    UPTIME          - list(prev:time:date:sig)\n    RANK            - list(prev:rank:date:sig)\nCOMPUTATION\n    POLL            - list(polls,date,threshsig)\n    VOTE            - list(votes,date,threshsig)\n    TREES           - list(trees,date,threshsig)\n    SAVES           - list(list(hash,begins,expires),date,threshsig)\n    VOTERS          - list(proofs,date,threshsig)\nHISTORY\n    TREES           - list(list(CURRENT,PREVIOUS,SIG))\n    POLLS           - list(list(CURRENT,PREVIOUS,SIG))\n    VOTES           - list(list(CURRENT,PREVIOUS,SIG))\n    MEMBERSHIPS     - list(list(CURRENT,PREVIOUS,SIG))\n    PROPOSALS       - list(list(CURRENT,PREVIOUS,SIG))\n    SAVES           - list(list(list(hash,begins,expires),PREVIOUS,SIG))\nIDENTITY\n    ROUTE           - KEY, PREVIOUS, SIG\n    USER            - KEY, PREVIOUS, SIG\n    AGGREGATE       - list(KEYS), PREVIOUS, SIG\n    IP              - IP, PREVIOUS, SIG\n    RENDESVOUS      - list(IPS), PREVIOUS, SIG\n    LOCATION        - ZKP, PREVIOUS, SIG\n    BORDERS         - CURRENT, PREVIOUS, THRESHSIG\nCONTENT\n    BIO             - COMMIT,PREVIOUS,SIG\n    MANIFESTO       - COMMIT,PREVIOUS,THRESHSIG\n    COMMIT          - hash,list(CHUNKS),list(PREVIOUS),SIG, KEY\n    CHUNK           - truncated-gzip-ndiff-markdown\n    POLL            - list(TREES)\n    VOTE            - list(TREES)\nSETTING\n    IP              - previous:sig:ip\n    RENDESVOUS      - previous:sig:list(fp)\n    ADMIN           - list(fp)\n    USER            - list(fp)\n    PEER            - list(fp)\n    WHITELIST       - list(fp)\n    BLACKLIST       - list(fp)\n\n\n\n\nusers -\n agg -\n polls/votes/trees -\n commits -\n chunks\n\n\ndirected graph\n:{\n    \nuser\n:{\n        \ntrusts\n:\nusers\n,\n        \nfollows\n:\nrepos\n\n    \nrepo\n:\ncommits\n\n\n\n\n\nkleptography / outside obfuscation / steganalisis\nRATCHET sessionkey, prekey,\nONION FROM \nroute\n TO \nroute\n \ncontents\n\nratchet:onion:AONT:Axolotl EC AES new hope\nring learning homomorphic garlic, sign time+nounce,\nOAEP/AONT/hamming4:7\nnonce, prekey, session key, hash, time, pubkey, p2p, dht\nlibgit2-redis/txredisapi / redis / neo4j; if in peers,\ndelete, add peer 0(1) nettrust KV - list,\nread, add(k,v), delete(k)", 
+            "title": "Specification"
+        }, 
+        {
+            "location": "/specification/#protocol", 
+            "text": "Congredi deals with a hash-value structure and a directed graph structure,\nwith both redis and neo4j.  Congredi uses a simplified onion-routing system to discourage some censorship.\nServers, once active on the network, ask 3 nodes to be their rendesvous, and\nthen sign a statement that gets advertised around the network. Clients can\nmake a query to those nodes through a set of layered encryptions, until\nthe final node and the rendesvous node, either of which may object to the query.\nSince the serve stores data in plaintext, if it finds something objectionable,\nor of no use, it can censor that content as well.  'SET'\n    PUBLISH - permissions, long lasting item\n    DEPLOY - no permissions, publish key, may soon be deleted\n\n'GET'\n    SUBSCRIBE - permissions set rendesvous to pull updates\n    MONITOR - no permissions, query for key, request expires\n\n    PAST - grab all previous versions\n    CURRENT - grab signed latest\n    FUTURE - grab all newer versions\n\nSEARCH   ORDER   OFFSET   COUNT   TERM    Blobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.  structures   query language (i.e. PUBLISH CACHE HAS  object )\nCACHE\n    HAS             - list(hash:key:sig:begins:expires)\n    WANTS           - list(hash:key:sig:begins:expires)\n    PROOF           - list(nonce:proof:date:sig)\n    SEEN            - list(prev:time:date:sig)\n    UPTIME          - list(prev:time:date:sig)\n    RANK            - list(prev:rank:date:sig)\nCOMPUTATION\n    POLL            - list(polls,date,threshsig)\n    VOTE            - list(votes,date,threshsig)\n    TREES           - list(trees,date,threshsig)\n    SAVES           - list(list(hash,begins,expires),date,threshsig)\n    VOTERS          - list(proofs,date,threshsig)\nHISTORY\n    TREES           - list(list(CURRENT,PREVIOUS,SIG))\n    POLLS           - list(list(CURRENT,PREVIOUS,SIG))\n    VOTES           - list(list(CURRENT,PREVIOUS,SIG))\n    MEMBERSHIPS     - list(list(CURRENT,PREVIOUS,SIG))\n    PROPOSALS       - list(list(CURRENT,PREVIOUS,SIG))\n    SAVES           - list(list(list(hash,begins,expires),PREVIOUS,SIG))\nIDENTITY\n    ROUTE           - KEY, PREVIOUS, SIG\n    USER            - KEY, PREVIOUS, SIG\n    AGGREGATE       - list(KEYS), PREVIOUS, SIG\n    IP              - IP, PREVIOUS, SIG\n    RENDESVOUS      - list(IPS), PREVIOUS, SIG\n    LOCATION        - ZKP, PREVIOUS, SIG\n    BORDERS         - CURRENT, PREVIOUS, THRESHSIG\nCONTENT\n    BIO             - COMMIT,PREVIOUS,SIG\n    MANIFESTO       - COMMIT,PREVIOUS,THRESHSIG\n    COMMIT          - hash,list(CHUNKS),list(PREVIOUS),SIG, KEY\n    CHUNK           - truncated-gzip-ndiff-markdown\n    POLL            - list(TREES)\n    VOTE            - list(TREES)\nSETTING\n    IP              - previous:sig:ip\n    RENDESVOUS      - previous:sig:list(fp)\n    ADMIN           - list(fp)\n    USER            - list(fp)\n    PEER            - list(fp)\n    WHITELIST       - list(fp)\n    BLACKLIST       - list(fp)  users -  agg -  polls/votes/trees -  commits -  chunks directed graph :{\n     user :{\n         trusts : users ,\n         follows : repos \n     repo : commits   kleptography / outside obfuscation / steganalisis\nRATCHET sessionkey, prekey,\nONION FROM  route  TO  route   contents \nratchet:onion:AONT:Axolotl EC AES new hope\nring learning homomorphic garlic, sign time+nounce,\nOAEP/AONT/hamming4:7\nnonce, prekey, session key, hash, time, pubkey, p2p, dht\nlibgit2-redis/txredisapi / redis / neo4j; if in peers,\ndelete, add peer 0(1) nettrust KV - list,\nread, add(k,v), delete(k)", 
+            "title": "Protocol"
+        }, 
+        {
+            "location": "/extending/", 
+            "text": "Extending / Scaling / UI-ing\n\n\nCongredi has no workable client. To make one, you might try:\n\n\n\n\nTraefik with docker-swarm serving docker containers\n\n\nnginx-served angular app (jwt, openpgp)\n\n\ntwisted nodes\n\n\nredis nodes / api key to hosted redis\n\n\nneo4j nodes / api key to hosted neo4j\n\n\n\n\nAngular UI designs\n\n\n\n\nThink Hoodiecrow/mailvelope/whiteout-io/mailpile\n\n\n\n\n# .when('/settings' etc\n/#/self/settings\n/#/node/admin\n/#/search\n/#/edit\n/#/vote\n\n/api/search?offset=0?limit=0\n/api/auth/jwt\n/api/docs/new\n/api/docs/:id/edit\n/api/vote/new\n/api/vote/:id/cast\n/api/orgs/new\n/api/orgs/:id/\n\n\n\n\nEdits to Angular UI js\n\n\n\n\nrun \ngulp clean\n\n\nmake edits to \n/js/\n\n\nif you change a library call, change its \n.test.js\n\n\nif you change a controller or otherwise, change its \nview\n\n\n\n\n\n\nrun \ngulp\n (should run tests as well)", 
+            "title": "Extending"
+        }, 
+        {
+            "location": "/extending/#extending-scaling-ui-ing", 
+            "text": "Congredi has no workable client. To make one, you might try:   Traefik with docker-swarm serving docker containers  nginx-served angular app (jwt, openpgp)  twisted nodes  redis nodes / api key to hosted redis  neo4j nodes / api key to hosted neo4j", 
+            "title": "Extending / Scaling / UI-ing"
+        }, 
+        {
+            "location": "/extending/#angular-ui-designs", 
+            "text": "Think Hoodiecrow/mailvelope/whiteout-io/mailpile   # .when('/settings' etc\n/#/self/settings\n/#/node/admin\n/#/search\n/#/edit\n/#/vote\n\n/api/search?offset=0?limit=0\n/api/auth/jwt\n/api/docs/new\n/api/docs/:id/edit\n/api/vote/new\n/api/vote/:id/cast\n/api/orgs/new\n/api/orgs/:id/", 
+            "title": "Angular UI designs"
+        }, 
+        {
+            "location": "/extending/#edits-to-angular-ui-js", 
+            "text": "run  gulp clean  make edits to  /js/  if you change a library call, change its  .test.js  if you change a controller or otherwise, change its  view    run  gulp  (should run tests as well)", 
+            "title": "Edits to Angular UI js"
+        }
+    ]
+}
