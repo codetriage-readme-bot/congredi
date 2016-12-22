@@ -1,4 +1,8 @@
 site_name: Congredi
+site_url: http://toxik.io/congredi
+site_description: Peer To Peer Things
+site_author: Github People
+
 docs_dir: '.'
 theme: journal
 formats:
@@ -8,3 +12,4 @@ pages:
     - 'Contributing': 'docs/contributing.md'
     - 'Specification': 'docs/specification.md'
     - 'Extending': 'docs/extending.md'
+repo_url: https://github.com/thetoxicarcade/congredi
