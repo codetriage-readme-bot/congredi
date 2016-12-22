@@ -20,22 +20,22 @@ class Peer(amp.AMP):
 	def __init__(self,factory):
 		self.factory = factory
 	def connectionMade(self):#,client):
-		print('new connection')
 		self._peer = self.transport.getPeer()
-		print('Peer is {}'.format(self._peer))
-		self.factory.clients.append(self._peer)
+		print('new connection of {}'.format(self._peer))
+		self.factory.clients.append(self)
 	def connectionLost(self,reason):#,client):
-		print('lost connection')
-		self.factory.clients.remove(self._peer)
-		print('Peer was {}'.format(self._peer))
+		print('lost connection of {}'.format(self._peer))
+		self.factory.clients.remove(self)
 	def hello(self, name,port):
 		print('telling hello')
-		factory = protocol.ClientFactory()
-		factory.protocol = Peer
+		factory = PeerClientFactory()
 		print('connecting')
+		# connect to an arbitrary new host...
 		port = reactor.connectTCP(name,port, factory)
 		print('calling')
+		# need to run an arbitrary new command....
 		port.callRemote(PeerTell,name,port)
+		# halp...
 		print('disconnecting')
 		port.disconnect()
 		print('done')
@@ -54,7 +54,7 @@ class PeerFactory(protocol.Factory):
 	protocol = Peer
 	def __init__(self):
 		#self.protocol = Peer(self)
-		defly = deferLater(reactor, 20, self.ping)
+		defly = deferLater(reactor, 10, self.ping)
 		defly.addErrback(whoops)
 	def buildProtocol(self,addr):
 		return Peer(self)
@@ -63,12 +63,13 @@ class PeerFactory(protocol.Factory):
 		print(self.clients)
 		for client in self.clients:
 			print('client')
-			d = client.connection.callRemote(PeerAsk, host=self.host, port=self.port)
+			d = client.callRemote(PeerAsk, name=self.host, port=self.port)
+			d.addErrback(whoops)
 
 class PeerClientFactory(protocol.ClientFactory):
-	clients = []
 	def __init__(self):
 		print('hello')
+		self.clients = []
 	def buildProtocol(self,addr):
 		return Peer(self)
 	def startedConnecting(self, connector):
