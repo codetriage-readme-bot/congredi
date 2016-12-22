@@ -12,6 +12,16 @@ For a website/javascript style client, head over to
 
 For accademic papers to peruse on the subject, visit [/papers](/papers).
 
+## Looking for contributors!
+
+While I'm building this up, I'm looking for contributors!
+Head over to Waffle.io, issuehub.io, or CodeTriage :heart:.
+
+* Waffle: [![Stories in Ready](https://badge.waffle.io/Thetoxicarcade/congredi.svg?label=ready&title=Ready)](http://waffle.io/Thetoxicarcade/congredi)
+* CodeTriage: [![Code Triagers Badge](https://www.codetriage.com/thetoxicarcade/congredi/badges/users.svg)](https://www.codetriage.com/thetoxicarcade/congredi)
+
+
+
 ## Installing
 
 * library: `pip install congredi`

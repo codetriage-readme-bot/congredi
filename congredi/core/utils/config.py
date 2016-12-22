@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Config Loading
+"""
+import yaml, os, traceback
+import logging
+logger = logging.getLogger('congredi')
+def configArr():
+	config = {}
+	try:
+		with open(os.path.expanduser('~') + '/.congredi.yml', 'r') as f:
+			config = yaml.load(f.read())
+		if any (k not in config for k in ('admins', 'users')):
+			logger.warning('Config does not contain "admins" or "users"')
+	except yaml.YamlError:
+		trace = traceback.format_exc()
+		#traceback.print_exc()
+		logger.critical(trace)
+		# generate key, save to yaml
+		config['admins'] = ['foo', 'bar']
+		config['users'] = ['toto', 'bagel']
+		logger.warning('Writing new config')
+		with open(os.path.expanduser('~') + '/.congredi.yml', 'w+') as f:
+			f.write(yaml.dump(config))
+	return config

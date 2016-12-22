@@ -9,6 +9,10 @@ theme: flatly
 pages:
     - 'index': 'index.md'
     - 'Contributing': 'contributing.md'
-    - 'Specification': 'specification.md'
+    - 'Specification':
+         - 'About': 'specification.md'
+         - 'commands': 'specification/commands.md'
+         - 'data': 'specification/data.md'
+         - 'packets': 'specification/packets.md'
     - 'Extending': 'extending.md'
 repo_url: https://github.com/thetoxicarcade/congredi

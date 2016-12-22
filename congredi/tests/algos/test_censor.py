@@ -3,9 +3,9 @@
 """
 tests on the simplistic censor library.
 """
-from ...algos.censor import censor
-from ...algos.censor import stateEncoding
 import binascii, os
+from ...core.algos.censor import censor
+from ...core.algos.censor import stateEncoding
 
 hexy = {
 "0": "Zero", "1": "One", "2": "Two", "3": "Three",
