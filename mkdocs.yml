@@ -2,7 +2,7 @@ site_name: Congredi
 site_url: http://toxik.io/congredi
 site_description: Peer To Peer Things
 site_author: Github People
-requirements: docs/requirements.txt
+requirements_file: docs/requirements.txt
 docs_dir: 'docs'
 site_dir: '_site'
 theme: flatly
