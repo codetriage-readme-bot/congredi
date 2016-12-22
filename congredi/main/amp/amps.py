@@ -36,19 +36,6 @@ class Peer(amp.AMP):
 		print('got it')
 		return('hello')
 	PeerTell.responder(gotit)
-	def hiya(self):
-		print(self.transport)
-		port = self.transport.getHost()
-		print(port)
-		#host = self.transport.getHost()
-		#readers = reactor.getReaders()
-		# 	print value._realPortNumber
-		print('my port is {}'.format(port))
-		d = connection.callRemote(PeerAsk, host=host, port=port)
-		def prin(result):
-			print(result)
-		d.addCallback(prin)
-		return d
 
 def whoops(err):
 	print('whoops')
@@ -58,14 +45,13 @@ class PeerFactory(protocol.Factory):
 	def __init__(self):
 		print('init')
 		self.protocol = Peer(self)
-		df = deferLater(reactor,10,self.hiya)
-		#self.lc = task.LoopingCall(self.hiya)
-		#df = self.lc.start(2)
-		df.addErrback(whoops)
-	def hiya(self):
-		print('hiya')
-		self.protocol.hiya()
+		defly = deferLater(reactor, 2, self.ping)
+		defly.addErrback(whoops)
 	def clientConnectionMade(self,client):
 		self.clients.append(client)
 	def clientConnectionLost(self,client):
 		self.clients.remove(client)
+	def ping(self):
+		# need to run this every so often...
+		d = connection.callRemote(PeerAsk, host=self.host, port=self.port)
+
