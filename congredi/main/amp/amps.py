@@ -3,9 +3,9 @@
 """
 AMP command tests
 """
-
 from twisted.protocols import amp
-from twisted.internet import protocol
+from twisted.internet import protocol, task, reactor
+from twisted.internet.task import deferLater
 
 class PeerAsk(amp.Command):
 	arguments = [('name', amp.String()),
@@ -17,6 +17,8 @@ class PeerTell(amp.Command):
 	response = [('hello',amp.String())]
 	
 class Peer(amp.AMP):
+	def __init__(self,factory):
+		self.factory = factory
 	def hello(self, name,port):
 		print('telling hello')
 		factory = protocol.ClientFactory()
@@ -34,3 +36,36 @@ class Peer(amp.AMP):
 		print('got it')
 		return('hello')
 	PeerTell.responder(gotit)
+	def hiya(self):
+		print(self.transport)
+		port = self.transport.getHost()
+		print(port)
+		#host = self.transport.getHost()
+		#readers = reactor.getReaders()
+		# 	print value._realPortNumber
+		print('my port is {}'.format(port))
+		d = connection.callRemote(PeerAsk, host=host, port=port)
+		def prin(result):
+			print(result)
+		d.addCallback(prin)
+		return d
+
+def whoops(err):
+	print('whoops')
+	print(err)
+class PeerFactory(protocol.Factory):
+	clients = []
+	def __init__(self):
+		print('init')
+		self.protocol = Peer(self)
+		df = deferLater(reactor,10,self.hiya)
+		#self.lc = task.LoopingCall(self.hiya)
+		#df = self.lc.start(2)
+		df.addErrback(whoops)
+	def hiya(self):
+		print('hiya')
+		self.protocol.hiya()
+	def clientConnectionMade(self,client):
+		self.clients.append(client)
+	def clientConnectionLost(self,client):
+		self.clients.remove(client)
