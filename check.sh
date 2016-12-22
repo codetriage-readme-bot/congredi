@@ -17,3 +17,4 @@ chmod -x congredi/ -R
 pylint congredi
 nose2 congredi
 find congredi/ -type f -name "*.pyc" -delete -print
+#mkdocs gh-deploy
