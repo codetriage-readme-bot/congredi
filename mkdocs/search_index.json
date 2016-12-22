@@ -2,8 +2,23 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Test.", 
+            "text": "Congredi \ndelegito.io\n\n\n\n\na BASE representation-of-law-via-cryptography protocol\n\n\n\n\nCongredi\n is a set of utilities and a Twisted server/shell for distributed\ndocument storage, revisioning, and voting on those revisions. Think of it\nas a community of git databases where groups of people rank their choices\non how fictional repos should be constructed. Like an STV version of reddit\nfor documents.\n\n\nFor a website/javascript style client, head over to\n\ngithub.com/thetoxicarcade/delegito\n.\n\n\nInstalling\n\n\n\n\nlibrary: \npip install congredi\n\n\ngit: \ngit clone https://github.com/thetoxicarcade/ac.git \n cd ac\n\n\ndocker:\n\n\n\n\nericoflondon/\n    congredi                - individual peer/clients\n    delegito                - static content, swarmable\n\n\n\n\nRunning\n\n\n\n\npython -m congredi.main.run peer --redis 6379 --neo4j 7474 --port 8800\n\n\npython -m congredi.main.run client --host localhost --port 8800\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncongredi\n \n\n\ndelegito\n \n\n\n\n\nProjects I'm still looking at:\nhttps://github.com/twisted/vertex\nhttps://github.com/indigo-dc/udocker\n    pull docker containers, decompress, run in PRoot/chroot?\nhttps://github.com/jamercee/signet\n    sign python and use loader to run\nhttps://github.com/bnlucas/python-basehash\n    encrypted hashing\nhttps://github.com/rw/plainsight\nhttps://github.com/JarrodCTaylor/steganopy\n    steganography\nhttps://github.com/barseghyanartur/ska\n    - signed (symetric then HMACed)\nhttps://github.com/WhisperSystems/libsignal-protocol-javascript\nhttps://whispersystems.org/docs/specifications/xeddsa/\nhttps://whispersystems.org/docs/specifications/x3dh/\nhttps://whispersystems.org/docs/specifications/doubleratchet/\n    ratchet", 
             "title": "index"
+        }, 
+        {
+            "location": "/#congredi-delegitoio", 
+            "text": "a BASE representation-of-law-via-cryptography protocol   Congredi  is a set of utilities and a Twisted server/shell for distributed\ndocument storage, revisioning, and voting on those revisions. Think of it\nas a community of git databases where groups of people rank their choices\non how fictional repos should be constructed. Like an STV version of reddit\nfor documents.  For a website/javascript style client, head over to github.com/thetoxicarcade/delegito .", 
+            "title": "Congredi delegito.io"
+        }, 
+        {
+            "location": "/#installing", 
+            "text": "library:  pip install congredi  git:  git clone https://github.com/thetoxicarcade/ac.git   cd ac  docker:   ericoflondon/\n    congredi                - individual peer/clients\n    delegito                - static content, swarmable", 
+            "title": "Installing"
+        }, 
+        {
+            "location": "/#running", 
+            "text": "python -m congredi.main.run peer --redis 6379 --neo4j 7474 --port 8800  python -m congredi.main.run client --host localhost --port 8800         congredi    delegito     Projects I'm still looking at:\nhttps://github.com/twisted/vertex\nhttps://github.com/indigo-dc/udocker\n    pull docker containers, decompress, run in PRoot/chroot?\nhttps://github.com/jamercee/signet\n    sign python and use loader to run\nhttps://github.com/bnlucas/python-basehash\n    encrypted hashing\nhttps://github.com/rw/plainsight\nhttps://github.com/JarrodCTaylor/steganopy\n    steganography\nhttps://github.com/barseghyanartur/ska\n    - signed (symetric then HMACed)\nhttps://github.com/WhisperSystems/libsignal-protocol-javascript\nhttps://whispersystems.org/docs/specifications/xeddsa/\nhttps://whispersystems.org/docs/specifications/x3dh/\nhttps://whispersystems.org/docs/specifications/doubleratchet/\n    ratchet", 
+            "title": "Running"
         }, 
         {
             "location": "/contributing/", 
