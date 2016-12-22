@@ -3,13 +3,12 @@ site_url: http://toxik.io/congredi
 site_description: Peer To Peer Things
 site_author: Github People
 
-docs_dir: '.'
-theme: journal
-formats:
-    - none
+docs_dir: 'docs'
+site_dir: '_site'
+theme: flatly
 pages:
-    - 'Home': 'README.md'
-    - 'Contributing': 'docs/contributing.md'
-    - 'Specification': 'docs/specification.md'
-    - 'Extending': 'docs/extending.md'
+    - 'index': 'index.md'
+    - 'Contributing': 'contributing.md'
+    - 'Specification': 'specification.md'
+    - 'Extending': 'extending.md'
 repo_url: https://github.com/thetoxicarcade/congredi

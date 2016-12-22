@@ -39,3 +39,28 @@ ericoflondon/
 * `delegito` [![Docker Pulls](https://img.shields.io/docker/pulls/ericoflondon/delegito.svg?maxAge=2592000)](https://hub.docker.com/r/ericoflondon/delegito/)
 
 
+
+
+
+```
+Projects I'm still looking at:
+https://github.com/twisted/vertex
+https://github.com/indigo-dc/udocker
+    pull docker containers, decompress, run in PRoot/chroot?
+https://github.com/jamercee/signet
+    sign python and use loader to run
+https://github.com/bnlucas/python-basehash
+    encrypted hashing
+https://github.com/rw/plainsight
+https://github.com/JarrodCTaylor/steganopy
+    steganography
+https://github.com/barseghyanartur/ska
+    - signed (symetric then HMACed)
+https://github.com/WhisperSystems/libsignal-protocol-javascript
+https://whispersystems.org/docs/specifications/xeddsa/
+https://whispersystems.org/docs/specifications/x3dh/
+https://whispersystems.org/docs/specifications/doubleratchet/
+    ratchet
+
+
+```
