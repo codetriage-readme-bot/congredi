@@ -17,8 +17,10 @@ class PeerTell(amp.Command):
 	response = [('hello',amp.String())]
 	
 class Peer(amp.AMP):
-	def __init__(self,factory):
-		self.factory = factory
+#	def __init__(self,factory):
+#		self.factory = factory
+	def ConnectionMade(self):
+		print('new connection')
 	def hello(self, name,port):
 		print('telling hello')
 		factory = protocol.ClientFactory()
@@ -42,16 +44,18 @@ def whoops(err):
 	print(err)
 class PeerFactory(protocol.Factory):
 	clients = []
+	protocol = Peer
 	def __init__(self):
-		print('init')
-		self.protocol = Peer(self)
-		defly = deferLater(reactor, 2, self.ping)
+		#self.protocol = Peer(self)
+		defly = deferLater(reactor, 20, self.ping)
 		defly.addErrback(whoops)
-	def clientConnectionMade(self,client):
+	def ConnectionMade(self,client):
+		print('new connection')
 		self.clients.append(client)
-	def clientConnectionLost(self,client):
+	def ConnectionLost(self,client):
+		print('lost connection')
 		self.clients.remove(client)
 	def ping(self):
-		# need to run this every so often...
-		d = connection.callRemote(PeerAsk, host=self.host, port=self.port)
+		for client in self.clients:
+			d = client.connection.callRemote(PeerAsk, host=self.host, port=self.port)
 

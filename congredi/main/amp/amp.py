@@ -16,8 +16,8 @@ if __name__ == '__main__':
 	pc.protocol = Peer
 	inst = PeerFactory()
 	pr = reactor.listenTCP(0, inst)
-	#reactor.connectTCP('127.0.0.1', 38016,pc)
+	reactor.connectTCP('127.0.0.1', 46038,pc)
 	inst.host = pr.getHost().host
 	inst.port = pr.getHost().port
-	print 'started'
+	print 'started on port {}'.format(inst.port)
 	reactor.run()
