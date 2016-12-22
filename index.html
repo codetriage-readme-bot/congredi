@@ -4,17 +4,17 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <meta name="description" content="Peer To Peer Things">
         <meta name="author" content="Github People">
-        <link rel="canonical" href="http://toxik.io/congredi/contributing/">
-        <link rel="shortcut icon" href="../img/favicon.ico">
+        <link rel="canonical" href="http://toxik.io/congredi/">
+        <link rel="shortcut icon" href="./img/favicon.ico">
 
-	<title>Contributing - Congredi</title>
+	<title>Congredi</title>
 
-        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../css/highlight.css">
-        <link href="../css/base.css" rel="stylesheet">
+        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
+        <link href="./css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -41,7 +41,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="..">Congredi</a>
+            <a class="navbar-brand" href=".">Congredi</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -50,26 +50,26 @@
             <ul class="nav navbar-nav">
             
             
-                <li >
-                    <a href="..">index</a>
-                </li>
-            
-            
-            
                 <li class="active">
-                    <a href="./">Contributing</a>
+                    <a href=".">index</a>
                 </li>
             
             
             
                 <li >
-                    <a href="../specification/">Specification</a>
+                    <a href="contributing/">Contributing</a>
                 </li>
             
             
             
                 <li >
-                    <a href="../extending/">Extending</a>
+                    <a href="specification/">Specification</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="extending/">Extending</a>
                 </li>
             
             
@@ -82,13 +82,13 @@
                         <i class="fa fa-search"></i> Search
                     </a>
                 </li>
-                <li >
-                    <a rel="next" href="..">
+                <li class="disabled">
+                    <a rel="next" >
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../specification/">
+                    <a rel="prev" href="contributing/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -111,60 +111,11 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#get-involved">Get Involved</a></li>
-        
-    
-        <li class="main "><a href="#style-guides">Style guides</a></li>
-        
-            <li><a href="#python">Python</a></li>
-        
-            <li><a href="#js">JS</a></li>
-        
-    
-        <li class="main "><a href="#ci-unit-tests">CI / Unit Tests</a></li>
-        
-            <li><a href="#nose2-test-directory">Nose2 - test directory</a></li>
-        
-            <li><a href="#jasmine-test-directory">Jasmine - test directory</a></li>
-        
-    
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="get-involved">Get Involved</h1>
-<ol>
-<li>Hop on Waffle to view the current GitHub issues:
-    <a href="https://waffle.io/Thetoxicarcade/congredi"><img alt="Stories in Ready" src="https://badge.waffle.io/Thetoxicarcade/congredi.png?label=ready&amp;title=Ready" /></a>.</li>
-<li>Clone repo:
-    <code>git clone github.com/thetoxicarcade/congredi &amp;&amp; cd congredi</code></li>
-<li>pre-fetch npm/bower, gulp<ul>
-<li><code>docker run -ti --rm -u $UID -v `pwd`/interface/:/srv/ marmelab/bower bash -c "npm install &amp;&amp; bower --allow-root --config.interactive install"</code></li>
-<li><code>docker run -ti --rm -u $UID -v `pwd`/interface/:/srv/ marmelab/bower bash -c "npm install -g gulp &amp;&amp; gulp"</code>
-*</li>
-</ul>
-</li>
-<li>Hack some things<ul>
-<li><code>setup.py build test install</code></li>
-<li><code>setup.py metadata sdist upload</code></li>
-<li><code>docker-compose build &amp;&amp; docker-compose up -d &amp;&amp; docker-compose scale workers=2</code></li>
-</ul>
-</li>
-<li>Submit some pull requests</li>
-</ol>
-<h1 id="style-guides">Style guides</h1>
-<p>I'm not currently conforming to the results
-from <code>eslint</code> or <code>pylint</code>, but I could be.</p>
-<h2 id="python">Python</h2>
-<p>Pep8 excepting Tabs. Running <code>check.sh</code> can replace lots of it.</p>
-<h2 id="js">JS</h2>
-<p>single-quote, tab, 1tbs camelCase</p>
-<h1 id="ci-unit-tests">CI / Unit Tests</h1>
-<p>Travis runs compilation, unit tests, a docker assembly, &amp; mkdocs builds.</p>
-<h2 id="nose2-test-directory">Nose2 - <a href="//github.com/Thetoxicarcade/congredi/blob/master/delegito/tests">test directory</a></h2>
-<p>by-file/library tests, <code>test_flask.py</code> -&gt; <code>api.py</code> for instance.</p>
-<h2 id="jasmine-test-directory">Jasmine - <a href="//github.com/Thetoxicarcade/congredi/blob/master/interface/js/tests">test directory</a></h2>
-<p>by-file/library tests, <code>demo.js</code> -&gt; <code>app.js</code> for instance.</p></div>
+<p>Test.</p></div>
         </div>
 
         <footer class="col-md-12">
@@ -173,12 +124,12 @@ from <code>eslint</code> or <code>pylint</code>, but I could be.</p>
             <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
         </footer>
 
-        <script src="../js/jquery-1.10.2.min.js"></script>
-        <script src="../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../js/highlight.pack.js"></script>
-        <script>var base_url = '..';</script>
-        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
-        <script src="../js/base.js"></script>
+        <script src="./js/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/highlight.pack.js"></script>
+        <script>var base_url = '.';</script>
+        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
+        <script src="./js/base.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
             <div class="modal-dialog">

@@ -1,6 +1,11 @@
 {
     "docs": [
         {
+            "location": "/", 
+            "text": "Test.", 
+            "title": "index"
+        }, 
+        {
             "location": "/contributing/", 
             "text": "Get Involved\n\n\n\n\nHop on Waffle to view the current GitHub issues:\n    \n.\n\n\nClone repo:\n    \ngit clone github.com/thetoxicarcade/congredi \n cd congredi\n\n\npre-fetch npm/bower, gulp\n\n\ndocker run -ti --rm -u $UID -v `pwd`/interface/:/srv/ marmelab/bower bash -c \"npm install \n bower --allow-root --config.interactive install\"\n\n\ndocker run -ti --rm -u $UID -v `pwd`/interface/:/srv/ marmelab/bower bash -c \"npm install -g gulp \n gulp\"\n\n*\n\n\n\n\n\n\nHack some things\n\n\nsetup.py build test install\n\n\nsetup.py metadata sdist upload\n\n\ndocker-compose build \n docker-compose up -d \n docker-compose scale workers=2\n\n\n\n\n\n\nSubmit some pull requests\n\n\n\n\nStyle guides\n\n\nI'm not currently conforming to the results\nfrom \neslint\n or \npylint\n, but I could be.\n\n\nPython\n\n\nPep8 excepting Tabs. Running \ncheck.sh\n can replace lots of it.\n\n\nJS\n\n\nsingle-quote, tab, 1tbs camelCase\n\n\nCI / Unit Tests\n\n\nTravis runs compilation, unit tests, a docker assembly, \n mkdocs builds.\n\n\nNose2 - \ntest directory\n\n\nby-file/library tests, \ntest_flask.py\n -\n \napi.py\n for instance.\n\n\nJasmine - \ntest directory\n\n\nby-file/library tests, \ndemo.js\n -\n \napp.js\n for instance.", 
             "title": "Contributing"

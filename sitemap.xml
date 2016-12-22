@@ -3,6 +3,14 @@
 
     
     <url>
+     <loc>http://toxik.io/congredi/</loc>
+     <lastmod>2016-12-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
      <loc>http://toxik.io/congredi/contributing/</loc>
      <lastmod>2016-12-22</lastmod>
      <changefreq>daily</changefreq>
