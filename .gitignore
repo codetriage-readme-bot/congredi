@@ -5,3 +5,6 @@ dist
 .sass-cache
 .eggs/
 build
+.cache
+.ash_history
+
