@@ -10,10 +10,12 @@ for documents.
 For a website/javascript style client, head over to
 [github.com/thetoxicarcade/delegito](//github.com/thetoxicarcade/delegito).
 
+For accademic papers to peruse on the subject, visit [/papers](/papers).
+
 ## Installing
 
 * library: `pip install congredi`
-* git: `git clone https://github.com/thetoxicarcade/ac.git && cd ac`
+* git: `git clone https://github.com/thetoxicarcade/congredi.git && cd congredi`
 * docker:
 
 ```
