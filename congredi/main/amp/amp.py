@@ -12,12 +12,15 @@ peers = ['127.0.0.1:1234','127.0.0.1:1000']
 
 if __name__ == '__main__':
 #    deferLater(reactor, 60, hiya).addCallback(lambda _: reactor.stop())
-	pc = ClientFactory()
-	pc.protocol = Peer
+	pc = PeerClientFactory()
 	inst = PeerFactory()
+	with open('ort','r') as a:
+		prt = a.read().strip('\n')
+	reactor.connectTCP('127.0.0.1', prt,pc)
 	pr = reactor.listenTCP(0, inst)
-	reactor.connectTCP('127.0.0.1', 46038,pc)
 	inst.host = pr.getHost().host
 	inst.port = pr.getHost().port
 	print 'started on port {}'.format(inst.port)
+	with open('ort','w+') as a:
+		a.write(str(inst.port))
 	reactor.run()
