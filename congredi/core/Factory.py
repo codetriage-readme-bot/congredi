@@ -9,6 +9,7 @@ from .Protocol import Peer, BogusProtocol
 from ..core.loop.peerBeat import peerBeat, peerSuccess, peerFailure
 from ..core.utils.whoops import whoops
 from .cmd.example import PeerAsk, PeerTell
+
 class CongrediPeer(protocol.Factory):
 	# init
 	online = False
@@ -28,19 +29,24 @@ class CongrediPeer(protocol.Factory):
 
 	def clientConnectionFailed(self, connector, reason):
 		print('Connection failed. Reason:', reason)
+
 	def buildProtocol(self, addr):
 		return BogusProtocol(self.users)
+
 	def startFactory(self):
 		self.online = True
+
 	def stopFactory(self):
 		self.online = False
 	commandKeys = []
 	state = "BEGIN"
+
 class PeerFactory(protocol.Factory):
 	clients = []
 	protocol = Peer
 	def __init__(self):
 		#self.protocol = Peer(self)
+		"""Add loops to factory? why not add loops to main reactor??"""
 		defly = task.deferLater(reactor, 10, self.ping)
 		defly.addErrback(whoops)
 		#reactor.callLater(2, redis_test)
@@ -56,8 +62,10 @@ class PeerFactory(protocol.Factory):
 	#def called(result): print result
 	# d.addCallback(called)
 	# a really basic example from stackoverflow...
+
 	def buildProtocol(self,addr):
 		return Peer(self)
+
 	def ping(self):
 		print('pinging')
 		print(self.clients)

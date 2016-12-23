@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Functions for using Redis
+Redis database commands & mutexes, not exactly the objects needed
 """
 import logging
 logger = logging.getLogger('congredi')
@@ -24,6 +24,7 @@ def get(key):
 	logger.info('got {}:{}'.format(key, value))
 	yield rc.disconnect()
 	defer.returnValue(value)
+
 @defer.inlineCallbacks
 def set(key, value):
 	rc = yield redis.Connection("10.230.78.120")
@@ -31,6 +32,7 @@ def set(key, value):
 	logger.info('set ({}) {}:{}'.format(res, key, value))
 	yield rc.disconnect()
 	defer.returnValue(res)
+
 @defer.inlineCallbacks
 def delete(key):
 	rc = yield redis.Connection("10.230.78.120")
@@ -52,6 +54,7 @@ def todoAdd(mutexKey, todoList, key):
 	mutexKey.release()
 	yield rc.disconnect()
 	defer.returnValue(ret)
+
 @defer.inlineCallbacks
 def todoRemove(mutexKey, todoList):
 	rc = yield redis.Connection("10.230.78.120")

@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Config Loading
+Yaml Config Loading - & default configs
 """
 import yaml, os, traceback
 import logging
 logger = logging.getLogger('congredi')
+
 def configArr():
 	config = {}
 	try:
@@ -18,8 +19,13 @@ def configArr():
 		#traceback.print_exc()
 		logger.critical(trace)
 		# generate key, save to yaml
-		config['admins'] = ['foo', 'bar']
-		config['users'] = ['toto', 'bagel']
+		config['admins'] = set(['selfkey'])
+		config['users'] = set(['selfkey'])
+
+		config['peers'] = [] # default public congredi peer lists (key/ip)
+
+		config['sitekey'] = set(['newkey'])
+		config['routekey'] = set(['othernewkey'])
 		logger.warning('Writing new config')
 		with open(os.path.expanduser('~') + '/.congredi.yml', 'w+') as f:
 			f.write(yaml.dump(config))

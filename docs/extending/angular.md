@@ -4,9 +4,6 @@ Congredi has no workable client. To make one, you might try:
 
 * Traefik with docker-swarm serving docker containers
 * nginx-served angular app (jwt, openpgp)
-* twisted nodes
-* redis nodes / api key to hosted redis
-* neo4j nodes / api key to hosted neo4j
 
 
 # Angular UI designs

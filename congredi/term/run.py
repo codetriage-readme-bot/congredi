@@ -7,8 +7,6 @@ Main Running code
 import logging
 logger = logging.getLogger('congredi')
 from twisted.internet import stdio, reactor
-#from twisted.python import log
-#log.startLogging(sys.stdout)
 from ..core.Factory import CongrediPeer
 from .client import CongrediClient
 
@@ -16,12 +14,8 @@ from ..core.utils.logger import setLog
 from ..core.utils.config import configArr
 from ..core.utils.options import MainOptions
 from ..core.utils.whoops import CongrediError
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-AMP command tests
-"""
-	
+
+"""Could neaten this..."""
 def run():
 	config = configArr()
 	initialKey = config['admins']
@@ -69,5 +63,6 @@ def run():
 		print("Congredi failed: {}".format(e.message))
 	finally:
 		print('goodbye...')
+
 if __name__ == '__main__':
 	run()

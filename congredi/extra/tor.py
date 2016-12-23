@@ -1,10 +1,16 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import datetime, os
+"""
+Stem tor controls (could publish .onions in address table instead of ip as feature)
+"""
+import os
 from stem.control import Controller
 from stem import process
 # small rendesvous pieces (see MainLoop)
+
 def print_bootstrap_lines(line):
 	print(line)
+
 def prox():
 	tor_process = process.launch_tor_with_config(
 		config = {
@@ -15,6 +21,7 @@ def prox():
 		  init_msg_handler = print_bootstrap_lines
 		)
 	return tor_process
+
 def start_rendesvous(key_path):
 	with Controller.from_port(port = 8801) as controller:
 		controller.authenticate()
@@ -29,6 +36,7 @@ def start_rendesvous(key_path):
 			service = controller.create_ephemeral_hidden_service({80: 5000}, key_type = key_type, key_content = key_content, await_publication = True)
 			print("Resumed %s.onion" % service.service_id)
 		return service.service_id
+
 def stop_rendesvous(service, tor_process):
 	with Controller.from_port(port = 8801) as controller:
 		controller.authenticate()

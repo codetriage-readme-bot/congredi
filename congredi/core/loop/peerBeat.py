@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Repeated tasks
+Check if peer is online, check latest trees that people subscribe to
 """
 import logging
 logger = logging.getLogger('congredi')
@@ -12,6 +12,29 @@ from twisted.internet import reactor
 
 from ..storage.redis import get, set, delete
 from ..utils.config import configArr
+
+def queryBackground():
+	"""
+	Return an object from within peers
+	One Subscription command -> several monitor commands
+	"""
+	pass
+
+def updateRead():
+	"""
+	Update trees with subscriptions
+	One Subscription command -> several monitor commands
+	"""
+	pass
+
+def updateWrite():
+	"""
+	Publish trees to other nodes
+	One Publish command -> several deploy commands
+	"""
+	pass
+
+
 
 shutDown = False
 @defer.inlineCallbacks

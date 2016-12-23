@@ -2,10 +2,12 @@ sudo: required
 language: C
 services:
  - docker
+# todo... make python work on base travis instances...
+# before_scrypt must contain requirements for ubuntu/fedora/alpine tests
 script:
- - docker build -t test .
- - docker run test python setup.py build
- - docker run test python setup.py test
- - docker run test python setup.py install
- - docker run test pip install setuptools-lint && python setup.py lint || echo "Lint failing..."
- - docker run test pip install mkdocs && mkdocs build || echo "Docs failing..."
+ - docker build -t test . 1>/dev/null
+ - docker run test python setup.py build 1>/dev/null
+ - docker run test python setup.py test 1>/dev/null
+ - docker run test python setup.py install 1>/dev/null
+ - docker run test pip install -q setuptools-lint && python setup.py lint || echo "Lint failing..."
+ - docker run test pip install -q mkdocs && mkdocs build || echo "Docs failing..."

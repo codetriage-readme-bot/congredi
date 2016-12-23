@@ -1,16 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-generate a route to an introduction node
+PGP key & IP routing
 """
 import logging, random
 logger = logging.getLogger('congredi')
+
 class router():
 	nodes = []
 	def __init__(self, routerKey):
 		self.key = routerKey
+
 	# routes will have a key and an IP
 	def route(self, rendesvousKey, hops=3):
+		"""generate a route to an introduction node using a list of keys (see alternate in packet/hybrid.py)"""
 		# self, node, returnaddr, rendesvous
 		tempNodes = list(self.nodes)
 		result = []

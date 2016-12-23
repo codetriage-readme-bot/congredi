@@ -4,8 +4,8 @@
 tests on the simplistic censor library.
 """
 import binascii, os
-from ...core.algos.censor import censor
-from ...core.algos.censor import stateEncoding
+from ....core.algos.censor import censor
+from ....core.algos.censor import stateEncoding
 
 hexy = {
 "0": "Zero", "1": "One", "2": "Two", "3": "Three",

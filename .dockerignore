@@ -1,0 +1,13 @@
+.cache/
+.eggs/
+.git/
+.github/
+_site/
+build/
+docs/
+papers/
+.ash_history
+.gitignore
+.travis.yml
+mkdocs.yml
+*.pyc

@@ -16,5 +16,7 @@ chmod -x congredi/ -R
     #-i -e 's/ #\([^ ]\)/ # \1/g'
 pylint congredi
 nose2 congredi
+#python setup.py build test lint bdist_wheel install
+
 find congredi/ -type f -name "*.pyc" -delete -print
 #mkdocs gh-deploy

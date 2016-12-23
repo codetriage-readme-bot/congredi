@@ -7,15 +7,15 @@ import hashlib#, pudb
 from StringIO import StringIO
 from patch import PatchSet
 # pylint: disable=unused-import
-from ...core.algos.GFMDiff import resolveHtml
-from ...core.algos.GFMDiff import resolveUnifiedDiff
-from ...core.algos.GFMDiff import resolveDiff
-from ...core.algos.GFMDiff import rebuildFile
-from ...core.algos.GFMDiff import compressDiff
-from ...core.algos.GFMDiff import uncompressDiff
-from ...core.algos.GFMDiff import tick
-from ...core.algos.GFMDiff import tock
-from ...core.algos.GFMDiff import chunkSplit
+from ....core.algos.GFMDiff import resolveHtml
+from ....core.algos.GFMDiff import resolveUnifiedDiff
+from ....core.algos.GFMDiff import resolveDiff
+from ....core.algos.GFMDiff import rebuildFile
+from ....core.algos.GFMDiff import compressDiff
+from ....core.algos.GFMDiff import uncompressDiff
+from ....core.algos.GFMDiff import tick
+from ....core.algos.GFMDiff import tock
+from ....core.algos.GFMDiff import chunkSplit
 
 
 
