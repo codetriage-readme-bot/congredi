@@ -8,9 +8,5 @@ Hop on Waffle for issues [![Stories in Ready](https://badge.waffle.io/Thetoxicar
 
 
 There's also some chat on [gitter.im/Congredi](https://gitter.im/Congredi)
+[![Gitter](https://img.shields.io/gitter/room/Congredi/Development.svg)](https://gitter.im/Congredi)
 for support and development discussions.
-
-Test buttons:
-
-* [![Gitter chat](https://img.shields.io/badge/congredi.svg?style=flat)](https://gitter.im/Congredi)
-* [![Gitter](https://img.shields.io/gitter/room/Congredi/Development.svg)](https://gitter.im/Congredi)

@@ -1,8 +1,12 @@
 # WARNING - sync congredi/setup.py and congredi/delegito/setup.py
 from setuptools import setup
 def readme():
-	with open('README.md') as f:
-		return f.read()
+	try:
+		import pypandoc
+		return pypandoc.convert('README.md','rst')
+	except:
+		with open('README.md') as f:
+			return f.read()		
 setup(name='congredi',
 	version='0.1',
 	description='BASE representation-of-law-via-cryptography protocol',
