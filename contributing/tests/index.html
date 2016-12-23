@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="Github People">
-        <link rel="canonical" href="http://toxik.io/congredi/specification/packets/">
+        <link rel="canonical" href="http://toxik.io/congredi/contributing/tests/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>packets - Congredi</title>
+	<title>tests - Congredi</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -56,37 +56,37 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contributing <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../../contributing/intro/">intro</a>
+    <a href="../intro/">intro</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../contributing/style/">style</a>
+    <a href="../style/">style</a>
+</li>
+
+                    
+                        
+<li class="active">
+    <a href="./">tests</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../contributing/tests/">tests</a>
+    <a href="../commits/">commits</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../contributing/commits/">commits</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../contributing/emoji/">emoji</a>
+    <a href="../emoji/">emoji</a>
 </li>
 
                     
@@ -116,31 +116,31 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Specification <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../about/">About</a>
+    <a href="../../specification/about/">About</a>
 </li>
 
                     
                         
 <li >
-    <a href="../commands/">commands</a>
+    <a href="../../specification/commands/">commands</a>
 </li>
 
                     
                         
 <li >
-    <a href="../data/">data</a>
+    <a href="../../specification/data/">data</a>
 </li>
 
                     
                         
-<li class="active">
-    <a href="./">packets</a>
+<li >
+    <a href="../../specification/packets/">packets</a>
 </li>
 
                     
@@ -227,12 +227,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../data/">
+                    <a rel="next" href="../style/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../data/chains/">
+                    <a rel="prev" href="../commits/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -255,14 +255,23 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#amp-packets">AMP Packets</a></li>
+        <li class="main active"><a href="#ci-unit-tests">CI / Unit Tests</a></li>
+        
+            <li><a href="#nose2-test-directory">Nose2 - test directory</a></li>
+        
+            <li><a href="#jasmine-test-directory">Jasmine - test directory</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="amp-packets">AMP Packets</h1></div>
+<h1 id="ci-unit-tests">CI / Unit Tests</h1>
+<p>Travis runs compilation, unit tests, a docker assembly, &amp; mkdocs builds.</p>
+<h2 id="nose2-test-directory">Nose2 - <a href="//github.com/Thetoxicarcade/congredi/blob/master/delegito/tests">test directory</a></h2>
+<p>by-file/library tests, <code>test_flask.py</code> -&gt; <code>api.py</code> for instance.</p>
+<h2 id="jasmine-test-directory">Jasmine - <a href="//github.com/Thetoxicarcade/congredi/blob/master/interface/js/tests">test directory</a></h2>
+<p>by-file/library tests, <code>demo.js</code> -&gt; <code>app.js</code> for instance.</p></div>
         </div>
 
         <footer class="col-md-12">

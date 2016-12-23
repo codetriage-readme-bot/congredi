@@ -4,15 +4,7 @@
     
     <url>
      <loc>http://toxik.io/congredi/</loc>
-     <lastmod>2016-12-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
-    <url>
-     <loc>http://toxik.io/congredi/contributing/</loc>
-     <lastmod>2016-12-22</lastmod>
+     <lastmod>2016-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -20,26 +12,76 @@
     
         
     <url>
-     <loc>http://toxik.io/congredi/specification/</loc>
-     <lastmod>2016-12-22</lastmod>
+     <loc>http://toxik.io/congredi/contributing/intro/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/contributing/style/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/contributing/tests/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/contributing/commits/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/contributing/emoji/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>http://toxik.io/congredi/extending/angular/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/extending/database/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>http://toxik.io/congredi/specification/about/</loc>
+     <lastmod>2016-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://toxik.io/congredi/specification/commands/</loc>
-     <lastmod>2016-12-22</lastmod>
+     <lastmod>2016-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://toxik.io/congredi/specification/data/</loc>
-     <lastmod>2016-12-22</lastmod>
+     <lastmod>2016-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>http://toxik.io/congredi/specification/packets/</loc>
-     <lastmod>2016-12-22</lastmod>
+     <lastmod>2016-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -47,10 +89,68 @@
 
     
     <url>
-     <loc>http://toxik.io/congredi/extending/</loc>
-     <lastmod>2016-12-22</lastmod>
+     <loc>http://toxik.io/congredi/data/chains/</loc>
+     <lastmod>2016-12-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
+        
+    <url>
+     <loc>http://toxik.io/congredi/commands/design/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/commands/current/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/commands/future/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/commands/past/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/commands/search/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/commands/publish/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/commands/deploy/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/commands/subscribe/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://toxik.io/congredi/commands/monitor/</loc>
+     <lastmod>2016-12-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
 </urlset>

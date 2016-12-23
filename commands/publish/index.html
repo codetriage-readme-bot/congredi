@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="Github People">
-        <link rel="canonical" href="http://toxik.io/congredi/specification/packets/">
+        <link rel="canonical" href="http://toxik.io/congredi/commands/publish/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>packets - Congredi</title>
+	<title>publish - Congredi</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -116,31 +116,31 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Specification <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../about/">About</a>
+    <a href="../../specification/about/">About</a>
 </li>
 
                     
                         
 <li >
-    <a href="../commands/">commands</a>
+    <a href="../../specification/commands/">commands</a>
 </li>
 
                     
                         
 <li >
-    <a href="../data/">data</a>
+    <a href="../../specification/data/">data</a>
 </li>
 
                     
                         
-<li class="active">
-    <a href="./">packets</a>
+<li >
+    <a href="../../specification/packets/">packets</a>
 </li>
 
                     
@@ -155,61 +155,61 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">commands <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../../commands/design/">Design</a>
+    <a href="../design/">Design</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/current/">current</a>
+    <a href="../current/">current</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/future/">future</a>
+    <a href="../future/">future</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/past/">past</a>
+    <a href="../past/">past</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/search/">search</a>
+    <a href="../search/">search</a>
+</li>
+
+                    
+                        
+<li class="active">
+    <a href="./">publish</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/publish/">publish</a>
+    <a href="../deploy/">deploy</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/deploy/">deploy</a>
+    <a href="../subscribe/">subscribe</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/subscribe/">subscribe</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../commands/monitor/">monitor</a>
+    <a href="../monitor/">monitor</a>
 </li>
 
                     
@@ -227,12 +227,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../data/">
+                    <a rel="next" href="../search/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../data/chains/">
+                    <a rel="prev" href="../deploy/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -255,14 +255,19 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#amp-packets">AMP Packets</a></li>
+        <li class="main active"><a href="#publish-privledged-set">PUBLISH - privledged set</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="amp-packets">AMP Packets</h1></div>
+<h4 id="publish-privledged-set">PUBLISH - privledged set</h4>
+<p><code>PUBLISH IDENTITY USER &lt;key&gt;&lt;previousfingerprint&gt;&lt;sigbyprevious&gt;</code>
+Differences:
+2. Fail if we don't have the key, publish operations are privledged,
+    Ask for permission before using them!
+2.5. Check if a trust-path exists from this node's users to that key. ErrBack.</p></div>
         </div>
 
         <footer class="col-md-12">
