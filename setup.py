@@ -1,5 +1,7 @@
 # WARNING - sync congredi/setup.py and congredi/delegito/setup.py
 from setuptools import setup
+# trying to fix ReStructured Text on PyPi, not exactly
+# working (possibly needs to be stricter?)
 def readme():
 	try:
 		import pypandoc
@@ -8,7 +10,7 @@ def readme():
 		with open('README.md') as f:
 			return f.read()		
 setup(name='congredi',
-	version='0.1',
+	version='0.0.2',
 	description='BASE representation-of-law-via-cryptography protocol',
 	long_description=readme(),
 	classifiers=[
