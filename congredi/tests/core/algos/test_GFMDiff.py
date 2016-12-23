@@ -3,8 +3,9 @@
 """
 tests on the simplistic censor library.
 """
-import hashlib#, pudb
-from StringIO import StringIO
+import hashlib
+try: from StringIO import StringIO
+except ImportError: from io import StringIO
 from patch import PatchSet
 # pylint: disable=unused-import
 from ....core.algos.GFMDiff import resolveHtml
@@ -102,7 +103,10 @@ def test_splits():
 
 def test_uni():
 	# pu.db
-	diff = resolveUnifiedDiff(source, source2, 'a.txt', 'b.txt')
+	diff = resolveUnifiedDiff(
+				source, source2,
+				'congredi/test/core/algos/a.txt',
+				'congredi/test/core/algos/b.txt')
 	patch = PatchSet(StringIO(diff))
 	print(patch.errors)
 	patch.revert(0, root='.')
