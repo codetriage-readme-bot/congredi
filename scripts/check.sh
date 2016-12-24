@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # remove old .pyc clutter
 find congredi/ -type f -name "*.pyc" -delete -print
 # not executable
@@ -17,6 +17,7 @@ chmod -x congredi/ -R
 pylint congredi
 nose2 congredi
 #python setup.py build test lint bdist_wheel install
+#python setup.py lint || echo "Code Quality failing..."
 
 find congredi/ -type f -name "*.pyc" -delete -print
 #mkdocs gh-deploy

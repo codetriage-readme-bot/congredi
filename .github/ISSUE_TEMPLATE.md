@@ -1,6 +1,4 @@
-The problem:
-* [ ] not an existing issue already
-* [ ] expected behavior
-* [ ] actual behavior
-* [ ] steps to reproduce
-* [ ] the version, package manager, & OS
+Hey there. Write up your idea here (be thoughtful, descriptive).
+
+Hopefully, we'll tag your issue ASAP.
+

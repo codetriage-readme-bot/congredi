@@ -6,16 +6,16 @@ language: python
 # todo... make python work on base travis instances...
 # hopefully StringIO patch works...
 python:
-  - "2.6"
+#  - "2.6"
   - "2.7"
-  - "3.2"
-  - "3.3"
-  - "3.4"
+#  - "3.2"
+#  - "3.3"
+#  - "3.4"
   # PyPy versions
 # cryptography isn't compatible with some versions of pypi?
 #  - "pypy"
 #  - "pypy"  # PyPy2 2.5.0
-  - "pypy-5.3.1"
+#  - "pypy-5.3.1"
 # command to install dependencies
 install:
   - pip install -r requirements.txt

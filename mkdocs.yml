@@ -14,7 +14,7 @@ pages:
          - 'style': 'contributing/style.md'
          - 'tests': 'contributing/tests.md'
          - 'commits': 'contributing/commits.md'
-         - 'emoji': 'contributing/emoji.md'
+         - 'Tags/Emoji': 'contributing/tags.md'
     - 'Extending':
          - 'angular': 'extending/angular.md'
          - 'database': 'extending/database.md'
