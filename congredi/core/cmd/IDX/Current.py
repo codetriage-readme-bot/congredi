@@ -11,3 +11,12 @@ class Current(amp.Command):
 				 ('offset', amp.Integer()),
 				 ('count', amp.Integer())]
 	response = [('hashes', amp.String())] # list of strings...
+"""
+type : hash : [list]
+foos : bar : [ abc, def, ghi, jkl, mno, pqr, stu, vwx, yz ]
+
+GET CURRENT foo bar OFFSET 5 COUNT 2
+
+[ jkl, ghi ]
+
+"""

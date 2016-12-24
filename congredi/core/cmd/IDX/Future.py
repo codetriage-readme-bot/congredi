@@ -11,3 +11,13 @@ class Future(amp.Command):
 				 ('offset', amp.Integer()),
 				 ('count', amp.Integer())]
 	response = [('hashes', amp.String())] # list of strings...
+
+"""
+type : hash : [list]
+foos : bar : [ abc, def, ghi, jkl, mno, pqr, stu, vwx, yz ]
+
+GET FUTURE foo ghi OFFSET 2 COUNT 2
+
+[ mno, pqr ]
+
+"""

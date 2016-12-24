@@ -28,3 +28,18 @@ MONITOR CACHE foobar HAS : <listobject>
 
 DEPLOY CACHE foobar HAS <listobject>
 
+```
+'SET'
+	PUBLISH - permissions, long lasting item
+	DEPLOY - no permissions, publish key, may soon be deleted
+
+'GET'
+	SUBSCRIBE - permissions set rendesvous to pull updates
+	MONITOR - no permissions, query for key, request expires
+
+	PAST - grab all previous versions
+	CURRENT - grab signed latest
+	FUTURE - grab all newer versions
+
+SEARCH <> ORDER <> OFFSET <> COUNT <> TERM <>
+```

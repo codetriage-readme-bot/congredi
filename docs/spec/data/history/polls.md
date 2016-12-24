@@ -1,0 +1,1 @@
+	POLLS			- list(list(CURRENT,PREVIOUS,SIG))

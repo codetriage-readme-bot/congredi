@@ -16,3 +16,12 @@ class Publish(amp.Command):
 		('lifetime',amp.Date()),
 		('signature',amp.String())]
 	#errors = no space
+
+"""
+sends: object
+recieves: lifetime, signature
+
+
+PUBLISH TYPE foobar HASH abc AUTHOR author OBJECT object SIGNATURE sig
+[ 2016-10-11 20:10:10, signature ]
+"""

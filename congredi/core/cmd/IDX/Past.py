@@ -11,3 +11,13 @@ class Past(amp.Command):
 				 ('offset', amp.Integer()),
 				 ('count', amp.Integer())]
 	response = [('hashes', amp.String())] # list of strings...
+
+"""
+type : hash : [list]
+foos : bar : [ abc, def, ghi, jkl, mno, pqr, stu, vwx, yz ]
+
+GET PAST foo stu OFFSET 1 COUNT 3
+
+[ mno, jkl, ghi ]
+
+"""

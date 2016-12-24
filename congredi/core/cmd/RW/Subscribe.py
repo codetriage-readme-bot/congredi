@@ -16,3 +16,7 @@ class Subscribe(amp.Command):
 		('lifetime',amp.Date()),
 		('signature',amp.String())]
 	#errors = no space
+"""
+SUBSCRIBE TYPE foobar HASH hash READER reader SIGNATURE sig
+[ Results[], 2016-10-11 20:10:10, signature ]
+"""

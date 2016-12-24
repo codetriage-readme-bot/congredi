@@ -3,7 +3,7 @@ dist
 *.swp
 *.egg-info
 .sass-cache
-.eggs/
+.eggs
 build
 .cache
 .ash_history
