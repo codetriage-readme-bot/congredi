@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="Github People">
-        <link rel="canonical" href="http://toxik.io/congredi/contributing/emoji/">
+        <link rel="canonical" href="http://toxik.io/congredi/contributing/tags/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>emoji - Congredi</title>
+	<title>Tags/Emoji - Congredi</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -86,7 +86,7 @@
                     
                         
 <li class="active">
-    <a href="./">emoji</a>
+    <a href="./">Tags/Emoji</a>
 </li>
 
                     
@@ -255,39 +255,95 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
+        <li class="main active"><a href="#help-wanted">help wanted</a></li>
+        
+            <li><a href="#first-pr-easy-pick-beginner-heart">first-pr / easy pick / beginner :heart:</a></li>
+        
+            <li><a href="#tougher-octocat">tougher :octocat:</a></li>
+        
+    
+        <li class="main "><a href="#the-little-things">the little things</a></li>
+        
+            <li><a href="#bug-trivial-bug-critical-ambulance">bug trivial - :bug: critical - :ambulance:</a></li>
+        
+            <li><a href="#trivial-microsope">trivial :microsope:</a></li>
+        
+            <li><a href="#feature-stars">feature :stars:</a></li>
+        
+            <li><a href="#enhancement-telescope">enhancement :telescope:</a></li>
+        
+    
+        <li class="main "><a href="#the-big-picture">the big picture</a></li>
+        
+    
+        <li class="main "><a href="#tests-warning">tests :warning:</a></li>
+        
+    
+        <li class="main "><a href="#design-tophat">design :tophat:</a></li>
+        
+    
+        <li class="main "><a href="#documentation-books">documentation :books:</a></li>
+        
+    
+        <li class="main "><a href="#refactoring-beauty-art-clutter-fire">refactoring beauty - :art: clutter - :fire:</a></li>
+        
+    
+        <li class="main "><a href="#machine-labels">Machine labels</a></li>
+        
+            <li><a href="#in-progress-ready">in progress / ready</a></li>
+        
+            <li><a href="#duplicate-invalid-question-wontfix">duplicate / invalid / question / wontfix</a></li>
+        
+    
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<blockquote>
-<p>want to change these <code>.github</code> docs?</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>emoji</th>
-<th align="left">source</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Languages :snake::triangular_ruler::zap::microscope::telescope::lock:</td>
-<td align="left"><code>:snake:``:triangular_ruler:``:zap:``:microscope:``:telescope:``:lock:</code> -python, angular, Bolt/Neo4j/DB, crypto, loading, security</td>
-</tr>
-<tr>
-<td>Quality :100::pray::bug::green_heart::white_check_mark::nose::art::fire:</td>
-<td align="left"><code>:pray:``:100:``:bug:``:green_heart:``:nose:``:art:``:white_check_mark:``:fire:</code>-builds, bugs, tests, CI, Nose2 tests,unit tests, structuredeleted code, clutter</td>
-</tr>
-<tr>
-<td>Services :heart::octocat::books::pencil2::memo::cloud::chart_with_upwards_trend:</td>
-<td align="left"><code>:chart_with_upwards_trend:``:heart:``:octocat:``:memo: ``:cloud:``:books:``:pencil2:</code>-docs, git, mkdocs, docker,badgestutorials, methods</td>
-</tr>
-<tr>
-<td>Releases :arrow_up::tophat::ambulance::beers::warning::heavy_exclamation_mark:</td>
-<td align="left"><code>:tophat:``:ambulance:``:arrow_up:``:beers:``:warning:``:heavy_exclamation_mark:</code>- BlackHat CVE , Triage / Catastrophic, release - cheers! beta - beta release, versions</td>
-</tr>
-</tbody>
-</table></div>
+<p>Waffle / Github allows us to have labels to report progress about things.
+These are the labels I can think of, and where they lie on the spectrum.</p>
+<p>You also might want to check out the emoji examples for context, over
+at <a href="https://github.com/Thetoxicarcade/congredi/blob/master/.github/emoji.md">//github.com/thetoxicarcade/congredi</a>.</p>
+<h1 id="help-wanted">help wanted</h1>
+<p>Sections where nobody's claimed something. If you assigned yourself to an
+issue, you can remove the <code>help wanted</code> label.</p>
+<h2 id="first-pr-easy-pick-beginner-heart">first-pr / easy pick / beginner <code>:heart:</code></h2>
+<p>Small problems I shouldn't be focusing on but need fixing eventually.</p>
+<p>Example: <code>setup.py doesn't correctly generate an RST for PyPi</code></p>
+<h2 id="tougher-octocat">tougher <code>:octocat:</code></h2>
+<p>Big problems I don't know how to approach exactly.</p>
+<p>Example: <code>listenTCP(0) won't work on korora. Possibly a firewall issue?</code></p>
+<h1 id="the-little-things">the little things</h1>
+<h2 id="bug-trivial-bug-critical-ambulance">bug <code>trivial - :bug: critical - :ambulance:</code></h2>
+<p>An error in the expected behavior of the application. Can be patched within <code>_._.x</code>.</p>
+<p>Example: <code>running congredi in python3 - buffer objects not supported</code></p>
+<h2 id="trivial-microsope">trivial <code>:microsope:</code></h2>
+<p>Small feature fixes. Patched at <code>_._.x</code>.</p>
+<p>Example: <code>Docker image size improvements.</code></p>
+<h2 id="feature-stars">feature <code>:stars:</code></h2>
+<p>New functionality. Can be patched within <code>_.x.x</code>.</p>
+<p>Example: <code>OAEP within congredi's packets</code></p>
+<h2 id="enhancement-telescope">enhancement <code>:telescope:</code></h2>
+<p>Improved functionality. Pached at <code>_.x.x</code>.</p>
+<p>Example: <code>Use Pycrypto over Cryptography.</code></p>
+<h1 id="the-big-picture">the big picture</h1>
+<h1 id="tests-warning">tests <code>:warning:</code></h1>
+<p>Adding tests to cover scenarios.</p>
+<p>Example: <code>Require implementer to fail if command is invalid.</code></p>
+<h1 id="design-tophat">design <code>:tophat:</code></h1>
+<p>mockups, interfaces, structuring.</p>
+<p>Example: <code>Git Unified-diff recursion demo.py</code></p>
+<h1 id="documentation-books">documentation <code>:books:</code></h1>
+<p>trying things out (a bit of QA), explaining code</p>
+<p>Example: <code>The 'MONITOR' command.</code></p>
+<h1 id="refactoring-beauty-art-clutter-fire">refactoring <code>beauty - :art: clutter - :fire:</code></h1>
+<p>Increase quality without changing functionality</p>
+<p>Example: <code>unify two classes with a superclass</code></p>
+<h1 id="machine-labels">Machine labels</h1>
+<p>Labels useful to us, but automatic to the platform.</p>
+<h2 id="in-progress-ready">in progress / ready</h2>
+<p>Labels used by waffle board</p>
+<h2 id="duplicate-invalid-question-wontfix">duplicate / invalid / question / wontfix</h2>
+<p>Labels useful to github</p></div>
         </div>
 
         <footer class="col-md-12">

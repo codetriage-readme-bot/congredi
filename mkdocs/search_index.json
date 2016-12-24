@@ -2,22 +2,32 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Congredi \ndelegito.io\n\n\n\n\na BASE representation-of-law-via-cryptography protocol\n\n\n\n\nCongredi\n is a set of utilities and a Twisted server/shell for distributed\ndocument storage, revisioning, and voting on those revisions. Think of it\nas a community of git databases where groups of people rank their choices\non how fictional repos should be constructed. Like an STV version of reddit\nfor documents.\n\n\nFor a website/javascript style client, head over to\n\ngithub.com/thetoxicarcade/delegito\n.\n\n\nInstalling\n\n\n\n\nlibrary: \npip install congredi\n\n\ngit: \ngit clone https://github.com/thetoxicarcade/ac.git \n cd ac\n\n\ndocker:\n\n\n\n\nericoflondon/\n    congredi                - individual peer/clients\n    delegito                - static content, swarmable\n\n\n\n\nRunning\n\n\n\n\npython -m congredi.main.run peer --redis 6379 --neo4j 7474 --port 8800\n\n\npython -m congredi.main.run client --host localhost --port 8800\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncongredi\n \n\n\ndelegito\n \n\n\n\n\nProjects I'm still looking at:\nhttps://github.com/twisted/vertex\nhttps://github.com/indigo-dc/udocker\n    pull docker containers, decompress, run in PRoot/chroot?\nhttps://github.com/jamercee/signet\n    sign python and use loader to run\nhttps://github.com/bnlucas/python-basehash\n    encrypted hashing\nhttps://github.com/rw/plainsight\nhttps://github.com/JarrodCTaylor/steganopy\n    steganography\nhttps://github.com/barseghyanartur/ska\n    - signed (symetric then HMACed)\nhttps://github.com/WhisperSystems/libsignal-protocol-javascript\nhttps://whispersystems.org/docs/specifications/xeddsa/\nhttps://whispersystems.org/docs/specifications/x3dh/\nhttps://whispersystems.org/docs/specifications/doubleratchet/\n    ratchet", 
+            "text": "Congredi \ntoxik.io/congredi/\n\n\n\n\nPeered Democratic Documents\n\n\nFor the static webclient written in JS, see \ndelegito.io\n\n\n\n\nCongredi\n is a python program that allows a community to help\nindividuals write changes to repositories of text, that are then\nvoted on by organizations to find a consensus.\n\n\nDesign ideas\n\n\nFunctionally speaking, it uses Twisted.amp to send packets, and runs some\ncrypto on them before performing actions on a redis/neo4j database.\n\n\nKeys are the hashes, Basically Accessible Soft state Eventual consistency,\ngit-diff style diffs, torrenting segments, AES/EC protos, STV from different\npapers on the subject.\n\n\nLooking for contributors!\n\n\nWhile I'm building this up, I'm looking for contributors!\nHead over to Waffle.io, issuehub.io, or CodeTriage :heart:.\n\n\nHere's some example \nissue tags\n.\n\n\nInstalling\n\n\n\n\nlibrary: \npip install congredi\n\n\ngit: \ngit clone https://github.com/thetoxicarcade/congredi.git \n cd congredi\n\n\ndocker:\n\n\n\n\nericoflondon/\n    congredi                - individual peer/clients\n    delegito                - static content, swarmable\n\n\n\n\nRunning\n\n\n\n\npython -m congredi.main.run peer --redis 6379 --neo4j 7474 --port 8800\n\n\npython -m congredi.main.run client --host localhost --port 8800\n\n\n\n\nProjects I'm still looking at:\nhttps://github.com/twisted/vertex\nhttps://github.com/indigo-dc/udocker\n    pull docker containers, decompress, run in PRoot/chroot?\nhttps://github.com/jamercee/signet\n    sign python and use loader to run\nhttps://github.com/bnlucas/python-basehash\n    encrypted hashing\nhttps://github.com/rw/plainsight\nhttps://github.com/JarrodCTaylor/steganopy\n    steganography\nhttps://github.com/barseghyanartur/ska\n    - signed (symetric then HMACed)\nhttps://github.com/WhisperSystems/libsignal-protocol-javascript\nhttps://whispersystems.org/docs/specifications/xeddsa/\nhttps://whispersystems.org/docs/specifications/x3dh/\nhttps://whispersystems.org/docs/specifications/doubleratchet/\n    ratchet", 
             "title": "index"
         }, 
         {
-            "location": "/#congredi-delegitoio", 
-            "text": "a BASE representation-of-law-via-cryptography protocol   Congredi  is a set of utilities and a Twisted server/shell for distributed\ndocument storage, revisioning, and voting on those revisions. Think of it\nas a community of git databases where groups of people rank their choices\non how fictional repos should be constructed. Like an STV version of reddit\nfor documents.  For a website/javascript style client, head over to github.com/thetoxicarcade/delegito .", 
-            "title": "Congredi delegito.io"
+            "location": "/#congredi-toxikiocongredi", 
+            "text": "Peered Democratic Documents  For the static webclient written in JS, see  delegito.io   Congredi  is a python program that allows a community to help\nindividuals write changes to repositories of text, that are then\nvoted on by organizations to find a consensus.", 
+            "title": "Congredi toxik.io/congredi/"
+        }, 
+        {
+            "location": "/#design-ideas", 
+            "text": "Functionally speaking, it uses Twisted.amp to send packets, and runs some\ncrypto on them before performing actions on a redis/neo4j database.  Keys are the hashes, Basically Accessible Soft state Eventual consistency,\ngit-diff style diffs, torrenting segments, AES/EC protos, STV from different\npapers on the subject.", 
+            "title": "Design ideas"
+        }, 
+        {
+            "location": "/#looking-for-contributors", 
+            "text": "While I'm building this up, I'm looking for contributors!\nHead over to Waffle.io, issuehub.io, or CodeTriage :heart:.  Here's some example  issue tags .", 
+            "title": "Looking for contributors!"
         }, 
         {
             "location": "/#installing", 
-            "text": "library:  pip install congredi  git:  git clone https://github.com/thetoxicarcade/ac.git   cd ac  docker:   ericoflondon/\n    congredi                - individual peer/clients\n    delegito                - static content, swarmable", 
+            "text": "library:  pip install congredi  git:  git clone https://github.com/thetoxicarcade/congredi.git   cd congredi  docker:   ericoflondon/\n    congredi                - individual peer/clients\n    delegito                - static content, swarmable", 
             "title": "Installing"
         }, 
         {
             "location": "/#running", 
-            "text": "python -m congredi.main.run peer --redis 6379 --neo4j 7474 --port 8800  python -m congredi.main.run client --host localhost --port 8800         congredi    delegito     Projects I'm still looking at:\nhttps://github.com/twisted/vertex\nhttps://github.com/indigo-dc/udocker\n    pull docker containers, decompress, run in PRoot/chroot?\nhttps://github.com/jamercee/signet\n    sign python and use loader to run\nhttps://github.com/bnlucas/python-basehash\n    encrypted hashing\nhttps://github.com/rw/plainsight\nhttps://github.com/JarrodCTaylor/steganopy\n    steganography\nhttps://github.com/barseghyanartur/ska\n    - signed (symetric then HMACed)\nhttps://github.com/WhisperSystems/libsignal-protocol-javascript\nhttps://whispersystems.org/docs/specifications/xeddsa/\nhttps://whispersystems.org/docs/specifications/x3dh/\nhttps://whispersystems.org/docs/specifications/doubleratchet/\n    ratchet", 
+            "text": "python -m congredi.main.run peer --redis 6379 --neo4j 7474 --port 8800  python -m congredi.main.run client --host localhost --port 8800   Projects I'm still looking at:\nhttps://github.com/twisted/vertex\nhttps://github.com/indigo-dc/udocker\n    pull docker containers, decompress, run in PRoot/chroot?\nhttps://github.com/jamercee/signet\n    sign python and use loader to run\nhttps://github.com/bnlucas/python-basehash\n    encrypted hashing\nhttps://github.com/rw/plainsight\nhttps://github.com/JarrodCTaylor/steganopy\n    steganography\nhttps://github.com/barseghyanartur/ska\n    - signed (symetric then HMACed)\nhttps://github.com/WhisperSystems/libsignal-protocol-javascript\nhttps://whispersystems.org/docs/specifications/xeddsa/\nhttps://whispersystems.org/docs/specifications/x3dh/\nhttps://whispersystems.org/docs/specifications/doubleratchet/\n    ratchet", 
             "title": "Running"
         }, 
         {
@@ -86,9 +96,89 @@
             "title": "(finally) Submitting Changes"
         }, 
         {
-            "location": "/contributing/emoji/", 
-            "text": "want to change these \n.github\n docs?\n\n\n\n\n\n\n\n\n\n\nemoji\n\n\nsource\n\n\n\n\n\n\n\n\n\n\nLanguages :snake::triangular_ruler::zap::microscope::telescope::lock:\n\n\n:snake:``:triangular_ruler:``:zap:``:microscope:``:telescope:``:lock:\n -python, angular, Bolt/Neo4j/DB, crypto, loading, security\n\n\n\n\n\n\nQuality :100::pray::bug::green_heart::white_check_mark::nose::art::fire:\n\n\n:pray:``:100:``:bug:``:green_heart:``:nose:``:art:``:white_check_mark:``:fire:\n-builds, bugs, tests, CI, Nose2 tests,unit tests, structuredeleted code, clutter\n\n\n\n\n\n\nServices :heart::octocat::books::pencil2::memo::cloud::chart_with_upwards_trend:\n\n\n:chart_with_upwards_trend:``:heart:``:octocat:``:memo: ``:cloud:``:books:``:pencil2:\n-docs, git, mkdocs, docker,badgestutorials, methods\n\n\n\n\n\n\nReleases :arrow_up::tophat::ambulance::beers::warning::heavy_exclamation_mark:\n\n\n:tophat:``:ambulance:``:arrow_up:``:beers:``:warning:``:heavy_exclamation_mark:\n- BlackHat CVE , Triage / Catastrophic, release - cheers! beta - beta release, versions", 
-            "title": "emoji"
+            "location": "/contributing/tags/", 
+            "text": "Waffle / Github allows us to have labels to report progress about things.\nThese are the labels I can think of, and where they lie on the spectrum.\n\n\nYou also might want to check out the emoji examples for context, over\nat \n//github.com/thetoxicarcade/congredi\n.\n\n\nhelp wanted\n\n\nSections where nobody's claimed something. If you assigned yourself to an\nissue, you can remove the \nhelp wanted\n label.\n\n\nfirst-pr / easy pick / beginner \n:heart:\n\n\nSmall problems I shouldn't be focusing on but need fixing eventually.\n\n\nExample: \nsetup.py doesn't correctly generate an RST for PyPi\n\n\ntougher \n:octocat:\n\n\nBig problems I don't know how to approach exactly.\n\n\nExample: \nlistenTCP(0) won't work on korora. Possibly a firewall issue?\n\n\nthe little things\n\n\nbug \ntrivial - :bug: critical - :ambulance:\n\n\nAn error in the expected behavior of the application. Can be patched within \n_._.x\n.\n\n\nExample: \nrunning congredi in python3 - buffer objects not supported\n\n\ntrivial \n:microsope:\n\n\nSmall feature fixes. Patched at \n_._.x\n.\n\n\nExample: \nDocker image size improvements.\n\n\nfeature \n:stars:\n\n\nNew functionality. Can be patched within \n_.x.x\n.\n\n\nExample: \nOAEP within congredi's packets\n\n\nenhancement \n:telescope:\n\n\nImproved functionality. Pached at \n_.x.x\n.\n\n\nExample: \nUse Pycrypto over Cryptography.\n\n\nthe big picture\n\n\ntests \n:warning:\n\n\nAdding tests to cover scenarios.\n\n\nExample: \nRequire implementer to fail if command is invalid.\n\n\ndesign \n:tophat:\n\n\nmockups, interfaces, structuring.\n\n\nExample: \nGit Unified-diff recursion demo.py\n\n\ndocumentation \n:books:\n\n\ntrying things out (a bit of QA), explaining code\n\n\nExample: \nThe 'MONITOR' command.\n\n\nrefactoring \nbeauty - :art: clutter - :fire:\n\n\nIncrease quality without changing functionality\n\n\nExample: \nunify two classes with a superclass\n\n\nMachine labels\n\n\nLabels useful to us, but automatic to the platform.\n\n\nin progress / ready\n\n\nLabels used by waffle board\n\n\nduplicate / invalid / question / wontfix\n\n\nLabels useful to github", 
+            "title": "Tags/Emoji"
+        }, 
+        {
+            "location": "/contributing/tags/#help-wanted", 
+            "text": "Sections where nobody's claimed something. If you assigned yourself to an\nissue, you can remove the  help wanted  label.", 
+            "title": "help wanted"
+        }, 
+        {
+            "location": "/contributing/tags/#first-pr-easy-pick-beginner-heart", 
+            "text": "Small problems I shouldn't be focusing on but need fixing eventually.  Example:  setup.py doesn't correctly generate an RST for PyPi", 
+            "title": "first-pr / easy pick / beginner :heart:"
+        }, 
+        {
+            "location": "/contributing/tags/#tougher-octocat", 
+            "text": "Big problems I don't know how to approach exactly.  Example:  listenTCP(0) won't work on korora. Possibly a firewall issue?", 
+            "title": "tougher :octocat:"
+        }, 
+        {
+            "location": "/contributing/tags/#the-little-things", 
+            "text": "", 
+            "title": "the little things"
+        }, 
+        {
+            "location": "/contributing/tags/#bug-trivial-bug-critical-ambulance", 
+            "text": "An error in the expected behavior of the application. Can be patched within  _._.x .  Example:  running congredi in python3 - buffer objects not supported", 
+            "title": "bug trivial - :bug: critical - :ambulance:"
+        }, 
+        {
+            "location": "/contributing/tags/#trivial-microsope", 
+            "text": "Small feature fixes. Patched at  _._.x .  Example:  Docker image size improvements.", 
+            "title": "trivial :microsope:"
+        }, 
+        {
+            "location": "/contributing/tags/#feature-stars", 
+            "text": "New functionality. Can be patched within  _.x.x .  Example:  OAEP within congredi's packets", 
+            "title": "feature :stars:"
+        }, 
+        {
+            "location": "/contributing/tags/#enhancement-telescope", 
+            "text": "Improved functionality. Pached at  _.x.x .  Example:  Use Pycrypto over Cryptography.", 
+            "title": "enhancement :telescope:"
+        }, 
+        {
+            "location": "/contributing/tags/#the-big-picture", 
+            "text": "", 
+            "title": "the big picture"
+        }, 
+        {
+            "location": "/contributing/tags/#tests-warning", 
+            "text": "Adding tests to cover scenarios.  Example:  Require implementer to fail if command is invalid.", 
+            "title": "tests :warning:"
+        }, 
+        {
+            "location": "/contributing/tags/#design-tophat", 
+            "text": "mockups, interfaces, structuring.  Example:  Git Unified-diff recursion demo.py", 
+            "title": "design :tophat:"
+        }, 
+        {
+            "location": "/contributing/tags/#documentation-books", 
+            "text": "trying things out (a bit of QA), explaining code  Example:  The 'MONITOR' command.", 
+            "title": "documentation :books:"
+        }, 
+        {
+            "location": "/contributing/tags/#refactoring-beauty-art-clutter-fire", 
+            "text": "Increase quality without changing functionality  Example:  unify two classes with a superclass", 
+            "title": "refactoring beauty - :art: clutter - :fire:"
+        }, 
+        {
+            "location": "/contributing/tags/#machine-labels", 
+            "text": "Labels useful to us, but automatic to the platform.", 
+            "title": "Machine labels"
+        }, 
+        {
+            "location": "/contributing/tags/#in-progress-ready", 
+            "text": "Labels used by waffle board", 
+            "title": "in progress / ready"
+        }, 
+        {
+            "location": "/contributing/tags/#duplicate-invalid-question-wontfix", 
+            "text": "Labels useful to github", 
+            "title": "duplicate / invalid / question / wontfix"
         }, 
         {
             "location": "/extending/angular/", 
