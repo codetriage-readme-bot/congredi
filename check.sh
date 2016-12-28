@@ -1,5 +1,5 @@
 #!/bin/sh
-git stash -q --keep-index
+git stash --keep-index
 set +e
 #trap 'git stash pop -q' EXIT
 while read line; do
