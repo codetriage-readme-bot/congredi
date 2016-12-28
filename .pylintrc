@@ -42,7 +42,7 @@ include-naming-hint=no
 property-classes=abc.abstractproperty
 docstring-min-length=-1
 [FORMAT]
-indent-string=\t
+indent-string='    '
 max-line-length=160
 max-module-lines=500
 ignore-long-lines=^\s*(# )?<?https?://\S+>?$

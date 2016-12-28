@@ -11,75 +11,78 @@ Design - each of these classes could simply be an inferface or superclass?
 The methods they'll use will be slightly different, but having these methods
 helps us implement other vote types besides STV... #J
 """
+
+
 class poll():
-	"""
-	A public STV style vote
-	
-	This class can use simple public key cryptography,
-	no individual vote needs to be secret
-	"""
+    """
+    A public STV style vote
 
-	def __init__(self, trees):
-		"""Object requires trees, sigs (Design - See docs #H)"""
-		self.trees = trees
+    This class can use simple public key cryptography,
+    no individual vote needs to be secret
+    """
 
-	def cast(self, vote):
-		"""
-		Cast an invidual's vote (check that it is
-		a valid vote option and a valid sig
-		"""
-		pass
+    def __init__(self, trees):
+        """Object requires trees, sigs (Design - See docs #H)"""
+        self.trees = trees
 
-	def validate(self, voteid):
-		"""
-		Validate one vote (check option & sig)
-		"""
-		pass
+    def cast(self, vote):
+        """
+        Cast an invidual's vote (check that it is
+        a valid vote option and a valid sig
+        """
+        pass
 
-	def compute(self):
-		"""
-		Compute the winner of a vote
-		"""
-		pass
+    def validate(self, voteid):
+        """
+        Validate one vote (check option & sig)
+        """
+        pass
 
-	def certify(self):
-		"""
-		Check a vote result
-		"""
-		pass
+    def compute(self):
+        """
+        Compute the winner of a vote
+        """
+        pass
+
+    def certify(self):
+        """
+        Check a vote result
+        """
+        pass
+
 
 class vote():
-	"""
-	A private STV style vote (Theory - see congredi/papers #I)
-	
-	This class uses different cryptography primatives
-	"""
+    """
+    A private STV style vote (Theory - see congredi/papers #I)
 
-	def __init__(self, trees):
-		"""Object requires trees, sigs (Design - See docs #H)"""
-		self.trees = trees
+    This class uses different cryptography primatives
+    """
 
-	def cast(self):
-		"""
-		Cast an invidual's vote (check that it is
-		a valid vote option and a valid sig
-		"""
-		pass
+    def __init__(self, trees):
+        """Object requires trees, sigs (Design - See docs #H)"""
+        self.trees = trees
 
-	def validate(self):
-		"""
-		Validate one vote (check option & sig)
-		"""
-		pass
+    def cast(self):
+        """
+        Cast an invidual's vote (check that it is
+        a valid vote option and a valid sig
+        """
+        pass
 
-	def compute(self):
-		"""
-		Compute the winner of a vote
-		"""
-		pass
+    def validate(self):
+        """
+        Validate one vote (check option & sig)
+        """
+        pass
 
-	def certify(self):
-		"""
-		Check a vote result
-		"""
-		pass
+    def compute(self):
+        """
+        Compute the winner of a vote
+        """
+        pass
+
+    def certify(self):
+        """
+        Check a vote result
+        """
+        pass

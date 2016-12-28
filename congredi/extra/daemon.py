@@ -4,26 +4,31 @@
 Tor proxy design
 possibly usable for testing framework (start multiple processes with different ports...)
 """
-import multiprocessing, time
+import multiprocessing
+import time
 from ..core.auth.token import app
 from .tor import prox
 
+
 class api(multiprocessing.Process):
-	def run(self):
-		app.run(host="0.0.0.0", port=5000, debug=False)
+
+    def run(self):
+        app.run(host="0.0.0.0", port=5000, debug=False)
+
 
 class proxy(multiprocessing.Process):
-	def run(self):
-		prox()
 
-if __name__=="__main__":
-	dork = api()
-	dork.start()
-	lone = proxy()
-	lone.start()
-	try:
-		while True:
-			time.sleep(1)
-	finally:
-		dork.terminate()
-		lone.terminate()
+    def run(self):
+        prox()
+
+if __name__ == "__main__":
+    dork = api()
+    dork.start()
+    lone = proxy()
+    lone.start()
+    try:
+        while True:
+            time.sleep(1)
+    finally:
+        dork.terminate()
+        lone.terminate()
