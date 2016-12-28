@@ -5,10 +5,10 @@ Basic factory.
 """
 
 from twisted.internet import protocol, reactor, task
-from .Protocol import Peer, BogusProtocol
+from .protocol import Peer, BogusProtocol
 from .peerBeat import peerBeat, peerSuccess, peerFailure
 from .utils.whoops import whoops
-from .cmd.example import PeerAsk, PeerTell
+from .command import PeerAsk, PeerTell
 
 
 class CongrediPeer(protocol.Factory):
