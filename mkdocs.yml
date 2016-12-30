@@ -1,5 +1,5 @@
 site_name: Congredi
-site_url: http://toxik.io/congredi
+site_url: http://congredi.io
 site_description: Peer To Peer Things
 site_author: Github People
 requirements_file: docs/requirements.txt
@@ -18,20 +18,20 @@ pages:
     - 'Extending':
          - 'angular': 'extending/angular.md'
          - 'database': 'extending/database.md'
-    - 'Specification':
-         - 'About': 'specification/about.md'
-         - 'commands': 'specification/commands.md'
-         - 'data': 'specification/data.md'
-         - 'packets': 'specification/packets.md'
-    - 'data': 'data/chains.md'
+    # - 'Specification':
+    #      - 'About': 'specification/about.md'
+    #      - 'commands': 'specification/commands.md'
+    #      - 'data': 'specification/data.md'
+    #      - 'packets': 'specification/packets.md'
+    # - 'data': 'data/chains.md'
     - 'commands':
-        - 'Design': 'commands/design.md'
-        - 'current': 'commands/current.md'
-        - 'future': 'commands/future.md'
-        - 'past': 'commands/past.md'
-        - 'search': 'commands/search.md'
-        - 'publish': 'commands/publish.md'
-        - 'deploy': 'commands/deploy.md'
-        - 'subscribe': 'commands/subscribe.md'
-        - 'monitor': 'commands/monitor.md'
+        - 'Design': 'spec/commands/index.md'
+        - 'current': 'spec/commands/idx/current.md'
+        - 'future': 'spec/commands/idx/future.md'
+        - 'past': 'spec/commands/idx/past.md'
+        - 'search': 'spec/commands/idx/search.md'
+        - 'publish': 'spec/commands/rw/publish.md'
+        - 'deploy': 'spec/commands/rw/deploy.md'
+        - 'subscribe': 'spec/commands/rw/subscribe.md'
+        - 'monitor': 'spec/commands/rw/monitor.md'
 repo_url: https://github.com/thetoxicarcade/congredi
