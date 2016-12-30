@@ -42,7 +42,7 @@
         }, 
         {
             "location": "/contributing/style/", 
-            "text": "Style guides\n\n\nI'm not currently conforming to the results\nfrom \neslint\n or \npylint\n, but I could be.\n\n\nPython\n\n\nPep8 excepting Tabs. Running \ncheck.sh\n can replace lots of it.\n\n\nJS\n\n\nsingle-quote, tab, 1tbs camelCase", 
+            "text": "Style guides\n\n\nI'm not currently conforming to the results\nfrom \neslint\n or \npylint\n, but I could be.\n\n\nPython\n\n\nPep8 via autopep8. Note that I come from a lovely tabs world, so\nI just suggest installing \ncheck.sh\n into your git hooks.\n\n\nJS\n\n\nsingle-quote, tab, 1tbs camelCase", 
             "title": "style"
         }, 
         {
@@ -52,7 +52,7 @@
         }, 
         {
             "location": "/contributing/style/#python", 
-            "text": "Pep8 excepting Tabs. Running  check.sh  can replace lots of it.", 
+            "text": "Pep8 via autopep8. Note that I come from a lovely tabs world, so\nI just suggest installing  check.sh  into your git hooks.", 
             "title": "Python"
         }, 
         {
@@ -206,122 +206,92 @@
             "title": "database"
         }, 
         {
-            "location": "/specification/about/", 
-            "text": "Congredi operates on exchanging packets for hashes of content.\n\n\nThe commands include \nPUBLISH\n \nDEPLOY\n \nSUBSCRIBE\n \nMONITOR\n\n\nPAST\n \nCURRENT\n \nFUTURE\n \n \nSEARCH\n \n\n\nPackets are of the \nOnion\n and \nCommand\n variety.\n\n\nData stored includes many types, explained under \"data\".", 
-            "title": "About"
-        }, 
-        {
-            "location": "/specification/commands/", 
-            "text": "Congredi uses a simplified onion-routing system to discourage some censorship.\nServers, once active on the network, ask 3 nodes to be their rendesvous, and\nthen sign a statement that gets advertised around the network. Clients can\nmake a query to those nodes through a set of layered encryptions, until\nthe final node and the rendesvous node, either of which may object to the query.\nSince the serve stores data in plaintext, if it finds something objectionable,\nor of no use, it can censor that content as well.\n\n\n'SET'\n    PUBLISH - permissions, long lasting item\n    DEPLOY - no permissions, publish key, may soon be deleted\n\n'GET'\n    SUBSCRIBE - permissions set rendesvous to pull updates\n    MONITOR - no permissions, query for key, request expires\n\n    PAST - grab all previous versions\n    CURRENT - grab signed latest\n    FUTURE - grab all newer versions\n\nSEARCH \n ORDER \n OFFSET \n COUNT \n TERM", 
-            "title": "commands"
-        }, 
-        {
-            "location": "/specification/data/", 
-            "text": "Congredi deals with a hash-value structure and a directed graph structure,\nwith both redis and neo4j.\n\n\nBlobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.\n\n\nstructures \n query language (i.e. PUBLISH CACHE HAS \nobject\n)\nCACHE\n    HAS             - list(hash:key:sig:begins:expires)\n    WANTS           - list(hash:key:sig:begins:expires)\n    PROOF           - list(nonce:proof:date:sig)\n    SEEN            - list(prev:time:date:sig)\n    UPTIME          - list(prev:time:date:sig)\n    RANK            - list(prev:rank:date:sig)\nCOMPUTATION\n    POLL            - list(polls,date,threshsig)\n    VOTE            - list(votes,date,threshsig)\n    TREES           - list(trees,date,threshsig)\n    SAVES           - list(list(hash,begins,expires),date,threshsig)\n    VOTERS          - list(proofs,date,threshsig)\nHISTORY\n    TREES           - list(list(CURRENT,PREVIOUS,SIG))\n    POLLS           - list(list(CURRENT,PREVIOUS,SIG))\n    VOTES           - list(list(CURRENT,PREVIOUS,SIG))\n    MEMBERSHIPS     - list(list(CURRENT,PREVIOUS,SIG))\n    PROPOSALS       - list(list(CURRENT,PREVIOUS,SIG))\n    SAVES           - list(list(list(hash,begins,expires),PREVIOUS,SIG))\nIDENTITY\n    ROUTE           - KEY, PREVIOUS, SIG\n    USER            - KEY, PREVIOUS, SIG\n    AGGREGATE       - list(KEYS), PREVIOUS, SIG\n    IP              - IP, PREVIOUS, SIG\n    RENDESVOUS      - list(IPS), PREVIOUS, SIG\n    LOCATION        - ZKP, PREVIOUS, SIG\n    BORDERS         - CURRENT, PREVIOUS, THRESHSIG\nCONTENT\n    BIO             - COMMIT,PREVIOUS,SIG\n    MANIFESTO       - COMMIT,PREVIOUS,THRESHSIG\n    COMMIT          - hash,list(CHUNKS),list(PREVIOUS),SIG, KEY\n    CHUNK           - truncated-gzip-ndiff-markdown\n    POLL            - list(TREES)\n    VOTE            - list(TREES)\nSETTING\n    IP              - previous:sig:ip\n    RENDESVOUS      - previous:sig:list(fp)\n    ADMIN           - list(fp)\n    USER            - list(fp)\n    PEER            - list(fp)\n    WHITELIST       - list(fp)\n    BLACKLIST       - list(fp)\n\n\n\n\nusers -\n agg -\n polls/votes/trees -\n commits -\n chunks\n\n\ndirected graph\n:{\n    \nuser\n:{\n        \ntrusts\n:\nusers\n,\n        \nfollows\n:\nrepos\n\n    \nrepo\n:\ncommits\n\n\n\n\n\nkleptography / outside obfuscation / steganalisis\nRATCHET sessionkey, prekey,\nONION FROM \nroute\n TO \nroute\n \ncontents\n\nratchet:onion:AONT:Axolotl EC AES new hope\nring learning homomorphic garlic, sign time+nounce,\nOAEP/AONT/hamming4:7\nnonce, prekey, session key, hash, time, pubkey, p2p, dht\nlibgit2-redis/txredisapi / redis / neo4j; if in peers,\ndelete, add peer 0(1) nettrust KV - list,\nread, add(k,v), delete(k)", 
-            "title": "data"
-        }, 
-        {
-            "location": "/specification/packets/", 
-            "text": "AMP Packets", 
-            "title": "packets"
-        }, 
-        {
-            "location": "/specification/packets/#amp-packets", 
-            "text": "", 
-            "title": "AMP Packets"
-        }, 
-        {
-            "location": "/data/chains/", 
-            "text": "", 
-            "title": "data"
-        }, 
-        {
-            "location": "/commands/design/", 
-            "text": "Design Problems\n\n\nPUBLISH, DEPLOY, SUBSCRIBE, MONITOR, PAST, CURRENT, FUTURE, SEARCH\n\n\nCongredi uses three classes of operations, unprivledged local,\nprivledged global, and privledged recursion.\n\n\nOperations like \nDEPLOY\n and \nMONITOR\n need no permissions but\nonly ask about that local node, and don't have a guarentee of\npersisting on it. If more important things need to be stored,\nthese ones will be removed first.\n\n\nOperations like \nPUBLISH\n and \nSUBSCRIBE\n, however, use the\nnode's time and resources to ask around for things, and deploy\ntheir results to multiple servers to get the word around.\n\n\nFinally, operations like \nPAST\n \nCURRENT\n \nFUTURE\n and \nSEARCH\n\nare dependant on having the full list of objects, and operate\nby trying to split the work among other nodes.\n\n\nBlobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.\n\n\nExample Operations:\n\n\nMONITOR CACHE foobar HAS : \n\n\nDEPLOY CACHE foobar HAS", 
+            "location": "/spec/commands/", 
+            "text": "Design Problems\n\n\nPUBLISH, DEPLOY, SUBSCRIBE, MONITOR, PAST, CURRENT, FUTURE, SEARCH\n\n\nCongredi uses three classes of operations, unprivledged local,\nprivledged global, and privledged recursion.\n\n\nOperations like \nDEPLOY\n and \nMONITOR\n need no permissions but\nonly ask about that local node, and don't have a guarentee of\npersisting on it. If more important things need to be stored,\nthese ones will be removed first.\n\n\nOperations like \nPUBLISH\n and \nSUBSCRIBE\n, however, use the\nnode's time and resources to ask around for things, and deploy\ntheir results to multiple servers to get the word around.\n\n\nFinally, operations like \nPAST\n \nCURRENT\n \nFUTURE\n and \nSEARCH\n\nare dependant on having the full list of objects, and operate\nby trying to split the work among other nodes.\n\n\nBlobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.\n\n\nExample Operations:\n\n\nMONITOR CACHE foobar HAS : \n\n\nDEPLOY CACHE foobar HAS \n\n\n'SET'\n    PUBLISH - permissions, long lasting item\n    DEPLOY - no permissions, publish key, may soon be deleted\n\n'GET'\n    SUBSCRIBE - permissions set rendesvous to pull updates\n    MONITOR - no permissions, query for key, request expires\n\n    PAST - grab all previous versions\n    CURRENT - grab signed latest\n    FUTURE - grab all newer versions\n\nSEARCH \n ORDER \n OFFSET \n COUNT \n TERM", 
             "title": "Design"
         }, 
         {
-            "location": "/commands/design/#design-problems", 
-            "text": "PUBLISH, DEPLOY, SUBSCRIBE, MONITOR, PAST, CURRENT, FUTURE, SEARCH  Congredi uses three classes of operations, unprivledged local,\nprivledged global, and privledged recursion.  Operations like  DEPLOY  and  MONITOR  need no permissions but\nonly ask about that local node, and don't have a guarentee of\npersisting on it. If more important things need to be stored,\nthese ones will be removed first.  Operations like  PUBLISH  and  SUBSCRIBE , however, use the\nnode's time and resources to ask around for things, and deploy\ntheir results to multiple servers to get the word around.  Finally, operations like  PAST   CURRENT   FUTURE  and  SEARCH \nare dependant on having the full list of objects, and operate\nby trying to split the work among other nodes.  Blobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.  Example Operations:  MONITOR CACHE foobar HAS :   DEPLOY CACHE foobar HAS", 
+            "location": "/spec/commands/#design-problems", 
+            "text": "PUBLISH, DEPLOY, SUBSCRIBE, MONITOR, PAST, CURRENT, FUTURE, SEARCH  Congredi uses three classes of operations, unprivledged local,\nprivledged global, and privledged recursion.  Operations like  DEPLOY  and  MONITOR  need no permissions but\nonly ask about that local node, and don't have a guarentee of\npersisting on it. If more important things need to be stored,\nthese ones will be removed first.  Operations like  PUBLISH  and  SUBSCRIBE , however, use the\nnode's time and resources to ask around for things, and deploy\ntheir results to multiple servers to get the word around.  Finally, operations like  PAST   CURRENT   FUTURE  and  SEARCH \nare dependant on having the full list of objects, and operate\nby trying to split the work among other nodes.  Blobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.  Example Operations:  MONITOR CACHE foobar HAS :   DEPLOY CACHE foobar HAS   'SET'\n    PUBLISH - permissions, long lasting item\n    DEPLOY - no permissions, publish key, may soon be deleted\n\n'GET'\n    SUBSCRIBE - permissions set rendesvous to pull updates\n    MONITOR - no permissions, query for key, request expires\n\n    PAST - grab all previous versions\n    CURRENT - grab signed latest\n    FUTURE - grab all newer versions\n\nSEARCH   ORDER   OFFSET   COUNT   TERM", 
             "title": "Design Problems"
         }, 
         {
-            "location": "/commands/current/", 
+            "location": "/spec/commands/idx/current/", 
             "text": "CURRENT\n\n\n\n\nCheck the info we have\n\n\nCheck where we got it from\n\n\nCheck our peers\n\n\nReturn our results", 
             "title": "current"
         }, 
         {
-            "location": "/commands/current/#current", 
+            "location": "/spec/commands/idx/current/#current", 
             "text": "Check the info we have  Check where we got it from  Check our peers  Return our results", 
             "title": "CURRENT"
         }, 
         {
-            "location": "/commands/future/", 
+            "location": "/spec/commands/idx/future/", 
             "text": "FUTURE\n\n\nSame as above", 
             "title": "future"
         }, 
         {
-            "location": "/commands/future/#future", 
+            "location": "/spec/commands/idx/future/#future", 
             "text": "Same as above", 
             "title": "FUTURE"
         }, 
         {
-            "location": "/commands/past/", 
+            "location": "/spec/commands/idx/past/", 
             "text": "PAST\n\n\n\n\nCheck the user permissions\n\n\nCheck all the info we have, send this to peers to help them\n\n\nTry to get to a null-beginning hash of the tree\n\n\nProve that the content lines up end to end\n\n\nReturn the content", 
             "title": "past"
         }, 
         {
-            "location": "/commands/past/#past", 
+            "location": "/spec/commands/idx/past/#past", 
             "text": "Check the user permissions  Check all the info we have, send this to peers to help them  Try to get to a null-beginning hash of the tree  Prove that the content lines up end to end  Return the content", 
             "title": "PAST"
         }, 
         {
-            "location": "/commands/search/", 
+            "location": "/spec/commands/idx/search/", 
             "text": "SEARCH\n\n\nSEARCH \n ORDER \n OFFSET \n COUNT \n TERM \n\n1. if we have the full diff, search it\n2. if we don't, request PAST/FUTURE queries\n3. return ranked results", 
             "title": "search"
         }, 
         {
-            "location": "/commands/search/#search", 
+            "location": "/spec/commands/idx/search/#search", 
             "text": "SEARCH   ORDER   OFFSET   COUNT   TERM  \n1. if we have the full diff, search it\n2. if we don't, request PAST/FUTURE queries\n3. return ranked results", 
             "title": "SEARCH"
         }, 
         {
-            "location": "/commands/publish/", 
+            "location": "/spec/commands/rw/publish/", 
             "text": "PUBLISH - privledged set\n\n\nPUBLISH IDENTITY USER \nkey\npreviousfingerprint\nsigbyprevious\n\nDifferences:\n2. Fail if we don't have the key, publish operations are privledged,\n    Ask for permission before using them!\n2.5. Check if a trust-path exists from this node's users to that key. ErrBack.", 
             "title": "publish"
         }, 
         {
-            "location": "/commands/publish/#publish-privledged-set", 
+            "location": "/spec/commands/rw/publish/#publish-privledged-set", 
             "text": "PUBLISH IDENTITY USER  key previousfingerprint sigbyprevious \nDifferences:\n2. Fail if we don't have the key, publish operations are privledged,\n    Ask for permission before using them!\n2.5. Check if a trust-path exists from this node's users to that key. ErrBack.", 
             "title": "PUBLISH - privledged set"
         }, 
         {
-            "location": "/commands/deploy/", 
+            "location": "/spec/commands/rw/deploy/", 
             "text": "DEPLOY - unprivledged set\n\n\nDEPLOY IDENTITY USER \nkey\npreviousfingerprint\nsigbyprevious\n\n1. Check validity of sig against given key.\n2. Request previous key if we don't have it.\n3. Add previous key, new key, and query proof to DB, expire (lim)\n4. Return certification that it'll be in there, barring space considerations.", 
             "title": "deploy"
         }, 
         {
-            "location": "/commands/deploy/#deploy-unprivledged-set", 
+            "location": "/spec/commands/rw/deploy/#deploy-unprivledged-set", 
             "text": "DEPLOY IDENTITY USER  key previousfingerprint sigbyprevious \n1. Check validity of sig against given key.\n2. Request previous key if we don't have it.\n3. Add previous key, new key, and query proof to DB, expire (lim)\n4. Return certification that it'll be in there, barring space considerations.", 
             "title": "DEPLOY - unprivledged set"
         }, 
         {
-            "location": "/commands/subscribe/", 
+            "location": "/spec/commands/rw/subscribe/", 
             "text": "SUBSCRIBE - privledged get\n\n\n\n\nCheck what we know about it\n\n\nCheck what peers know about it\n\n\nReturn results, and where we got it from\n\n\nUpdate their rendesvous peers if they want to know more", 
             "title": "subscribe"
         }, 
         {
-            "location": "/commands/subscribe/#subscribe-privledged-get", 
+            "location": "/spec/commands/rw/subscribe/#subscribe-privledged-get", 
             "text": "Check what we know about it  Check what peers know about it  Return results, and where we got it from  Update their rendesvous peers if they want to know more", 
             "title": "SUBSCRIBE - privledged get"
         }, 
         {
-            "location": "/commands/monitor/", 
+            "location": "/spec/commands/rw/monitor/", 
             "text": "MONITOR - unprivledged get\n\n\nMONITOR CACHE \nhash\n WANTS\n\n\n\n\nCheck that we know about the hash\n\n\nReturn results\n\n\ninclude where we got it from so they can do their research", 
             "title": "monitor"
         }, 
         {
-            "location": "/commands/monitor/#monitor-unprivledged-get", 
+            "location": "/spec/commands/rw/monitor/#monitor-unprivledged-get", 
             "text": "MONITOR CACHE  hash  WANTS   Check that we know about the hash  Return results  include where we got it from so they can do their research", 
             "title": "MONITOR - unprivledged get"
         }

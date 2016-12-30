@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="Github People">
-        <link rel="canonical" href="http://toxik.io/congredi/specification/about/">
+        <link rel="canonical" href="http://congredi.io/spec/commands/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>About - Congredi</title>
+	<title>Design - Congredi</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -117,99 +117,60 @@
             
             
                 <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Specification <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        
-<li class="active">
-    <a href="./">About</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../commands/">commands</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../data/">data</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../packets/">packets</a>
-</li>
-
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li >
-                    <a href="../../data/chains/">data</a>
-                </li>
-            
-            
-            
-                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">commands <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
-<li >
-    <a href="../../commands/design/">Design</a>
+<li class="active">
+    <a href="./">Design</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/current/">current</a>
+    <a href="idx/current/">current</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/future/">future</a>
+    <a href="idx/future/">future</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/past/">past</a>
+    <a href="idx/past/">past</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/search/">search</a>
+    <a href="idx/search/">search</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/publish/">publish</a>
+    <a href="rw/publish/">publish</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/deploy/">deploy</a>
+    <a href="rw/deploy/">deploy</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/subscribe/">subscribe</a>
+    <a href="rw/subscribe/">subscribe</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../commands/monitor/">monitor</a>
+    <a href="rw/monitor/">monitor</a>
 </li>
 
                     
@@ -232,7 +193,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../commands/">
+                    <a rel="prev" href="idx/current/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -255,15 +216,46 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
+        <li class="main active"><a href="#design-problems">Design Problems</a></li>
+        
+    
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<p>Congredi operates on exchanging packets for hashes of content.</p>
-<p>The commands include <code>PUBLISH</code> <code>DEPLOY</code> <code>SUBSCRIBE</code> <code>MONITOR</code>
-<code>PAST</code> <code>CURRENT</code> <code>FUTURE</code> &amp; <code>SEARCH</code> </p>
-<p>Packets are of the <code>Onion</code> and <code>Command</code> variety.</p>
-<p>Data stored includes many types, explained under "data".</p></div>
+<h2 id="design-problems">Design Problems</h2>
+<p><code>PUBLISH, DEPLOY, SUBSCRIBE, MONITOR, PAST, CURRENT, FUTURE, SEARCH</code></p>
+<p>Congredi uses three classes of operations, unprivledged local,
+privledged global, and privledged recursion.</p>
+<p>Operations like <code>DEPLOY</code> and <code>MONITOR</code> need no permissions but
+only ask about that local node, and don't have a guarentee of
+persisting on it. If more important things need to be stored,
+these ones will be removed first.</p>
+<p>Operations like <code>PUBLISH</code> and <code>SUBSCRIBE</code>, however, use the
+node's time and resources to ask around for things, and deploy
+their results to multiple servers to get the word around.</p>
+<p>Finally, operations like <code>PAST</code> <code>CURRENT</code> <code>FUTURE</code> and <code>SEARCH</code>
+are dependant on having the full list of objects, and operate
+by trying to split the work among other nodes.</p>
+<p>Blobs will probably be zlib compressed ndiffs, even if I want them to be
+unified diffs.</p>
+<p>Example Operations:</p>
+<p>MONITOR CACHE foobar HAS : <listobject></p>
+<p>DEPLOY CACHE foobar HAS <listobject></p>
+<pre><code>'SET'
+    PUBLISH - permissions, long lasting item
+    DEPLOY - no permissions, publish key, may soon be deleted
+
+'GET'
+    SUBSCRIBE - permissions set rendesvous to pull updates
+    MONITOR - no permissions, query for key, request expires
+
+    PAST - grab all previous versions
+    CURRENT - grab signed latest
+    FUTURE - grab all newer versions
+
+SEARCH &lt;&gt; ORDER &lt;&gt; OFFSET &lt;&gt; COUNT &lt;&gt; TERM &lt;&gt;
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">

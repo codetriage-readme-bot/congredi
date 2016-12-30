@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="Github People">
-        <link rel="canonical" href="http://toxik.io/congredi/commands/past/">
-        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <link rel="canonical" href="http://congredi.io/spec/commands/rw/subscribe/">
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
 
-	<title>past - Congredi</title>
+	<title>subscribe - Congredi</title>
 
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
-        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../../../css/highlight.css">
+        <link href="../../../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -41,7 +41,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">Congredi</a>
+            <a class="navbar-brand" href="../../../..">Congredi</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -51,7 +51,7 @@
             
             
                 <li >
-                    <a href="../..">index</a>
+                    <a href="../../../..">index</a>
                 </li>
             
             
@@ -62,31 +62,31 @@
                     
                         
 <li >
-    <a href="../../contributing/intro/">intro</a>
+    <a href="../../../../contributing/intro/">intro</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../contributing/style/">style</a>
+    <a href="../../../../contributing/style/">style</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../contributing/tests/">tests</a>
+    <a href="../../../../contributing/tests/">tests</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../contributing/commits/">commits</a>
+    <a href="../../../../contributing/commits/">commits</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../contributing/tags/">Tags/Emoji</a>
+    <a href="../../../../contributing/tags/">Tags/Emoji</a>
 </li>
 
                     
@@ -101,56 +101,17 @@
                     
                         
 <li >
-    <a href="../../extending/angular/">angular</a>
+    <a href="../../../../extending/angular/">angular</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../extending/database/">database</a>
+    <a href="../../../../extending/database/">database</a>
 </li>
 
                     
                     </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Specification <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        
-<li >
-    <a href="../../specification/about/">About</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../specification/commands/">commands</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../specification/data/">data</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../specification/packets/">packets</a>
-</li>
-
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li >
-                    <a href="../../data/chains/">data</a>
                 </li>
             
             
@@ -161,31 +122,31 @@
                     
                         
 <li >
-    <a href="../design/">Design</a>
+    <a href="../../">Design</a>
 </li>
 
                     
                         
 <li >
-    <a href="../current/">current</a>
+    <a href="../../idx/current/">current</a>
 </li>
 
                     
                         
 <li >
-    <a href="../future/">future</a>
-</li>
-
-                    
-                        
-<li class="active">
-    <a href="./">past</a>
+    <a href="../../idx/future/">future</a>
 </li>
 
                     
                         
 <li >
-    <a href="../search/">search</a>
+    <a href="../../idx/past/">past</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../../idx/search/">search</a>
 </li>
 
                     
@@ -202,8 +163,8 @@
 
                     
                         
-<li >
-    <a href="../subscribe/">subscribe</a>
+<li class="active">
+    <a href="./">subscribe</a>
 </li>
 
                     
@@ -227,12 +188,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../future/">
+                    <a rel="next" href="../deploy/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../search/">
+                    <a rel="prev" href="../monitor/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -255,20 +216,19 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#past">PAST</a></li>
+        <li class="main active"><a href="#subscribe-privledged-get">SUBSCRIBE - privledged get</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h4 id="past">PAST</h4>
+<h4 id="subscribe-privledged-get">SUBSCRIBE - privledged get</h4>
 <ol>
-<li>Check the user permissions</li>
-<li>Check all the info we have, send this to peers to help them</li>
-<li>Try to get to a null-beginning hash of the tree</li>
-<li>Prove that the content lines up end to end</li>
-<li>Return the content</li>
+<li>Check what we know about it</li>
+<li>Check what peers know about it</li>
+<li>Return results, and where we got it from</li>
+<li>Update their rendesvous peers if they want to know more</li>
 </ol></div>
         </div>
 
@@ -278,12 +238,12 @@
             <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
         </footer>
 
-        <script src="../../js/jquery-1.10.2.min.js"></script>
-        <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
-        <script>var base_url = '../..';</script>
-        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
-        <script src="../../js/base.js"></script>
+        <script src="../../../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../../../js/highlight.pack.js"></script>
+        <script>var base_url = '../../../..';</script>
+        <script data-main="../../../../mkdocs/js/search.js" src="../../../../mkdocs/js/require.js"></script>
+        <script src="../../../../js/base.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
             <div class="modal-dialog">
