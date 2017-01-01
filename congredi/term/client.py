@@ -7,9 +7,9 @@ import logging
 import os
 logger = logging.getLogger('congredi')
 from twisted.protocols.basic import LineReceiver
-from ..core.packet.asym import asym
-from ..core.packet.padding import AONTdecrypt, AONTencrypt
-from ..core.storage.redis import get
+#from ..core.packet.asym import asym
+from ..packet.padding import AONTdecrypt, AONTencrypt
+from ..storage.redis import get
 from twisted.internet import protocol
 #from ..tasks import garbageCollect
 

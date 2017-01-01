@@ -17,7 +17,7 @@ def configArr():
             config = yaml.load(f.read())
         if any(k not in config for k in ('admins', 'users')):
             logger.warning('Config does not contain "admins" or "users"')
-    except yaml.YamlError:
+    except (yaml.reader.ReaderError, IOError):
         trace = traceback.format_exc()
         # traceback.print_exc()
         logger.critical(trace)

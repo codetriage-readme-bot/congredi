@@ -7,13 +7,13 @@ Main Running code
 import logging
 logger = logging.getLogger('congredi')
 from twisted.internet import stdio, reactor
-from ..core.Factory import CongrediPeer
+from ..factory import CongrediPeer
 from .client import CongrediClient
-
-from ..core.utils.logger import setLog
-from ..core.utils.config import configArr
-from ..core.utils.options import MainOptions
-from ..core.utils.whoops import CongrediError
+from .coord import fileCoord
+from ..utils.logger import setLog
+from ..utils.config import configArr
+from ..utils.options import MainOptions
+from ..utils.whoops import CongrediError
 
 """Could neaten this..."""
 
@@ -45,18 +45,16 @@ def run():
     try:
         pf = CongrediPeer()
         inst = CongrediPeer()
-        with open('ort', 'r') as a:
-            prt = a.read().strip('\n')
-        print(prt)
+        hst, prt = fileCoord.read()
+        print(hst, prt)
         # ServiceNameUnknownError on korora, not alpine...
-        reactor.connectTCP(host='127.0.0.1', port=prt, factory=pf)
+        reactor.connectTCP(host=hst, port=int(prt), factory=pf)
         #endpoints.serverFromString(reactor, "tcp:{}".format(args.port)).listen(app)
         pr = reactor.listenTCP(0, inst)
         inst.host = pr.getHost().host
         inst.port = pr.getHost().port
         print 'started on port {}'.format(inst.port)
-        with open('ort', 'w+') as a:
-            a.write(str(inst.port))
+        fileCoord.write(inst.host, inst.port)
         reactor.run()
     except KeyboardInterrupt:
         pass

@@ -33,7 +33,7 @@ class PeerGet(amp.Command):
                  ('type', amp.String())
                  ]
     response = [
-        ('lifetime', amp.Date()),
+        ('lifetime', amp.DateTime()),
         ('signature', amp.String())]
     # errors = no space
 
@@ -59,7 +59,7 @@ class PeerSet(amp.Command):
                  ('type', amp.String())
                  ]
     response = [
-        ('lifetime', amp.Date()),
+        ('lifetime', amp.DateTime()),
         ('signature', amp.String())]
     # errors = no space
 
