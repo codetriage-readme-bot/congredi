@@ -62,6 +62,7 @@ class CongrediPeer(protocol.Factory):
         self.online = False
     commandKeys = []
     state = "BEGIN"
+
     def buildProtocol(self, addr):
         return CongrediPeer(self, self.users, self.peers)
 

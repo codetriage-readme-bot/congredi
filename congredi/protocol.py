@@ -11,10 +11,13 @@ from .command import PeerAsk, PeerTell
 
 # pylint: disable=signature-differs
 # https://github.com/twisted/twisted/blob/e38cc25a67747899c6984d6ebaa8d3d134799415/src/twisted/protocols/portforward.py
-#class BogusProtocol(LineReceiver):  # protocol.Protocol): #protocol.ServerFactory
-#class SomeClientProtocol(basic.LineReceiver):
+# class BogusProtocol(LineReceiver):  # protocol.Protocol): #protocol.ServerFactory
+# class SomeClientProtocol(basic.LineReceiver):
+
+
 class CongrediPeer(amp.AMP):
-    #Debugging this with print statements...
+    # Debugging this with print statements...
+
     def __init__(self, factory, users, **starts):
         print('Init a protocol')
         self.factory = factory
@@ -24,27 +27,31 @@ class CongrediPeer(amp.AMP):
         self.state = "GETNAME"
         self.users = starts  # self.prefix = prefix
         super(CongrediPeer, self).__init__()
+
     def incomingConnectionBegin(self, data):
         print('Incomming protocol')
         super(CongrediPeer, self).incomingConnectionBegin(data)
         """De-lace router-encrypted trafic, tell if this connection is an onion, or a direct command"""
-        #if data[0] == "Congredi Request forward to ":
+        # if data[0] == "Congredi Request forward to ":
         #    self.state = "ONION"
+
     def makeConnection(self, transport):
         print('making connection')
         self.transport = transport
+
     def connectionMade(self):  # ,client):
         super(CongrediPeer, self).connectionMade()
         print('Connection Made')
-        #self.sendLine("Hello!")
-        #self.transport.loseConnection()
+        # self.sendLine("Hello!")
+        # self.transport.loseConnection()
         #self._peer = self.transport.getPeer()
         print('new connection of {}'.format(self._peer))
-        #self.factory.clients.append(self)
+        # self.factory.clients.append(self)
         #self.sendLine("What's your name?")
-        #self.transport.loseConnection()
+        # self.transport.loseConnection()
         #self.factory.numProtocols = self.factory.numProtocols + 1
         #self.transport.write("Now {}".format(self.factory.numProtocols))
+
     def connectionLost(self, reason):  # ,client):
         print('Connection lost')
         super(CongrediPeer, self).connectionLost(data)
@@ -52,11 +59,13 @@ class CongrediPeer(amp.AMP):
         if self.name in self.users:
             del self.users[self.name]"""
         print('lost connection of {}'.format(self._peer))
-        #self.factory.clients.remove(self)
+        # self.factory.clients.remove(self)
+
     def dataReceived(self, data):
         print('Data Recieved')
         super(CongrediPeer, self).dataReceived(data)
-        ###self.transport.write(data)
+        # self.transport.write(data)
+
     def lineReceived(self, line):
         print('line recieved')
         super(CongrediPeer, self).lineReceived(data)
@@ -86,15 +95,18 @@ class CongrediPeer(amp.AMP):
         self.name = name
         self.users[name] = self
         self.state = "CHAT"
+
     def handle_CHAT(self, message):
         message = "<%s> %s" % (self.name, message)
         # for name, protocol in self.users.iteritems():
         # 	if protocol != self:
         # 		protocol.sendLine(message)
+
     def getUser(self, user):
         # utils.getProcessOutput
         return task.defer.succeed(self.users.get(user, "Nope"))
         # return client.getPage(self.prefix+user)
+
     def incomingOnionSendoff(self, data):
         pass
         """Send data to next onion"""

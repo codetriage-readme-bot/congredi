@@ -5,9 +5,14 @@ Coordinated port opening for testing.
 """
 from os import path
 import socket
+
+
 def expand(pathname):
     return path.expanduser(pathname)
+
+
 class fileCoord():
+
     @staticmethod
     def read(pathname="~/ort"):
         if not path.isfile(expand(pathname)):
@@ -16,6 +21,7 @@ class fileCoord():
             stuff = a.read()
             print(stuff)
             return stuff.strip('\n').split(":")
+
     @staticmethod
     def write(host, port, pathname="~/ort"):
         with open(expand(pathname), 'w+') as a:
