@@ -3,7 +3,7 @@ Emoji are a lovely addition to commit messages. Here's some example context emoj
 | Context | Source - You Type | Emoji - You Get |
 | --------- | -------- | ------- |
 | Python | `:snake:` | :snake: |
-| Angular | `triangular_ruler:` | triangular_ruler: |
+| Angular | `:triangular_ruler:` | :triangular_ruler: |
 | Crypto | `:lock:` | :lock: |
 | Nose2 | `:nose:` | :nose: |
 | Scaling | `:cloud:` | :cloud: |
@@ -22,7 +22,7 @@ These are the emoji for things relating to a github tag
 | Tough | `:octocat:` | :octocat: |
 | Bugs - Trivial | `:bug:` | :bug: |
 | Bugs - Critical | `:ambulance:` | :ambulance: |
-| Trivial | `:microsope:` | :microsope: |
+| Trivial | `:microscope:` | :microscope: |
 | Feature | `:stars:` | :stars: |
 | Enhancement | `:telescope:` | :telescope: |
 | Tests | `:warning:` | :warning: |
