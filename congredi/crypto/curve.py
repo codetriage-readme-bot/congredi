@@ -12,7 +12,7 @@ import pyelliptic
 from Crypto.Cipher import AES
 from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA256
-from pyecc import ECC
+#from pyecc import ECC
 # Class instances for the Asymetric crypto inside Congredi.
 logger = logging.getLogger('congredi')
 
@@ -77,6 +77,7 @@ class curve():
         msgbytes = message.__bytes__()
 
     def __init__(self, pubkey=None, privkey=None, password=None):
+        """
         if pubkey is None:
             if privkey is None:
                 # make a key
@@ -100,7 +101,7 @@ class curve():
                     SymmetricKeyAlgorithm.AES256, HashAlgorithm.SHA256)
         with enc_key.unlock("C0rrectPassphr@se"):
             pass
-
+        """
     def eccGenerate(self):
         '''Generates Elliptic Curve Public/Private Keys'''
         ecc = ECC.generate()

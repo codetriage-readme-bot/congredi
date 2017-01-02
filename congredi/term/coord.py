@@ -16,7 +16,7 @@ class fileCoord():
     @staticmethod
     def read(pathname="~/ort"):
         if not path.isfile(expand(pathname)):
-            fileCoord.write(socket.gethostname(), 8800)
+            fileCoord.write(socket.gethostname(), 8800, pathname)
         with open(expand(pathname), 'r') as a:
             stuff = a.read()
             print(stuff)

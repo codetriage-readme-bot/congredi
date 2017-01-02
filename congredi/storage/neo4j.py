@@ -4,7 +4,7 @@
 Map a directed acyclic graph from one user to another,
 and map objects that people use (possibly a minimum number of people use)
 """
-from neo4j.v1 import GraphDatabase, basic_auth, ResultError
+from py2neo import GraphDatabase, basic_auth
 # "bolt://localhost:7687", auth=basic_auth("neo4j", "password"))
 driver = GraphDatabase.driver('bolt://localhost')
 

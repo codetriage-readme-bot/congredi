@@ -4,7 +4,7 @@ MAINTAINER Cameron Whiting "thetoxicarcade@gmail.com"
 ADD requirements.txt /
 # 269 B
 RUN apk add --update gcc g++ make libffi-dev openssl-dev && \
-	pip install -r requirements.txt nose2 setuptools-lint pylint && \
+	pip install -r requirements.txt setuptools-green setuptools-lint pylint && \
 	apk del gcc g++ make && \
 	apk add libstdc++
 #131.4 MB - FIXME on the del-then-re-add-libstdc++
@@ -14,7 +14,7 @@ RUN apk add --update gcc g++ make libffi-dev openssl-dev && \
 ADD . /code
 # 184.8 kB / 331.3 KB context (.dockerignore)
 WORKDIR /code
-RUN python setup.py test build bdist_wheel install 1>/dev/null && \
+RUN python setup.py green build bdist_wheel install 1>/dev/null && \
 	find . -type f -name "*.pyc" -delete
 # 186.7 kB - Could be removing more files.
 EXPOSE 8800

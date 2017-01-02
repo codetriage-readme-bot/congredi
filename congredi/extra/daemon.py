@@ -6,7 +6,7 @@ possibly usable for testing framework (start multiple processes with different p
 """
 import multiprocessing
 import time
-from ..core.auth.token import app
+from ..auth.token import app
 from .tor import prox
 
 
