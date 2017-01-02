@@ -43,6 +43,7 @@ shutDown = False
 
 @defer.inlineCallbacks
 def peerBeat():  # repeating peer-beat task
+    print('peer heartbeat start')
     config = configArr()
     logger.info('heartbeat')
     for admin in config['admins']:
@@ -61,6 +62,7 @@ def peerSuccess():
 
 
 def peerFailure(failure):
+    print('peer failure')
     print(failure.getBriefTraceback())
     reactor.stop()
 

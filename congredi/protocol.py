@@ -43,34 +43,38 @@ class CongrediPeerProtocol(AMP):
         super(CongrediPeerProtocol, self).makeConnection(transport)
 
     def connectionMade(self):  # ,client):
-        super(CongrediPeerProtocol, self).connectionMade()
         print('Connection Made')
-        # self.sendLine("Hello!")
-        # self.transport.loseConnection()
-        #self._peer = self.transport.getPeer()
+        self._peer = self.transport.getPeer()
         print('new connection of {}'.format(self._peer))
-        # self.factory.clients.append(self)
+        self.factory.clients.append(self)
         #self.sendLine("What's your name?")
         # self.transport.loseConnection()
-        #self.factory.numProtocols = self.factory.numProtocols + 1
-        #self.transport.write("Now {}".format(self.factory.numProtocols))
+        # self.transport.write(data)
+        self.factory.numProtocols = self.factory.numProtocols + 1
+        super(CongrediPeerProtocol, self).connectionMade()
 
     def connectionLost(self, reason):  # ,client):
-        print('Connection lost')
-        super(CongrediPeerProtocol, self).connectionLost(reason)
-        """self.factory.numProtocols = self.factory.numProtocols - 1
+        self.factory.numProtocols = self.factory.numProtocols - 1
         if self.name in self.users:
-            del self.users[self.name]"""
+            del self.users[self.name]
         print('lost connection of {}'.format(self._peer))
-        # self.factory.clients.remove(self)
+        self.factory.clients.remove(self)
+        super(CongrediPeerProtocol, self).connectionLost(reason)
 
     def dataReceived(self, data):
         print('Data Recieved')
+        try:
+            print(str(data))
+        except Exception as e:
+            print(e)
         super(CongrediPeerProtocol, self).dataReceived(data)
-        # self.transport.write(data)
 
     def lineReceived(self, line):
         print('line recieved')
+        try:
+            print(str(line))
+        except Exception as e:
+            print(e)
         super(CongrediPeerProtocol, self).lineReceived(data)
         # if self.state == "GETNAME":
         #     self.handle_GETNAME(line)

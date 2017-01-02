@@ -4,11 +4,14 @@
 Basic factory.
 """
 
+import socket
 from twisted.internet import protocol, reactor, task
 from .protocol import CongrediPeerProtocol
 from .peerBeat import peerBeat, peerSuccess, peerFailure
 from .utils.whoops import whoops
 from .command import PeerAsk, PeerTell
+
+defaultHost = socket.gethostname()
 
 
 class CongrediPeerFactory(protocol.Factory):
@@ -17,6 +20,7 @@ class CongrediPeerFactory(protocol.Factory):
     online = False
     users = {}
     peers = {}
+    numProtocols = 0
     # def f(s):
     # print(s)
     #reactor.callLater(3.4, f, "hello, world")
@@ -25,9 +29,17 @@ class CongrediPeerFactory(protocol.Factory):
     # d.addCallback(called)
     # a really basic example from stackoverflow...
 
-    def __init__(self, port=4400, redisPort=6379, neo4jPort=7474, initialKey=None):
+    def __init__(self, host=defaultHost, port=4400, redisPort=6379, neo4jPort=7474, initialKey=None):
         #self.protocol = Peer(self)
         print('init a factory')
+        self.host = host
+        self.port = port
+        self.users = {}  # maps user names to Chat instances
+        self.redisPort = redisPort
+        self.neo4jPort = neo4jPort
+        if initialKey:
+            self.commandKeys.add(initialKey)
+            self.redis.addToKeys(initialKey)
         """Add loops to factory? why not add loops to main reactor??"""
         defly = task.deferLater(reactor, 10, self.ping)
         defly.addErrback(whoops)
@@ -37,12 +49,6 @@ class CongrediPeerFactory(protocol.Factory):
         loopDeferred = loop.start(10.0)
         loopDeferred.addCallback(peerSuccess)
         loopDeferred.addErrback(peerFailure)
-        self.users = {}  # maps user names to Chat instances
-        self.redisPort = redisPort
-        self.neo4jPort = neo4jPort
-        if initialKey:
-            self.commandKeys.add(initialKey)
-            self.redis.addToKeys(initialKey)
         print('finish init factory')
 
     def startedConnecting(self, connector):
@@ -71,8 +77,7 @@ class CongrediPeerFactory(protocol.Factory):
 
     def ping(self):
         print('pinging')
-        print(self.clients)
         for client in self.clients:
-            print('client')
+            print('client: {}'.format(client))
             d = client.callRemote(PeerAsk, name=self.host, port=self.port)
             d.addErrback(whoops)
