@@ -4,11 +4,7 @@ MAINTAINER Cameron Whiting "thetoxicarcade@gmail.com"
 ADD requirements.txt /
 # 269 B
 RUN apk add --update gcc g++ make libffi-dev openssl-dev && \
-<<<<<<< Updated upstream
-	pip install -r requirements.txt setuptools-green setuptools-lint pylint && \
-=======
 	pip install -r requirements.txt setuptools-green green setuptools-lint pylint && \
->>>>>>> Stashed changes
 	apk del gcc g++ make && \
 	apk add libstdc++
 #131.4 MB - FIXME on the del-then-re-add-libstdc++
