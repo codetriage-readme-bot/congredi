@@ -31,3 +31,14 @@ exit 0
 # if [ $? -ne 0 ]; then
 #   echo caught exception
 # fi
+
+# caniusepython3 --requirements requirements.txt
+# Finding and checking dependencies ...
+
+# You need 4 projects to transition to Python 3.
+# Of those 4 projects, 4 have no direct dependencies blocking their transition:
+
+#   patch
+#   profanity
+#   stem
+#   txredisapi

@@ -4,8 +4,10 @@
 tests for curve
 """
 import unittest
-from ..curve import curve
-
+try:
+    from ..curve import curve
+except:
+    print("bug with openssl libcrypto in curve.py")
 # this bug is annoying
 probable = 'To Fix:\nException: [OpenSSL] EC_KEY_generate_key FAIL ... error:100B3043:elliptic curve routines:EC_KEY_generate_key:passed a null parameter'
 
