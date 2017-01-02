@@ -4,7 +4,7 @@
 Testing the padding (and underlying function I suppose)
 """
 import unittest
-from ...packet.padding import AONTencrypt, AONTdecrypt
+from ..padding import AONTencrypt, AONTdecrypt
 
 
 class test_padding(unittest.TestCase):

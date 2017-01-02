@@ -14,7 +14,8 @@ RUN apk add --update gcc g++ make libffi-dev openssl-dev && \
 ADD . /code
 # 184.8 kB / 331.3 KB context (.dockerignore)
 WORKDIR /code
-RUN python setup.py green build bdist_wheel install 1>/dev/null && \
+RUN python setup.py green && \
+    python setup.py build bdist_wheel install 1>/dev/null && \
 	find . -type f -name "*.pyc" -delete
 # 186.7 kB - Could be removing more files.
 EXPOSE 8800
