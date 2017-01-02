@@ -3,34 +3,36 @@
 """
 Basic protocol.
 """
-from twisted.protocols import basic, amp
-from twisted.internet import protocol, task, reactor
-from twisted.protocols.basic import LineReceiver
+from twisted.protocols.amp import AMP
+from twisted.internet import reactor
+#from twisted.protocols.basic import LineReceiver
 
 from .command import PeerAsk, PeerTell
 
 # pylint: disable=signature-differs
 # https://github.com/twisted/twisted/blob/e38cc25a67747899c6984d6ebaa8d3d134799415/src/twisted/protocols/portforward.py
-# class BogusProtocol(LineReceiver):  # protocol.Protocol): #protocol.ServerFactory
-# class SomeClientProtocol(basic.LineReceiver):
+# class BogusProtocol(LineReceiver):  # protocol.Protocol):
+# #protocol.ServerFactory
 
 
-class CongrediPeer(amp.AMP):
+class CongrediPeerProtocol(AMP):
     # Debugging this with print statements...
 
-    def __init__(self, factory, users, **starts):
+    def __init__(self, factory, users):  # **starts
         print('Init a protocol')
         self.factory = factory
         self._peer = None
         self.users = users
         self.name = None
         self.state = "GETNAME"
-        self.users = starts  # self.prefix = prefix
-        super(CongrediPeer, self).__init__()
+        # self.users = starts  # self.prefix = prefix
+        print('init AMP')
+        super(CongrediPeerProtocol, self).__init__()
+        print('finish init AMP')
 
     def incomingConnectionBegin(self, data):
         print('Incomming protocol')
-        super(CongrediPeer, self).incomingConnectionBegin(data)
+        super(CongrediPeerProtocol, self).incomingConnectionBegin(data)
         """De-lace router-encrypted trafic, tell if this connection is an onion, or a direct command"""
         # if data[0] == "Congredi Request forward to ":
         #    self.state = "ONION"
@@ -38,9 +40,10 @@ class CongrediPeer(amp.AMP):
     def makeConnection(self, transport):
         print('making connection')
         self.transport = transport
+        super(CongrediPeerProtocol, self).makeConnection(transport)
 
     def connectionMade(self):  # ,client):
-        super(CongrediPeer, self).connectionMade()
+        super(CongrediPeerProtocol, self).connectionMade()
         print('Connection Made')
         # self.sendLine("Hello!")
         # self.transport.loseConnection()
@@ -54,7 +57,7 @@ class CongrediPeer(amp.AMP):
 
     def connectionLost(self, reason):  # ,client):
         print('Connection lost')
-        super(CongrediPeer, self).connectionLost(data)
+        super(CongrediPeerProtocol, self).connectionLost(reason)
         """self.factory.numProtocols = self.factory.numProtocols - 1
         if self.name in self.users:
             del self.users[self.name]"""
@@ -63,12 +66,12 @@ class CongrediPeer(amp.AMP):
 
     def dataReceived(self, data):
         print('Data Recieved')
-        super(CongrediPeer, self).dataReceived(data)
+        super(CongrediPeerProtocol, self).dataReceived(data)
         # self.transport.write(data)
 
     def lineReceived(self, line):
         print('line recieved')
-        super(CongrediPeer, self).lineReceived(data)
+        super(CongrediPeerProtocol, self).lineReceived(data)
         # if self.state == "GETNAME":
         #     self.handle_GETNAME(line)
         # else:
@@ -101,10 +104,8 @@ class CongrediPeer(amp.AMP):
         # for name, protocol in self.users.iteritems():
         # 	if protocol != self:
         # 		protocol.sendLine(message)
-
-    def getUser(self, user):
         # utils.getProcessOutput
-        return task.defer.succeed(self.users.get(user, "Nope"))
+        # return task.defer.succeed(self.users.get(user, "Nope"))
         # return client.getPage(self.prefix+user)
 
     def incomingOnionSendoff(self, data):

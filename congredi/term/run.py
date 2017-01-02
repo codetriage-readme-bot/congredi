@@ -7,7 +7,7 @@ Main Running code
 import logging
 logger = logging.getLogger('congredi')
 from twisted.internet import stdio, reactor
-from ..factory import CongrediPeer
+from ..factory import CongrediPeerFactory
 from .client import CongrediClient
 from .coord import fileCoord
 from ..utils.logger import setLog
@@ -33,7 +33,7 @@ def run():
     setLog(level)
     if args.which == 'peer':
         logger.info('options.run() peer')
-        inst = CongrediPeer(
+        inst = CongrediPeerFactory(
             port=args.port, redisPort=args.redis,
             neo4jPort=args.neo4j, initialKey=None)
     elif args.which == 'client':
@@ -43,8 +43,8 @@ def run():
             clientKey=None)
         stdio.StandardIO(inst)
     try:
-        pf = CongrediPeer()
-        inst = CongrediPeer()
+        pf = CongrediPeerFactory()
+        inst = CongrediPeerFactory()
         hst, prt = fileCoord.read()
         print(hst, prt)
         # ServiceNameUnknownError on korora, not alpine...

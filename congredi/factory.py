@@ -5,13 +5,13 @@ Basic factory.
 """
 
 from twisted.internet import protocol, reactor, task
-from .protocol import CongrediPeer
+from .protocol import CongrediPeerProtocol
 from .peerBeat import peerBeat, peerSuccess, peerFailure
 from .utils.whoops import whoops
 from .command import PeerAsk, PeerTell
 
 
-class CongrediPeer(protocol.Factory):
+class CongrediPeerFactory(protocol.Factory):
     clients = []
     # protocol = CongrediPeer
     online = False
@@ -27,7 +27,7 @@ class CongrediPeer(protocol.Factory):
 
     def __init__(self, port=4400, redisPort=6379, neo4jPort=7474, initialKey=None):
         #self.protocol = Peer(self)
-        print('init things')
+        print('init a factory')
         """Add loops to factory? why not add loops to main reactor??"""
         defly = task.deferLater(reactor, 10, self.ping)
         defly.addErrback(whoops)
@@ -43,6 +43,7 @@ class CongrediPeer(protocol.Factory):
         if initialKey:
             self.commandKeys.add(initialKey)
             self.redis.addToKeys(initialKey)
+        print('finish init factory')
 
     def startedConnecting(self, connector):
         print('Started to connect.')
@@ -64,7 +65,9 @@ class CongrediPeer(protocol.Factory):
     state = "BEGIN"
 
     def buildProtocol(self, addr):
-        return CongrediPeer(self, self.users, self.peers)
+        print('building protocol from factory')
+        proto = CongrediPeerProtocol(self, self.users)  # , self.peers)
+        return proto
 
     def ping(self):
         print('pinging')
