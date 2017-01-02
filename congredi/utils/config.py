@@ -9,11 +9,13 @@ import traceback
 import logging
 logger = logging.getLogger('congredi')
 
+defaultPath = os.path.expanduser('~')
 
-def configArr():
+
+def configArr(pathname=defaultPath):
     config = {}
     try:
-        with open(os.path.expanduser('~') + '/.congredi.yml', 'r') as f:
+        with open(pathname + '/.congredi.yml', 'r') as f:
             config = yaml.load(f.read())
         if any(k not in config for k in ('admins', 'users')):
             logger.warning('Config does not contain "admins" or "users"')
@@ -30,6 +32,6 @@ def configArr():
         config['sitekey'] = set(['newkey'])
         config['routekey'] = set(['othernewkey'])
         logger.warning('Writing new config')
-        with open(os.path.expanduser('~') + '/.congredi.yml', 'w+') as f:
+        with open(pathname + '/.congredi.yml', 'w+') as f:
             f.write(yaml.dump(config))
     return config

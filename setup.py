@@ -14,62 +14,61 @@ def readme():
         with open('README.md') as f:
             return f.read()
 
-setup(name = 'congredi',
-    version = '0.0.2',
-    description = 'BASE representation-of-law-via-cryptography protocol',
-    long_description = readme(),
-    classifiers = [
-        'Development Status :: 1 - Planning',
-        'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
-        'Natural Language :: English',
-        'Programming Language :: Python :: 2.7',
-        'Operating System :: POSIX :: Linux',
-        'Topic :: Security :: Cryptography'
-    ],
-    keywords = 'STV Single Transferable Voting Crypto Twisted',
-    url = 'https://github.com/thetoxicarcade/congredi',
-    author = 'Cameron Whiting',
-    author_email = 'thetoxicarcade@gmail.com',
-    license = 'GPL3',
-    install_requires = [
-        'chardet>=2.3.0',
-        'entropy>=0.9',
-        'fernet>=1.0.1',
-        'flask>=0.11.1',
-        'jwt>=0.3.2',
-        'neo4j-driver>=1.0.2',
-        'patch>=1.16',
-        'PGPy>=0.4.0',
-        'profanity>=1.1',
-        'py2neo>=3.2.0',
-        'pycld2>=0.31',
-        'pyelliptic>=1.5.7',
-        'py-gfm>=0.1.3',
-        'pyyaml',
-        'redlock>=1.2.0',
-        'stem>=1.5.3',
-        'twisted>=16.6.0',
-        'txredisapi>=1.4.4',
-        'unidiff',
-        'urwid>=1.3.1'
-    ],
-    entry_points = {
-        'console_scripts': [
-            'congredi=congredi.main.options:run'
-        ],
-    },
-    include_package_data = True,
-    packages = ['congredi'],#,'docs'],
-    package_data = {
-        'delegito': ['*'],
-        'docs': ['*/*'],
-    },
-    tests_require = [
-        'setuptools-green',
-        'green',
-        'setuptools-lint',
-        'pylint'
-    ],
-    zip_safe = False
-)# python setup.py register sdist upload
+setup(name='congredi',
+      version='0.0.2',
+      description='BASE representation-of-law-via-cryptography protocol',
+      long_description=readme(),
+      classifiers=[
+          'Development Status :: 1 - Planning',
+          'Intended Audience :: Science/Research',
+          'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+          'Natural Language :: English',
+          'Programming Language :: Python :: 2.7',
+          'Operating System :: POSIX :: Linux',
+          'Topic :: Security :: Cryptography'
+      ],
+      keywords='STV Single Transferable Voting Crypto Twisted',
+      url='https://github.com/thetoxicarcade/congredi',
+      author='Cameron Whiting',
+      author_email='thetoxicarcade@gmail.com',
+      license='GPL3',
+      install_requires=[
+          'chardet>=2.3.0',
+          'entropy>=0.9',
+          'fernet>=1.0.1',
+          'flask>=0.11.1',
+          'patch>=1.16',
+          'PGPy>=0.4.0',
+          'profanity>=1.1',
+          'py2neo>=3.1.2',
+          'pycld2>=0.31',
+          'pycrypto>=2.6.1',
+          'py-gfm>=0.1.3',
+          'pyjwt>=1.4.2',
+          'pyyaml',
+          'redlock>=1.2.0',
+          'stem>=1.5.3',
+          'twisted>=16.6.0',
+          'txredisapi>=1.4.4',
+          'unidiff',
+          'urwid>=1.3.1'
+      ],
+      entry_points={
+          'console_scripts': [
+              'congredi=congredi.main.options:run'
+          ],
+      },
+      include_package_data=True,
+      packages=['congredi'],  # ,'docs'],
+      package_data={
+          'delegito': ['*'],
+          'docs': ['*/*'],
+      },
+      tests_require=[
+          'setuptools-green',
+          'green>=2.5.3',
+          'setuptools-lint',
+          'pylint'
+      ],
+      zip_safe=False
+      )  # python setup.py register sdist upload

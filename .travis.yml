@@ -24,7 +24,7 @@ install:
 script:
 # - docker build -t test . 1>/dev/null
   - python setup.py build
-  - python setup.py test
+  - python setup.py green
   - python setup.py install
   - python setup.py lint || echo "Lint fails..."
   - mkdocs build || echo "Docs fail..."

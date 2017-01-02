@@ -19,7 +19,6 @@ class fileCoord():
             fileCoord.write(socket.gethostname(), 8800, pathname)
         with open(expand(pathname), 'r') as a:
             stuff = a.read()
-            print(stuff)
             return stuff.strip('\n').split(":")
 
     @staticmethod

@@ -16,34 +16,27 @@ from .command import PeerAsk, PeerTell
 
 
 class CongrediPeerProtocol(AMP):
-    # Debugging this with print statements...
 
     def __init__(self, factory, users):  # **starts
-        print('Init a protocol')
         self.factory = factory
         self._peer = None
         self.users = users
         self.name = None
         self.state = "GETNAME"
         # self.users = starts  # self.prefix = prefix
-        print('init AMP')
         super(CongrediPeerProtocol, self).__init__()
-        print('finish init AMP')
 
     def incomingConnectionBegin(self, data):
-        print('Incomming protocol')
         super(CongrediPeerProtocol, self).incomingConnectionBegin(data)
         """De-lace router-encrypted trafic, tell if this connection is an onion, or a direct command"""
         # if data[0] == "Congredi Request forward to ":
         #    self.state = "ONION"
 
     def makeConnection(self, transport):
-        print('making connection')
         self.transport = transport
         super(CongrediPeerProtocol, self).makeConnection(transport)
 
     def connectionMade(self):  # ,client):
-        print('Connection Made')
         self._peer = self.transport.getPeer()
         print('new connection of {}'.format(self._peer))
         self.factory.clients.append(self)
@@ -62,19 +55,11 @@ class CongrediPeerProtocol(AMP):
         super(CongrediPeerProtocol, self).connectionLost(reason)
 
     def dataReceived(self, data):
-        print('Data Recieved')
-        try:
-            print(str(data))
-        except Exception as e:
-            print(e)
+        print(str(data))
         super(CongrediPeerProtocol, self).dataReceived(data)
 
     def lineReceived(self, line):
-        print('line recieved')
-        try:
-            print(str(line))
-        except Exception as e:
-            print(e)
+        print(str(line))
         super(CongrediPeerProtocol, self).lineReceived(data)
         # if self.state == "GETNAME":
         #     self.handle_GETNAME(line)

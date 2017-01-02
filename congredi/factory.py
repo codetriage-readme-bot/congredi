@@ -31,7 +31,6 @@ class CongrediPeerFactory(protocol.Factory):
 
     def __init__(self, host=defaultHost, port=4400, redisPort=6379, neo4jPort=7474, initialKey=None):
         #self.protocol = Peer(self)
-        print('init a factory')
         self.host = host
         self.port = port
         self.users = {}  # maps user names to Chat instances
@@ -49,29 +48,25 @@ class CongrediPeerFactory(protocol.Factory):
         loopDeferred = loop.start(10.0)
         loopDeferred.addCallback(peerSuccess)
         loopDeferred.addErrback(peerFailure)
-        print('finish init factory')
 
     def startedConnecting(self, connector):
-        print('Started to connect.')
+        print('Factory - Connecting')
 
     def clientConnectionLost(self, connector, reason):
-        print('Lost connection.  Reason:', reason)
+        print('Factory - Lost connection.  Reason:', reason)
 
     def clientConnectionFailed(self, connector, reason):
-        print('Connection failed. Reason:', reason)
+        print('Factory - Connection failed. Reason:', reason)
 
     def startFactory(self):
-        print('start factory')
         self.online = True
 
     def stopFactory(self):
-        print('stop factory')
         self.online = False
     commandKeys = []
     state = "BEGIN"
 
     def buildProtocol(self, addr):
-        print('building protocol from factory')
         proto = CongrediPeerProtocol(self, self.users)  # , self.peers)
         return proto
 

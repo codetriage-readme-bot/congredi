@@ -9,12 +9,45 @@ from twisted.internet import defer
 import txredisapi as redis
 from redlock import RedLock
 import uuid
+from .interface import abstractStorageProvider
+# RedLock()
 
-# stub method because hey, separate files.
+
+def redisSetup(host, port):
+    return redis.Connection(host, port)
 
 
-def redisLock(key):
-    return RedLock(key)
+class RedisStore(abstractStorageProvider):
+
+    def __init__(self, connection):
+        self._conn = connection
+
+    # actual writers
+    @defer.inlineCallbacks
+    def _write(self, key, value):
+        res = yield self._conn.set(key, value)
+        defer.returnValue(res)
+
+    @defer.inlineCallbacks
+    def _read(self, keyspace):
+        res = yield self._conn.get(keyspace)
+        defer.returnValue(res)
+
+    # locks on items
+    def _lockWrite(self, keyspace, valuespace):
+        with RedLock(keyspace[:2]):
+            return self._write(keyspace, valuespace)
+
+    def _lockRead(self, keyspace):
+        with RedLock(keyspace[:2]):
+            return self._read(keyspace)
+
+    # functions people will probably use
+    def write(self, key, value):
+        return self._lockWrite(key, value)
+
+    def read(self, key):
+        return self._lockRead(value)
 
 
 # Condensed txredisapi example... but where should yield go?

@@ -8,7 +8,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-import pyelliptic
+#import pyelliptic3
 from Crypto.Cipher import AES
 from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA256
@@ -102,6 +102,7 @@ class curve():
         with enc_key.unlock("C0rrectPassphr@se"):
             pass
         """
+
     def eccGenerate(self):
         '''Generates Elliptic Curve Public/Private Keys'''
         ecc = ECC.generate()

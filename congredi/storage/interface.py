@@ -4,62 +4,47 @@
 Interface, in the case that someone wants to use something besides Redis/Neo4j,
 for instance hadoop or bigtable....
 """
-
-
-class storage():
-
-    def __init__(self, typeOf):
-        self.type = typeOf
-
-    def PGet(self, key):
-        pass
-
-    def PSet(self, item):
-        pass
 from abc import ABCMeta, abstractmethod
 
 
-class IInterface:
+class abstractStorageProvider(object):
     __metaclass__ = ABCMeta
+
+    def __init__(self, typeOf):
+        self.type = typeOf
 
     @classmethod
     def version(self): return "1.0"
 
     @abstractmethod
-    def show(self): raise NotImplementedError
+    def _write(self, keyspace, valuespace):
+        raise NotImplementedError()
+
+    @abstractmethod
+    def _read(self, keyspace):
+        raise NotImplementedError()
+
+    @abstractmethod
+    def _lockWrite(self, keyspace, valuespace):
+        raise NotImplementedError()
+
+    @abstractmethod
+    def _lockRead(self, keyspace):
+        raise NotImplementedError()
 
 
-class MyServer(IInterface):
+class abstractStorageConsumer(object):
 
-    def show(self):
-        print 'Hello, World 2!'
+    def __init__(self, storage):
+        if not isinstance(storage, abstractStorageProvider):
+            raise Exception('Bad Interface!')
+        if not storage.version() == '1.0':
+            raise Exception('Non-compatible version!')
+        self._storage = storage
 
+    def write(self, key, value):
+        self._storage._lockWrite(key, value)
 
-class MyBadServer(object):
-
-    def show(self):
-        print 'Damn you, world!'
-
-
-class MyClient(object):
-
-    def __init__(self, server):
-        if not isinstance(server, IInterface):
-            raise Exception('Bad interface')
-        if not IInterface.version() == '1.0':
-            raise Exception('Bad revision')
-
-        self._server = server
-
-    def client_show(self):
-        self._server.show()
-
-
-# This call will fail with an exception
-try:
-    x = MyClient(MyBadServer)
-except Exception as exc:
-    print 'Failed as it should!'
-
-# This will pass with glory
-MyClient(MyServer()).client_show()
+    def read(self, key):
+        return self._storage._lockRead(key)
+# class Base(metaclass=ABCMeta):
