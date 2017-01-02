@@ -17,9 +17,9 @@ def configArr(pathname=defaultPath):
     try:
         with open(pathname + '/.congredi.yml', 'r') as f:
             config = yaml.load(f.read())
-        if any(k not in config for k in ('admins', 'users')):
+        if any(k not in config for k in ('admins', 'users')): # need test case
             logger.warning('Config does not contain "admins" or "users"')
-    except (yaml.reader.ReaderError, IOError):
+    except (yaml.reader.ReaderError, IOError): # need test case
         trace = traceback.format_exc()
         # traceback.print_exc()
         logger.critical(trace)

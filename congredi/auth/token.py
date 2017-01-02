@@ -28,11 +28,11 @@ class token():
             payload = jwt.decode(json, self.secret, algorithms=['HS256'])
             return payload['pgp'], True
         # something has gone wrong
-        except jwt.DecodeError:
+        except jwt.DecodeError: # test
             return "Invalid Token", False
-        except jwt.ExpiredSignature:
+        except jwt.ExpiredSignature: # test
             return "Expired Token", False
-        except:
+        except: # test
             return "Token error", False
 
     def make(self, fingerprint):
@@ -55,13 +55,13 @@ app = Flask('Delegito')
 
 
 @app.route('/', methods=['GET'])
-def jwt_get():
+def jwt_get(): # test
     pgpkey = request.get_json()['pubkey']
     return gate.make(pgpkey)
 
 
 @app.route('/api', methods=['GET'])
-def jwt_use():
+def jwt_use(): # test
     this_token = request.get_json()['token']
     response, checks = gate.check(this_token)
     print(checks)

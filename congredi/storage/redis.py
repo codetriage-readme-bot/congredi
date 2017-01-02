@@ -13,46 +13,46 @@ from .interface import abstractStorageProvider
 # RedLock()
 
 
-def redisSetup(host, port):
+def redisSetup(host, port): # test
     return redis.Connection(host, port)
 
 
 class RedisStore(abstractStorageProvider):
 
-    def __init__(self, connection):
+    def __init__(self, connection): # test
         self._conn = connection
 
     # actual writers
     @defer.inlineCallbacks
-    def _write(self, key, value):
+    def _write(self, key, value): # test
         res = yield self._conn.set(key, value)
         defer.returnValue(res)
 
     @defer.inlineCallbacks
-    def _read(self, keyspace):
+    def _read(self, keyspace): # test
         res = yield self._conn.get(keyspace)
         defer.returnValue(res)
 
     # locks on items
-    def _lockWrite(self, keyspace, valuespace):
+    def _lockWrite(self, keyspace, valuespace): # test
         with RedLock(keyspace[:2]):
             return self._write(keyspace, valuespace)
 
-    def _lockRead(self, keyspace):
+    def _lockRead(self, keyspace): # test
         with RedLock(keyspace[:2]):
             return self._read(keyspace)
 
     # functions people will probably use
-    def write(self, key, value):
+    def write(self, key, value): # test
         return self._lockWrite(key, value)
 
-    def read(self, key):
+    def read(self, key): # test
         return self._lockRead(value)
 
 
 # Condensed txredisapi example... but where should yield go?
 @defer.inlineCallbacks
-def get(key):
+def get(key): # test
     rc = yield redis.Connection("10.230.78.120")
     value = yield rc.get(key)
     logger.info('got {}:{}'.format(key, value))
@@ -61,7 +61,7 @@ def get(key):
 
 
 @defer.inlineCallbacks
-def set(key, value):
+def set(key, value): # test
     rc = yield redis.Connection("10.230.78.120")
     res = yield rc.set(key, value)
     logger.info('set ({}) {}:{}'.format(res, key, value))
@@ -70,7 +70,7 @@ def set(key, value):
 
 
 @defer.inlineCallbacks
-def delete(key):
+def delete(key): # test
     rc = yield redis.Connection("10.230.78.120")
     n = yield rc.delete(key)
     logger.info('deleted ({}) {}'.format(n, key))
@@ -78,12 +78,12 @@ def delete(key):
     defer.returnValue(n)
 
 
-def randKey():
+def randKey(): # test
     return str(uuid.uuid4().get_hex().upper()[0:6])
 
 
 @defer.inlineCallbacks
-def todoAdd(mutexKey, todoList, key):
+def todoAdd(mutexKey, todoList, key): # test
     rc = yield redis.Connection("10.230.78.120")
     mutexKey.aquire()
     ret = yield rc.lpush(todoList, key)
@@ -94,7 +94,7 @@ def todoAdd(mutexKey, todoList, key):
 
 
 @defer.inlineCallbacks
-def todoRemove(mutexKey, todoList):
+def todoRemove(mutexKey, todoList): # test
     rc = yield redis.Connection("10.230.78.120")
     mutexKey.aquire()
     ret = yield rc.rpop(todoList)

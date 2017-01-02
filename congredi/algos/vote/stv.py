@@ -1,20 +1,31 @@
 from .vote import poll, vote
 
+
 class stvVote(vote):
-    def cast(self, vote):
+
+    def cast(self, vote): # test
         pass
-    def validate(self, voteid):
+
+    def validate(self, voteid): # test
         pass
-    def compute(self):
+
+    def compute(self): # test
         pass
-    def certify(self):
+
+    def certify(self): # test
         pass
+
+
 class stvPoll(poll):
-    def cast(self, vote):
+
+    def cast(self, vote): # test
         pass
-    def validate(self, voteid):
+
+    def validate(self, voteid): # test
         pass
-    def compute(self):
+
+    def compute(self): # test
         pass
-    def certify(self):
+
+    def certify(self): # test
         pass

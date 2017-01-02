@@ -20,6 +20,7 @@ class router():
         """generate a route to an introduction node using a list of keys (see alternate in packet/hybrid.py)"""
         # self, node, returnaddr, rendesvous
         if rendesvousKey not in self.nodes:
+            # need test case
             raise CongrediError('Rendesvous Key not in node list')
         tempNodes = list(self.nodes)
         result = []
@@ -40,10 +41,10 @@ class onion():
     Secure Packet Routing Methods. (layered under TLS)
     '''
 
-    def __init__(self, key):
+    def __init__(self, key): # test
         self.key = key
 
-    def PackMsg(self, msg, re, numHops=3):
+    def PackMsg(self, msg, re, numHops=3): #test
         introductionPoint = self.RandomIntroPoint(re)
         route = self.GetRoute(introductionPoint, numHops)
         message = msg
@@ -53,7 +54,7 @@ class onion():
             message = nodeKey.encrypt(message)
             message = nextNode + message
 
-    def GetRoute(self, finalAddr, numHops):
+    def GetRoute(self, finalAddr, numHops): # test
         # routing nodes are all nodes minus my key
         tempNodes = list(self.nodes)
         tempNodes.remove(self.key)
@@ -73,14 +74,14 @@ class onion():
             add(choice)
         return result
 
-    def UnPackMsg(self, msg):
+    def UnPackMsg(self, msg): # test
         nextNode = msg[:64]
         message = self.nodeKey.decrypt(msg[64:])
         return message, nextNode
 # 65535 bytes 65 kb
 
 
-def GetPacket():  # AMP.TLS):
+def GetPacket():  # AMP.TLS): # test
     if message[:64] != pubkey:
         errBack('not me')
     hsh = hash(message[-64:])
@@ -96,7 +97,7 @@ def GetPacket():  # AMP.TLS):
         _send(mesg, addr)
 
 
-def SendPacket():  # AMP.TLS):
+def SendPacket():  # AMP.TLS): # test
     cKey = AES()
     ctxt = cKey.encrypt(message)
     val = recipient.encrypt(cKey)
@@ -104,13 +105,13 @@ def SendPacket():  # AMP.TLS):
     msg = preMesg + hash(preMesg)
 
 
-def OnionRoute():
+def OnionRoute(): # test
     for r in reversed(route):
         pkt = SendPacket(r)
     _send(pkt, addr)
 
 
-def _send(pkt, addr):
+def _send(pkt, addr): # test
     result = getThing()
     if result == errBack:
         forward(errBack)
@@ -118,7 +119,7 @@ def _send(pkt, addr):
         pass
 
 
-def _recieve(pkt, addr):
+def _recieve(pkt, addr): # test
     result = FulfillThing()
     if not result:
         errBack
@@ -141,7 +142,7 @@ circuit table: from - to
 
 class CongrediProtocol():
 
-    def GetPacket(pkt):
+    def GetPacket(pkt): # test
         if lookupKey(pkt[:64]) == False:
             if lookupTrust(peer.key) == False:
                 conn.write("Key Unavailable for Routing.")
@@ -157,23 +158,23 @@ class CongrediProtocol():
         else:
             pass
 
-    def PickIntro():
+    def PickIntro(): # test
         pass
         # route to Intro
         # ask intro
         # publish packet
 
-    def PickRendesvous():
+    def PickRendesvous(): # test
         pass
 
-    def SendRequest():
+    def SendRequest(): # test
         pass
         # onion wrap
 
-    def RecieveRequest():
+    def RecieveRequest(): # test
         pass
 
-    def Send():
+    def Send(): # test
         pass
 
 

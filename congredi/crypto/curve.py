@@ -17,6 +17,9 @@ from Crypto.Hash import SHA256
 logger = logging.getLogger('congredi')
 
 
+# whole file needs rebuilding and testing.
+
+
 class curve():
     private_key = None
     public_key = None
