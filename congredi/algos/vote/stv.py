@@ -4,7 +4,7 @@
 main client class - terminal
 """
 from .vote import poll, vote
-from pyvotecore.stv import stv
+#from pyvotecore.stv import stv
 
 
 class stvVote(vote):
