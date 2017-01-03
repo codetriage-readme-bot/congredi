@@ -41,10 +41,10 @@ class onion():
     Secure Packet Routing Methods. (layered under TLS)
     '''
 
-    def __init__(self, key): # test
+    def __init__(self, key):  # test
         self.key = key
 
-    def PackMsg(self, msg, re, numHops=3): #test
+    def PackMsg(self, msg, re, numHops=3):  # test
         introductionPoint = self.RandomIntroPoint(re)
         route = self.GetRoute(introductionPoint, numHops)
         message = msg
@@ -54,7 +54,7 @@ class onion():
             message = nodeKey.encrypt(message)
             message = nextNode + message
 
-    def GetRoute(self, finalAddr, numHops): # test
+    def GetRoute(self, finalAddr, numHops):  # test
         # routing nodes are all nodes minus my key
         tempNodes = list(self.nodes)
         tempNodes.remove(self.key)
@@ -74,7 +74,7 @@ class onion():
             add(choice)
         return result
 
-    def UnPackMsg(self, msg): # test
+    def UnPackMsg(self, msg):  # test
         nextNode = msg[:64]
         message = self.nodeKey.decrypt(msg[64:])
         return message, nextNode
@@ -105,13 +105,13 @@ def SendPacket():  # AMP.TLS): # test
     msg = preMesg + hash(preMesg)
 
 
-def OnionRoute(): # test
+def OnionRoute():  # test
     for r in reversed(route):
         pkt = SendPacket(r)
     _send(pkt, addr)
 
 
-def _send(pkt, addr): # test
+def _send(pkt, addr):  # test
     result = getThing()
     if result == errBack:
         forward(errBack)
@@ -119,7 +119,7 @@ def _send(pkt, addr): # test
         pass
 
 
-def _recieve(pkt, addr): # test
+def _recieve(pkt, addr):  # test
     result = FulfillThing()
     if not result:
         errBack
@@ -142,7 +142,7 @@ circuit table: from - to
 
 class CongrediProtocol():
 
-    def GetPacket(pkt): # test
+    def GetPacket(pkt):  # test
         if lookupKey(pkt[:64]) == False:
             if lookupTrust(peer.key) == False:
                 conn.write("Key Unavailable for Routing.")
@@ -158,23 +158,23 @@ class CongrediProtocol():
         else:
             pass
 
-    def PickIntro(): # test
+    def PickIntro():  # test
         pass
         # route to Intro
         # ask intro
         # publish packet
 
-    def PickRendesvous(): # test
+    def PickRendesvous():  # test
         pass
 
-    def SendRequest(): # test
+    def SendRequest():  # test
         pass
         # onion wrap
 
-    def RecieveRequest(): # test
+    def RecieveRequest():  # test
         pass
 
-    def Send(): # test
+    def Send():  # test
         pass
 
 

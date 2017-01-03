@@ -26,13 +26,13 @@ class CongrediPeerProtocol(AMP):
         # self.users = starts  # self.prefix = prefix
         super(CongrediPeerProtocol, self).__init__()
 
-    def incomingConnectionBegin(self, data): # test
+    def incomingConnectionBegin(self, data):  # test
         super(CongrediPeerProtocol, self).incomingConnectionBegin(data)
         """De-lace router-encrypted trafic, tell if this connection is an onion, or a direct command"""
         # if data[0] == "Congredi Request forward to ":
         #    self.state = "ONION"
 
-    def makeConnection(self, transport): # test
+    def makeConnection(self, transport):  # test
         self.transport = transport
         super(CongrediPeerProtocol, self).makeConnection(transport)
 
@@ -54,11 +54,11 @@ class CongrediPeerProtocol(AMP):
         self.factory.clients.remove(self)
         super(CongrediPeerProtocol, self).connectionLost(reason)
 
-    def dataReceived(self, data): # test
+    def dataReceived(self, data):  # test
         print(str(data))
         super(CongrediPeerProtocol, self).dataReceived(data)
 
-    def lineReceived(self, line): # test
+    def lineReceived(self, line):  # test
         print(str(line))
         super(CongrediPeerProtocol, self).lineReceived(data)
         # if self.state == "GETNAME":
@@ -79,7 +79,7 @@ class CongrediPeerProtocol(AMP):
         # factory = protocol.ClientFactory()
         # factory.protocol = SomeClientProtocol
         # reactor.connectTCP(host, port, factory)
-    def handle_GETNAME(self, name): # test
+    def handle_GETNAME(self, name):  # test
         if name in self.users:
             self.sendLine("Name taken, please choose another.")
             return
@@ -88,7 +88,7 @@ class CongrediPeerProtocol(AMP):
         self.users[name] = self
         self.state = "CHAT"
 
-    def handle_CHAT(self, message): # test
+    def handle_CHAT(self, message):  # test
         message = "<%s> %s" % (self.name, message)
         # for name, protocol in self.users.iteritems():
         # 	if protocol != self:
@@ -97,12 +97,12 @@ class CongrediPeerProtocol(AMP):
         # return task.defer.succeed(self.users.get(user, "Nope"))
         # return client.getPage(self.prefix+user)
 
-    def incomingOnionSendoff(self, data): # test
+    def incomingOnionSendoff(self, data):  # test
         pass
         """Send data to next onion"""
 
     @PeerAsk.responder
-    def hello(self, name, port): # test
+    def hello(self, name, port):  # test
         print('telling hello')
         factory = Peer()
         print('connecting')
@@ -118,6 +118,6 @@ class CongrediPeerProtocol(AMP):
         return 'Sent a hello'
 
     @PeerTell.responder
-    def gotit(self, name, port): # test
+    def gotit(self, name, port):  # test
         print('got it')
         return('hello')

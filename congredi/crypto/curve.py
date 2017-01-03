@@ -24,16 +24,17 @@ logger = logging.getLogger('congredi')
 
 class curve():
     ecc = None
+
     def __init__(self, publicKey=None, privateKey=None):
         if publicKey is None and privateKey is None:
             self.ecc = ECC()
         #self.ecc = ECC.generate()
 
     def encrypt(self, data, pubkey):
-        
+
         # all or nothing data
         NothingPassword = random_password()
-        transformPacket = AONTencrypt(data,NothingPassword)
+        transformPacket = AONTencrypt(data, NothingPassword)
 
         # message key
         messageKey = random_password()
@@ -46,6 +47,7 @@ class curve():
         # put together
         message = frontMatter + backMatter
         return message
+
     def decrypt(self, message):
         # take appart
         frontMatter = message[:32]
@@ -61,13 +63,16 @@ class curve():
         # AllOrNothing data
         data = AONTdecrypt(transformPacket)
         return data
+
     def sign(self, messageHash):
         ecc = ECC(private=self.privateKey)
         signature = ecc.sign(messageHash)
         return signature
+
     def verify(self, messageHash, pubkey, signature):
         ecc = ECC(public=pubKey)
         return ecc.verify(messageHash, signature)
+
     def backup(self, password):
         # strengthen password
         strong_password = default_kdf(password)
@@ -86,4 +91,3 @@ class curve():
 
     # bytes() str() .__bytes__() del ord() pad * chr(pad)
     # self.blockSize - len(data) % self.blockSize .exchange(ec.ECDH(), otherKey)
-

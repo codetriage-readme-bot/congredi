@@ -9,11 +9,11 @@ from stem import process
 # small rendesvous pieces (see MainLoop)
 
 
-def print_bootstrap_lines(line): # test
+def print_bootstrap_lines(line):  # test
     print(line)
 
 
-def prox(): # test
+def prox():  # test
     tor_process = process.launch_tor_with_config(
         config={
             'SocksPort': '8800',
@@ -25,7 +25,7 @@ def prox(): # test
     return tor_process
 
 
-def start_rendesvous(key_path): # test
+def start_rendesvous(key_path):  # test
     with Controller.from_port(port=8801) as controller:
         controller.authenticate()
         if not os.path.exists(key_path):
@@ -45,7 +45,7 @@ def start_rendesvous(key_path): # test
         return service.service_id
 
 
-def stop_rendesvous(service, tor_process): # test
+def stop_rendesvous(service, tor_process):  # test
     with Controller.from_port(port=8801) as controller:
         controller.authenticate()
         controller.remove_ephemeral_hidden_service(service.service_id)

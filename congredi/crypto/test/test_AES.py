@@ -7,6 +7,7 @@ import unittest
 from ..AES import default_aes
 from ..kdf import default_kdf
 
+
 class test_default_aes(unittest.TestCase):
 
     def test_default_aes_passwords(self):

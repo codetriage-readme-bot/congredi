@@ -36,7 +36,7 @@ class CongrediPeerFactory(protocol.Factory):
         self.users = {}  # maps user names to Chat instances
         self.redisPort = redisPort
         self.neo4jPort = neo4jPort
-        if initialKey: # need test case
+        if initialKey:  # need test case
             self.commandKeys.add(initialKey)
             self.redis.addToKeys(initialKey)
         """Add loops to factory? why not add loops to main reactor??"""
@@ -49,28 +49,28 @@ class CongrediPeerFactory(protocol.Factory):
         loopDeferred.addCallback(peerSuccess)
         loopDeferred.addErrback(peerFailure)
 
-    def startedConnecting(self, connector): # test
+    def startedConnecting(self, connector):  # test
         print('Factory - Connecting')
 
-    def clientConnectionLost(self, connector, reason): # test
+    def clientConnectionLost(self, connector, reason):  # test
         print('Factory - Lost connection.  Reason:', reason)
 
-    def clientConnectionFailed(self, connector, reason): # test
+    def clientConnectionFailed(self, connector, reason):  # test
         print('Factory - Connection failed. Reason:', reason)
 
-    def startFactory(self): # test
+    def startFactory(self):  # test
         self.online = True
 
-    def stopFactory(self): # test
+    def stopFactory(self):  # test
         self.online = False
     commandKeys = []
     state = "BEGIN"
 
-    def buildProtocol(self, addr): # test
+    def buildProtocol(self, addr):  # test
         proto = CongrediPeerProtocol(self, self.users)  # , self.peers)
         return proto
 
-    def ping(self): # test
+    def ping(self):  # test
         print('pinging')
         for client in self.clients:
             print('client: {}'.format(client))

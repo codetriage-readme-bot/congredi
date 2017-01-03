@@ -9,30 +9,30 @@ from py2neo import GraphDatabase, basic_auth
 driver = GraphDatabase.driver('bolt://localhost')
 
 
-def get_db(): # test
+def get_db():  # test
     if not hasattr(g, 'neo4j_db'):
         g.neo4j_db = driver.session()
     return g.neo4j_db
 
 
-def del_db(): # test
+def del_db():  # test
     if hasattr(g, 'neo4j_db'):
         g.neo4j_db.close()
 
 
-def assertTrustXY(x, y): # test
+def assertTrustXY(x, y):  # test
     db = get_db()
     db.run(
         "CREATE (a:Person {fingerprint:'{fprint}', trust:'{keys}'})", fprint=x, keys=y)
     return True
 
 
-def queryTrustXY(x, y): # test
+def queryTrustXY(x, y):  # test
     db = get_db()
     db.run()
 
 
-def dependencies(obj): # test
+def dependencies(obj):  # test
     """Calculate the dependencies of an object"""
     pass
 """

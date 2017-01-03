@@ -3,7 +3,7 @@
 """
 All Or Nothing Padding (coulda just used the library's version)
 """
-#Crypto.Protocol.AllOrNothing
+# Crypto.Protocol.AllOrNothing
 from .kdf import default_kdf
 from .AES import default_aes
 from .hash import make_hash
@@ -37,8 +37,8 @@ def AONTdecrypt(cyphertext):
     fernet to decrypt the content.
     """
     key2 = "".join(
-            [chr(ord(a) ^ ord(b)) for a, b in
-             zip(make_hash(cyphertext[:-32]).digest(),
-                 cyphertext[-32:])])
+        [chr(ord(a) ^ ord(b)) for a, b in
+         zip(make_hash(cyphertext[:-32]).digest(),
+             cyphertext[-32:])])
     print('32 key was: {}'.format(key2.encode('hex')))
     return default_aes(key2).decrypt(cyphertext[:-32])

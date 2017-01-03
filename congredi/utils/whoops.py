@@ -10,7 +10,7 @@ class CongrediError(Exception):
     pass
 
 
-def whoops(err): # test
+def whoops(err):  # test
     """The default errback (design - set as default errback?)"""
     print('whoops')
     print(err)

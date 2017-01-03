@@ -12,16 +12,16 @@ from .tor import prox
 
 class api(multiprocessing.Process):
 
-    def run(self): # test
+    def run(self):  # test
         app.run(host="0.0.0.0", port=5000, debug=False)
 
 
 class proxy(multiprocessing.Process):
 
-    def run(self): # test
+    def run(self):  # test
         prox()
 
-if __name__ == "__main__": # test
+if __name__ == "__main__":  # test
     dork = api()
     dork.start()
     lone = proxy()

@@ -13,12 +13,12 @@ from profanity import profanity
 logger = logging.getLogger('congredi')
 
 
-def stateProfanity(statement): # needs a test
+def stateProfanity(statement):  # needs a test
     """Profanity checks (Design: should probably be in a class - #A)"""
     return profanity.contains_profanity(statement)
 
 
-def stateEntropy(statement): # needs a test
+def stateEntropy(statement):  # needs a test
     """Return the entropy of an item (Feature: could use the histogram - #B)"""
     return entropy.shannon_entropy(statement)
 
@@ -35,7 +35,7 @@ def stateEncoding(statement):
     """Return character encoding"""
     try:
         return chardet.detect(statement)['encoding']
-    except UnicodeDecodeError: #needs a test
+    except UnicodeDecodeError:  # needs a test
         return None
 
 

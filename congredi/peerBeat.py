@@ -14,7 +14,7 @@ from .storage.redis import get, set, delete
 from .utils.config import configArr
 
 
-def queryBackground(): # test
+def queryBackground():  # test
     """
     Return an object from within peers
     One Subscription command -> several monitor commands
@@ -22,7 +22,7 @@ def queryBackground(): # test
     pass
 
 
-def updateRead(): # test
+def updateRead():  # test
     """
     Update trees with subscriptions
     One Subscription command -> several monitor commands
@@ -30,7 +30,7 @@ def updateRead(): # test
     pass
 
 
-def updateWrite(): # test
+def updateWrite():  # test
     """
     Publish trees to other nodes
     One Publish command -> several deploy commands
@@ -58,11 +58,11 @@ def peerBeat():  # repeating peer-beat task
     #	loop.stop()
 
 
-def peerSuccess(): # test
+def peerSuccess():  # test
     print('Peer Successful')
 
 
-def peerFailure(failure): # test
+def peerFailure(failure):  # test
     print('peer failure')
     print(failure.getBriefTraceback())
     reactor.stop()
