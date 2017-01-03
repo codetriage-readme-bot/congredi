@@ -15,7 +15,7 @@ def readme():
             return f.read()
 
 setup(name='congredi',
-      version='0.0.2',
+      version='0.0.3',
       description='BASE representation-of-law-via-cryptography protocol',
       long_description=readme(),
       classifiers=[
