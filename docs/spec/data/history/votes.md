@@ -1,1 +1,0 @@
-	VOTES			- list(list(CURRENT,PREVIOUS,SIG))

@@ -1,1 +1,0 @@
-	USER			- KEY, PREVIOUS, SIG

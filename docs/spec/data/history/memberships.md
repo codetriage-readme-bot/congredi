@@ -1,1 +1,0 @@
-	MEMBERSHIPS		- list(list(CURRENT,PREVIOUS,SIG))

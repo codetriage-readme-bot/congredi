@@ -18,20 +18,9 @@ pages:
     - 'Extending':
          - 'angular': 'extending/angular.md'
          - 'database': 'extending/database.md'
-    # - 'Specification':
-    #      - 'About': 'specification/about.md'
-    #      - 'commands': 'specification/commands.md'
-    #      - 'data': 'specification/data.md'
-    #      - 'packets': 'specification/packets.md'
-    # - 'data': 'data/chains.md'
-    - 'commands':
-        - 'Design': 'spec/commands/index.md'
-        - 'current': 'spec/commands/idx/current.md'
-        - 'future': 'spec/commands/idx/future.md'
-        - 'past': 'spec/commands/idx/past.md'
-        - 'search': 'spec/commands/idx/search.md'
-        - 'publish': 'spec/commands/rw/publish.md'
-        - 'deploy': 'spec/commands/rw/deploy.md'
-        - 'subscribe': 'spec/commands/rw/subscribe.md'
-        - 'monitor': 'spec/commands/rw/monitor.md'
+    - 'Specification':
+         - 'Commands': 'spec/commands.md'
+         - 'Storage': 'spec/storage.md'
+         - 'Packets': 'spec/packet.md'
+
 repo_url: https://github.com/thetoxicarcade/congredi

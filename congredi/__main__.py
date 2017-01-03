@@ -10,4 +10,4 @@ from .storage.redis import *
 from .storage.neo4j import *
 
 if __name__ == '__main__':
-    # run()
+    run()
