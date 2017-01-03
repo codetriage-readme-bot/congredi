@@ -9,7 +9,7 @@
         <link rel="canonical" href="http://congredi.io/spec/commands/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Design - Congredi</title>
+	<title>Commands - Congredi</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -117,60 +117,24 @@
             
             
                 <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">commands <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Specification <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li class="active">
-    <a href="./">Design</a>
+    <a href="./">Commands</a>
 </li>
 
                     
                         
 <li >
-    <a href="idx/current/">current</a>
+    <a href="../storage/">Storage</a>
 </li>
 
                     
                         
 <li >
-    <a href="idx/future/">future</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="idx/past/">past</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="idx/search/">search</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="rw/publish/">publish</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="rw/deploy/">deploy</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="rw/subscribe/">subscribe</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="rw/monitor/">monitor</a>
+    <a href="../packet/">Packets</a>
 </li>
 
                     
@@ -193,7 +157,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="idx/current/">
+                    <a rel="prev" href="../storage/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -216,46 +180,78 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#design-problems">Design Problems</a></li>
+        <li class="main active"><a href="#commands-overview">Commands Overview</a></li>
+        
+    
+        <li class="main "><a href="#get-set">GET &amp; SET</a></li>
+        
+            <li><a href="#recursions">Recursions</a></li>
+        
+    
+        <li class="main "><a href="#seek">SEEK</a></li>
+        
+    
+        <li class="main "><a href="#search">SEARCH</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h2 id="design-problems">Design Problems</h2>
-<p><code>PUBLISH, DEPLOY, SUBSCRIBE, MONITOR, PAST, CURRENT, FUTURE, SEARCH</code></p>
-<p>Congredi uses three classes of operations, unprivledged local,
-privledged global, and privledged recursion.</p>
-<p>Operations like <code>DEPLOY</code> and <code>MONITOR</code> need no permissions but
-only ask about that local node, and don't have a guarentee of
-persisting on it. If more important things need to be stored,
-these ones will be removed first.</p>
-<p>Operations like <code>PUBLISH</code> and <code>SUBSCRIBE</code>, however, use the
-node's time and resources to ask around for things, and deploy
-their results to multiple servers to get the word around.</p>
-<p>Finally, operations like <code>PAST</code> <code>CURRENT</code> <code>FUTURE</code> and <code>SEARCH</code>
-are dependant on having the full list of objects, and operate
-by trying to split the work among other nodes.</p>
-<p>Blobs will probably be zlib compressed ndiffs, even if I want them to be
-unified diffs.</p>
-<p>Example Operations:</p>
-<p>MONITOR CACHE foobar HAS : <listobject></p>
-<p>DEPLOY CACHE foobar HAS <listobject></p>
-<pre><code>'SET'
-    PUBLISH - permissions, long lasting item
-    DEPLOY - no permissions, publish key, may soon be deleted
-
-'GET'
-    SUBSCRIBE - permissions set rendesvous to pull updates
-    MONITOR - no permissions, query for key, request expires
-
-    PAST - grab all previous versions
-    CURRENT - grab signed latest
-    FUTURE - grab all newer versions
-
-SEARCH &lt;&gt; ORDER &lt;&gt; OFFSET &lt;&gt; COUNT &lt;&gt; TERM &lt;&gt;
-</code></pre></div>
+<h2 id="commands-overview">Commands Overview</h2>
+<p>Congredi, whether via the HTTP api, terminal client, or AMP peers,
+issues atomic statements to other peers using a specific syntax
+for each one. It uses the following:</p>
+<ul>
+<li>GET</li>
+<li>SET</li>
+<li>SEEK</li>
+<li>SEARCH</li>
+</ul>
+<h2 id="get-set">GET &amp; SET</h2>
+<p>Both <code>get</code> and <code>set</code> have a <code>permissions</code> boolean. When permisions is set to
+<code>True</code>, we check that the author is in our trust model, and perform the same
+command on our peers with <code>permissions</code> set to <code>False</code>.</p>
+<p>They return the lifetime of the object.</p>
+<ol>
+<li>Check signature of message</li>
+<li>
+<p>When permissions are set, check web-of-trust to that key</p>
+</li>
+<li>
+<p>Check that we have the hash</p>
+</li>
+<li>When publishing a CHAIN, if we don't have previous
+    queue a job to get it or delete it</li>
+<li>Return results + peers where we got it + lifetime of data</li>
+</ol>
+<h3 id="recursions">Recursions</h3>
+<ol>
+<li>Check their auth</li>
+<li>Check what we have - return as iter</li>
+<li>Ask peers - store &amp; return to user<ul>
+<li>divide work between peers</li>
+<li>work to the null-hash at the front of the tree</li>
+<li>prove the content lines up end-to-end</li>
+</ul>
+</li>
+</ol>
+<h2 id="seek">SEEK</h2>
+<p>Seek operates on a direction (<code>Forward</code> or <code>Backward</code>), an index (<code>current</code> or
+the 32 bit hash), and a <code>count</code> integer. </p>
+<p>This returns a dictionary of objects and the users/routers who have them.</p>
+<p>If permissions are set, it'll begin trying to obtain those hashes.</p>
+<h2 id="search">SEARCH</h2>
+<p>Search relies on having the entire object.
+<code>order</code> <code>offset</code> <code>count</code> <code>term</code></p>
+<p>This returns the larger resolved byte context, the object, and the
+revision we searched from (say, 'defghj', which could be 6 commits ahead
+of another server you search on).</p>
+<ol>
+<li>If we have it, search it.</li>
+<li>Else, use recursions to divvy work</li>
+<li>return results</li>
+</ol></div>
         </div>
 
         <footer class="col-md-12">

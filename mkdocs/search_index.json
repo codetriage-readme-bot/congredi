@@ -207,93 +207,88 @@
         }, 
         {
             "location": "/spec/commands/", 
-            "text": "Design Problems\n\n\nPUBLISH, DEPLOY, SUBSCRIBE, MONITOR, PAST, CURRENT, FUTURE, SEARCH\n\n\nCongredi uses three classes of operations, unprivledged local,\nprivledged global, and privledged recursion.\n\n\nOperations like \nDEPLOY\n and \nMONITOR\n need no permissions but\nonly ask about that local node, and don't have a guarentee of\npersisting on it. If more important things need to be stored,\nthese ones will be removed first.\n\n\nOperations like \nPUBLISH\n and \nSUBSCRIBE\n, however, use the\nnode's time and resources to ask around for things, and deploy\ntheir results to multiple servers to get the word around.\n\n\nFinally, operations like \nPAST\n \nCURRENT\n \nFUTURE\n and \nSEARCH\n\nare dependant on having the full list of objects, and operate\nby trying to split the work among other nodes.\n\n\nBlobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.\n\n\nExample Operations:\n\n\nMONITOR CACHE foobar HAS : \n\n\nDEPLOY CACHE foobar HAS \n\n\n'SET'\n    PUBLISH - permissions, long lasting item\n    DEPLOY - no permissions, publish key, may soon be deleted\n\n'GET'\n    SUBSCRIBE - permissions set rendesvous to pull updates\n    MONITOR - no permissions, query for key, request expires\n\n    PAST - grab all previous versions\n    CURRENT - grab signed latest\n    FUTURE - grab all newer versions\n\nSEARCH \n ORDER \n OFFSET \n COUNT \n TERM", 
-            "title": "Design"
+            "text": "Commands Overview\n\n\nCongredi, whether via the HTTP api, terminal client, or AMP peers,\nissues atomic statements to other peers using a specific syntax\nfor each one. It uses the following:\n\n\n\n\nGET\n\n\nSET\n\n\nSEEK\n\n\nSEARCH\n\n\n\n\nGET \n SET\n\n\nBoth \nget\n and \nset\n have a \npermissions\n boolean. When permisions is set to\n\nTrue\n, we check that the author is in our trust model, and perform the same\ncommand on our peers with \npermissions\n set to \nFalse\n.\n\n\nThey return the lifetime of the object.\n\n\n\n\nCheck signature of message\n\n\n\n\nWhen permissions are set, check web-of-trust to that key\n\n\n\n\n\n\nCheck that we have the hash\n\n\n\n\nWhen publishing a CHAIN, if we don't have previous\n    queue a job to get it or delete it\n\n\nReturn results + peers where we got it + lifetime of data\n\n\n\n\nRecursions\n\n\n\n\nCheck their auth\n\n\nCheck what we have - return as iter\n\n\nAsk peers - store \n return to user\n\n\ndivide work between peers\n\n\nwork to the null-hash at the front of the tree\n\n\nprove the content lines up end-to-end\n\n\n\n\n\n\n\n\nSEEK\n\n\nSeek operates on a direction (\nForward\n or \nBackward\n), an index (\ncurrent\n or\nthe 32 bit hash), and a \ncount\n integer. \n\n\nThis returns a dictionary of objects and the users/routers who have them.\n\n\nIf permissions are set, it'll begin trying to obtain those hashes.\n\n\nSEARCH\n\n\nSearch relies on having the entire object.\n\norder\n \noffset\n \ncount\n \nterm\n\n\nThis returns the larger resolved byte context, the object, and the\nrevision we searched from (say, 'defghj', which could be 6 commits ahead\nof another server you search on).\n\n\n\n\nIf we have it, search it.\n\n\nElse, use recursions to divvy work\n\n\nreturn results", 
+            "title": "Commands"
         }, 
         {
-            "location": "/spec/commands/#design-problems", 
-            "text": "PUBLISH, DEPLOY, SUBSCRIBE, MONITOR, PAST, CURRENT, FUTURE, SEARCH  Congredi uses three classes of operations, unprivledged local,\nprivledged global, and privledged recursion.  Operations like  DEPLOY  and  MONITOR  need no permissions but\nonly ask about that local node, and don't have a guarentee of\npersisting on it. If more important things need to be stored,\nthese ones will be removed first.  Operations like  PUBLISH  and  SUBSCRIBE , however, use the\nnode's time and resources to ask around for things, and deploy\ntheir results to multiple servers to get the word around.  Finally, operations like  PAST   CURRENT   FUTURE  and  SEARCH \nare dependant on having the full list of objects, and operate\nby trying to split the work among other nodes.  Blobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.  Example Operations:  MONITOR CACHE foobar HAS :   DEPLOY CACHE foobar HAS   'SET'\n    PUBLISH - permissions, long lasting item\n    DEPLOY - no permissions, publish key, may soon be deleted\n\n'GET'\n    SUBSCRIBE - permissions set rendesvous to pull updates\n    MONITOR - no permissions, query for key, request expires\n\n    PAST - grab all previous versions\n    CURRENT - grab signed latest\n    FUTURE - grab all newer versions\n\nSEARCH   ORDER   OFFSET   COUNT   TERM", 
-            "title": "Design Problems"
+            "location": "/spec/commands/#commands-overview", 
+            "text": "Congredi, whether via the HTTP api, terminal client, or AMP peers,\nissues atomic statements to other peers using a specific syntax\nfor each one. It uses the following:   GET  SET  SEEK  SEARCH", 
+            "title": "Commands Overview"
         }, 
         {
-            "location": "/spec/commands/idx/current/", 
-            "text": "CURRENT\n\n\n\n\nCheck the info we have\n\n\nCheck where we got it from\n\n\nCheck our peers\n\n\nReturn our results", 
-            "title": "current"
+            "location": "/spec/commands/#get-set", 
+            "text": "Both  get  and  set  have a  permissions  boolean. When permisions is set to True , we check that the author is in our trust model, and perform the same\ncommand on our peers with  permissions  set to  False .  They return the lifetime of the object.   Check signature of message   When permissions are set, check web-of-trust to that key    Check that we have the hash   When publishing a CHAIN, if we don't have previous\n    queue a job to get it or delete it  Return results + peers where we got it + lifetime of data", 
+            "title": "GET &amp; SET"
         }, 
         {
-            "location": "/spec/commands/idx/current/#current", 
-            "text": "Check the info we have  Check where we got it from  Check our peers  Return our results", 
-            "title": "CURRENT"
+            "location": "/spec/commands/#recursions", 
+            "text": "Check their auth  Check what we have - return as iter  Ask peers - store   return to user  divide work between peers  work to the null-hash at the front of the tree  prove the content lines up end-to-end", 
+            "title": "Recursions"
         }, 
         {
-            "location": "/spec/commands/idx/future/", 
-            "text": "FUTURE\n\n\nSame as above", 
-            "title": "future"
+            "location": "/spec/commands/#seek", 
+            "text": "Seek operates on a direction ( Forward  or  Backward ), an index ( current  or\nthe 32 bit hash), and a  count  integer.   This returns a dictionary of objects and the users/routers who have them.  If permissions are set, it'll begin trying to obtain those hashes.", 
+            "title": "SEEK"
         }, 
         {
-            "location": "/spec/commands/idx/future/#future", 
-            "text": "Same as above", 
-            "title": "FUTURE"
-        }, 
-        {
-            "location": "/spec/commands/idx/past/", 
-            "text": "PAST\n\n\n\n\nCheck the user permissions\n\n\nCheck all the info we have, send this to peers to help them\n\n\nTry to get to a null-beginning hash of the tree\n\n\nProve that the content lines up end to end\n\n\nReturn the content", 
-            "title": "past"
-        }, 
-        {
-            "location": "/spec/commands/idx/past/#past", 
-            "text": "Check the user permissions  Check all the info we have, send this to peers to help them  Try to get to a null-beginning hash of the tree  Prove that the content lines up end to end  Return the content", 
-            "title": "PAST"
-        }, 
-        {
-            "location": "/spec/commands/idx/search/", 
-            "text": "SEARCH\n\n\nSEARCH \n ORDER \n OFFSET \n COUNT \n TERM \n\n1. if we have the full diff, search it\n2. if we don't, request PAST/FUTURE queries\n3. return ranked results", 
-            "title": "search"
-        }, 
-        {
-            "location": "/spec/commands/idx/search/#search", 
-            "text": "SEARCH   ORDER   OFFSET   COUNT   TERM  \n1. if we have the full diff, search it\n2. if we don't, request PAST/FUTURE queries\n3. return ranked results", 
+            "location": "/spec/commands/#search", 
+            "text": "Search relies on having the entire object. order   offset   count   term  This returns the larger resolved byte context, the object, and the\nrevision we searched from (say, 'defghj', which could be 6 commits ahead\nof another server you search on).   If we have it, search it.  Else, use recursions to divvy work  return results", 
             "title": "SEARCH"
         }, 
         {
-            "location": "/spec/commands/rw/publish/", 
-            "text": "PUBLISH - privledged set\n\n\nPUBLISH IDENTITY USER \nkey\npreviousfingerprint\nsigbyprevious\n\nDifferences:\n2. Fail if we don't have the key, publish operations are privledged,\n    Ask for permission before using them!\n2.5. Check if a trust-path exists from this node's users to that key. ErrBack.", 
-            "title": "publish"
+            "location": "/spec/storage/", 
+            "text": "AUTHOR \n\n\n\n\n\n\n[LATEST|CHAIN|BLOCK]\n\nPERMISSIONS \n[TRUE|FALSE\n\n[\n OFFSET \n COUNT \n]\nSEARCH COMMIT \nAUTHOR e31df061a89e63ce7f6941c82b0261e91d400926a70e09f229e0dbdbe067ee19 SET COMMIT PERMISSIONS FALSE\nsign(req, key): value = yaml.dump(req); return key.sign(value)\n\n\nentity\n:\n    /proof              CHAIN [objecthash, start, stop, result, sig, previous]\n    /has                CHAIN [objecthash, previous, sig]\n    /wants              CHAIN [objecthash, previous, sig]\n\n\nchunk\n:          data\ncommit\n:         list(chunks), list(previous), author, sig\nrouter\n:\n    /ip                 CHAIN [ips, previous, sig]\n    /censor             CHAIN [hash, previous, sig]\n    /uptime             CHAIN [uptime, previous, sig]\n    /seen               CHAIN [seen, previous, sig]\n    /rank               CHAIN [rank, previous, sig]\n    /courier-of         CHAIN [hash-key, previous, sig]\n    /rendesvous-of      CHAIN [hash-key, previous, sig]\n    PRIVATE:\n        /blacklist          CHAIN [hash-key, ip, previous, sig]\n        /whitelist          CHAIN [hash-key, ip, previous, sig]\n        /peers              CHAIN [hash-key, ip, previous, sig]\n        /users              CHAIN [hash-key, previous, sig]\n        /admin              CHAIN [hash-key, previous, sig]\n\n\nuser\n: - pubkey\n    # properties\n    /bio                CHAIN [COMMIT, previous, sig]\n    /location           CHAIN [zkplocation, previous, sig]\n\n\n# couriers (public ips of endpoints)\n/couriered-by       CHAIN [courier, ip, previous, sig]\n/rendesvoused-by    CHAIN [rendesvous, ip, previous, sig]\n\n/join-req           CHAIN [org, previous, sig]\n/proposal           CHAIN [org, commit, vote, previous, sig]\n/member-of          CHAIN [org, previous, sig]\n\n\n/casted-votes       CHAIN [vote, ballot, previous, sig]\n/casted-polls       CHAIN [poll, ballot, previous, sig]\n\n/tree\nhash\n         CHAIN [commit, previous, sig]\n/saves              CHAIN [hash, previous, sig]\n\n\n\norg\n: - tuple(admin pubkeys)\n    /manifesto          BLOCK [COMMIT]\n    /borders            BLOCK [tuple]\n\n\n# couriers (endpoint IPs and user IPs\n/host-staff         BLOCK [key, ip, acceptance]\n/host-volunteer     BLOCK [key, acceptance]\n\n# documents neaded to align everyone to a vote\n/members            BLOCK [join-req, acceptance]\n/proposals          BLOCK [proposal, acceptance]\n\n# vote results\n/vote-tally\nhash\n   BLOCK [ballot, acceptance]\n/poll-tally\nhash\n   BLOCK [ballot, acceptance]\n\n\n/saves-tally        BLOCK [saves, acceptance]\n\n\n\nOLD\n\n\n\n\nCongredi deals with a hash-value structure and a directed graph structure,\nwith both redis and neo4j.\n\n\nBlobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.\n\n\nstructures \n query language (i.e. PUBLISH CACHE HAS \nobject\n)\nCACHE\nCOMPUTATION\nHISTORY\nIDENTITY\nCONTENT\nSETTING\n\n\n\n\nusers -\n agg -\n polls/votes/trees -\n commits -\n chunks\n\n\ndirected graph\n:{\n    \nuser\n:{\n        \ntrusts\n:\nusers\n,\n        \nfollows\n:\nrepos\n\n    \nrepo\n:\ncommits\n\n\n\n\n\n\"CACHE HAS\"\n\n\nA router (identified by their public key) can declare they have something with\npackets. We keep track of them in a list of objects totalled like this:\n\n\n(concatenate fields...)\n\n\n64b key :\n    32b lookup hash of bellow :\n        32b hash (of content they have)\n        datestring (beginning storage date)\n        datestring (expiry date)\n        32b sig (signature of the above)\n\n\n\n\n\"CACHE PROOF\"\n\n\nA router (identified by their public key) can prove they have something with\npackets. We keep track of them in a list of objects totalled like this:\n\n\n(concatenate fields...)\n\n\n64b key :\n    32b lookup hash of bellow :\n        32b hash (of content they have)\n        32b nonce (as a challenge)\n        32b result (hash of adding the nonce to the selected bytes)\n        int position (place to grab bytes from)\n        datestring (time they proved that nonce)\n        32b sig (signature of the above)\n\n\n\n\n\"CACHE RANK\"\n\n\nA router (identified by their public key) can declare they have something with\npackets. We keep track of them in a list of objects totalled like this:\n\n\n(concatenate fields...)\n\n\n64b key :\n    32b lookup hash of bellow :\n        32b hash of previous lookup rank hash\n        rank info\n        datestring (beginning rank date)\n        datestring (expiry date)\n        32b sig (signature of the above)\n\n\n\n\n\"CACHE SEEN\"\n\n\nA router (identified by their public key) can declare they have something with\npackets. We keep track of them in a list of objects totalled like this:\n\n\n(concatenate fields...)\n\n\n64b key :\n    32b lookup hash of bellow :\n        32b hash of previous lookup hash\n        datestring last seen\n        datestring (beginning storage date)\n        datestring (expiry date)\n        32b sig (signature of the above)\n\n\n\n\n\"CACHE UPTIME\"\n\n\nA router (identified by their public key) can declare they have something with\npackets. We keep track of them in a list of objects totalled like this:\n\n\n(concatenate fields...)\n\n\n64b key :\n    32b lookup hash of bellow :\n        32b hash of previous lookup hash\n        uptime information\n        datestring (beginning storage date)\n        datestring (expiry date)\n        32b sig (signature of the above)\n\n\n\n\n\"CACHE WANTS\"\n\n\nA router (identified by their public key) can declare they have something with\npackets. We keep track of them in a list of objects totalled like this:\n\n\n(concatenate fields...)\n\n\n64b key :\n    32b lookup hash of bellow :\n        32b hash (of content they want)\n        datestring (beginning storage date)\n        datestring (expiry date)\n        32b sig (signature of the above)\n\n\n\n\n\"COMPUTATION POLL\"\n\n\nAn org can compute a poll (public vote) together, and publish their findings\nin a poll object. Computation fields are byzantian problems, so consensus\nneeds reaching. We keep track of them in a list of objects totalled like this:\n\n\n(concatenate fields...)\n\n\nBlobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.\n\n\n32b hash of original poll spec :\n    32b lookup hash of bellow :\n        32b hash (of polls we do have)\n        list:\n            user's latest poll on this\n        result object\n        datestring (date)\n        32b sig (signature of the above)\n        32b threshsig\n\n\n\n\n    SAVES           - list(list(hash,begins,expires),date,threshsig)\n    TREES           - list(trees,date,threshsig)\n    VOTE            - list(votes,date,threshsig)\n    VOTERS          - list(proofs,date,threshsig)\n    BIO             - COMMIT,PREVIOUS,SIG\n    CHUNK           - truncated-gzip-ndiff-markdown\n    COMMIT          - hash,list(CHUNKS),list(PREVIOUS),SIG, KEY\n    MANIFESTO       - COMMIT,PREVIOUS,THRESHSIG\n    POLL            - list(TREES)\n    VOTE            - list(TREES)\n    MEMBERSHIPS     - list(list(CURRENT,PREVIOUS,SIG))\n    POLLS           - list(list(CURRENT,PREVIOUS,SIG))\n    PROPOSALS       - list(list(CURRENT,PREVIOUS,SIG))\n    SAVES           - list(list(list(hash,begins,expires),PREVIOUS,SIG))\n    TREES           - list(list(CURRENT,PREVIOUS,SIG))\n    VOTES           - list(list(CURRENT,PREVIOUS,SIG))\n    AGGREGATE       - list(KEYS), PREVIOUS, SIG\n    BORDERS         - CURRENT, PREVIOUS, THRESHSIG\n    IP              - IP, PREVIOUS, SIG\n    LOCATION        - ZKP, PREVIOUS, SIG\n    RENDESVOUS      - list(IPS), PREVIOUS, SIG\n    ROUTE           - KEY, PREVIOUS, SIG\n    USER            - KEY, PREVIOUS, SIG\n    ADMIN           - list(fp)\n    BLACKLIST       - list(fp)\n    IP              - previous:sig:ip\n    PEER            - list(fp)\n    RENDESVOUS      - previous:sig:list(fp)\n    USER            - list(fp)\n    WHITELIST       - list(fp)", 
+            "title": "Storage"
         }, 
         {
-            "location": "/spec/commands/rw/publish/#publish-privledged-set", 
-            "text": "PUBLISH IDENTITY USER  key previousfingerprint sigbyprevious \nDifferences:\n2. Fail if we don't have the key, publish operations are privledged,\n    Ask for permission before using them!\n2.5. Check if a trust-path exists from this node's users to that key. ErrBack.", 
-            "title": "PUBLISH - privledged set"
+            "location": "/spec/storage/#old", 
+            "text": "Congredi deals with a hash-value structure and a directed graph structure,\nwith both redis and neo4j.  Blobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.  structures   query language (i.e. PUBLISH CACHE HAS  object )\nCACHE\nCOMPUTATION\nHISTORY\nIDENTITY\nCONTENT\nSETTING  users -  agg -  polls/votes/trees -  commits -  chunks directed graph :{\n     user :{\n         trusts : users ,\n         follows : repos \n     repo : commits", 
+            "title": "OLD"
         }, 
         {
-            "location": "/spec/commands/rw/deploy/", 
-            "text": "DEPLOY - unprivledged set\n\n\nDEPLOY IDENTITY USER \nkey\npreviousfingerprint\nsigbyprevious\n\n1. Check validity of sig against given key.\n2. Request previous key if we don't have it.\n3. Add previous key, new key, and query proof to DB, expire (lim)\n4. Return certification that it'll be in there, barring space considerations.", 
-            "title": "deploy"
+            "location": "/spec/storage/#cache-has", 
+            "text": "A router (identified by their public key) can declare they have something with\npackets. We keep track of them in a list of objects totalled like this:  (concatenate fields...)  64b key :\n    32b lookup hash of bellow :\n        32b hash (of content they have)\n        datestring (beginning storage date)\n        datestring (expiry date)\n        32b sig (signature of the above)", 
+            "title": "\"CACHE HAS\""
         }, 
         {
-            "location": "/spec/commands/rw/deploy/#deploy-unprivledged-set", 
-            "text": "DEPLOY IDENTITY USER  key previousfingerprint sigbyprevious \n1. Check validity of sig against given key.\n2. Request previous key if we don't have it.\n3. Add previous key, new key, and query proof to DB, expire (lim)\n4. Return certification that it'll be in there, barring space considerations.", 
-            "title": "DEPLOY - unprivledged set"
+            "location": "/spec/storage/#cache-proof", 
+            "text": "A router (identified by their public key) can prove they have something with\npackets. We keep track of them in a list of objects totalled like this:  (concatenate fields...)  64b key :\n    32b lookup hash of bellow :\n        32b hash (of content they have)\n        32b nonce (as a challenge)\n        32b result (hash of adding the nonce to the selected bytes)\n        int position (place to grab bytes from)\n        datestring (time they proved that nonce)\n        32b sig (signature of the above)", 
+            "title": "\"CACHE PROOF\""
         }, 
         {
-            "location": "/spec/commands/rw/subscribe/", 
-            "text": "SUBSCRIBE - privledged get\n\n\n\n\nCheck what we know about it\n\n\nCheck what peers know about it\n\n\nReturn results, and where we got it from\n\n\nUpdate their rendesvous peers if they want to know more", 
-            "title": "subscribe"
+            "location": "/spec/storage/#cache-rank", 
+            "text": "A router (identified by their public key) can declare they have something with\npackets. We keep track of them in a list of objects totalled like this:  (concatenate fields...)  64b key :\n    32b lookup hash of bellow :\n        32b hash of previous lookup rank hash\n        rank info\n        datestring (beginning rank date)\n        datestring (expiry date)\n        32b sig (signature of the above)", 
+            "title": "\"CACHE RANK\""
         }, 
         {
-            "location": "/spec/commands/rw/subscribe/#subscribe-privledged-get", 
-            "text": "Check what we know about it  Check what peers know about it  Return results, and where we got it from  Update their rendesvous peers if they want to know more", 
-            "title": "SUBSCRIBE - privledged get"
+            "location": "/spec/storage/#cache-seen", 
+            "text": "A router (identified by their public key) can declare they have something with\npackets. We keep track of them in a list of objects totalled like this:  (concatenate fields...)  64b key :\n    32b lookup hash of bellow :\n        32b hash of previous lookup hash\n        datestring last seen\n        datestring (beginning storage date)\n        datestring (expiry date)\n        32b sig (signature of the above)", 
+            "title": "\"CACHE SEEN\""
         }, 
         {
-            "location": "/spec/commands/rw/monitor/", 
-            "text": "MONITOR - unprivledged get\n\n\nMONITOR CACHE \nhash\n WANTS\n\n\n\n\nCheck that we know about the hash\n\n\nReturn results\n\n\ninclude where we got it from so they can do their research", 
-            "title": "monitor"
+            "location": "/spec/storage/#cache-uptime", 
+            "text": "A router (identified by their public key) can declare they have something with\npackets. We keep track of them in a list of objects totalled like this:  (concatenate fields...)  64b key :\n    32b lookup hash of bellow :\n        32b hash of previous lookup hash\n        uptime information\n        datestring (beginning storage date)\n        datestring (expiry date)\n        32b sig (signature of the above)", 
+            "title": "\"CACHE UPTIME\""
         }, 
         {
-            "location": "/spec/commands/rw/monitor/#monitor-unprivledged-get", 
-            "text": "MONITOR CACHE  hash  WANTS   Check that we know about the hash  Return results  include where we got it from so they can do their research", 
-            "title": "MONITOR - unprivledged get"
+            "location": "/spec/storage/#cache-wants", 
+            "text": "A router (identified by their public key) can declare they have something with\npackets. We keep track of them in a list of objects totalled like this:  (concatenate fields...)  64b key :\n    32b lookup hash of bellow :\n        32b hash (of content they want)\n        datestring (beginning storage date)\n        datestring (expiry date)\n        32b sig (signature of the above)", 
+            "title": "\"CACHE WANTS\""
+        }, 
+        {
+            "location": "/spec/storage/#computation-poll", 
+            "text": "An org can compute a poll (public vote) together, and publish their findings\nin a poll object. Computation fields are byzantian problems, so consensus\nneeds reaching. We keep track of them in a list of objects totalled like this:  (concatenate fields...)  Blobs will probably be zlib compressed ndiffs, even if I want them to be\nunified diffs.  32b hash of original poll spec :\n    32b lookup hash of bellow :\n        32b hash (of polls we do have)\n        list:\n            user's latest poll on this\n        result object\n        datestring (date)\n        32b sig (signature of the above)\n        32b threshsig      SAVES           - list(list(hash,begins,expires),date,threshsig)\n    TREES           - list(trees,date,threshsig)\n    VOTE            - list(votes,date,threshsig)\n    VOTERS          - list(proofs,date,threshsig)\n    BIO             - COMMIT,PREVIOUS,SIG\n    CHUNK           - truncated-gzip-ndiff-markdown\n    COMMIT          - hash,list(CHUNKS),list(PREVIOUS),SIG, KEY\n    MANIFESTO       - COMMIT,PREVIOUS,THRESHSIG\n    POLL            - list(TREES)\n    VOTE            - list(TREES)\n    MEMBERSHIPS     - list(list(CURRENT,PREVIOUS,SIG))\n    POLLS           - list(list(CURRENT,PREVIOUS,SIG))\n    PROPOSALS       - list(list(CURRENT,PREVIOUS,SIG))\n    SAVES           - list(list(list(hash,begins,expires),PREVIOUS,SIG))\n    TREES           - list(list(CURRENT,PREVIOUS,SIG))\n    VOTES           - list(list(CURRENT,PREVIOUS,SIG))\n    AGGREGATE       - list(KEYS), PREVIOUS, SIG\n    BORDERS         - CURRENT, PREVIOUS, THRESHSIG\n    IP              - IP, PREVIOUS, SIG\n    LOCATION        - ZKP, PREVIOUS, SIG\n    RENDESVOUS      - list(IPS), PREVIOUS, SIG\n    ROUTE           - KEY, PREVIOUS, SIG\n    USER            - KEY, PREVIOUS, SIG\n    ADMIN           - list(fp)\n    BLACKLIST       - list(fp)\n    IP              - previous:sig:ip\n    PEER            - list(fp)\n    RENDESVOUS      - previous:sig:list(fp)\n    USER            - list(fp)\n    WHITELIST       - list(fp)", 
+            "title": "\"COMPUTATION POLL\""
+        }, 
+        {
+            "location": "/spec/packet/", 
+            "text": "AMP Packets\n\n\nkleptography / outside obfuscation / steganalisis\nRATCHET sessionkey, prekey,\nONION FROM \nroute\n TO \nroute\n \ncontents\n\nratchet:onion:AONT:Axolotl EC AES new hope\nring learning homomorphic garlic, sign time+nounce,\nOAEP/AONT/hamming4:7\nnonce, prekey, session key, hash, time, pubkey, p2p, dht\nlibgit2-redis/txredisapi / redis / neo4j; if in peers,\ndelete, add peer 0(1) nettrust KV - list,\nread, add(k,v), delete(k)\n\n\n\n\nCongredi uses a simplified onion-routing system to discourage some censorship.\nServers, once active on the network, ask 3 nodes to be their rendesvous, and\nthen sign a statement that gets advertised around the network. Clients can\nmake a query to those nodes through a set of layered encryptions, until\nthe final node and the rendesvous node, either of which may object to the query.\nSince the serve stores data in plaintext, if it finds something objectionable,\nor of no use, it can censor that content as well.", 
+            "title": "Packets"
+        }, 
+        {
+            "location": "/spec/packet/#amp-packets", 
+            "text": "kleptography / outside obfuscation / steganalisis\nRATCHET sessionkey, prekey,\nONION FROM  route  TO  route   contents \nratchet:onion:AONT:Axolotl EC AES new hope\nring learning homomorphic garlic, sign time+nounce,\nOAEP/AONT/hamming4:7\nnonce, prekey, session key, hash, time, pubkey, p2p, dht\nlibgit2-redis/txredisapi / redis / neo4j; if in peers,\ndelete, add peer 0(1) nettrust KV - list,\nread, add(k,v), delete(k)  Congredi uses a simplified onion-routing system to discourage some censorship.\nServers, once active on the network, ask 3 nodes to be their rendesvous, and\nthen sign a statement that gets advertised around the network. Clients can\nmake a query to those nodes through a set of layered encryptions, until\nthe final node and the rendesvous node, either of which may object to the query.\nSince the serve stores data in plaintext, if it finds something objectionable,\nor of no use, it can censor that content as well.", 
+            "title": "AMP Packets"
         }
     ]
 }
