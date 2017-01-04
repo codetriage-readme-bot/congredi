@@ -1,0 +1,24 @@
+peer:
+  autodestroy: always
+  autoredeploy: true
+  image: 'congredi/congredi:latest'
+  links:
+    - redis
+  ports:
+    - '8800:8800'
+  sequential_deployment: true
+  target_num_containers: 10
+redis:
+  expose:
+    - '6379'
+  image: 'redis:alpine'
+site:
+  autodestroy: always
+  autoredeploy: true
+  image: 'congredi/delegito:latest'
+  links:
+    - peer
+  ports:
+    - '80:80'
+    - '443:443'
+  sequential_deployment: true
