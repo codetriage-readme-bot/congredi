@@ -15,10 +15,16 @@ ADD . /code
 # 184.8 kB / 331.3 KB context (.dockerignore)
 WORKDIR /code
 RUN python setup.py green && \
-    python setup.py build bdist_wheel install 1>/dev/null && \
+    python setup.py build && \
+    python setup.py bdist_wheel && \
+    python setup.py install && \
 	find . -type f -name "*.pyc" -delete
 # 186.7 kB - Could be removing more files.
+WORKDIR /
+RUN which congredi
+#RUN python -m congredi
 EXPOSE 8800
 
 # Originally was 352.3 MB, now around 205.9 MB.
 # 141.4 MB of that is libs...
+CMD congredi peer

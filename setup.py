@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #- * -coding: utf - 8 - * -
-from setuptools import setup
+from setuptools import setup, find_packages
 # trying to fix ReStructured Text on PyPi, not exactly
 # working(possibly needs to be stricter ? )
 
@@ -55,11 +55,12 @@ setup(name='congredi',
       ],
       entry_points={
           'console_scripts': [
-              'congredi=congredi.main.options:run'
+              'congredi=congredi.term.run:run'
           ],
       },
       include_package_data=True,
-      packages=['congredi'],  # ,'docs'],
+      packages=find_packages(exclude=['.pyc','.md','.pdf']),
+      #packages=['congredi'],  # ,'docs'],
       package_data={
           'delegito': ['*'],
           'docs': ['*/*'],
