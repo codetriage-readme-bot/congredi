@@ -4,11 +4,11 @@
 test logger
 """
 import unittest
-from ..logger import setLog
+from ..logger import formatLevel
 
 
 class test_logger(unittest.TestCase):
 
-    def test_logger(self):
+    def test_logger_level(self):
         # need to check if this is logging correctly
-        setLog('INFO')
+        formatLevel('INFO')

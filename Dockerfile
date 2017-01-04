@@ -1,30 +1,39 @@
 FROM python:2-alpine
-# 72.11MB - base
 MAINTAINER Cameron Whiting "thetoxicarcade@gmail.com"
 ADD requirements.txt /
-# 269 B
 RUN apk add --update gcc g++ make libffi-dev openssl-dev && \
 	pip install -r requirements.txt setuptools-green green setuptools-lint pylint && \
 	apk del gcc g++ make && \
 	apk add libstdc++ libcrypto1.0 openssl-dev
-#131.4 MB - FIXME on the del-then-re-add-libstdc++
+# - FIXME on the del-then-re-add-libstdc++
 
 # -- The above is a "base" layer. Don't touch it for faster builds. --
-
-ADD . /code
-# 184.8 kB / 331.3 KB context (.dockerignore)
+ADD . /code/
 WORKDIR /code
 RUN python setup.py green && \
-    python setup.py build && \
-    python setup.py bdist_wheel && \
-    python setup.py install && \
+    python setup.py build 1>/dev/null && \
+    python setup.py bdist_wheel 1>/dev/null && \
+    python setup.py install 1>/dev/null && \
 	find . -type f -name "*.pyc" -delete
-# 186.7 kB - Could be removing more files.
-WORKDIR /
-RUN which congredi
-#RUN python -m congredi
-EXPOSE 8800
 
-# Originally was 352.3 MB, now around 205.9 MB.
-# 141.4 MB of that is libs...
-CMD congredi peer
+# a non-sudo user for the app to run on
+ARG username=app
+ENV createuser=$username
+RUN adduser -D -u 1000 $createuser
+USER $username
+WORKDIR /home/app
+RUN which congredi
+
+# This'll expose at build, for example:
+# docker build --build-args exposeport=2000
+# docker run -d congredi:latest
+# should be exposed at 0.0.0.0:2000
+
+# To change the port on a run, open that port with the docker cli.
+# docker run -p 1001 -d congredi:latest congredi -p 1001 peer
+# should be exposed at 0.0.0.0:1001
+
+ENV exposeport=8800
+EXPOSE $exposeport
+
+CMD congredi -p $exposeport peer

@@ -18,7 +18,7 @@ def AONTencrypt(content, password):
     """
     key_raw = default_kdf(password)
     token = default_aes(key_raw).encrypt(content)
-    print("32 key: {}".format(key_raw.encode('hex')))
+    #print("32 key: {}".format(key_raw.encode('hex')))
     """
 	hash the token, then xor with the 32 bit key.
 	concattenate token with xor'd key.
@@ -40,5 +40,5 @@ def AONTdecrypt(cyphertext):
         [chr(ord(a) ^ ord(b)) for a, b in
          zip(make_hash(cyphertext[:-32]).digest(),
              cyphertext[-32:])])
-    print('32 key was: {}'.format(key2.encode('hex')))
+    #print('32 key was: {}'.format(key2.encode('hex')))
     return default_aes(key2).decrypt(cyphertext[:-32])

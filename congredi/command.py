@@ -6,16 +6,16 @@ AMP command tests
 from twisted.protocols import amp
 
 
-class PeerAsk(amp.Command):
+class PeerOptions(amp.Command):
     arguments = [('name', amp.String()),
                  ('port', amp.Integer())]
-    response = [('hello', amp.String())]
+    response = [('options', amp.ListOf(amp.String()))]
 
 
-class PeerTell(amp.Command):
+class PeerOnions(amp.Command):
     arguments = [('name', amp.String()),
                  ('port', amp.Integer())]
-    response = [('hello', amp.String())]
+    response = [('options', amp.ListOf(amp.String()))]
 
 """
 Geting a key (permissioned, recursive)

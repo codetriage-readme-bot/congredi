@@ -12,7 +12,7 @@ from twisted.internet import reactor
 
 from .storage.redis import get, set, delete
 from .utils.config import configArr
-
+from .utils.whoops import whoops
 
 def queryBackground():  # test
     """
@@ -43,10 +43,10 @@ shutDown = False
 
 @defer.inlineCallbacks
 def peerBeat():  # repeating peer-beat task
-    print('peer heartbeat start')
+    logger.info('peer heartbeat start')
     config = configArr()
-    logger.info('heartbeat')
     for admin in config['admins']:
+        logger.info('begin for admin: {0}'.format(admin))
         # test after the yields...
         retset = yield set('admins', admin)
         retget = yield get('admins')
@@ -59,12 +59,12 @@ def peerBeat():  # repeating peer-beat task
 
 
 def peerSuccess():  # test
-    print('Peer Successful')
+    logger.info('Peer Successful')
 
 
 def peerFailure(failure):  # test
-    print('peer failure')
-    print(failure.getBriefTraceback())
+    logger.info('peer failure')
+    whoops(failure.getBriefTraceback())
     reactor.stop()
 
 

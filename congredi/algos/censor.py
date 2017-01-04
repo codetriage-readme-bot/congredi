@@ -76,6 +76,4 @@ class censor():
         if res:
             res_human = "BLOCK"
         """Results objects.... (Design: reorder? - #D)"""
-        print(res, res_human, res_encode, res_lang,
-              res_encode_ok, res_lang_ok, res_profanities)
         return res, res_human, res_encode, res_lang, res_encode_ok, res_lang_ok, res_profanities

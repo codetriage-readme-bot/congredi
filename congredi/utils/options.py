@@ -4,7 +4,7 @@
 command line options
 """
 import argparse
-
+from .config import defaultPath, defaultFile, makePath, configArr
 """
 design i.e.:
 	valid:
@@ -18,15 +18,28 @@ design i.e.:
 		congredi peer --debug (master options can't be reordered??)
 		docker run congredi peer (options dependent on arg #'s?)
 """
+# load defaults from config file (we recheck this when passed a new config...)
+defaults = configArr(defaultPath)
 
 MainOptions = argparse.ArgumentParser(add_help=False)
 # no option ("--help") - (Design -h if -h is used as host.)
-MainOptions.add_argument('-u', '--help', help='prints usage/help')
+MainOptions.add_argument('-u', '--help', help='prints usage/help', action='store_true')
+
 # option required after this ("--port 8000")
-MainOptions.add_argument('-p', '--port', default=8800, help='congredi port')
+MainOptions.add_argument('-p', '--port', default=8800, help='congredi port', type=int)
 # no option after this (bool flag "--debug")
 MainOptions.add_argument(
-    '-d', '--debug', action='store_true', help='set debugging')
+    '-c', '--config', type=argparse.FileType('r'),
+    help='config file to use', default=defaultPath+defaultFile)
+
+# verbosity options
+
+MainOptions.add_argument(
+    '-q', '--quiet', action='store_true', help='set logging to CRITICAL (wordy-)')
+MainOptions.add_argument(
+    '-v', '--verbose', action='store_true', help='set logging to INFO (wordy+)')
+MainOptions.add_argument(
+    '-d', '--debug', action='store_true', help='set logging to DEBUG (wordy++)')
 
 subparsers = MainOptions.add_subparsers()
 

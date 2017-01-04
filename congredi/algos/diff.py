@@ -15,7 +15,6 @@ def resolveUnifiedDiff(md1, md2, l1, l2):
     diff = unified_diff(md1.splitlines(
         1), md2.splitlines(1), l1, l2, lineterm='', n=0)
     result = '\n'.join(list(diff))
-    print(result)
     return result
 
 

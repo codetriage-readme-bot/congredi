@@ -8,27 +8,20 @@ import socket
 from twisted.internet import protocol, reactor, task
 from .protocol import CongrediPeerProtocol
 from .peerBeat import peerBeat, peerSuccess, peerFailure
-from .utils.whoops import whoops
-from .command import PeerAsk, PeerTell
+from .command import PeerOptions, PeerOnions
+import logging
+from .utils.whoops import CongrediError, whoops
+logger = logging.getLogger('congredi')
+
 
 defaultHost = socket.gethostname()
 
 
 class CongrediPeerFactory(protocol.Factory):
-    clients = []
-    # protocol = CongrediPeer
     online = False
-    users = {}
-    peers = {}
+    clients = []
+    activePeers = []
     numProtocols = 0
-    # def f(s):
-    # print(s)
-    #reactor.callLater(3.4, f, "hello, world")
-    #d = task.deferLater(reactor, 3.4, f, "hi")
-    # def called(result): print result
-    # d.addCallback(called)
-    # a really basic example from stackoverflow...
-
     def __init__(self, host=defaultHost, port=4400, redisPort=6379, neo4jPort=7474, initialKey=None):
         #self.protocol = Peer(self)
         self.host = host
@@ -50,13 +43,13 @@ class CongrediPeerFactory(protocol.Factory):
         loopDeferred.addErrback(peerFailure)
 
     def startedConnecting(self, connector):  # test
-        print('Factory - Connecting')
+        logger.info('Factory - Connecting')
 
     def clientConnectionLost(self, connector, reason):  # test
-        print('Factory - Lost connection.  Reason:', reason)
+        logger.warning('Factory - Lost connection.  Reason:{0}'.format(reason.getErrorMessage()))
 
     def clientConnectionFailed(self, connector, reason):  # test
-        print('Factory - Connection failed. Reason:', reason)
+        logger.critical('Factory - Connection failed. Reason:{0}'.format(reason.getErrorMessage()))
 
     def startFactory(self):  # test
         self.online = True
@@ -71,8 +64,12 @@ class CongrediPeerFactory(protocol.Factory):
         return proto
 
     def ping(self):  # test
-        print('pinging')
+        logger.info('pinging routine started.')
         for client in self.clients:
-            print('client: {}'.format(client))
-            d = client.callRemote(PeerAsk, name=self.host, port=self.port)
+            info = client._peer
+            logger.info('pinging peer at: {0}:{1}'.format(info.host, info.port))
+            d = client.callRemote(PeerOptions, name=self.host, port=int(self.port))
+            d.addCallback(gotit)
             d.addErrback(whoops)
+def gotit(result):
+    logger.critical(result)

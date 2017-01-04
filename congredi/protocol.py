@@ -7,7 +7,11 @@ from twisted.protocols.amp import AMP
 from twisted.internet import reactor
 #from twisted.protocols.basic import LineReceiver
 
-from .command import PeerAsk, PeerTell
+import logging
+from .utils.whoops import CongrediError, whoops
+logger = logging.getLogger('congredi')
+
+from .command import PeerOptions, PeerOnions
 
 # pylint: disable=signature-differs
 # https://github.com/twisted/twisted/blob/e38cc25a67747899c6984d6ebaa8d3d134799415/src/twisted/protocols/portforward.py
@@ -38,86 +42,46 @@ class CongrediPeerProtocol(AMP):
 
     def connectionMade(self):  # ,client): # test
         self._peer = self.transport.getPeer()
-        print('new connection of {}'.format(self._peer))
+        logger.info('new connection of {}'.format(self._peer))
         self.factory.clients.append(self)
-        #self.sendLine("What's your name?")
-        # self.transport.loseConnection()
-        # self.transport.write(data)
+        if self.name not in self.factory.activePeers:
+            self.factory.activePeers.append(self._peer)
         self.factory.numProtocols = self.factory.numProtocols + 1
         super(CongrediPeerProtocol, self).connectionMade()
 
     def connectionLost(self, reason):  # ,client): # test
         self.factory.numProtocols = self.factory.numProtocols - 1
-        if self.name in self.users:
-            del self.users[self.name]
-        print('lost connection of {}'.format(self._peer))
+        if self._peer in self.factory.activePeers:
+            self.factory.activePeers.remove(self._peer)
+        logger.info('lost connection of {}'.format(self._peer))
         self.factory.clients.remove(self)
         super(CongrediPeerProtocol, self).connectionLost(reason)
 
     def dataReceived(self, data):  # test
-        print(str(data))
         super(CongrediPeerProtocol, self).dataReceived(data)
 
     def lineReceived(self, line):  # test
-        print(str(line))
+        logger.info("line in: " + str(line))
         super(CongrediPeerProtocol, self).lineReceived(data)
-        # if self.state == "GETNAME":
-        #     self.handle_GETNAME(line)
-        # else:
-        #     self.handle_CHAT(line)
-        # d = self.factory.getUser(line)
-
-        # def onError(err):
-        #     return 'errors'
-        # d.addErrback(onError)
-        # def writeResponse(message):
-        #     self.transport.write(message + "\n")
-        #     self.transport.loseConnection()
-        # d.addCallback(writeResponse)
-        # host, port = line.split()
-        # port = int(port)
         # factory = protocol.ClientFactory()
         # factory.protocol = SomeClientProtocol
         # reactor.connectTCP(host, port, factory)
-    def handle_GETNAME(self, name):  # test
-        if name in self.users:
-            self.sendLine("Name taken, please choose another.")
-            return
-        self.sendLine("Welcome, %s!" % (name, ))
-        self.name = name
-        self.users[name] = self
-        self.state = "CHAT"
 
-    def handle_CHAT(self, message):  # test
-        message = "<%s> %s" % (self.name, message)
-        # for name, protocol in self.users.iteritems():
-        # 	if protocol != self:
-        # 		protocol.sendLine(message)
-        # utils.getProcessOutput
-        # return task.defer.succeed(self.users.get(user, "Nope"))
-        # return client.getPage(self.prefix+user)
-
-    def incomingOnionSendoff(self, data):  # test
-        pass
-        """Send data to next onion"""
-
-    @PeerAsk.responder
+    @PeerOnions.responder
     def hello(self, name, port):  # test
-        print('telling hello')
-        factory = Peer()
-        print('connecting')
-        # connect to an arbitrary new host...
-        port = reactor.connectTCP(name, port, factory)
-        print('calling')
-        # need to run an arbitrary new command....
-        port.callRemote(PeerTell, name, port)
-        # halp...
-        print('disconnecting')
-        port.disconnect()
-        print('done')
+        logger.info('running an onion')
+        for c in self.factory.clients:
+            #port = reactor.connectTCP(name, port, factory)
+            c.callRemote(PeerOptions, self.host, self.port)
+            #port.disconnect()
+        logger.info('disconnecting')
         return 'Sent a hello'
 
-    @PeerTell.responder
+    @PeerOptions.responder
     def gotit(self, name, port):  # test
-        print('got it')
-        return('hello')
+        logger.info('got it')
+        clientNames = []
+        for c in self.factory.clients:
+            peer = c._peer
+            clientNames += peer.host + ":" + str(peer.port)
+        return(clientNames)

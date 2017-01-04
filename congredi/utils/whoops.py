@@ -3,6 +3,9 @@
 """
 error utilities
 """
+#import traceback
+import logging
+logger = logging.getLogger('congredi')
 
 
 class CongrediError(Exception):
@@ -12,5 +15,6 @@ class CongrediError(Exception):
 
 def whoops(err):  # test
     """The default errback (design - set as default errback?)"""
-    print('whoops')
-    print(err)
+    #trace = traceback.format_exc()
+    # traceback.print_exc()
+    logger.critical(err)

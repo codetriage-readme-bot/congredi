@@ -4,7 +4,7 @@
 test commands
 """
 import unittest
-from ..command import PeerAsk, PeerTell, PeerGet, PeerSet, PeerIndex, PeerSearch
+from ..command import PeerOptions, PeerOnions, PeerGet, PeerSet, PeerIndex, PeerSearch
 
 
 class test_command(unittest.TestCase):
