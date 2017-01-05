@@ -2,7 +2,7 @@ Waffle / Github allows us to have labels to report progress about things.
 These are the labels I can think of, and where they lie on the spectrum.
 
 You also might want to check out the emoji examples for context, over
-at [//github.com/thetoxicarcade/congredi](https://github.com/Thetoxicarcade/congredi/blob/master/.github/emoji.md).
+at [//github.com/thetoxicarcade/congredi](https://github.com/congredi/congredi/blob/master/.github/emoji.md).
 
 # help wanted
 Sections where nobody's claimed something. If you assigned yourself to an

@@ -1,6 +1,6 @@
 # Get Involved
 0. Hop on Waffle to view the current GitHub issues:
-    [![Stories in Ready](https://badge.waffle.io/Thetoxicarcade/congredi.png?label=ready&title=Ready)](https://waffle.io/Thetoxicarcade/congredi).
+    [![Stories in Ready](https://badge.waffle.io/congredi/congredi.png?label=ready&title=Ready)](https://waffle.io/congredi/congredi).
 1. Clone repo:
     `git clone github.com/thetoxicarcade/congredi && cd congredi`
 2. pre-fetch npm/bower, gulp

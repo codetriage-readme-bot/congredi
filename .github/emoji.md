@@ -32,6 +32,6 @@ These are the emoji for things relating to a github tag
 | Refactoring - Declutter | `:fire:` | :fire: |
 
 > Note. This is not under `/docs/contributing` because emoji won't render.
-> ([#9](https://github.com/Thetoxicarcade/congredi/issues/9))
+> ([#9](https://github.com/congredi/congredi/issues/9))
 > You're welcome to propose some way of fixing this, the files you'll need to
 > apply the fix to are `mkdocs.yml` & `docs/requirements.txt`.
