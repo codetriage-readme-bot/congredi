@@ -11,6 +11,7 @@ import six
 
 
 class abstractStorageProvider(six.with_metaclass(ABCMeta, object)):
+
     def __init__(self, typeOf):
         self.type = typeOf
 

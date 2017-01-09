@@ -46,6 +46,19 @@ v3(){
 v2(){
     deactivate
 }
+v3works(){
+    v3
+    green congredi.auth congredi.extra congredi.storage congredi.term congredi.tests \
+    congredi.utils congredi.algos.test.test_router congredi.crypto.test.test_hash \
+    congredi.crypto.test.test_kdf congredi.crypto.test.test_threshold
+    v2
+}
+v3breaks(){
+    v3
+    green congredi.algos.test.test_diff congredi.algos.test.test_router \
+    congredi.crypto.test.test_AES congredi.crypto.test.test_padding    
+    v2
+}
 case $1 in
     "requires")
         requires
@@ -65,10 +78,25 @@ case $1 in
     "install")
         install
         ;;
+    "vbuild")
+        vbuild
+        ;;
+    "v3")
+        v3
+        ;;
+    "v2")
+        v2
+        ;;
+    "v3works")
+        v3works
+        ;;
+    "v3breaks")
+        v3breaks
+        ;;
     *)
         echo "commands are 'requires','clean','pyc','check','build', & 'install'."
-        echo "in addition, you can run python3 via 'vbuild' and 'v3'"
-        echo "running them all, now"
+        echo "python3 compat via vbuild, v3, v2, v3works, & v3breaks"
+        echo "running the python2 commands..."
         requires
         clean
         check

@@ -60,9 +60,10 @@ class test_diff(unittest.TestCase):
         final = hashlib.sha256(jnd).digest()
         print(('join %d' % len(jnd)))
         print(('hash: %(one)s\nhash: %(two)s' %
-              {'one': codecs.encode(data['hash'],'hex'), 'two': codecs.encode(final,'hex')}))
+               {'one': codecs.encode(data['hash'], 'hex'), 'two': codecs.encode(final, 'hex')}))
 
     def test_uni(self):
+        """need to get python3 compatibility"""
         # pu.db
         diff = resolveUnifiedDiff(
             source, source2,

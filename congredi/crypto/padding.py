@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 All Or Nothing Padding (coulda just used the library's version)
+need to get python3 compatibility
 """
 # Crypto.Protocol.AllOrNothing
 from __future__ import absolute_import

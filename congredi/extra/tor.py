@@ -35,7 +35,7 @@ def start_rendesvous(key_path):  # test
             service = controller.create_ephemeral_hidden_service(
                 {80: 5000}, await_publication=True)
             print(("Started a new hidden service with the address of %s.onion" %
-                  service.service_id))
+                   service.service_id))
             with open(key_path, 'w') as key_file:
                 key_file.write('%s:%s' %
                                (service.private_key_type, service.private_key))

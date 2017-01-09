@@ -37,7 +37,7 @@ def rebuildFile(diff, option):
 
 
 def tick(md1, md2):
-    """Get a storeable object"""
+    """Get a storeable object - need to add python3 compatibility"""
     unified = resolveDiff(md1, md2)
     compressed = compressDiff(bytes(unified))
     return compressed

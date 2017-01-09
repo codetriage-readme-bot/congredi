@@ -15,7 +15,6 @@ from six.moves import range
 test = censor(encodings=['UTF-8', 'ascii'], languages=['ENGLISH', 'CHINESE'])
 
 
-
 # pylint: disable=no-self-use
 # pylint: disable=unused-variable
 

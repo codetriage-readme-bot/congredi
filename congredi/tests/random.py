@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 randomness function libraries
+need to get python3 compatibility
 """
 import binascii
 import os
