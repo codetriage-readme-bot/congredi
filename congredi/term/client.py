@@ -3,6 +3,9 @@
 """
 main client class - terminal
 """
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
 import logging
 import os
 logger = logging.getLogger('congredi')
@@ -74,7 +77,7 @@ class CongrediClient(protocol.ClientFactory):
         print('Started to connect.')
 
     def clientConnectionLost(self, connector, reason):  # test
-        print('Lost connection.  Reason:', reason)
+        print(('Lost connection.  Reason:', reason))
 
     def clientConnectionFailed(self, connector, reason):  # test
-        print('Connection failed. Reason:', reason)
+        print(('Connection failed. Reason:', reason))

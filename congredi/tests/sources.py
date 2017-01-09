@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 source = """
 Hello, *world*! This is a ~~good~~marvelous day!
 Here is an auto link: https://example.org/

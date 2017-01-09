@@ -4,12 +4,13 @@
 Interface, in the case that someone wants to use something besides Redis/Neo4j,
 for instance hadoop or bigtable....
 """
+from __future__ import absolute_import
+from __future__ import unicode_literals
 from abc import ABCMeta, abstractmethod
+import six
 
 
-class abstractStorageProvider(object):
-    __metaclass__ = ABCMeta
-
+class abstractStorageProvider(six.with_metaclass(ABCMeta, object)):
     def __init__(self, typeOf):
         self.type = typeOf
 

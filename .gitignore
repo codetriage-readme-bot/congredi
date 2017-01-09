@@ -8,3 +8,4 @@ build
 .cache
 .ash_history
 _site
+*.bak

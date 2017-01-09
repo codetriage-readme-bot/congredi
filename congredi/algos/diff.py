@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 Diff utils (instead of using a raw git library - a design problem)
+needs python3 patching
 """
 # pylint: disable=unused-import
+from __future__ import absolute_import
+from __future__ import unicode_literals
 from difflib import unified_diff, ndiff, restore
 from ..storage.zlibs import chunkSplit, compressDiff, uncompressDiff
 #from patch import fromstring
@@ -36,7 +39,7 @@ def rebuildFile(diff, option):
 def tick(md1, md2):
     """Get a storeable object"""
     unified = resolveDiff(md1, md2)
-    compressed = compressDiff(unified)
+    compressed = compressDiff(bytes(unified))
     return compressed
 
 

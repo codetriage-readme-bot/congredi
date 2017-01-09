@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import unittest
 from ...storage.gfm import resolveHtml
 from ...tests.sources import source

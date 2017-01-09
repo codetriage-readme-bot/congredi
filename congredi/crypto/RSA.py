@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
 import logging
 
 from Crypto.PublicKey import RSA
@@ -48,7 +51,7 @@ class default_rsa():
         key = RSA.importKey(pubkey)
         skey = PKCS1_OAEP.new(key)
         frontMatter = skey.encrypt(messageKey)  # , 16)
-        print(len(frontMatter))
+        print((len(frontMatter)))
 
         # encrypted message
         backMatter = default_aes(messageKey).encrypt(transformPacket)

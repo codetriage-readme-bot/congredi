@@ -5,6 +5,8 @@ JWT tokens (for web interface, mostly, as all peer operations function on
 public key cryptography)
 """
 # pylint: disable=unused-import
+from __future__ import absolute_import
+from __future__ import unicode_literals
 import datetime
 import unittest
 from ..token import token

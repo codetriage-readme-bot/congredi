@@ -3,6 +3,9 @@
 """
 zlib tests
 """
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
 import unittest
 from ...storage.zlibs import compressDiff
 from ...storage.zlibs import uncompressDiff
@@ -21,11 +24,13 @@ class test_zlib(unittest.TestCase):
 
     def test_split(self):
         splits = chunkSplit(source)
-        print(len(splits))
+        print((len(splits)))
 
     def test_compression(self):
         thing1 = compressDiff(source2)
-        res = '\n'.join(uncompressDiff(thing1))
+        res = uncompressDiff(thing1)
+        if type(res) is list:
+            res = b'\n'.join(res)
         print('New')
         print(res)
         print('Original')

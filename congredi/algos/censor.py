@@ -4,7 +4,10 @@
 censor things objectionable to you, rather than store/query/communicate them
 the current library is old and might simply need to include regexes...
 (Feature: Should add the ability to publish your router's censor settings - #E)
+needs python3 patching
 """
+from __future__ import absolute_import
+# from __future__ import unicode_literals
 import logging
 import entropy
 import chardet

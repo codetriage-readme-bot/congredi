@@ -4,6 +4,8 @@
 Basic factory.
 """
 
+from __future__ import absolute_import
+from __future__ import unicode_literals
 import socket
 from twisted.internet import protocol, reactor, task
 from .protocol import CongrediPeerProtocol

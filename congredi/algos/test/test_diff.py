@@ -2,9 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 tests on the simplistic censor library.
+needs python3 patching
 """
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
 import unittest
 import hashlib
+import codecs
 try:
     from StringIO import StringIO
 except ImportError:
@@ -27,10 +32,10 @@ class test_diff(unittest.TestCase):
     def test_resolve_ndiff(self):
         print('The Diff:')
         result = resolveDiff(source, source2)
-        print(''.join(result))
+        print((''.join(result)))
         print('The Original:')
         orig = rebuildFile(result, 1)
-        print(''.join(orig))
+        print((''.join(orig)))
 
     def test_compression(self):
         # Direct conversion
@@ -42,7 +47,7 @@ class test_diff(unittest.TestCase):
     def test_splits(self):
         data = {'pieces': {}}
         comp = tick(empty, empty2)
-        print('compressed %d' % len(comp))
+        print(('compressed %d' % len(comp)))
         data['length'] = len(comp)
         data['hash'] = hashlib.sha256(comp).digest()
         splt = chunkSplit(comp)
@@ -50,12 +55,12 @@ class test_diff(unittest.TestCase):
             key = hashlib.sha256(c).digest()
             data['pieces'][key] = c
         for k, v in data['pieces'].items():
-            print(k.encode('hex'), v.encode('hex'))
-        jnd = ''.join(splt)
+            print((k.encode('hex'), v.encode('hex')))
+        jnd = b''.join(splt)
         final = hashlib.sha256(jnd).digest()
-        print('join %d' % len(jnd))
-        print('hash: %(one)s\nhash: %(two)s' %
-              {'one': data['hash'].encode('hex'), 'two': final.encode('hex')})
+        print(('join %d' % len(jnd)))
+        print(('hash: %(one)s\nhash: %(two)s' %
+              {'one': codecs.encode(data['hash'],'hex'), 'two': codecs.encode(final,'hex')}))
 
     def test_uni(self):
         # pu.db
@@ -63,7 +68,8 @@ class test_diff(unittest.TestCase):
             source, source2,
             'congredi/test/core/algos/a.txt',
             'congredi/test/core/algos/b.txt')
-        patch = PatchSet(StringIO(diff))
-        print(patch.errors)
+        print(type(diff))
+        patch = PatchSet(str(StringIO(diff)))
+        print((patch.errors))
         patch.revert(0, root='.')
         patch.apply(0, root=".")

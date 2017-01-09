@@ -3,6 +3,7 @@
 """
 main client class - terminal
 """
+from __future__ import unicode_literals
 from .vote import poll, vote
 #from pyvotecore.stv import stv
 

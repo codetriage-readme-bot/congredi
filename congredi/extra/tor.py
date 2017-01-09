@@ -3,6 +3,9 @@
 """
 Stem tor controls (could publish .onions in address table instead of ip as feature)
 """
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
 import os
 from stem.control import Controller
 from stem import process
@@ -31,8 +34,8 @@ def start_rendesvous(key_path):  # test
         if not os.path.exists(key_path):
             service = controller.create_ephemeral_hidden_service(
                 {80: 5000}, await_publication=True)
-            print("Started a new hidden service with the address of %s.onion" %
-                  service.service_id)
+            print(("Started a new hidden service with the address of %s.onion" %
+                  service.service_id))
             with open(key_path, 'w') as key_file:
                 key_file.write('%s:%s' %
                                (service.private_key_type, service.private_key))
@@ -41,7 +44,7 @@ def start_rendesvous(key_path):  # test
                 key_type, key_content = key_file.read().split(':', 1)
             service = controller.create_ephemeral_hidden_service(
                 {80: 5000}, key_type=key_type, key_content=key_content, await_publication=True)
-            print("Resumed %s.onion" % service.service_id)
+            print(("Resumed %s.onion" % service.service_id))
         return service.service_id
 
 

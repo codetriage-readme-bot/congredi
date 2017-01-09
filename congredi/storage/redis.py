@@ -3,6 +3,8 @@
 """
 Redis database commands & mutexes, not exactly the objects needed
 """
+from __future__ import absolute_import
+from __future__ import unicode_literals
 import logging
 logger = logging.getLogger('congredi')
 from twisted.internet import defer

@@ -3,6 +3,8 @@
 """
 Hash function (No clue why)
 """
+from __future__ import absolute_import
+from __future__ import unicode_literals
 from Crypto.Hash import SHA256
 
 

@@ -4,6 +4,9 @@
 JWT tokens (for web interface, mostly, as all peer operations function on
 public key cryptography)
 """
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
 import jwt
 import datetime
 # class object JWT implementation

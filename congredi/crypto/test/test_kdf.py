@@ -3,6 +3,8 @@
 """
 Still hanging around with a KDF...
 """
+from __future__ import absolute_import
+from __future__ import unicode_literals
 import unittest
 from ..kdf import default_kdf, random_password
 

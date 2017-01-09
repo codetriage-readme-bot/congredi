@@ -3,8 +3,11 @@
 """
 compute a vote
 """
+from __future__ import absolute_import
+from __future__ import unicode_literals
 from abc import ABCMeta, abstractmethod
 import logging
+import six
 logger = logging.getLogger('congredi')
 
 """
@@ -16,14 +19,13 @@ helps us implement other vote types besides STV... #J
 # pylint: disable=abstract-method
 
 
-class poll(object):
+class poll(six.with_metaclass(ABCMeta, object)):
     __doc__ = """
     A public STV style vote
 
     This class can use simple public key cryptography,
     no individual vote needs to be secret
     """
-    __metaclass__ = ABCMeta
 
     @classmethod
     def version(self): return "1.0"

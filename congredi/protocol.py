@@ -4,7 +4,9 @@
 Basic protocol.
 """
 # pylint: disable=unused-import
-from builtins import str
+# from builtins import str
+from __future__ import unicode_literals
+from __future__ import absolute_import
 from twisted.protocols.amp import AMP
 from twisted.internet import reactor
 #from twisted.protocols.basic import LineReceiver

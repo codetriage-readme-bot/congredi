@@ -6,6 +6,8 @@ Log management (could use twisted's log utility, but must have formating ability
 #from twisted.python import log
 # log.startLogging(sys.stdout)
 
+from __future__ import absolute_import
+from __future__ import unicode_literals
 import logging
 logger = logging.getLogger('congredi')
 

@@ -3,31 +3,33 @@
 """
 AMP command tests
 """
-from twisted.protocols import amp
+from __future__ import absolute_import
+from __future__ import unicode_literals
+from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
 
 
-class PeerAsk(amp.Command):
-    arguments = [('name', amp.String()),
-                 ('port', amp.Integer())]
-    response = [('hello', amp.String())]
+class PeerAsk(Command):
+    arguments = [(b'name', String()),
+                 (b'port', Integer())]
+    response = [(b'hello', String())]
 
 
-class PeerTell(amp.Command):
-    arguments = [('name', amp.String()),
-                 ('port', amp.Integer())]
-    response = [('hello', amp.String())]
+class PeerTell(Command):
+    arguments = [(b'name', String()),
+                 (b'port', Integer())]
+    response = [(b'hello', String())]
 
 
-class PeerOptions(amp.Command):
-    arguments = [('name', amp.String()),
-                 ('port', amp.Integer())]
-    response = [('options', amp.ListOf(amp.String()))]
+class PeerOptions(Command):
+    arguments = [(b'name', String()),
+                 (b'port', Integer())]
+    response = [(b'options', ListOf(String()))]
 
 
-class PeerOnions(amp.Command):
-    arguments = [('name', amp.String()),
-                 ('port', amp.Integer())]
-    response = [('options', amp.ListOf(amp.String()))]
+class PeerOnions(Command):
+    arguments = [(b'name', String()),
+                 (b'port', Integer())]
+    response = [(b'options', ListOf(String()))]
 
 """
 Geting a key (permissioned, recursive)
@@ -35,7 +37,7 @@ Geting a key (permissionless, non-recursive)
 """
 
 
-class PeerGet(amp.Command):
+class PeerGet(Command):
     """
     MONITOR TYPE foobar HASH hash READER reader SIGNATURE sig
     [ Results[], 2016-10-11 20:10:10, signature ]
@@ -43,17 +45,17 @@ class PeerGet(amp.Command):
     [ Results[], 2016-10-11 20:10:10, signature ]
     """
 
-    arguments = [('reader', amp.String()),
+    arguments = [(b'reader', String()),
                  # permissioned + recursive || permissionless + unrecursive
-                 ('authority', amp.Boolean()),
-                 ('hash', amp.String()),
-                 ('signature', amp.String()),
-                 ('object', amp.String()),
-                 ('type', amp.String())
+                 (b'authority', Boolean()),
+                 (b'hash', String()),
+                 (b'signature', String()),
+                 (b'object', String()),
+                 (b'type', String())
                  ]
     response = [
-        ('lifetime', amp.DateTime()),
-        ('signature', amp.String())]
+        (b'lifetime', DateTime()),
+        (b'signature', String())]
 
 """
 Adding a key (permissioned, recursive)
@@ -61,7 +63,7 @@ Adding a key (permissionless, non-recursive)
 """
 
 
-class PeerSet(amp.Command):
+class PeerSet(Command):
     """
     sends: object
     recieves: lifetime, signature
@@ -76,17 +78,17 @@ class PeerSet(amp.Command):
     DEPLOY TYPE foobar HASH abc AUTHOR author OBJECT object SIGNATURE sig
     [ 2016-10-11 20:10:10, signature ]
     """
-    arguments = [('author', amp.String()),
+    arguments = [(b'author', String()),
                  # permissioned + recursive || permissionless + unrecursive
-                 ('authority', amp.Boolean()),
-                 ('hash', amp.String()),
-                 ('signature', amp.String()),
-                 ('object', amp.String()),
-                 ('type', amp.String())
+                 (b'authority', Boolean()),
+                 (b'hash', String()),
+                 (b'signature', String()),
+                 (b'object', String()),
+                 (b'type', String())
                  ]
     response = [
-        ('lifetime', amp.DateTime()),
-        ('signature', amp.String())]
+        (b'lifetime', DateTime()),
+        (b'signature', String())]
     # errors = no space
 
 
@@ -97,7 +99,7 @@ Grab from the latest of the list, with an offset and object count
 """
 
 
-class PeerIndex(amp.Command):
+class PeerIndex(Command):
     """
     type : hash : [list]
     foos : bar : [ abc, def, ghi, jkl, mno, pqr, stu, vwx, yz ]
@@ -107,12 +109,12 @@ class PeerIndex(amp.Command):
     GET CURRENT foo bar OFFSET 5 COUNT 2
 
     """
-    arguments = [('type', amp.String()),
-                 ('direction', amp.String()),  # Forward || reverse
-                 ('hash', amp.String()),  # hash || "latest"
-                 ('offset', amp.Integer()),
-                 ('count', amp.Integer())]
-    response = [('hashes', amp.String())]  # list of strings...
+    arguments = [(b'type', String()),
+                 (b'direction', String()),  # Forward || reverse
+                 (b'hash', String()),  # hash || "latest"
+                 (b'offset', Integer()),
+                 (b'count', Integer())]
+    response = [(b'hashes', String())]  # list of strings...
 
 
 """
@@ -120,7 +122,7 @@ Search from content-containing objects
 """
 
 
-class PeerSearch(amp.Command):
+class PeerSearch(Command):
     """
     type : hash : [list]
     foos : bar : [ abc, def, ghi, jkl, mno, pqr, stu, vwx, yz ]
@@ -130,8 +132,8 @@ class PeerSearch(amp.Command):
     [ bar, otherbar ]
 
     """
-    arguments = [('type', amp.String()),
-                 ('term', amp.String()),
-                 ('offset', amp.Integer()),
-                 ('count', amp.Integer())]
-    response = [('hashes', amp.String())]  # list of strings...
+    arguments = [(b'type', String()),
+                 (b'term', String()),
+                 (b'offset', Integer()),
+                 (b'count', Integer())]
+    response = [(b'hashes', String())]  # list of strings...

@@ -4,6 +4,8 @@
 Tor proxy design
 possibly usable for testing framework (start multiple processes with different ports...)
 """
+from __future__ import absolute_import
+from __future__ import unicode_literals
 import multiprocessing
 import time
 from ..auth.token import app

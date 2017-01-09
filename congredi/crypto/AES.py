@@ -3,6 +3,8 @@
 """
 Fernet class
 """
+from __future__ import absolute_import
+from __future__ import unicode_literals
 from Crypto.Cipher import AES
 from Crypto import Random
 from .kdf import weaker_kdf

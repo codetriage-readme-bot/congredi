@@ -59,6 +59,8 @@ http API
 
 
 """
+from __future__ import absolute_import
+from __future__ import unicode_literals
 from klein import Klein
 from ..auth.token import token
 app = Klein()

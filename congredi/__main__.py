@@ -1,5 +1,6 @@
 #import pudb; pu.db
 # pylint: disable=unused-import
+from __future__ import unicode_literals
 from .algos.router import router
 from .utils.options import MainOptions
 from .term.client import CongrediClient as client

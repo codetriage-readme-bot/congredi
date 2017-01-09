@@ -4,6 +4,8 @@
 Map a directed acyclic graph from one user to another,
 and map objects that people use (possibly a minimum number of people use)
 """
+from __future__ import absolute_import
+from __future__ import unicode_literals
 from py2neo import GraphDatabase
 driver = GraphDatabase.driver('bolt://localhost')
 

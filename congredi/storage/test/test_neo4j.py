@@ -4,6 +4,9 @@
 neo4j tests
 """
 # pylint: disable=unused-import
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
 import unittest
 from ..neo4j import assertTrustXY, queryTrustXY, dependencies
 
