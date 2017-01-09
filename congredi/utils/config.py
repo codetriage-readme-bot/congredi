@@ -13,6 +13,7 @@ logger = logging.getLogger('congredi')
 defaultPath = os.path.expanduser('~') + '/.local/congredi/'
 defaultFile = 'congrediSettings.yaml'
 
+
 class CongrediConfigError(CongrediError):
     """Config file threw up"""
     pass
@@ -26,18 +27,21 @@ def makePath(givenPath):
         if exception.errno != errno.EEXIST:
             raise
 
+
 def openTest(configFilePath):
+    # pylint: disable=undefined-variable
     with open(configFilePath, 'r') as f:
         config = yaml.load(f.read())
     if any(k not in config for k in ('admins', 'users')):  # need test case
         logger.warning('Config does not contain "admins" or "users"')
-        raise CongrediConfigError('Config missing {0}'.format(k))
+        raise CongrediConfigError('Config missing %s' % k)
     return config
+
 
 def writeConfig(configFilePath, config):
     with open(configFilePath, 'w+') as f:
         f.write(yaml.dump(config))
-    
+
 
 def generateConfig(config):
     # generate keys & peers, save to yaml
@@ -51,6 +55,8 @@ def generateConfig(config):
     return config
 
 # writing down a default config
+
+
 def configArr(pathname=defaultPath):
     # start with blank config before loading.
     config = {}
@@ -69,23 +75,83 @@ def configArr(pathname=defaultPath):
     return config
 
 defaultConfig = {
-    'public':{
-        'hostname':'0.0.0.0',
-        'port':8000,
+    'settings': {
+        'listen': {
+            'api': "0.0.0.0:443",
+            'peer': "0.0.0.0:8800"
         },
-    'private':{
-        'routerKey':'abcd',
-        'terminalKey':'efgh',
-        },
-    'proxy':{
-        'allowed':True,
-        'prefered':False,
-        'available':{
-            '.onion':True,
-            '.i2p':False
+        'proxy': {
+            'allowed': True,
+            'preferred': False,
+            'available': {
+                ".onion": True,
+                ".i2p": False
             }
         },
-    'admins':[],
-    'users:':[],
-    'peers':[],
+        'private': {
+            'router': "abcd",
+            'server': "defg"
+        },
+        'storage': {
+            'redis': "localhost:",
+            'neo4j': "localhost:"
+        }
+    },
+    'addrbook': {
+        'routes': {
+            'peers': {
+                'nicname': {
+                    'addr': "192.168.2.55:9090",
+                    'key': "a4232323"
+                }
+            },
+            'rendesvous': {
+                'nicname': {
+                    'addr': "192.168.2.55:9090",
+                    'key': "a4232323"
+                }
+            },
+            'couriers': {
+                'nicname': {
+                    'addr': "192.168.2.55:9090",
+                    'key': "a4232323"
+                }
+            }
+        },
+        'guests': {
+            'admins': {
+                'nicname': {
+                    'key': "ab4332",
+                    'rendesvous': {
+                        'nic': {
+                            'addr': "192.168.2.55",
+                            'key': "23232323"
+                        }
+                    }
+                }
+            },
+            'users': {
+                'nicname': {
+                    'key': "ab4332",
+                    'rendesvous': {
+                        'nic': {
+                            'addr': "192.168.2.55",
+                            'key': "23232323"
+                        }
+                    }
+                }
+            },
+            'servers': {
+                'nicname': {
+                    'key': "ab4332",
+                    'rendesvous': {
+                        'nic': {
+                            'addr': "192.168.2.55",
+                            'key': "23232323"
+                        }
+                    }
+                }
+            }
+        }
     }
+}

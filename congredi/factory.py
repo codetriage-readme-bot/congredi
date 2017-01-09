@@ -8,20 +8,42 @@ import socket
 from twisted.internet import protocol, reactor, task
 from .protocol import CongrediPeerProtocol
 from .peerBeat import peerBeat, peerSuccess, peerFailure
-from .command import PeerOptions, PeerOnions
+from .command import PeerOptions
 import logging
-from .utils.whoops import CongrediError, whoops
+from .utils.whoops import whoops
 logger = logging.getLogger('congredi')
 
 
 defaultHost = socket.gethostname()
 
-
+# pylint: disable=no-self-use
 class CongrediPeerFactory(protocol.Factory):
+    """
+    clients = []
+
+    def __init__(self):
+        print('init')
+        self.protocol = Peer(self)
+        df = deferLater(reactor, 10, self.hiya)
+        #self.lc = task.LoopingCall(self.hiya)
+        #df = self.lc.start(2)
+        df.addErrback(whoops)
+
+    def hiya(self):
+        print('hiya')
+        self.protocol.hiya()
+
+    def clientConnectionMade(self, client):
+        self.clients.append(client)
+
+    def clientConnectionLost(self, client):
+        self.clients.remove(client)
+    """
     online = False
     clients = []
     activePeers = []
     numProtocols = 0
+
     def __init__(self, host=defaultHost, port=4400, redisPort=6379, neo4jPort=7474, initialKey=None):
         #self.protocol = Peer(self)
         self.host = host
@@ -46,10 +68,12 @@ class CongrediPeerFactory(protocol.Factory):
         logger.info('Factory - Connecting')
 
     def clientConnectionLost(self, connector, reason):  # test
-        logger.warning('Factory - Lost connection.  Reason:{0}'.format(reason.getErrorMessage()))
+        logger.warning(
+            'Factory - Lost connection.  Reason:%s', reason.getErrorMessage())
 
     def clientConnectionFailed(self, connector, reason):  # test
-        logger.critical('Factory - Connection failed. Reason:{0}'.format(reason.getErrorMessage()))
+        logger.critical(
+            'Factory - Connection failed. Reason:%s', reason.getErrorMessage())
 
     def startFactory(self):  # test
         self.online = True
@@ -67,9 +91,13 @@ class CongrediPeerFactory(protocol.Factory):
         logger.info('pinging routine started.')
         for client in self.clients:
             info = client._peer
-            logger.info('pinging peer at: {0}:{1}'.format(info.host, info.port))
-            d = client.callRemote(PeerOptions, name=self.host, port=int(self.port))
+            logger.info('pinging peer at: %(host)s:%(port)d',
+                        (info.host, info.port))
+            d = client.callRemote(
+                PeerOptions, name=self.host, port=int(self.port))
             d.addCallback(gotit)
             d.addErrback(whoops)
+
+
 def gotit(result):
     logger.critical(result)

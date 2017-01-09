@@ -14,6 +14,19 @@ def random_password():
 # a default kdf
 
 
+def weaker_kdf(password):
+    key_raw = PBKDF2(
+        password,
+        salt=os.urandom(16),
+        dkLen=32,  # 16,
+        count=1000  # , #1000
+        # prf=None
+    )
+    # key_raw = PBKDF2HMAC(
+    #     algorithm=hashes.SHA256(),
+    return key_raw
+
+
 def default_kdf(password):
     key_raw = PBKDF2(
         password,

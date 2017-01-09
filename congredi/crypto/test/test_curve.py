@@ -12,11 +12,17 @@ except:
 probable = 'To Fix:\nException: [OpenSSL] EC_KEY_generate_key FAIL ... error:100B3043:elliptic curve routines:EC_KEY_generate_key:passed a null parameter'
 
 
+# pylint: disable=no-self-use, bare-except
 class test_curve(unittest.TestCase):
 
     def test_curve(self):
         try:
+            a = curve()
             c = curve()
+            # .pubkey isn't the actual method right now.
+            msg = a.encrypt("hello",c.pubkey)
+            res = c.decrypt(msg)
+            assert res == "hello"
         except:
             print(probable)
         print('IMPLEMENT crypto/test/test_curve:test_curve')
@@ -35,8 +41,8 @@ class test_curve(unittest.TestCase):
         try:
             a1 = curve()
             b1 = curve()
-            sig = a.sign('hash of something')
-            ver = b.verify('hash of something', a1.pubkey, sig)
+            sig = a1.sign('hash of something')
+            ver = b1.verify('hash of something', a1.pubkey, sig)
             assert ver is True
         except:
             print(probable)

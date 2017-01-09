@@ -21,6 +21,7 @@ class RedisStore(abstractStorageProvider):
 
     def __init__(self, connection):  # test
         self._conn = connection
+        super(abstractStorageProvider, self).__init__(self)
 
     # actual writers
     @defer.inlineCallbacks
@@ -47,38 +48,38 @@ class RedisStore(abstractStorageProvider):
         return self._lockWrite(key, value)
 
     def read(self, key):  # test
-        return self._lockRead(value)
+        return self._lockRead(key)
 
 
 # Condensed txredisapi example... but where should yield go?
 @defer.inlineCallbacks
-def get(key):  # test
+def Rget(key):  # test
     rc = yield redis.Connection("10.230.78.120")
     value = yield rc.get(key)
-    logger.info('got {}:{}'.format(key, value))
+    logger.info('got %(key)s:%(value)s', {'key':key, 'value':value})
     yield rc.disconnect()
     defer.returnValue(value)
 
 
 @defer.inlineCallbacks
-def set(key, value):  # test
+def Rset(key, value):  # test
     rc = yield redis.Connection("10.230.78.120")
     res = yield rc.set(key, value)
-    logger.info('set ({}) {}:{}'.format(res, key, value))
+    logger.info('set (%s) %s:%s', res, key, value)
     yield rc.disconnect()
     defer.returnValue(res)
 
 
 @defer.inlineCallbacks
-def delete(key):  # test
+def Rdelete(key):  # test
     rc = yield redis.Connection("10.230.78.120")
     n = yield rc.delete(key)
-    logger.info('deleted ({}) {}'.format(n, key))
+    logger.info('deleted (%s) %s', (n, key))
     yield rc.disconnect()
     defer.returnValue(n)
 
 
-def randKey():  # test
+def RrandKey():  # test
     return str(uuid.uuid4().get_hex().upper()[0:6])
 
 
@@ -87,7 +88,8 @@ def todoAdd(mutexKey, todoList, key):  # test
     rc = yield redis.Connection("10.230.78.120")
     mutexKey.aquire()
     ret = yield rc.lpush(todoList, key)
-    logger.info('Updated Todo list {}: {}:{}'.format(todoList, key, ret))
+    logger.info('Updated Todo list %(list)s: %(key)s:%(ret)s',
+                {'list': todoList, 'key': key, 'ret': ret})
     mutexKey.release()
     yield rc.disconnect()
     defer.returnValue(ret)
@@ -98,7 +100,8 @@ def todoRemove(mutexKey, todoList):  # test
     rc = yield redis.Connection("10.230.78.120")
     mutexKey.aquire()
     ret = yield rc.rpop(todoList)
-    logger.info('Grabbed from Todo list {}: {}'.format(todoList, ret))
+    logger.info('Grabbed from Todo list %(list)s: %(ret)s',
+                {'list': todoList, 'ret': ret})
     mutexKey.release()
     yield rc.disconnect()
     defer.returnValue(ret)

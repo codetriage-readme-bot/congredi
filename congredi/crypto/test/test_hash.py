@@ -7,6 +7,7 @@ import unittest
 from ..hash import make_hash
 
 
+# pylint: disable=no-self-use
 class test_hash(unittest.TestCase):
 
     def test_good_hash(self):

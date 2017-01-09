@@ -13,7 +13,7 @@ from .tor import prox
 class api(multiprocessing.Process):
 
     def run(self):  # test
-        app.run(host="0.0.0.0", port=5000, debug=False)
+        app.run(host="0.0.0.0", port=5000)  # , debug=False)
 
 
 class proxy(multiprocessing.Process):

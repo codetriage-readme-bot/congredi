@@ -3,10 +3,12 @@
 """
 test proxy stuff
 """
+# pylint: disable=unused-import
 import unittest
 from ..daemon import api, proxy
 
 
+# pylint: disable=no-self-use
 class test_daemon(unittest.TestCase):
 
     def test_daemon(self):

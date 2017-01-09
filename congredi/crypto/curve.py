@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
 import logging
 
 from Crypto.PublicKey import RSA
@@ -14,7 +13,6 @@ from .kdf import random_password, default_kdf
 from .AES import default_aes
 
 # hashes (integrate here?)
-from Crypto.Hash import SHA256
 from .hash import make_hash
 # Class instances for the Asymetric crypto inside Congredi.
 logger = logging.getLogger('congredi')
@@ -29,7 +27,8 @@ class curve():
         if publicKey is None and privateKey is None:
             self.ecc = ECC()
         #self.ecc = ECC.generate()
-
+    
+    @classmethod
     def encrypt(self, data, pubkey):
 
         # all or nothing data
@@ -69,6 +68,7 @@ class curve():
         signature = ecc.sign(messageHash)
         return signature
 
+    @classmethod
     def verify(self, messageHash, pubkey, signature):
         ecc = ECC(public=pubKey)
         return ecc.verify(messageHash, signature)
@@ -77,7 +77,7 @@ class curve():
         # strengthen password
         strong_password = default_kdf(password)
         # export stuff
-        keyValues = ECC.export(True)
+        keyValues = self.ECC.export(True)
         # encrypt ECC object
         return default_aes(strong_password).encrypt(keyValues)
 
@@ -87,7 +87,7 @@ class curve():
         # unpack from password
         keyValues = default_aes(strong_password).decrypt(keyData)
         # get ECC object
-        return ECC.decode(keyValues)
+        return self.ECC.decode(keyValues)
 
     # bytes() str() .__bytes__() del ord() pad * chr(pad)
     # self.blockSize - len(data) % self.blockSize .exchange(ec.ECDH(), otherKey)

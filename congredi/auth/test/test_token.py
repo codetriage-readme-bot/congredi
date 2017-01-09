@@ -4,11 +4,13 @@
 JWT tokens (for web interface, mostly, as all peer operations function on
 public key cryptography)
 """
+# pylint: disable=unused-import
 import datetime
 import unittest
 from ..token import token
 
 
+# pylint: disable=no-self-use
 class test_token(unittest.TestCase):
 
     def test_good_token(self):

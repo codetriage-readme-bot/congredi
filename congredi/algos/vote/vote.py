@@ -13,6 +13,8 @@ The methods they'll use will be slightly different, but having these methods
 helps us implement other vote types besides STV... #J
 """
 
+# pylint: disable=abstract-method
+
 
 class poll(object):
     __doc__ = """
@@ -31,7 +33,7 @@ class poll(object):
         self.trees = trees
 
     @abstractmethod
-    def cast(self, vote):
+    def cast(self, userVote):
         """
         Cast an invidual's vote (check that it is
         a valid vote option and a valid sig

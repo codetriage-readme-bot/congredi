@@ -62,6 +62,7 @@ http API
 from klein import Klein
 from ..auth.token import token
 app = Klein()
+key = token('onetwothree')
 
 
 @app.route('/auth/new')

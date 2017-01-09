@@ -7,12 +7,13 @@ import unittest
 from ..stv import stvVote, stvPoll
 
 
+# pylint: disable=no-self-use,unused-variable
 class test_stv(unittest.TestCase):
 
     def test_stvPoll(self):
-        poll = stvPoll(object)
+        testPoll = stvPoll(object)
         print('IMPLEMENT algos/vote/test/test_stv.py:test_stvPoll')
 
     def test_stvVote(self):
-        vote = stvVote(object)
+        testVote = stvVote(object)
         print('IMPLEMENT algos/vote/test/test_stv.py:test_stvVote')

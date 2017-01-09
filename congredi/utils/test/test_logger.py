@@ -7,6 +7,7 @@ import unittest
 from ..logger import formatLevel
 
 
+# pylint: disable=no-self-use
 class test_logger(unittest.TestCase):
 
     def test_logger_level(self):

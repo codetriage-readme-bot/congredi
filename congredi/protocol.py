@@ -3,12 +3,12 @@
 """
 Basic protocol.
 """
+# pylint: disable=unused-import
 from twisted.protocols.amp import AMP
 from twisted.internet import reactor
 #from twisted.protocols.basic import LineReceiver
 
 import logging
-from .utils.whoops import CongrediError, whoops
 logger = logging.getLogger('congredi')
 
 from .command import PeerOptions, PeerOnions
@@ -20,6 +20,44 @@ from .command import PeerOptions, PeerOnions
 
 
 class CongrediPeerProtocol(AMP):
+    """
+    def __init__(self, factory):
+        self.factory = factory
+
+    def hello(self, name, port):
+        print('telling hello')
+        factory = protocol.ClientFactory()
+        factory.protocol = Peer
+        print('connecting')
+        port = reactor.connectTCP(name, port, factory)
+        print('calling')
+        port.callRemote(PeerTell, name, port)
+        print('disconnecting')
+        port.disconnect()
+        print('done')
+        return 'Sent a hello'
+    PeerAsk.responder(hello)
+
+    def gotit(self, name, port):
+        print('got it')
+        return('hello')
+    PeerTell.responder(gotit)
+
+    def hiya(self):
+        print(self.transport)
+        port = self.transport.getHost()
+        print(port)
+        #host = self.transport.getHost()
+        #readers = reactor.getReaders()
+        # 	print value._realPortNumber
+        print('my port is %n' % port)
+        d = connection.callRemote(PeerAsk, host=host, port=port)
+
+        def prin(result):
+            print(result)
+        d.addCallback(prin)
+        return d
+    """
 
     def __init__(self, factory, users):  # **starts
         self.factory = factory
@@ -42,7 +80,7 @@ class CongrediPeerProtocol(AMP):
 
     def connectionMade(self):  # ,client): # test
         self._peer = self.transport.getPeer()
-        logger.info('new connection of {}'.format(self._peer))
+        logger.info('new connection of %s', self._peer)
         self.factory.clients.append(self)
         if self.name not in self.factory.activePeers:
             self.factory.activePeers.append(self._peer)
@@ -53,7 +91,7 @@ class CongrediPeerProtocol(AMP):
         self.factory.numProtocols = self.factory.numProtocols - 1
         if self._peer in self.factory.activePeers:
             self.factory.activePeers.remove(self._peer)
-        logger.info('lost connection of {}'.format(self._peer))
+        logger.info('lost connection of %s', self._peer)
         self.factory.clients.remove(self)
         super(CongrediPeerProtocol, self).connectionLost(reason)
 
@@ -62,7 +100,7 @@ class CongrediPeerProtocol(AMP):
 
     def lineReceived(self, line):  # test
         logger.info("line in: " + str(line))
-        super(CongrediPeerProtocol, self).lineReceived(data)
+        super(CongrediPeerProtocol, self).lineReceived(line)
         # factory = protocol.ClientFactory()
         # factory.protocol = SomeClientProtocol
         # reactor.connectTCP(host, port, factory)
@@ -73,7 +111,7 @@ class CongrediPeerProtocol(AMP):
         for c in self.factory.clients:
             #port = reactor.connectTCP(name, port, factory)
             c.callRemote(PeerOptions, self.host, self.port)
-            #port.disconnect()
+            # port.disconnect()
         logger.info('disconnecting')
         return 'Sent a hello'
 

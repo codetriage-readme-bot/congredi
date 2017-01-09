@@ -9,7 +9,7 @@ from .vote import poll, vote
 
 class stvVote(vote):
 
-    def cast(self, vote):  # test
+    def cast(self, userVote):  # test
         pass
 
     def validate(self, voteid):  # test
@@ -24,7 +24,7 @@ class stvVote(vote):
 
 class stvPoll(poll):
 
-    def cast(self, vote):  # test
+    def cast(self, userVote):  # test
         pass
 
     def validate(self, voteid):  # test

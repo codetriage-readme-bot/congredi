@@ -7,6 +7,7 @@ import logging
 import random
 logger = logging.getLogger('congredi')
 from ..utils.whoops import CongrediError
+#from ..utils.iter import pairwise
 
 
 class router():
@@ -44,6 +45,7 @@ class onion():
     def __init__(self, key):  # test
         self.key = key
 
+    """
     def PackMsg(self, msg, re, numHops=3):  # test
         introductionPoint = self.RandomIntroPoint(re)
         route = self.GetRoute(introductionPoint, numHops)
@@ -53,7 +55,8 @@ class onion():
             nodeKey = ECC(key)
             message = nodeKey.encrypt(message)
             message = nextNode + message
-
+    """
+    """
     def GetRoute(self, finalAddr, numHops):  # test
         # routing nodes are all nodes minus my key
         tempNodes = list(self.nodes)
@@ -73,14 +76,14 @@ class onion():
             choice = random.choice(tempNodes)
             add(choice)
         return result
-
+    """
     def UnPackMsg(self, msg):  # test
         nextNode = msg[:64]
         message = self.nodeKey.decrypt(msg[64:])
         return message, nextNode
 # 65535 bytes 65 kb
 
-
+"""
 def GetPacket():  # AMP.TLS): # test
     if message[:64] != pubkey:
         errBack('not me')
@@ -125,6 +128,7 @@ def _recieve(pkt, addr):  # test
         errBack
 routers = []
 entrys = []
+"""
 # A -> B -> C -> D -> E -> F
 """
 TLS(
@@ -142,6 +146,7 @@ circuit table: from - to
 
 class CongrediProtocol():
 
+    """
     def GetPacket(pkt):  # test
         if lookupKey(pkt[:64]) == False:
             if lookupTrust(peer.key) == False:
@@ -157,36 +162,35 @@ class CongrediProtocol():
             GetCommand(pkt)
         else:
             pass
+    """
 
-    def PickIntro():  # test
+    def PickIntro(self):  # test
         pass
         # route to Intro
         # ask intro
         # publish packet
 
-    def PickRendesvous():  # test
+    def PickRendesvous(self):  # test
         pass
 
-    def SendRequest():  # test
+    def SendRequest(self):  # test
         pass
         # onion wrap
 
-    def RecieveRequest():  # test
+    def RecieveRequest(self):  # test
         pass
 
-    def Send():  # test
+    def Send(self):  # test
         pass
 
-
-class CongrediProtocol():
-
-    def UpOnion():
+    def UpOnion(self):
         pass
 
-
+"""
 def encryptHops(rendesvous, gateway, server, numHops=3):
     for hop in numHops:
         aeskey = rand()
         AES(pkcs_oeap_aont(msg))
         head = ecc(hop.pubkey, aeskey)
         msg = head + ':' + msg
+"""

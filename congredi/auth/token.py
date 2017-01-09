@@ -48,21 +48,22 @@ class token():
         return json.decode('unicode_escape')
 
 """Example flask routes (will probably still be using twisted HTTP libs..."""
-# simple use of this with Flask
-from flask import Flask, request
+from klein import Klein
+app = Klein()
 gate = token('password')
-app = Flask('Delegito')
 
 
 @app.route('/', methods=['GET'])
 def jwt_get():  # test
-    pgpkey = request.get_json()['pubkey']
+    request = 'two'
+    pgpkey = request
     return gate.make(pgpkey)
 
 
 @app.route('/api', methods=['GET'])
 def jwt_use():  # test
-    this_token = request.get_json()['token']
+    request = 'abcd'
+    this_token = request
     response, checks = gate.check(this_token)
     print(checks)
     # if checks: return func(response) # response is pgp fingerprint

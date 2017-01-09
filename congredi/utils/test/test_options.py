@@ -16,6 +16,7 @@ badOpts = {
 }
 
 
+# pylint: disable=no-self-use, unused-variable, bare-except
 class test_options(unittest.TestCase):
 
     def test_good_options(self):

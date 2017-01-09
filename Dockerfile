@@ -18,8 +18,7 @@ RUN python setup.py green && \
 
 # a non-sudo user for the app to run on
 ARG username=app
-ENV createuser=$username
-RUN adduser -D -u 1000 $createuser
+RUN adduser -D -u 1000 $username
 USER $username
 WORKDIR /home/app
 RUN which congredi
@@ -33,7 +32,7 @@ RUN which congredi
 # docker run -p 1001 -d congredi:latest congredi -p 1001 peer
 # should be exposed at 0.0.0.0:1001
 
-ENV exposeport=8800
+ARG exposeport=8800
 EXPOSE $exposeport
 
 CMD congredi -p $exposeport peer

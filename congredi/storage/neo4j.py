@@ -4,32 +4,18 @@
 Map a directed acyclic graph from one user to another,
 and map objects that people use (possibly a minimum number of people use)
 """
-from py2neo import GraphDatabase, basic_auth
-# "bolt://localhost:7687", auth=basic_auth("neo4j", "password"))
+from py2neo import GraphDatabase
 driver = GraphDatabase.driver('bolt://localhost')
 
 
-def get_db():  # test
-    if not hasattr(g, 'neo4j_db'):
-        g.neo4j_db = driver.session()
-    return g.neo4j_db
-
-
-def del_db():  # test
-    if hasattr(g, 'neo4j_db'):
-        g.neo4j_db.close()
-
-
 def assertTrustXY(x, y):  # test
-    db = get_db()
-    db.run(
+    driver.run(
         "CREATE (a:Person {fingerprint:'{fprint}', trust:'{keys}'})", fprint=x, keys=y)
     return True
 
 
 def queryTrustXY(x, y):  # test
-    db = get_db()
-    db.run()
+    driver.run()
 
 
 def dependencies(obj):  # test

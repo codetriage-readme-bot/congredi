@@ -8,7 +8,7 @@ import os
 logger = logging.getLogger('congredi')
 from twisted.protocols.basic import LineReceiver
 from ..crypto.padding import AONTdecrypt, AONTencrypt
-from ..storage.redis import get
+from ..storage.redis import Rget
 from twisted.internet import protocol
 #from ..tasks import garbageCollect
 
@@ -23,7 +23,7 @@ class ClientProtocol(LineReceiver):
         print(params)
         """Reimplement commands... bad idea"""
         if line[0] == 'get':
-            res = get(line[1:])
+            res = Rget(line[1:])
         self.sendLine('Echo: ' + res)
         self.transport.write('>>> ')
 
@@ -37,8 +37,8 @@ class ClientProtocol(LineReceiver):
         self.port = port
         if clientKey:
             self.key = clientKey
-        else:
-            self.key = asym()
+        # else:
+        #     self.key = asym()
         if clientPass:
             self.password = clientPass
         else:
@@ -64,7 +64,7 @@ class CongrediClient(protocol.ClientFactory):
         self.clients = []
 
     def buildProtocol(self, addr):  # test
-        return CongrediClient(self)
+        return CongrediClient()  # self
 
     def startedConnecting(self, connector):  # test
         print('Started to connect.')

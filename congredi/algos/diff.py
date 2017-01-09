@@ -3,6 +3,7 @@
 """
 Diff utils (instead of using a raw git library - a design problem)
 """
+# pylint: disable=unused-import
 from difflib import unified_diff, ndiff, restore
 from ..storage.zlibs import chunkSplit, compressDiff, uncompressDiff
 #from patch import fromstring

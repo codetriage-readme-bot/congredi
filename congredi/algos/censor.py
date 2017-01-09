@@ -24,6 +24,7 @@ def stateEntropy(statement):  # needs a test
 
 
 def stateLanguage(statement):
+    # pylint: disable=bare-except
     """"Language detection (Design: still a bare except - #C)"""
     try:
         return cld2.detect(statement)[2][0][0]

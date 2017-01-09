@@ -16,16 +16,18 @@ things = [
 ]
 
 
+# pylint: disable=no-self-use
 class test_zlib(unittest.TestCase):
 
     def test_split(self):
         splits = chunkSplit(source)
+        print(len(splits))
 
     def test_compression(self):
         thing1 = compressDiff(source2)
         res = '\n'.join(uncompressDiff(thing1))
         print('New')
-        print res
+        print(res)
         print('Original')
-        print source2
+        print(source2)
         assert res == source2

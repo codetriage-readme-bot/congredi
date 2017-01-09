@@ -7,15 +7,19 @@ import unittest
 from ..whoops import CongrediError, whoops
 
 
+# pylint: disable=no-self-use
 class test_whoops(unittest.TestCase):
 
     def test_whoops(self):
         print('IMPLEMENT utils/test/test_whoops')
+        whoops('hello')
 
 
+# pylint: disable=no-self-use
 class test_CongrediErrors(unittest.TestCase):
 
     def test_CongrediErrors(self):
+        # pylint: disable=broad-except
         try:
             raise CongrediError('Well then')
         except Exception as E:

@@ -4,7 +4,7 @@
 command line options
 """
 import argparse
-from .config import defaultPath, defaultFile, makePath, configArr
+from .config import defaultPath, defaultFile, configArr
 """
 design i.e.:
 	valid:
@@ -23,14 +23,16 @@ defaults = configArr(defaultPath)
 
 MainOptions = argparse.ArgumentParser(add_help=False)
 # no option ("--help") - (Design -h if -h is used as host.)
-MainOptions.add_argument('-u', '--help', help='prints usage/help', action='store_true')
+MainOptions.add_argument(
+    '-u', '--help', help='prints usage/help', action='store_true')
 
 # option required after this ("--port 8000")
-MainOptions.add_argument('-p', '--port', default=8800, help='congredi port', type=int)
+MainOptions.add_argument('-p', '--port', default=8800,
+                         help='congredi port', type=int)
 # no option after this (bool flag "--debug")
 MainOptions.add_argument(
     '-c', '--config', type=argparse.FileType('r'),
-    help='config file to use', default=defaultPath+defaultFile)
+    help='config file to use', default=defaultPath + defaultFile)
 
 # verbosity options
 

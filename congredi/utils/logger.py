@@ -9,6 +9,7 @@ Log management (could use twisted's log utility, but must have formating ability
 import logging
 logger = logging.getLogger('congredi')
 
+
 def passLevel(args):
     """take an args object and set the log level"""
     level = logging.WARNING
@@ -20,13 +21,15 @@ def passLevel(args):
         level = logging.DEBUG
     formatLevel(level)
 
+
 def formatLevel(level):
     """set formatting based on a level"""
     formatting = "%(levelname)s %(filename)s(%(lineno)d) %(funcName)s: %(message)s"
     if level == logging.DEBUG:
         formatting = "%(asctime)s[%(name)s:%(levelname)s]%(filename)s(%(lineno)d) %(funcName)s: %(message)s"
     setLog(level, formatting)
-    
+
+
 def setLog(level, formatting):
     """Set log level"""
     logger.setLevel(level)

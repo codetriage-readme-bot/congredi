@@ -6,6 +6,7 @@ Runner tests
 import unittest
 
 
+# pylint: disable=no-self-use
 class test_run(unittest.TestCase):
 
     def test_run(self):

@@ -23,46 +23,55 @@ hexy = {
     "W": "Whiskey", "X": "X-ray", "Y": "Yankee", "Z": "Zulu"
 }
 test = censor(encodings=['UTF-8', 'ascii'], languages=['ENGLISH', 'CHINESE'])
+
+
 def random():
     return os.urandom(15)
+
+
 def hexify(r):
     return binascii.hexlify(r)
+
+
 def phony(h):
     return " ".join(hexy[a] for a in h)
+
+# pylint: disable=no-self-use
+# pylint: disable=unused-variable
+
 
 class test_censor(unittest.TestCase):
 
     def test_obvious_catch(self):
         print('Should block (best 8/10, os.urandom()):')
         passes = 0
-        for x in xrange(0,10):
+        for x in xrange(0, 10):
             actual_random = random()
             res = test.check(actual_random)
             if not res:
                 passes += 1
-        print("{}/10".format(passes))
+        print("%d/10" % passes)
         assert passes >= 8
 
     def test_encode(self):
         print('Should safe (best 14/15, os.urandom()):')
         passes = 0
-        for x in xrange(0,15):
+        for x in xrange(0, 15):
             encoded_random = hexify(random())
             if stateEncoding(encoded_random) == 'ascii':
                 passes += 1
-        print("{}/15".format(passes))
+        print("%d/15" % passes)
         assert passes >= 14
 
     def test_trivial_bypass(self):
         print('Should safe (best 24/25, os.urandom()):')
         passes = 0
-        for x in xrange(0,25):
+        for x in xrange(0, 25):
             phonetic_random = phony(hexify(random()))
             if test.check(phonetic_random):
                 passes += 1
-        print("{}/25".format(passes))
+        print("%d/25" % passes)
         assert passes >= 24
-
 
     def test_unicode(self):
         assert stateEncoding('hello 你好') == 'utf-8'

@@ -5,16 +5,18 @@ testing coordination code
 """
 import os
 import unittest
-from ..coord import expand, fileCoord
+from ..coord import fileCoord
 
 
 def prep():
+    # pylint: disable=bare-except
     try:
         os.remove('b')
     except:
         pass
 
 
+# pylint: disable=no-self-use
 class test_coord(unittest.TestCase):
 
     def test_coord(self):

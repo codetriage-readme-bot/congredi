@@ -10,9 +10,10 @@ logger = logging.getLogger('congredi')
 from twisted.internet import defer
 from twisted.internet import reactor
 
-from .storage.redis import get, set, delete
+from .storage.redis import Rget, Rset, Rdelete
 from .utils.config import configArr
 from .utils.whoops import whoops
+
 
 def queryBackground():  # test
     """
@@ -46,14 +47,14 @@ def peerBeat():  # repeating peer-beat task
     logger.info('peer heartbeat start')
     config = configArr()
     for admin in config['admins']:
-        logger.info('begin for admin: {0}'.format(admin))
+        logger.info('begin for admin: %s', admin)
         # test after the yields...
-        retset = yield set('admins', admin)
-        retget = yield get('admins')
-        retdel = yield delete('admins')
+        retset = yield Rset('admins', admin)
+        retget = yield Rget('admins')
+        retdel = yield Rdelete('admins')
         logger.info('set response:' + retset)
         logger.info('get response:' + retget)
-        logger.info('delete response: {}'.format(retdel))
+        logger.info('delete response: %s', retdel)
     # if shutDown:
     #	loop.stop()
 
@@ -75,3 +76,20 @@ def peerFailure(failure):  # test
 # 	d = task.deferLater(reactor, delay, f)
 # 	d.addTimeout(3, reactor).addBoth(called)
 # task.react(main)
+"""
+args
+config
+database
+
+
+loop:
+    check peers online
+        increment/decrement peer online counter in db
+    check online peers
+        add/delete file listings
+cmd:
+    ping (hostname, port, key) -> pong (hostname, port, key)
+    peers() -> peers(list[])
+    have () -> have(list[])
+    want () -> want(list[])
+"""

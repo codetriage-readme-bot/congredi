@@ -19,6 +19,8 @@ from ..diff import tock
 from ...tests.sources import source, source2, empty, empty2
 from ...storage.zlibs import chunkSplit
 
+# pylint: disable=no-self-use
+
 
 class test_diff(unittest.TestCase):
 
@@ -40,7 +42,7 @@ class test_diff(unittest.TestCase):
     def test_splits(self):
         data = {'pieces': {}}
         comp = tick(empty, empty2)
-        print('compressed {}'.format(len(comp)))
+        print('compressed %d' % len(comp))
         data['length'] = len(comp)
         data['hash'] = hashlib.sha256(comp).digest()
         splt = chunkSplit(comp)
@@ -51,9 +53,9 @@ class test_diff(unittest.TestCase):
             print(k.encode('hex'), v.encode('hex'))
         jnd = ''.join(splt)
         final = hashlib.sha256(jnd).digest()
-        print('join {}'.format(len(jnd)))
-        print('hash: {}\nhash: {}'.format(
-            data['hash'].encode('hex'), final.encode('hex')))
+        print('join %d' % len(jnd))
+        print('hash: %(one)s\nhash: %(two)s' %
+              {'one': data['hash'].encode('hex'), 'two': final.encode('hex')})
 
     def test_uni(self):
         # pu.db

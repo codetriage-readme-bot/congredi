@@ -3,10 +3,12 @@
 """
 Redis object tests
 """
+# pylint: disable=unused-import
 import unittest
-from ..redis import RedisStore, redisSetup, get, set, randKey, todoAdd, todoRemove
+from ..redis import RedisStore, redisSetup, Rget, Rset, RrandKey, todoAdd, todoRemove
 
 
+# pylint: disable=no-self-use
 class test_redis(unittest.TestCase):
 
     def test_redis(self):
