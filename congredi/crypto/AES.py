@@ -20,7 +20,7 @@ class default_aes():
         self.secret = secret
 
     def encrypt(self, data):
-        padded = pad(data,16,'pkcs7')
+        padded = pad(data, 16, 'pkcs7')
         iv = Random.new().read(AES.block_size)
         lock = AES.new(self.secret, AES.MODE_CBC, iv)
         encrypted = iv + lock.encrypt(padded)
@@ -30,7 +30,7 @@ class default_aes():
         iv = data[:AES.block_size]
         templock = AES.new(self.secret, AES.MODE_CBC, iv)
         decrypted = templock.decrypt(data[AES.block_size:])
-        return unpad(decrypted,16,'pkcs7')
+        return unpad(decrypted, 16, 'pkcs7')
 
     def disclose(self):
         return self.secret

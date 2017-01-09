@@ -17,6 +17,8 @@ logger = logging.getLogger('congredi')
 defaultHost = socket.gethostname()
 
 # pylint: disable=no-self-use
+
+
 class CongrediPeerFactory(protocol.Factory):
     """
     clients = []

@@ -77,6 +77,7 @@ class onion():
             add(choice)
         return result
     """
+
     def UnPackMsg(self, msg):  # test
         nextNode = msg[:64]
         message = self.nodeKey.decrypt(msg[64:])

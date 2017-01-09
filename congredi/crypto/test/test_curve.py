@@ -20,7 +20,7 @@ class test_curve(unittest.TestCase):
             a = curve()
             c = curve()
             # .pubkey isn't the actual method right now.
-            msg = a.encrypt("hello",c.pubkey)
+            msg = a.encrypt("hello", c.pubkey)
             res = c.decrypt(msg)
             assert res == "hello"
         except:

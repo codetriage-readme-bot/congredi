@@ -8,6 +8,8 @@ from ..AES import default_aes
 from ...algos.test.test_censor import random, hexify, phony
 
 # pylint: disable=no-self-use
+
+
 class test_default_aes(unittest.TestCase):
 
     def test_default_aes_passwords(self):
@@ -24,22 +26,22 @@ class test_default_aes(unittest.TestCase):
         failures = 0
         print('Random gauntlet single tests')
         v = default_aes()
-        for x in xrange(0,32):
-            message = b"{}".format(phony(hexify(random()))[:1+x])
+        for x in xrange(0, 32):
+            message = b"{}".format(phony(hexify(random()))[:1 + x])
             cipher = v.encrypt(message)
             res = v.decrypt(cipher)
-            print(message,res)
+            print(message, res)
             assert res == message
 
     def test_gauntlet(self):
         failures = 0
         print('Random gauntlet tests')
-        for x in xrange(0,32):
+        for x in xrange(0, 32):
             v = default_aes()
-            message = b"{}".format(phony(hexify(random()))[:1+x])
+            message = b"{}".format(phony(hexify(random()))[:1 + x])
             cipher = v.encrypt(message)
             res = v.decrypt(cipher)
-            print(message,res)
+            print(message, res)
             assert res == message
             del v
 

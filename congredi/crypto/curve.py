@@ -27,7 +27,7 @@ class curve():
         if publicKey is None and privateKey is None:
             self.ecc = ECC()
         #self.ecc = ECC.generate()
-    
+
     @classmethod
     def encrypt(self, data, pubkey):
 

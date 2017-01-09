@@ -8,6 +8,8 @@ from ..padding import AONTencrypt, AONTdecrypt
 from ...algos.test.test_censor import random, hexify, phony
 
 # pylint: disable=no-self-use
+
+
 class test_padding(unittest.TestCase):
 
     def test_padding(self):
@@ -22,8 +24,8 @@ class test_padding(unittest.TestCase):
 
     def test_gauntlet(self):
         """10 random AONTs - message should decrypt"""
-        for x in xrange(0,10):
-            message = b"{}".format(phony(hexify(random()))[:1+x])
+        for x in xrange(0, 10):
+            message = b"{}".format(phony(hexify(random()))[:1 + x])
             password = hexify(random())
             cipher = AONTencrypt(message, password)
             res = AONTdecrypt(cipher)
@@ -32,8 +34,8 @@ class test_padding(unittest.TestCase):
 
     def test_unequal(self):
         """10 random AONTs - two AONTs should not equal each other"""
-        for x in xrange(0,10):
-            message = b"{}".format(phony(hexify(random()))[:1+x])
+        for x in xrange(0, 10):
+            message = b"{}".format(phony(hexify(random()))[:1 + x])
             password = hexify(random())
             a = AONTencrypt(message, password)
             b = AONTencrypt(message, password)

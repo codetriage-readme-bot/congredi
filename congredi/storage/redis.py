@@ -56,7 +56,7 @@ class RedisStore(abstractStorageProvider):
 def Rget(key):  # test
     rc = yield redis.Connection("10.230.78.120")
     value = yield rc.get(key)
-    logger.info('got %(key)s:%(value)s', {'key':key, 'value':value})
+    logger.info('got %(key)s:%(value)s', {'key': key, 'value': value})
     yield rc.disconnect()
     defer.returnValue(value)
 
