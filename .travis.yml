@@ -27,5 +27,5 @@ script:
 # setup.py green is still buggy about loading dot_modules...
   - green congredi
   - python setup.py install
-  - python setup.py lint || echo "Lint fails..."
+  - python setup.py lint
   - mkdocs build || echo "Docs fail..."

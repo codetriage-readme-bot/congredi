@@ -11,7 +11,8 @@ clean(){
     	find . -name "$line" -prune -print -exec rm -r {} \;
     done < .gitignore;
     echo "removing executability from congredi/ folder..."
-    chmod -x congredi/ -R 
+    chmod -x congredi/ -R
+    find . -type d -exec chmod 755 {} \;
     echo "running autopep8 formating..."
     autopep8 -rvi congredi
 }

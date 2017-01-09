@@ -23,7 +23,6 @@ class test_default_aes(unittest.TestCase):
         assert result == 'hello'
 
     def test_gauntlet_single(self):
-        failures = 0
         print('Random gauntlet single tests')
         v = default_aes()
         for x in xrange(0, 32):
@@ -34,7 +33,6 @@ class test_default_aes(unittest.TestCase):
             assert res == message
 
     def test_gauntlet(self):
-        failures = 0
         print('Random gauntlet tests')
         for x in xrange(0, 32):
             v = default_aes()

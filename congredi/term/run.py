@@ -42,15 +42,15 @@ def run():
     # these are dead at the moment...
     if args.which == 'peer':
         logger.info('building a peer')
-        inst = CongrediPeerFactory(
-            port=args.port, redisPort=args.redis,
-            neo4jPort=args.neo4j, initialKey=None)
+        # inst = CongrediPeerFactory(
+        #     port=args.port, redisPort=args.redis,
+        #     neo4jPort=args.neo4j, initialKey=None)
     elif args.which == 'client':
         logger.info('building a client')
-        inst = CongrediClient(
+        client = CongrediClient(
             host=args.host, port=args.port,
             clientKey=None)
-        stdio.StandardIO(inst)
+        stdio.StandardIO(client)
     try:
         hello_factory = CongrediPeerFactory()
         hello_host, hello_port = fileCoord.read()

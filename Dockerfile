@@ -10,7 +10,8 @@ RUN apk add --update gcc g++ make libffi-dev openssl-dev && \
 # -- The above is a "base" layer. Don't touch it for faster builds. --
 ADD . /code/
 WORKDIR /code
-RUN python setup.py green && \
+RUN python setup.py lint && \
+    python setup.py green && \
     python setup.py build 1>/dev/null && \
     python setup.py bdist_wheel 1>/dev/null && \
     python setup.py install 1>/dev/null && \

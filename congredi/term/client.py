@@ -13,6 +13,7 @@ from twisted.internet import protocol
 #from ..tasks import garbageCollect
 
 
+# pylint: disable=abstract-method
 class ClientProtocol(LineReceiver):
 
     def connectionMade(self):  # test
@@ -59,12 +60,15 @@ class ClientProtocol(LineReceiver):
 class CongrediClient(protocol.ClientFactory):
     """Mostly debugging with prints.."""
 
-    def __init__(self):  # test
+    def __init__(self, host, port, clientKey):  # test
         print('hello')
         self.clients = []
+        self.host = host
+        self.port = port
+        self.key = clientKey
 
     def buildProtocol(self, addr):  # test
-        return CongrediClient()  # self
+        return ClientProtocol(self.host, self.port, self.key)  # self
 
     def startedConnecting(self, connector):  # test
         print('Started to connect.')

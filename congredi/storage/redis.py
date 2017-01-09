@@ -21,7 +21,7 @@ class RedisStore(abstractStorageProvider):
 
     def __init__(self, connection):  # test
         self._conn = connection
-        super(abstractStorageProvider, self).__init__(self)
+        super(RedisStore, self).__init__()
 
     # actual writers
     @defer.inlineCallbacks
@@ -74,7 +74,7 @@ def Rset(key, value):  # test
 def Rdelete(key):  # test
     rc = yield redis.Connection("10.230.78.120")
     n = yield rc.delete(key)
-    logger.info('deleted (%s) %s', (n, key))
+    logger.info('deleted (%s) %s', n, key)
     yield rc.disconnect()
     defer.returnValue(n)
 
