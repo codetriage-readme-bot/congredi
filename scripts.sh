@@ -47,11 +47,9 @@ v2(){
     deactivate
 }
 v3works(){
-    v3
     green congredi.auth congredi.extra congredi.storage congredi.term congredi.tests \
     congredi.utils congredi.algos.test.test_router congredi.crypto.test.test_hash \
     congredi.crypto.test.test_kdf congredi.crypto.test.test_threshold
-    v2
 }
 v3breaks(){
     v3

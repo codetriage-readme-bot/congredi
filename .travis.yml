@@ -1,31 +1,35 @@
 language: python
 python:
-  - "2.6"
   - "2.7"
-  - "3.2"
   - "3.3"
   - "3.4"
+  - "3.5"
+  - "3.6"
+# - "3.7-dev"
 matrix:
   include:
-    - os: linux
-      python: 3.5
+    # include the trusty image as well
+    # - os: linux
+    #   dist: trusty
+    #   python: 2.7
     - os: osx
       language: generic
   allow_failures:
     - os: osx
-    - python: 2.6
-    - python: 3.2
     - python: 3.3
     - python: 3.4
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update        ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install python; fi
+    - python: 3.5
+    - python: 3.6
 install:
   - pip install -r requirements.txt
   - pip install pylint green
 script:
   - python setup.py build
   - green congredi
+  # 2.7 operates all tests
+  - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then green congredi; fi
+  # 3.* operates tests we think should be compatible
+  - if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then ./scripts.sh v3works; fi
   - python setup.py install
   - pylint congredi
   - mkdocs build || echo "Docs fail..."
