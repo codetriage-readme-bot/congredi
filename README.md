@@ -18,7 +18,10 @@ hop on over to gitter & [waffle](https://waffle.io/congredi/congredi). I'm looki
 
 The build status is misleading, if you've got python 2.7, it should work.
 
-[![Build Status](https://travis-ci.org/congredi/congredi.svg?branch=master)](https://travis-ci.org/congredi/congredi)
+[![Build Status Travis](https://travis-ci.org/congredi/congredi.svg?branch=master)](https://travis-ci.org/congredi/congredi)
+[![Build status Windows](https://ci.appveyor.com/api/projects/status/mo003x9ygpnb316q?svg=true)](https://ci.appveyor.com/project/Thetoxicarcade/congredi)
+[![Build status Codeship](https://codeship.com/projects/d1cee4c0-b9b1-0134-40ad-5e5884b780cb/status?branch=master)]()
+
 [![Documentation Status](https://readthedocs.org/projects/congredi/badge/?version=latest)](http://congredi.readthedocs.io/en/latest/?badge=latest)
 [![GitHub commits](https://img.shields.io/github/commits-since/congredi/congredi/v0.0.2-alpha.svg)](https://github.com/congredi/congredi)
 [![PyPI](https://img.shields.io/pypi/v/congredi.svg)]()

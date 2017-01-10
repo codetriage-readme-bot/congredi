@@ -1,0 +1,20 @@
+congredi:
+  build:
+    image: congredi/congredi
+    dockerfile_path: Dockerfile
+#   # Linking Redis and Postgres into the container
+#   links:
+#     - redis
+#     - postgres
+#   # Set environment variables to connect to the service you need for your build.
+#   # Those environment variables can overwrite settings from your configuration
+#   # files if configured. Make sure that your environment variables and
+#   # configuration files work work together as expected.
+#   environment:
+#     - DATABASE_URL=postgres://postgres@postgres/YOUR_DATABASE_NAME
+#     - REDIS_URL=redis://redis
+# # Service definition that specify a version of the service through container tags
+# redis:
+#   image: redis:2.8
+# postgres:
+#   image: postgres:9.4
