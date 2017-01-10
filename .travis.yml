@@ -6,10 +6,11 @@ python:
   - "3.5"
   - "3.6"
 # - "3.7-dev"
-os:
-  # should mostly work?
-  - osx
-  - linux
+# because they don't support python on OSX
+# os:
+#   # should mostly work?
+#   - osx
+#   - linux
 matrix:
   include:
     - os: osx
