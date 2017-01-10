@@ -1,4 +1,6 @@
-FROM python:2.7-alpine
+FROM python:2.7-onbuild
+# python:3.3-onbuild python:3.4-onbuild python:3.5-onbuild python:3.6-onbuild
+
 MAINTAINER Cameron Whiting "thetoxicarcade@gmail.com"
 ADD requirements.txt /
 RUN apk add --update gcc g++ make libffi-dev openssl-dev && \

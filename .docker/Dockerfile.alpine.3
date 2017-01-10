@@ -1,4 +1,5 @@
-FROM python:2.7-alpine
+FROM python:3.3-alpine
+# python:3.4-alpine python:3.5-alpine python:3.6-alpine
 MAINTAINER Cameron Whiting "thetoxicarcade@gmail.com"
 ADD requirements.txt /
 RUN apk add --update gcc g++ make libffi-dev openssl-dev && \
