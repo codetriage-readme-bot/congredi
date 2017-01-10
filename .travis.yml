@@ -6,6 +6,9 @@ python:
   - "3.5"
   - "3.6"
 # - "3.7-dev"
+os:
+  - osx
+  - python
 matrix:
   include:
     # include the trusty image as well
