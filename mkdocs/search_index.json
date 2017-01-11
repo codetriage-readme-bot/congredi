@@ -31,6 +31,61 @@
             "title": "Running"
         }, 
         {
+            "location": "/Setup/", 
+            "text": "Thanks for being intersted in Congredi! We appreciate your early adopion.\nFind your opporating system on the left to get started. \n\n\nOr if you would like to contribute. You can use the development version : \n\n\ngit clone https://github.com/congredi/congredi\ncd congredi\npip install -r requirements.txt\ngreen congredi\npython setup.py install \n\n\n\n\nLinux\n\n\nStep 1 - Check Prerequisites\n\n\nCongredi will only run on Python2.7, or Python3.3 To 3.6 \n\n\nVersions 2.6 and 3.2 are not supported. \n\n\nTo check your python version enter \npython --version\n\n\nStep 2 - Install Congredi\n\n\nInstall redis with your local package manager,\n\n\nFor Debian/Ubuntu run \nsudo apt-get install redis-server\n\n\nFor Fedora/CentOS run \nsudo dnf install redis\n\n\nFor Alpine/CoreOS run \napk add --update redis\n\n\nTo install the library run \npip install congredi\n\n\nFinish!\n\n\nConfirm everthing is working by running \ncongredi peer\n\n\nMac OS X\n\n\nStep 1 - Check Prerequisites\n\n\nIf you don't have Python you can it with \nHomebrew\n\nbyentering this command in the terminal \nbrew install python\n \n\n\nStep 2 -Install Congredi\n\n\nIf you need Redis on your mac run \nbrew install redis\n\n\nIf you have Python then run \npip install congredi\n\n\nStep 3 - Finish!\n\n\nConfirm everything is working by running \ncongredi peer\n\n\nWindows\n\n\nWe don't support Windows (\nYet\n)\n\n\nIf you would like to contribute to windows support. See issue [#21} (https://github.com/congredi/congredi/issues/21)\n\n\nDocker\n\n\nFor making custom images : \n\n\nFrom congredi/congredi\nFrom congredi/delegito \n\n\n\n\nFor scaling :\n\n\nredis:\n    image: redis:alpine\n    ports:\n     - \n6379:6379\n\n    volumes:\n    - /data/redis:/data\nneo4j:\n    image: neo4j:3.0\n    ports:\n     - \n7474:7474\n\n     - \n7473:7473\n\n     - \n7687:7687\n\ncongredi:\n    image: congredi/congredi:latest\n    ports:\n     - \n8800:8800\n\ndelegito:\n    image: congredi/delegito:latest\n    ports:\n        \n443:443\n\n        \n80:80", 
+            "title": "Setup"
+        }, 
+        {
+            "location": "/Setup/#linux", 
+            "text": "", 
+            "title": "Linux"
+        }, 
+        {
+            "location": "/Setup/#step-1-check-prerequisites", 
+            "text": "Congredi will only run on Python2.7, or Python3.3 To 3.6   Versions 2.6 and 3.2 are not supported.   To check your python version enter  python --version", 
+            "title": "Step 1 - Check Prerequisites"
+        }, 
+        {
+            "location": "/Setup/#step-2-install-congredi", 
+            "text": "Install redis with your local package manager,  For Debian/Ubuntu run  sudo apt-get install redis-server  For Fedora/CentOS run  sudo dnf install redis  For Alpine/CoreOS run  apk add --update redis  To install the library run  pip install congredi", 
+            "title": "Step 2 - Install Congredi"
+        }, 
+        {
+            "location": "/Setup/#finish", 
+            "text": "Confirm everthing is working by running  congredi peer", 
+            "title": "Finish!"
+        }, 
+        {
+            "location": "/Setup/#mac-os-x", 
+            "text": "", 
+            "title": "Mac OS X"
+        }, 
+        {
+            "location": "/Setup/#step-1-check-prerequisites_1", 
+            "text": "If you don't have Python you can it with  Homebrew \nbyentering this command in the terminal  brew install python", 
+            "title": "Step 1 - Check Prerequisites"
+        }, 
+        {
+            "location": "/Setup/#step-2-install-congredi_1", 
+            "text": "If you need Redis on your mac run  brew install redis  If you have Python then run  pip install congredi", 
+            "title": "Step 2 -Install Congredi"
+        }, 
+        {
+            "location": "/Setup/#step-3-finish", 
+            "text": "Confirm everything is working by running  congredi peer", 
+            "title": "Step 3 - Finish!"
+        }, 
+        {
+            "location": "/Setup/#windows", 
+            "text": "We don't support Windows ( Yet )  If you would like to contribute to windows support. See issue [#21} (https://github.com/congredi/congredi/issues/21)", 
+            "title": "Windows"
+        }, 
+        {
+            "location": "/Setup/#docker", 
+            "text": "For making custom images :   From congredi/congredi\nFrom congredi/delegito   For scaling :  redis:\n    image: redis:alpine\n    ports:\n     -  6379:6379 \n    volumes:\n    - /data/redis:/data\nneo4j:\n    image: neo4j:3.0\n    ports:\n     -  7474:7474 \n     -  7473:7473 \n     -  7687:7687 \ncongredi:\n    image: congredi/congredi:latest\n    ports:\n     -  8800:8800 \ndelegito:\n    image: congredi/delegito:latest\n    ports:\n         443:443 \n         80:80", 
+            "title": "Docker"
+        }, 
+        {
             "location": "/contributing/intro/", 
             "text": "Get Involved\n\n\n\n\nHop on Waffle to view the current GitHub issues:\n    \n.\n\n\nClone repo:\n    \ngit clone github.com/thetoxicarcade/congredi \n cd congredi\n\n\npre-fetch npm/bower, gulp\n\n\ndocker run -ti --rm -u $UID -v `pwd`/interface/:/srv/ marmelab/bower bash -c \"npm install \n bower --allow-root --config.interactive install\"\n\n\ndocker run -ti --rm -u $UID -v `pwd`/interface/:/srv/ marmelab/bower bash -c \"npm install -g gulp \n gulp\"\n\n*\n\n\n\n\n\n\nHack some things\n\n\nsetup.py build test install\n\n\nsetup.py metadata sdist upload\n\n\ndocker-compose build \n docker-compose up -d \n docker-compose scale workers=2\n\n\n\n\n\n\nSubmit some pull requests\n\n\n\n\nThis repo handles letting anonymous people reach compromises. Unfortunately the \ncodebase doesn't extend to github comments. Don't be any form of oppressive or\nslandarous towards another person or group.\n\n\nExplaining an endpoint allows other people to use it correctly. If the\ndocs won't match the code anymore, change them too. Use markdown code\nblocks for snippets, when in doubt run \nmkdocs serve\n to try them out.\n\n\nBefore submitting your changes, run \nsetup.py test\n \n/|| \ndocker-compose build\n,\njust to see that everything superficially checks out. If you'd made changes\noutside the scope of the tests, it might not register as failing, but it's\na good, basic step. The testing system currently uses \nnose2\n \n \njasmine\n.\n\n\nInsofar as the editor you use can format, and the test suite used can lint it.\nCurrently, that's \neslint\n \n \npylint\n (\npython setup.py lint\n).\nIn other words, if the machines can both catch and help you, style it that way.", 
             "title": "intro"

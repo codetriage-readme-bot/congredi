@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="Github People">
-        <link rel="canonical" href="http://congredi.io/contributing/style/">
-        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <link rel="canonical" href="http://congredi.io/Setup/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>style - Congredi</title>
+	<title>Setup - Congredi</title>
 
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
-        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -41,7 +41,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">Congredi</a>
+            <a class="navbar-brand" href="..">Congredi</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -51,48 +51,48 @@
             
             
                 <li >
-                    <a href="../..">index</a>
+                    <a href="..">index</a>
                 </li>
             
             
             
-                <li >
-                    <a href="../../Setup/">Setup</a>
+                <li class="active">
+                    <a href="./">Setup</a>
                 </li>
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contributing <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../intro/">intro</a>
-</li>
-
-                    
-                        
-<li class="active">
-    <a href="./">style</a>
+    <a href="../contributing/intro/">intro</a>
 </li>
 
                     
                         
 <li >
-    <a href="../tests/">tests</a>
+    <a href="../contributing/style/">style</a>
 </li>
 
                     
                         
 <li >
-    <a href="../commits/">commits</a>
+    <a href="../contributing/tests/">tests</a>
 </li>
 
                     
                         
 <li >
-    <a href="../tags/">Tags/Emoji</a>
+    <a href="../contributing/commits/">commits</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../contributing/tags/">Tags/Emoji</a>
 </li>
 
                     
@@ -107,13 +107,13 @@
                     
                         
 <li >
-    <a href="../../extending/angular/">angular</a>
+    <a href="../extending/angular/">angular</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../extending/database/">database</a>
+    <a href="../extending/database/">database</a>
 </li>
 
                     
@@ -128,19 +128,19 @@
                     
                         
 <li >
-    <a href="../../spec/commands/">Commands</a>
+    <a href="../spec/commands/">Commands</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../spec/storage/">Storage</a>
+    <a href="../spec/storage/">Storage</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../spec/packet/">Packets</a>
+    <a href="../spec/packet/">Packets</a>
 </li>
 
                     
@@ -158,12 +158,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../intro/">
+                    <a rel="next" href="..">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../tests/">
+                    <a rel="prev" href="../contributing/intro/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -186,25 +186,98 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#style-guides">Style guides</a></li>
+        <li class="main active"><a href="#linux">Linux</a></li>
         
-            <li><a href="#python">Python</a></li>
+            <li><a href="#step-1-check-prerequisites">Step 1 - Check Prerequisites</a></li>
         
-            <li><a href="#js">JS</a></li>
+            <li><a href="#step-2-install-congredi">Step 2 - Install Congredi</a></li>
+        
+            <li><a href="#finish">Finish!</a></li>
+        
+    
+        <li class="main "><a href="#mac-os-x">Mac OS X</a></li>
+        
+            <li><a href="#step-1-check-prerequisites_1">Step 1 - Check Prerequisites</a></li>
+        
+            <li><a href="#step-2-install-congredi_1">Step 2 -Install Congredi</a></li>
+        
+            <li><a href="#step-3-finish">Step 3 - Finish!</a></li>
+        
+    
+        <li class="main "><a href="#windows">Windows</a></li>
+        
+    
+        <li class="main "><a href="#docker">Docker</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="style-guides">Style guides</h1>
-<p>I'm not currently conforming to the results
-from <code>eslint</code> or <code>pylint</code>, but I could be.</p>
-<h2 id="python">Python</h2>
-<p>Pep8 via autopep8. Note that I come from a lovely tabs world, so
-I just suggest installing <code>check.sh</code> into your git hooks.</p>
-<h2 id="js">JS</h2>
-<p>single-quote, tab, 1tbs camelCase</p></div>
+<p>Thanks for being intersted in Congredi! We appreciate your early adopion.
+Find your opporating system on the left to get started. </p>
+<p>Or if you would like to contribute. You can use the development version : </p>
+<pre><code>git clone https://github.com/congredi/congredi
+cd congredi
+pip install -r requirements.txt
+green congredi
+python setup.py install 
+</code></pre>
+
+<h1 id="linux">Linux</h1>
+<h2 id="step-1-check-prerequisites">Step 1 - Check Prerequisites</h2>
+<p>Congredi will only run on Python2.7, or Python3.3 To 3.6 </p>
+<p>Versions 2.6 and 3.2 are not supported. </p>
+<p>To check your python version enter <code>python --version</code></p>
+<h2 id="step-2-install-congredi">Step 2 - Install Congredi</h2>
+<p>Install redis with your local package manager,</p>
+<p>For Debian/Ubuntu run <code>sudo apt-get install redis-server</code></p>
+<p>For Fedora/CentOS run <code>sudo dnf install redis</code></p>
+<p>For Alpine/CoreOS run <code>apk add --update redis</code></p>
+<p>To install the library run <code>pip install congredi</code></p>
+<h2 id="finish">Finish!</h2>
+<p>Confirm everthing is working by running <code>congredi peer</code></p>
+<h1 id="mac-os-x">Mac OS X</h1>
+<h2 id="step-1-check-prerequisites_1">Step 1 - Check Prerequisites</h2>
+<p>If you don't have Python you can it with <a href="http://brew.sh">Homebrew</a>
+byentering this command in the terminal <code>brew install python</code> </p>
+<h2 id="step-2-install-congredi_1">Step 2 -Install Congredi</h2>
+<p>If you need Redis on your mac run <code>brew install redis</code></p>
+<p>If you have Python then run <code>pip install congredi</code></p>
+<h2 id="step-3-finish">Step 3 - Finish!</h2>
+<p>Confirm everything is working by running <code>congredi peer</code></p>
+<h1 id="windows">Windows</h1>
+<p>We don't support Windows (<strong><em>Yet</em></strong>)</p>
+<p>If you would like to contribute to windows support. See issue [#21} (https://github.com/congredi/congredi/issues/21)</p>
+<h1 id="docker">Docker</h1>
+<p>For making custom images : </p>
+<pre><code>From congredi/congredi
+From congredi/delegito 
+</code></pre>
+
+<p>For scaling :</p>
+<pre><code>redis:
+    image: redis:alpine
+    ports:
+     - &quot;6379:6379&quot;
+    volumes:
+    - /data/redis:/data
+neo4j:
+    image: neo4j:3.0
+    ports:
+     - &quot;7474:7474&quot;
+     - &quot;7473:7473&quot;
+     - &quot;7687:7687&quot;
+congredi:
+    image: congredi/congredi:latest
+    ports:
+     - &quot;8800:8800&quot;
+delegito:
+    image: congredi/delegito:latest
+    ports:
+        &quot;443:443&quot;
+        &quot;80:80&quot;
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
@@ -213,12 +286,12 @@ I just suggest installing <code>check.sh</code> into your git hooks.</p>
             <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
         </footer>
 
-        <script src="../../js/jquery-1.10.2.min.js"></script>
-        <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
-        <script>var base_url = '../..';</script>
-        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
-        <script src="../../js/base.js"></script>
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
             <div class="modal-dialog">
