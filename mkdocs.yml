@@ -9,6 +9,7 @@ theme: flatly
 use_directory_urls: true
 pages:
     - 'index': 'index.md'
+    - 'Setup': 'Setup.md'
     - 'Contributing':
          - 'intro': 'contributing/intro.md'
          - 'style': 'contributing/style.md'
