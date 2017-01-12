@@ -15,7 +15,7 @@ def readme():
             return f.read()
 
 setup(name='congredi',
-      version='0.0.3',
+      version='0.0.2-beta',
       description='BASE representation-of-law-via-cryptography protocol',
       long_description=readme(),
       classifiers=[
@@ -59,16 +59,11 @@ setup(name='congredi',
       },
       include_package_data=True,
       packages=find_packages(exclude=['.pyc','.pdf']),
-      #packages=['congredi'],  # ,'docs'],
-      package_data={
-          'delegito': ['*'],
-          'docs': ['*/*'],
-      },
       tests_require=[
           'setuptools-green',
           'green>=2.5.3',
           'setuptools-lint',
           'pylint'
       ],
-      zip_safe=False
+      # zip_safe=False
       )  # python setup.py register sdist upload
