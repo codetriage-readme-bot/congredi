@@ -27,8 +27,8 @@ The build status is misleading, if you've got python 2.7, it should work.
 [![PyPI](https://img.shields.io/pypi/v/congredi.svg)]()
 
 Docker images:
-`congredi:` [![Docker Pulls](https://img.shields.io/docker/pulls/ericoflondon/congredi.svg?maxAge=2592000)](https://hub.docker.com/r/ericoflondon/congredi/)
-`delegito:` [![Docker Pulls](https://img.shields.io/docker/pulls/ericoflondon/delegito.svg?maxAge=2592000)](https://hub.docker.com/r/ericoflondon/delegito/)
+`congredi:` [![Docker Pulls](https://img.shields.io/docker/pulls/congredi/congredi.svg?maxAge=2592000)](https://hub.docker.com/r/congredi/congredi/)
+`delegito:` [![Docker Pulls](https://img.shields.io/docker/pulls/congredi/delegito.svg?maxAge=2592000)](https://hub.docker.com/r/congredi/delegito/)
 
-[![](https://images.microbadger.com/badges/image/ericoflondon/congredi.svg)](https://microbadger.com/images/ericoflondon/congredi "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/ericoflondon/congredi.svg)](https://microbadger.com/images/ericoflondon/congredi "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/, congredi/congredi.svg)](https://microbadger.com/images/congredi/congredi "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/congredi/congredi.svg)](https://microbadger.com/images/congredi/congredi "Get your own version badge on microbadger.com")

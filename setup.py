@@ -58,7 +58,7 @@ setup(name='congredi',
           ],
       },
       include_package_data=True,
-      packages=find_packages(exclude=['.pyc','.md','.pdf']),
+      packages=find_packages(exclude=['.pyc','.pdf']),
       #packages=['congredi'],  # ,'docs'],
       package_data={
           'delegito': ['*'],
