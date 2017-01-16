@@ -16,7 +16,7 @@ logger = logging.getLogger('congredi')
 try:
     import pycld2 as cld2
     WINDOWS=False
-except:
+except ImportError as e:
     WINDOWS=True
     logger.warning('windows users will have pycld2 disabled for now')
 
