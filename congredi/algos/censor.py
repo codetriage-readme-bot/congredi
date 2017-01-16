@@ -39,7 +39,8 @@ def stateLanguage(statement):
         # wasn't checking the exception block... whoops.
     except:
         if WINDOWS is True:
-            raise Exception('windows users will have pycld2 disabled for now')
+            logger.warning('windows users will have pycld2 disabled for now')
+            # raise Exception('windows users will have pycld2 disabled for now')
         return None
 
 
