@@ -7,16 +7,14 @@
 individuals write changes to repositories of text, that are then
 voted on by organizations to find a consensus.
 
+***Better description to be made later***
+
 
 Think that's useful? Give it a try! If you have any feature requests or questions,
 hop on over to gitter & [waffle](https://waffle.io/congredi/congredi). I'm looking for contributors on some issues.
 
-[![Stories in Ready](https://badge.waffle.io/congredi/congredi.svg?label=ready&title=Ready)](http://waffle.io/congredi/congredi)
-[![Stories in Progress](https://badge.waffle.io/congredi/congredi.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/congredi/congredi)
-[![Code Triagers Badge](https://www.codetriage.com/congredi/congredi/badges/users.svg)](https://www.codetriage.com/congredi/congredi)
-
-
 Build status (2.7 full coverage, windows & 3.* python have spotty test coverage)
+
 Linux/Mac: [![Build Status Travis](https://travis-ci.org/congredi/congredi.svg?branch=master)](https://travis-ci.org/congredi/congredi)
 Windows: [![Build status Windows](https://ci.appveyor.com/api/projects/status/mo003x9ygpnb316q?svg=true)](https://ci.appveyor.com/project/Thetoxicarcade/congredi)
 Docker: [![Build status Codeship](https://codeship.com/projects/d1cee4c0-b9b1-0134-40ad-5e5884b780cb/status?branch=master)]()
