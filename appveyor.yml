@@ -19,5 +19,7 @@ build: off
 
 test_script:
   - echo %PYTHON%
+  - IF "%PYTHON%" EQU "C:\Python27" echo one
+  - IF "%PYTHON%" EQU "C:\\Python27" echo two
   - IF "%PYTHON%" EQU "C:\\Python27" %PYTHON%\\python.exe -m green
   - IF "%PYTHON%" NEQ "C:\\Python27" %PYTHON%\\python.exe -m green congredi.auth congredi.extra congredi.storage congredi.term congredi.tests congredi.utils congredi.algos.test.test_router congredi.crypto.test.test_hash congredi.crypto.test.test_kdf congredi.crypto.test.test_threshold
