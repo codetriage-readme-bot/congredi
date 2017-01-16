@@ -11,10 +11,14 @@ from __future__ import absolute_import
 import logging
 import entropy
 import chardet
-import pycld2 as cld2
 from profanity import profanity
 logger = logging.getLogger('congredi')
-
+try:
+    import pycld2 as cld2
+    WINDOWS=False
+except:
+    WINDOWS=True
+    logger.warning('windows users will have pycld2 disabled for now')
 
 def stateProfanity(statement):  # needs a test
     """Profanity checks (Design: should probably be in a class - #A)"""
@@ -31,7 +35,11 @@ def stateLanguage(statement):
     """"Language detection (Design: still a bare except - #C)"""
     try:
         return cld2.detect(statement)[2][0][0]
+        # this is throwing on python 2.0 for some reason on tests.
+        # wasn't checking the exception block... whoops.
     except:
+        if WINDOWS is True:
+            raise Exception('windows users will have pycld2 disabled for now')
         return None
 
 
