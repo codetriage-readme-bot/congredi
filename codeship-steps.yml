@@ -2,4 +2,4 @@
   type: parallel
   steps:
   - service: congredi
-    command: green congredi
+    command: green ../../code
