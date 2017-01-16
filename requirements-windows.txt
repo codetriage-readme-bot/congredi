@@ -14,7 +14,7 @@ python-vote-full>=1.0
 pyyaml
 redlock>=1.2.0
 stem>=1.5.3
-twisted>=16.6.0
+Twisted[windows_platform]>=16.6.0
 txredisapi>=1.4.4
 unidiff
 urwid>=1.3.1
