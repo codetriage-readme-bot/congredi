@@ -46,17 +46,16 @@ v3(){
 v2(){
     deactivate
 }
-v3works(){
-    green congredi.auth congredi.extra congredi.storage congredi.term congredi.tests \
-    congredi.utils congredi.algos.test.test_router congredi.crypto.test.test_hash \
-    congredi.crypto.test.test_kdf congredi.crypto.test.test_threshold
-}
-v3breaks(){
-    v3
-    green congredi.algos.test.test_diff congredi.algos.test.test_router \
-    congredi.crypto.test.test_AES congredi.crypto.test.test_padding    
-    v2
-}
+# everything should work, for now. Rewrite this if you need it.
+# v3works(){
+#     green congredi.auth congredi.extra congredi.storage congredi.term congredi.tests \
+#     congredi.utils congredi.algos.test.test_router congredi.crypto.test.test_hash \
+#     congredi.crypto.test.test_kdf congredi.crypto.test.test_threshold
+# }
+# v3breaks(){
+#     green congredi.algos.test.test_diff congredi.algos.test.test_router \
+#     congredi.crypto.test.test_AES congredi.crypto.test.test_padding    
+# }
 case $1 in
     "requires")
         requires

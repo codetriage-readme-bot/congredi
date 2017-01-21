@@ -29,8 +29,6 @@ class test_zlib(unittest.TestCase):
     def test_compression(self):
         thing1 = compressDiff(source2)
         res = uncompressDiff(thing1)
-        if type(res) is list:
-            res = b'\n'.join(res)
         print('New')
         print(res)
         print('Original')

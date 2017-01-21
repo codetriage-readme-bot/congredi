@@ -2,15 +2,15 @@
 # -*- coding: utf-8 -*-
 """
 tests on the simplistic censor library.
-needs python3 patching
 """
 from __future__ import absolute_import
 from __future__ import print_function
-# from __future__ import unicode_literals
+from __future__ import unicode_literals
 import unittest
 import platform
 from ..censor import censor
 from ..censor import stateEncoding
+from ...utils.compat import ensureBinary
 from ...tests.random import random, hexify, phony
 from six.moves import range
 test = censor(encodings=['UTF-8', 'ascii'], languages=['ENGLISH', 'CHINESE'])
@@ -21,6 +21,24 @@ test = censor(encodings=['UTF-8', 'ascii'], languages=['ENGLISH', 'CHINESE'])
 
 
 class test_censor(unittest.TestCase):
+
+    def test_encode_decode_python_2_3(self):
+        '''encode/decode python 2/3 problems'''
+        b_string = b"a string"
+        u_string = u"a string"
+        reg_string = "a string"
+        reg_unicode = '你好'
+        reg_unicode_encoded = "one 你好".encode('utf8')
+        print(stateEncoding(ensureBinary(b_string)))
+        print(stateEncoding(ensureBinary(u_string)))
+        print(stateEncoding(ensureBinary(reg_string)))
+        print(stateEncoding(ensureBinary(reg_unicode)))
+        print(stateEncoding(ensureBinary(reg_unicode_encoded)))
+        assert(stateEncoding(b_string) == 'ascii')
+        assert(stateEncoding(u_string) == 'ascii')
+        assert(stateEncoding(reg_string) == 'ascii')
+        assert(stateEncoding(reg_unicode) == 'utf-8')
+        assert(stateEncoding(reg_unicode_encoded) == 'utf-8')
 
     def test_obvious_catch(self):
         print('Should block (best 8/10, os.urandom()):')
@@ -66,7 +84,7 @@ class test_censor(unittest.TestCase):
         if platform.system() == 'Windows':
             print('Windows tests will not check valid english')
         else:
-            assert test.check('#This *is* valid content')
+            assert test.check(b'#This *is* valid content')
     # def test_valid_chinese():
     #	print('Should pass:')
     #	print(test.block('#Hello 你好'))

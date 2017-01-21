@@ -30,7 +30,7 @@ class test_default_aes(unittest.TestCase):
         print('Random gauntlet single tests')
         v = default_aes()
         for x in range(0, 32):
-            message = (b"%s" % phony(hexify(random()))[:1 + x])
+            message = phony(hexify(random()))[:1 + x]
             cipher = v.encrypt(message)
             res = v.decrypt(cipher)
             print((message, res))
@@ -40,7 +40,7 @@ class test_default_aes(unittest.TestCase):
         print('Random gauntlet tests')
         for x in range(0, 32):
             v = default_aes()
-            message = (b"%s" % phony(hexify(random()))[:1 + x])
+            message = phony(hexify(random()))[:1 + x]
             cipher = v.encrypt(message)
             res = v.decrypt(cipher)
             print((message, res))

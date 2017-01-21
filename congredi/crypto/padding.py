@@ -2,15 +2,15 @@
 # -*- coding: utf-8 -*-
 """
 All Or Nothing Padding (coulda just used the library's version)
-need to get python3 compatibility
 """
 # Crypto.Protocol.AllOrNothing
 from __future__ import absolute_import
 #from __future__ import unicode_literals
+from six.moves import zip
 from .kdf import weaker_kdf
 from .AES import default_aes
 from .hash import make_hash
-from six.moves import zip
+from ..utils.compat import ensureBinary, ensureString
 
 
 def AONTencrypt(content, password):
@@ -27,9 +27,17 @@ def AONTencrypt(content, password):
     concattenate token with xor'd key.
     """
     hashable = make_hash(token).digest()
-    chard = "".join(
-            [chr(ord(a) ^ ord(b)) for a, b in
-             zip(hashable, key_raw)])
+    # ugly, ugly python3 hack...
+    mash = list(zip(hashable, key_raw))
+    if isinstance(mash[0][0], int):
+        chard = int.from_bytes(hashable, byteorder="big") ^ int.from_bytes(
+            key_raw, byteorder="big")
+        chard = chard.to_bytes(32, byteorder="big")
+    else:
+        # python2 way, original one
+        chard = b"".join(
+                [chr(ord(a) ^ ord(b)) for a, b in
+                 zip(hashable, key_raw)])
     return token + chard
 
 
@@ -40,8 +48,17 @@ def AONTdecrypt(cyphertext):
     pulling that together into a base64 string allows
     fernet to decrypt the content.
     """
-    key2 = "".join(
-        [chr(ord(a) ^ ord(b)) for a, b in
-         zip(make_hash(cyphertext[:-32]).digest(),
-             cyphertext[-32:])])
-    return default_aes(key2).decrypt(cyphertext[:-32])
+    hashable = make_hash(cyphertext[:-32]).digest()
+    key_xored = cyphertext[-32:]
+    # ugly python3 fix
+    mash = list(zip(hashable, key_xored))
+    if isinstance(mash[0][0], int):
+        key2 = int.from_bytes(hashable, byteorder="big") ^ int.from_bytes(
+            key_xored, byteorder="big")
+        key2 = key2.to_bytes(32, byteorder="big")
+    else:
+        # old python2 rendition
+        key2 = b"".join(
+            [chr(ord(a) ^ ord(b)) for a, b in
+             zip(hashable, key_xored)])
+    return ensureBinary(default_aes(key2).decrypt(cyphertext[:-32]))

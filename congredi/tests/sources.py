@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-source = """
+source = b"""
 Hello, *world*! This is a ~~good~~marvelous day!
 Here is an auto link: https://example.org/
 
@@ -15,7 +15,7 @@ import this
 ```
 """
 
-source2 = """
+source2 = b"""
 Hello, *world*! This is a ~~good~~marvelous day!
 Here was an auto link: https://example.org/
 
@@ -30,8 +30,8 @@ Le me introduce you to [task lists] (https://github.com/blog/1375-task-lists-in-
 import this
 ```
 """
-empty = ""
-empty2 = """
+empty = b""
+empty2 = b"""
 
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu viverra lacus. Vestibulum a est a felis posuere pellentesque ac sit amet sem. Aliquam erat volutpat. Phasellus eleifend, felis eget lobortis dapibus, ligula purus rhoncus massa, placerat pharetra urna lacus vel ex. Proin finibus pellentesque dui id mollis. Vestibulum id nibh libero. Quisque at odio velit. Morbi ac viverra velit, ut elementum erat. Cras varius, odio sit amet rutrum porta, purus mi sollicitudin sem, vel rutrum nisl augue non arcu. Fusce sagittis sem commodo lorem malesuada, eu vestibulum lacus laoreet. Proin nibh dolor, blandit sed dictum in, imperdiet nec risus. Quisque sem est, ultrices consequat urna id, malesuada vestibulum lacus. Nullam congue lectus sed mollis sagittis. Vestibulum pellentesque vulputate lacus sed consectetur.

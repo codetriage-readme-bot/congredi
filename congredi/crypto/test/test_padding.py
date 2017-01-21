@@ -24,23 +24,29 @@ class test_padding(unittest.TestCase):
         cyphertext = AONTencrypt(value, b"password")
         print(("cyphertext is %s" % codecs.encode(cyphertext, 'hex')))
         plaintext = AONTdecrypt(cyphertext)
-        print(("plaintext hex is: " + codecs.encode(plaintext, 'hex')))
+        try:
+            print(("plaintext hex is: " + codecs.encode(plaintext, 'hex')))
+        except:
+            print('Well, python3 needs fixing on encoding %s to hex...' %
+                  type(plaintext))
+            plaintext = plaintext.decode('utf-8')
+
         print(("plaintext is: " + plaintext))
 
     def test_gauntlet(self):
         """10 random AONTs - message should decrypt"""
         for x in range(0, 10):
-            message = (b"%s" % phony(hexify(random()))[:1 + x])
+            message = phony(hexify(random()))[:1 + x]
             password = hexify(random())
             cipher = AONTencrypt(message, password)
             res = AONTdecrypt(cipher)
-            print((message, res))
+            print(res, message)
             assert res == message
 
     def test_unequal(self):
         """10 random AONTs - two AONTs should not equal each other"""
         for x in range(0, 10):
-            message = (b"%s" % phony(hexify(random()))[:1 + x])
+            message = phony(hexify(random()))[:1 + x]
             password = hexify(random())
             a = AONTencrypt(message, password)
             b = AONTencrypt(message, password)

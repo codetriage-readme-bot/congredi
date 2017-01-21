@@ -4,7 +4,6 @@
 censor things objectionable to you, rather than store/query/communicate them
 the current library is old and might simply need to include regexes...
 (Feature: Should add the ability to publish your router's censor settings - #E)
-needs python3 patching
 """
 from __future__ import absolute_import
 # from __future__ import unicode_literals
@@ -12,13 +11,15 @@ import logging
 import entropy
 import chardet
 from profanity import profanity
+from ..utils.compat import ensureBinary, ensureString
 logger = logging.getLogger('congredi')
 try:
     import pycld2 as cld2
-    WINDOWS=False
+    WINDOWS = False
 except ImportError as e:
-    WINDOWS=True
+    WINDOWS = True
     logger.warning('windows users will have pycld2 disabled for now')
+
 
 def stateProfanity(statement):  # needs a test
     """Profanity checks (Design: should probably be in a class - #A)"""
@@ -46,6 +47,7 @@ def stateLanguage(statement):
 
 def stateEncoding(statement):
     """Return character encoding"""
+    statement = ensureBinary(statement)
     try:
         return chardet.detect(statement)['encoding']
     except UnicodeDecodeError:  # needs a test
@@ -74,6 +76,7 @@ class censor():
         return not self.block(statement)[0]
 
     def block(self, statement):
+        statement = ensureBinary(statement)
         res_encode = stateEncoding(statement)
         res_encode_ok = res_encode in self.encodings
         res_lang = stateLanguage(statement)

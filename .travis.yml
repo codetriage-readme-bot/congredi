@@ -32,11 +32,14 @@ install:
 - pip install pylint green
 script:
 - python setup.py build
-- if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then green congredi; fi
-- if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then ./scripts.sh v3works && echo "partial
-  compatibility holding"; fi
-- if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then ./scripts.sh v3breaks || echo "still
-  incompatible"; fi
+- green congredi
+# Everything should be python 2 & 3 compatible now.
+# If it isn't, might rewrite v3works / v3breaks.
+# - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then green congredi; fi
+# - if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then ./scripts.sh v3works && echo "partial
+#   compatibility holding"; fi
+# - if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then ./scripts.sh v3breaks || echo "still
+#   incompatible"; fi
 - python setup.py install
 - pylint congredi
 - pip install mkdocs || echo "mkdocs problems"
