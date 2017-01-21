@@ -7,7 +7,7 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 import zlib
 from six.moves import range
-from ..utils.compat import ensureBinary, ensureString
+from ..utils.compat import ensureBinary
 
 
 def chunkSplit(compressed):  # restore: ''.join()

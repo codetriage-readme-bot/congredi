@@ -18,7 +18,7 @@ install:
 build: off
 
 test_script:
-  - %PYTHON%\\python.exe -m green -vvv
+  - "%PYTHON%\\python.exe -m green -vvv"
 # Everything should be compatible now. If it isn't, edit the modules that get called:
 #   - IF "%PYTHON%" EQU "C:\Python27" %PYTHON%\\python.exe -m green -vvv
 #   - IF "%PYTHON%" NEQ "C:\Python27" %PYTHON%\\python.exe -m green -vvv congredi.auth congredi.extra congredi.storage congredi.term congredi.tests congredi.utils congredi.algos.test.test_router congredi.crypto.test.test_hash congredi.crypto.test.test_kdf congredi.crypto.test.test_threshold

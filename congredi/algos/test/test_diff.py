@@ -9,11 +9,11 @@ from __future__ import unicode_literals
 import unittest
 import hashlib
 import codecs
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
-from patch import PatchSet, fromstring
+# try:
+#     from StringIO import StringIO
+# except ImportError:
+#     from io import StringIO
+# from patch import PatchSet, fromstring
 # pylint: disable=unused-import
 from ..diff import resolveUnifiedDiff
 from ..diff import resolveDiff

@@ -10,7 +10,7 @@ from six.moves import zip
 from .kdf import weaker_kdf
 from .AES import default_aes
 from .hash import make_hash
-from ..utils.compat import ensureBinary, ensureString
+from ..utils.compat import ensureBinary
 
 
 def AONTencrypt(content, password):

@@ -24,6 +24,7 @@ class test_padding(unittest.TestCase):
         cyphertext = AONTencrypt(value, b"password")
         print(("cyphertext is %s" % codecs.encode(cyphertext, 'hex')))
         plaintext = AONTdecrypt(cyphertext)
+        # pylint: disable=bare-except
         try:
             print(("plaintext hex is: " + codecs.encode(plaintext, 'hex')))
         except:

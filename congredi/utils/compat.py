@@ -1,5 +1,6 @@
 import sys
 # CharDet...
+# pylint: disable=redefined-variable-type, undefined-variable
 if sys.version_info < (3, 0):
     PY2 = True
     PY3 = False

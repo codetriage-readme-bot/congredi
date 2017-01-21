@@ -11,7 +11,7 @@ import logging
 import entropy
 import chardet
 from profanity import profanity
-from ..utils.compat import ensureBinary, ensureString
+from ..utils.compat import ensureBinary
 logger = logging.getLogger('congredi')
 try:
     import pycld2 as cld2

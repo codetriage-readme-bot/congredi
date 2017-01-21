@@ -42,7 +42,7 @@ script:
 #   incompatible"; fi
 - python setup.py install
 - pylint congredi
-- pip install mkdocs || echo "mkdocs problems"
+- pip install mkdocs mkdocs-bootswatch || echo "mkdocs problems"
 - mkdocs build || echo "Docs fail..."
 deploy:
   provider: pypi
