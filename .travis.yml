@@ -5,18 +5,23 @@ python:
 - '3.4'
 - '3.5'
 - '3.6'
+cache: pip
+# since OSX Python isn't supported, we cheat.
 matrix:
   include:
   - os: osx
     sudo: required
     language: generic
+    cache: bundler
     env: py='2.7'
   - os: osx
     sudo: required
     language: generic
+    cache: bundler
     env: py='3.3'
   allow_failures:
   - os: osx
+# todo: add back the other Python3 binaries (if the brew has a tap for them)
 before_install: >
   if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     brew update;

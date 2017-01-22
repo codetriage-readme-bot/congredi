@@ -60,8 +60,11 @@ class test_diff(unittest.TestCase):
         jnd = b''.join(splt)
         final = hashlib.sha256(jnd).digest()
         print(('join %d' % len(jnd)))
-        print(('hash: %(one)s\nhash: %(two)s' %
-               {'one': codecs.encode(data['hash'], 'hex'), 'two': codecs.encode(final, 'hex')}))
+        try:
+            print(('hash: %(one)s\nhash: %(two)s' %
+                   {'one': codecs.encode(data['hash'], 'hex'), 'two': codecs.encode(final, 'hex')}))
+        except LookupEror:
+            print('Python 3.3 encode hex problem...')
 
     def test_uni(self):
         diff = resolveUnifiedDiff(
