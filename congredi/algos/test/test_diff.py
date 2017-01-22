@@ -63,7 +63,7 @@ class test_diff(unittest.TestCase):
         try:
             print(('hash: %(one)s\nhash: %(two)s' %
                    {'one': codecs.encode(data['hash'], 'hex'), 'two': codecs.encode(final, 'hex')}))
-        except LookupEror:
+        except LookupError:
             print('Python 3.3 encode hex problem...')
 
     def test_uni(self):

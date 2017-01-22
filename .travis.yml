@@ -22,6 +22,7 @@ matrix:
   allow_failures:
   - os: osx
 # todo: add back the other Python3 binaries (if the brew has a tap for them)
+# then use virtualenv to set a specific binary
 before_install: >
   if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     brew update;
