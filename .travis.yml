@@ -17,16 +17,15 @@ matrix:
     env: py='3.3'
   allow_failures:
   - os: osx
-before_install:
-- if [[ $TRAVIS_OS_NAME == 'osx' ]]; then brew update; fi
-- if [[ $TRAVIS_OS_NAME == 'osx' ]]; then brew search python; fi
-- if [[ $TRAVIS_OS_NAME == 'osx' ]]; then brew search python3; fi
-- if [[ $TRAVIS_OS_NAME == 'osx' ]]; then brew outdated python || brew upgrade python;
+before_install: >
+  if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+    brew update;
+    if [[ $py == 3* ]]; then
+      brew install python3;
+    elif [[ $py == '2.7' ]]; then
+      brew outdated python || brew upgrade python;
+    fi
   fi
-- if [[ $TRAVIS_OS_NAME == 'osx' && $py == 3* ]]; then brew install
-  python3; fi
-- if [[ $TRAVIS_OS_NAME == 'osx' && $py == '2.7' ]]; then brew
-  outdated python2.7 || brew upgrade python2.7; fi
 install:
 - pip install -r requirements.txt
 - pip install pylint green

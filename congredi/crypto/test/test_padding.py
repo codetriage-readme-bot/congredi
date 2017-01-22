@@ -20,9 +20,15 @@ class test_padding(unittest.TestCase):
     def test_padding(self):
         """one AONT using pre-existing value"""
         value = b"Secret Message!"
-        print(("plaintext hex is: %s" % codecs.encode(value, 'hex')))
+        try:
+            print(("plaintext hex is: %s" % codecs.encode(value, 'hex')))
+        except LookupError:
+            print("Python3.3 bug...")
         cyphertext = AONTencrypt(value, b"password")
-        print(("cyphertext is %s" % codecs.encode(cyphertext, 'hex')))
+        try:
+            print(("cyphertext is %s" % codecs.encode(cyphertext, 'hex')))
+        except LookupError:
+            print("Python3.3 bug...")
         plaintext = AONTdecrypt(cyphertext)
         # pylint: disable=bare-except
         try:

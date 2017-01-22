@@ -9,7 +9,7 @@ from __future__ import unicode_literals
 import socket
 from twisted.internet import protocol, reactor, task
 from .protocol import CongrediPeerProtocol
-from .peerBeat import peerBeat, peerSuccess, peerFailure
+from .scheduled.peerBeat import peerBeat, peerSuccess, peerFailure
 from .command import PeerOptions
 import logging
 from .utils.whoops import whoops
