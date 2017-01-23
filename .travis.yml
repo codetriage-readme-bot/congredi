@@ -37,7 +37,7 @@ install:
 - pip install pylint green
 script:
 - python setup.py build
-- green congredi
+- green congredi -vvv
 # Everything should be python 2 & 3 compatible now.
 # If it isn't, might rewrite v3works / v3breaks.
 # - if [[ $TRAVIS_PYTHON_VERSION == '2.7' ]]; then green congredi; fi

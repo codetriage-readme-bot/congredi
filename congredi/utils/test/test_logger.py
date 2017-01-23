@@ -13,5 +13,6 @@ from ..logger import formatLevel
 class test_logger(unittest.TestCase):
 
     def test_logger_level(self):
+        """Changing FormatLevel"""
         # need to check if this is logging correctly
         formatLevel('INFO')

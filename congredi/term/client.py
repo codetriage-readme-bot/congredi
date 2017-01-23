@@ -50,7 +50,7 @@ class ClientProtocol(LineReceiver):
         logger.debug('built client')
 
     def wrapRequest(self, request, serverKey):  # test
-        paddedRequest = AONTencrypt(request, self.password)
+        paddedRequest = AONTencrypt(request)
         encryptedRequest = self.key.encrypt(paddedRequest, serverKey)
         return encryptedRequest
 

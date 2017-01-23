@@ -12,13 +12,15 @@ from twisted.test.proto_helpers import StringTransport
 from twisted.internet import stdio
 from ...factory import CongrediPeerFactory
 from ...protocol import CongrediPeerProtocol
-from ..client import CongrediClient #, ClientProtocol
+from ..client import CongrediClient  # , ClientProtocol
 
 # pylint: disable=no-self-use, unused-variable
+
+
 class test_http(unittest.TestCase):
 
     def setUp(self):
-        #https://github.com/twisted/klein/blob/master/src/klein/test/test_app.py
+        # https://github.com/twisted/klein/blob/master/src/klein/test/test_app.py
         self.tr = StringTransport()
         users = ['a', 'b']
         self.factory = CongrediPeerFactory()

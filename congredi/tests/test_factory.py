@@ -24,6 +24,7 @@ class test_factory(unittest.TestCase):
         self.proto.makeConnection(self.tr)
 
     def test_factory(self):
+        """Make sure everything is in order..."""
         a = CongrediPeerFactory()
 
         a.startedConnecting('well then')

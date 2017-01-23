@@ -34,6 +34,7 @@ RUN which congredi
 # should be exposed at 0.0.0.0:1001
 
 ARG exposeport=8800
+ENV runport=$exposeport
 EXPOSE $exposeport
 
-CMD congredi -p $exposeport peer
+CMD congredi -p $runport peer

@@ -12,9 +12,11 @@ from twisted.test.proto_helpers import StringTransport
 from twisted.internet import stdio
 from ...factory import CongrediPeerFactory
 from ...protocol import CongrediPeerProtocol
-from ..client import CongrediClient #, ClientProtocol
+from ..client import CongrediClient  # , ClientProtocol
 
 # pylint: disable=no-self-use, unused-variable
+
+
 class test_run(unittest.TestCase):
 
     def setUp(self):
@@ -26,7 +28,7 @@ class test_run(unittest.TestCase):
         client = CongrediClient(
             host="0.0.0.0", port="9000",
             clientKey=None)
-        #stdio.StandardIO(client)
+        # stdio.StandardIO(client)
 
     def test_run(self):
         """Will need to look at how twisted runs their tests"""

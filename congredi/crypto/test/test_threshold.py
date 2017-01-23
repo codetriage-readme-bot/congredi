@@ -14,6 +14,7 @@ from ..threshold import ThresholdPGP
 class test_threshold(unittest.TestCase):
 
     def test_threshold(self):
+        """Call init, sign"""
         thresh = ThresholdPGP()
         thresh.sign(None)
         print('IMPLEMENT crypto/test/test_threshold')

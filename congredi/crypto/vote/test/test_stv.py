@@ -14,9 +14,11 @@ from ..stv import stvVote, stvPoll
 class test_stv(unittest.TestCase):
 
     def test_stvPoll(self):
+        """Init a poll object"""
         testPoll = stvPoll(object)
         print('IMPLEMENT algos/vote/test/test_stv.py:test_stvPoll')
 
     def test_stvVote(self):
+        """Init a vote object"""
         testVote = stvVote(object)
         print('IMPLEMENT algos/vote/test/test_stv.py:test_stvVote')

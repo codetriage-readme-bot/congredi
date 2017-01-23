@@ -15,9 +15,11 @@ from ..router import router
 class test_router(unittest.TestCase):
 
     def test_routing(self):
+        """Route Items"""
         r = router('e')
         r.nodes = ["a", "b", "c", "d", "e", "f", "g", "1", "2", "3"]
         print(('Random route to a %s' % r.route('a', 2)))
         print(('Random route to a %s' % r.route('a', 5)))
         print(('Random route to a %s' % r.route('a')))
         print(('Random route to a %s' % r.route('a')))
+    # test an impossible route

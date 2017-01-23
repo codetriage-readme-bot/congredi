@@ -16,4 +16,5 @@ from ..neo4j import assertTrustXY, queryTrustXY, dependencies
 class test_neo4j(unittest.TestCase):
 
     def test_neo4j(self):
+        """Connect to neo4j or use a mock? acyclic graph mock interfaces???"""
         print('IMPLEMENT storage/test/test_neo4j')

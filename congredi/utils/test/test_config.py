@@ -14,5 +14,6 @@ from ..config import configArr
 class test_config(unittest.TestCase):
 
     def test_config(self):
+        """Grab Configuration From File"""
         newConf = configArr()
         existsConf = configArr()

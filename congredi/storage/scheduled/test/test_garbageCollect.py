@@ -8,7 +8,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 import unittest
 # from ..garbageCollect
-#twisted.internet.task.Clock
+# twisted.internet.task.Clock
 
 
 # pylint: disable=no-self-use

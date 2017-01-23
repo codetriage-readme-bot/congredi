@@ -24,7 +24,7 @@ check(){
     echo "linting..."
     pylint congredi
     echo "testing..."
-    green congredi
+    green congredi -vvv
 }
 build(){
     echo "building..."

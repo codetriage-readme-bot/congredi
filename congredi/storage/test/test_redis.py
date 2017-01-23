@@ -10,9 +10,12 @@ from __future__ import unicode_literals
 import unittest
 from ..redis import RedisStore, redisSetup, Rget, Rset, RrandKey, todoAdd, todoRemove
 
-#https://seeknuance.com/2012/02/18/replacing-redis-with-a-python-mock/
+# https://seeknuance.com/2012/02/18/replacing-redis-with-a-python-mock/
 # pylint: disable=no-self-use
+
+
 class test_redis(unittest.TestCase):
 
     def test_redis(self):
+        """Init a redis connection or use a mock?"""
         print('IMPLEMENT storage/test/test_redis')

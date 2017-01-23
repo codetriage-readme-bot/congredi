@@ -23,10 +23,12 @@ things = [
 class test_zlib(unittest.TestCase):
 
     def test_split(self):
+        """Split something into chunks"""
         splits = chunkSplit(source)
         print((len(splits)))
 
     def test_compression(self):
+        """Compress, Uncompress, ensure equal"""
         thing1 = compressDiff(source2)
         res = uncompressDiff(thing1)
         print('New')
@@ -34,3 +36,7 @@ class test_zlib(unittest.TestCase):
         print('Original')
         print(source2)
         assert res == source2
+
+    # test split error-raising
+
+    # test compression error-raising

@@ -14,6 +14,7 @@ from ..whoops import CongrediError, whoops
 class test_whoops(unittest.TestCase):
 
     def test_whoops(self):
+        """The stack-trace printer needs work"""
         print('IMPLEMENT utils/test/test_whoops')
         whoops('hello')
 
@@ -22,6 +23,7 @@ class test_whoops(unittest.TestCase):
 class test_CongrediErrors(unittest.TestCase):
 
     def test_CongrediErrors(self):
+        """Raising a CongrediError class"""
         # pylint: disable=broad-except
         try:
             raise CongrediError('Well then')

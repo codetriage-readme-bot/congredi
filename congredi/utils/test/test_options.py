@@ -23,11 +23,13 @@ badOpts = {
 class test_options(unittest.TestCase):
 
     def test_good_options(self):
+        """All of these options should be good:"""
         for opts in goodOpts.values():
             print(opts)
             args = MainOptions.parse_args(opts)
 
     def test_bad_options(self):
+        """All of these options should fail and be caught to continue:"""
         for opts in badOpts.values():
             try:
                 args = MainOptions.parse_args(opts)

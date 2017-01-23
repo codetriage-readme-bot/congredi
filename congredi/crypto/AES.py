@@ -7,7 +7,7 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 from Crypto.Cipher import AES
 from Crypto import Random
-from .kdf import weaker_kdf
+from .kdf import random_aes_32_key
 from Crypto.Util.Padding import unpad, pad
 # Class instances for the Symetric crypto inside Congredi.
 
@@ -16,9 +16,9 @@ class default_aes():
     secret = None
 
     def __init__(self, secret=None):
-        if secret is None:
-            secret = Random.new().read(AES.block_size)
-            secret = weaker_kdf(secret)
+        if secret is None or len(secret) != 32:
+            print('Error: using random')
+            secret = random_aes_32_key()
         self.secret = secret
 
     def encrypt(self, data):

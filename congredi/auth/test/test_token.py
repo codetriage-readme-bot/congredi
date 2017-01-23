@@ -26,12 +26,14 @@ from ..token import token
 class test_token(unittest.TestCase):
 
     def test_good_token(self):
+        """Valid JWT Token"""
         bob = token('bob')
         example = bob.make('print')
         bob.check(example)
     # def test_expired_token(self):
 
     def test_invalid_token(self):
+        """Invalid Tokens"""
         fred = token('fred')
         alice = token('alice')
         wrong = fred.make('well then')

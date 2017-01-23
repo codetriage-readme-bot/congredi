@@ -12,6 +12,11 @@ def random_password():
     key = os.urandom(16)
     return default_kdf(key)
 
+
+def random_aes_32_key():
+    key = os.urandom(32)
+    return weaker_kdf(key)
+
 # a default kdf
 
 

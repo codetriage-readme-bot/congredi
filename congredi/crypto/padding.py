@@ -7,20 +7,20 @@ All Or Nothing Padding (coulda just used the library's version)
 from __future__ import absolute_import
 #from __future__ import unicode_literals
 from six.moves import zip
-from .kdf import weaker_kdf
+from .kdf import random_aes_32_key
 from .AES import default_aes
 from .hash import make_hash
 from ..utils.compat import ensureBinary
 
 
-def AONTencrypt(content, password):
+def AONTencrypt(content):
     """
     generate a key using deriviation,
     although you won't need to remember
     that password if you have all the
     content.
     """
-    key_raw = weaker_kdf(password)
+    key_raw = random_aes_32_key()
     token = default_aes(key_raw).encrypt(content)
     """
     hash the token, then xor with the 32 bit key.

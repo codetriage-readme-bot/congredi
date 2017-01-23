@@ -29,6 +29,7 @@ from ...utils.compat import ensureBinary, ensureString
 class test_diff(unittest.TestCase):
 
     def test_resolve_ndiff(self):
+        """NDiff of source, source2, rebuild diff"""
         print('The Diff:')
         result = resolveDiff(source, source2)
         print((''.join(result)))
@@ -37,6 +38,7 @@ class test_diff(unittest.TestCase):
         print((''.join(orig)))
 
     def test_compression(self):
+        """Full-integrated Tick/Tock compression"""
         # Direct conversion
         res = tick(source, source2)
         beep = tock(res, 1)
@@ -44,6 +46,7 @@ class test_diff(unittest.TestCase):
         print(beep)
 
     def test_splits(self):
+        """Split & recombine, check hashes."""
         data = {'pieces': {}}
         comp = tick(empty, empty2)
         print(('compressed %d' % len(comp)))
@@ -67,6 +70,7 @@ class test_diff(unittest.TestCase):
             print('Python 3.3 encode hex problem...')
 
     def test_uni(self):
+        """Unified Diffs..."""
         diff = resolveUnifiedDiff(
             source, source2,
             'congredi/test/core/algos/a.txt',

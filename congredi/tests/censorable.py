@@ -5,6 +5,8 @@ randomness function libraries
 """
 import binascii
 import os
+import random as rand
+from six.moves import range
 
 hexy = {
     # Fix to bypass dictionary as "english"
@@ -19,6 +21,13 @@ hexy = {
     "S": "Sierra", "T": "Tango", "U": "Uniform", "V": "Victor",
     "W": "Whiskey", "X": "X-ray", "Y": "Yankee", "Z": "Zulu"
 }
+
+
+def pick_range(num):
+    x = []
+    for _ in range(0, num):
+        x.append(rand.randrange(0, 32))
+    return x
 
 
 def random():

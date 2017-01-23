@@ -14,7 +14,7 @@ from Crypto.Signature import PKCS1_v1_5
 
 # padding & encryption of message
 from .padding import AONTencrypt, AONTdecrypt
-from .kdf import random_password, default_kdf
+from .kdf import random_aes_32_key
 # from .rnd import rng
 from .AES import default_aes
 
@@ -42,16 +42,15 @@ class default_rsa():
     def encrypt(self, data, pubkey):
 
         # all or nothing data
-        NothingPassword = random_password()
-        transformPacket = AONTencrypt(data, NothingPassword)
+        transformPacket = AONTencrypt(data)
 
         # message key
-        messageKey = random_password()
+        messageKey = random_aes_32_key()
 
         key = RSA.importKey(pubkey)
         skey = PKCS1_OAEP.new(key)
         frontMatter = skey.encrypt(messageKey)  # , 16)
-        print((len(frontMatter)))
+        # print('RSA calls AES Encrypt with private key: %s' % key.publickey().exportKey())
 
         # encrypted message
         backMatter = default_aes(messageKey).encrypt(transformPacket)
@@ -62,13 +61,13 @@ class default_rsa():
 
     def decrypt(self, message):
         # take appart
-        frontMatter = message[:32]
-        backMatter = message[32:]
+        frontMatter = message[:256]
+        backMatter = message[256:]
 
         # message key
         private_key = PKCS1_OAEP.new(self.key)
+        # print('RSA calls AES Decrypt with private key: %s' % self.key.publickey().exportKey())
         messageKey = private_key.decrypt(frontMatter)
-
         # decrypted message
         transformPacket = default_aes(messageKey).decrypt(backMatter)
 
@@ -87,21 +86,21 @@ class default_rsa():
         res = skey.verify(messageHash, signature)
         return res
 
-    def backup(self, password):
-        # strengthen password
-        strong_password = default_kdf(password)
+    def backup(self, password=None):
         # export stuff
         keyValues = self.key.exportKey('PEM')
         # encrypt ECC object
-        return default_aes(strong_password).encrypt(keyValues)
+        safebox = default_aes(password)
+        backup = safebox.encrypt(keyValues)
+        passphrase = safebox.disclose()
+        return backup, passphrase
 
     def restore(self, keyData, password):
-        # strengthen password
-        strong_password = default_kdf(password)
         # unpack from password
-        keyValues = default_aes(strong_password).decrypt(keyData)
-        # get ECC object
-        return self.key.importKey(keyValues)
+        keyValues = default_aes(password).decrypt(keyData)
+        actualKey = RSA.importKey(keyValues)
+        self.key = actualKey
+        return actualKey
 
     def publicKey(self):
         return self.key.publickey().exportKey()

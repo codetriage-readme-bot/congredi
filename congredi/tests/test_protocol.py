@@ -27,6 +27,7 @@ class test_protocol(unittest.TestCase):
         self.proto.makeConnection(self.tr)
 
     def test_protocol(self):
+        """Make sure everything is in order..."""
         # a = CongrediPeerProtocol(object, object)
         print('IMPLEMENT tests/test_protocol with StringTransport')
         # self.proto.dataReceived('%s %d %d\r\n' % (operation, a, b))

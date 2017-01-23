@@ -10,5 +10,6 @@ from ...tests.sources import source
 class test_html(unittest.TestCase):
 
     def test_html(self):
+        """Why do I have HTML resolving when people should do this themselves?"""
         html = resolveHtml(source)
         print(html)

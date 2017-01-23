@@ -13,11 +13,13 @@ from ..kdf import default_kdf, random_password
 class test_kdf(unittest.TestCase):
 
     def test_kdf(self):
+        """Test the strong_kdf"""
         strong_key_1 = default_kdf('password123_stupid')
         strong_key_2 = default_kdf('password123_stupid')
         assert strong_key_1 != strong_key_2
 
     def test_random_password(self):
+        """Grab random password, assert it doesn't equal the next one"""
         password_1 = random_password()
         password_2 = random_password()
         assert password_1 != password_2

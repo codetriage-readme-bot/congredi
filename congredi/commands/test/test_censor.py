@@ -11,7 +11,7 @@ import platform
 from ..censor import censor
 from ..censor import stateEncoding
 from ...utils.compat import ensureBinary
-from ...tests.random import random, hexify, phony
+from ...tests.censorable import random, hexify, phony
 from six.moves import range
 test = censor(encodings=['UTF-8', 'ascii'], languages=['ENGLISH', 'CHINESE'])
 
@@ -41,7 +41,7 @@ class test_censor(unittest.TestCase):
         assert(stateEncoding(reg_unicode_encoded) == 'utf-8')
 
     def test_obvious_catch(self):
-        print('Should block (best 8/10, os.urandom()):')
+        '''Should block (best 8/10, os.urandom()):'''
         passes = 0
         for x in range(0, 10):
             actual_random = random()
@@ -52,7 +52,7 @@ class test_censor(unittest.TestCase):
         assert passes >= 8
 
     def test_encode(self):
-        print('Should safe (best 14/15, os.urandom()):')
+        '''Should safe (best 14/15, os.urandom()):'''
         passes = 0
         for x in range(0, 15):
             encoded_random = hexify(random())
@@ -62,7 +62,7 @@ class test_censor(unittest.TestCase):
         assert passes >= 14
 
     def test_trivial_bypass(self):
-        print('Should safe (best 24/25, os.urandom()):')
+        '''Should safe (best 24/25, os.urandom()):'''
         passes = 0
         for x in range(0, 25):
             phonetic_random = phony(hexify(random()))
@@ -75,12 +75,13 @@ class test_censor(unittest.TestCase):
             assert passes >= 24
 
     def test_unicode(self):
+        '''Chinese characters should be UTF-8'''
         assert stateEncoding('hello 你好') == 'utf-8'
 
     # def test_steno_check():
 
     def test_valid_english(self):
-        print('Should safe:')
+        """Valid ASCII content:"""
         if platform.system() == 'Windows':
             print('Windows tests will not check valid english')
         else:

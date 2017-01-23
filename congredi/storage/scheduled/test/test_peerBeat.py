@@ -7,7 +7,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 import unittest
-#twisted.internet.task.Clock
+# twisted.internet.task.Clock
 #from ..peerBeat import peerBeat, peerSuccess, peerFailure
 
 
