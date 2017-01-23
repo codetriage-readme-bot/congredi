@@ -14,7 +14,7 @@ from twisted.internet import reactor
 import logging
 logger = logging.getLogger('congredi')
 
-from .commands.command import PeerOptions, PeerOnions
+from .commands.addresses import AddressAsk, SyncPeerDirectoryAsk
 
 # pylint: disable=signature-differs, abstract-method, too-many-ancestors
 # https://github.com/twisted/twisted/blob/e38cc25a67747899c6984d6ebaa8d3d134799415/src/twisted/protocols/portforward.py
@@ -108,17 +108,17 @@ class CongrediPeerProtocol(AMP):
         # factory.protocol = SomeClientProtocol
         # reactor.connectTCP(host, port, factory)
 
-    @PeerOnions.responder
+    @SyncPeerDirectoryAsk.responder
     def hello(self, name, port):  # test
         logger.info('running an onion')
         for c in self.factory.clients:
             #port = reactor.connectTCP(name, port, factory)
-            c.callRemote(PeerOptions, self.host, self.port)
+            c.callRemote(SyncPeerDirectoryAsk, self.host, self.port)
             # port.disconnect()
         logger.info('disconnecting')
         return 'Sent a hello'
 
-    @PeerOptions.responder
+    @AddressAsk.responder
     def gotit(self, name, port):  # test
         logger.info('got it')
         clientNames = []

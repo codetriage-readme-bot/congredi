@@ -10,7 +10,7 @@ import socket
 from twisted.internet import protocol, reactor, task
 from .protocol import CongrediPeerProtocol
 from .storage.scheduled.peerBeat import peerBeat, peerSuccess, peerFailure
-from .commands.command import PeerOptions
+from .commands.addresses import SyncPeerDirectoryAsk
 import logging
 from .utils.whoops import whoops
 logger = logging.getLogger('congredi')
@@ -98,7 +98,7 @@ class CongrediPeerFactory(protocol.Factory):
             logger.info('pinging peer at: %(host)s:%(port)d',
                         (info.host, info.port))
             d = client.callRemote(
-                PeerOptions, name=self.host, port=int(self.port))
+                SyncPeerDirectoryAsk, name=self.host, port=int(self.port))
             d.addCallback(gotit)
             d.addErrback(whoops)
 

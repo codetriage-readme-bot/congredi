@@ -24,10 +24,11 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 import unittest
-from ..command import PeerOptions, PeerOnions, PeerGet, PeerSet, PeerIndex, PeerSearch
-
+#from ..passport import *
 
 # pylint: disable=no-self-use
+
+
 class test_passport(unittest.TestCase):
 
     def test_passport_a(self):

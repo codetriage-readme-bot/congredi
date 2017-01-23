@@ -29,6 +29,7 @@ Could possibly introduce rate limits?
 from __future__ import absolute_import
 from __future__ import unicode_literals
 from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
+from ..types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
 
 
 # storage
@@ -40,12 +41,24 @@ instead.
 
 
 class StoreRequest(Command):
-    arguments = [(b'name', String()),
-                 (b'port', Integer())]
-    response = [(b'hello', String())]
+    arguments = [(b'my_pubkey', ObjPubKey()),
+                 (b'my_start', DateTime()),
+                 (b'my_ttl', DateTime()),
+                 (b'my_hash', ObjHash()),
+                 (b'my_sig', ObjSig())]
+    response = [(b'your_pubkey', ObjPubKey()),
+                (b'your_start', DateTime()),
+                (b'your_ttl', DateTime()),
+                (b'your_hash', ObjHash()),
+                (b'my_sig', ObjSig())]
+# PubKey, TTL -> Boolean, TTL
 
 
-def StoreGrant():
+@StoreRequest.responder
+def StoreGrant(pubkey, ttl):
+    """
+    Compute 
+    """
     pass
 """
 Encrypted storage applies an inverted sensor. It better
@@ -54,10 +67,20 @@ again to keep the storage provider from indexing it.
 """
 
 
-def StoreEncryptedRequest():
-    pass
+class StoreEncryptedRequest(Command):
+    arguments = [(b'my_pubkey', ObjPubKey()),
+                 (b'my_start', DateTime()),
+                 (b'my_ttl', DateTime()),
+                 (b'my_hash', ObjHash()),
+                 (b'my_sig', ObjSig())]
+    response = [(b'your_pubkey', ObjPubKey()),
+                (b'your_start', DateTime()),
+                (b'your_ttl', DateTime()),
+                (b'your_hash', ObjHash()),
+                (b'my_sig', ObjSig())]
 
 
+@StoreEncryptedRequest.responder
 def StoreEncryptedGrant():
     pass
 
@@ -70,18 +93,38 @@ may be allowed to cache the request.
 """
 
 
-def PublishRequest():
-    pass
+class PublishRequest(Command):
+    arguments = [(b'my_pubkey', ObjPubKey()),
+                 (b'my_start', DateTime()),
+                 (b'my_ttl', DateTime()),
+                 (b'my_hash', ObjHash()),
+                 (b'my_sig', ObjSig())]
+    response = [(b'your_pubkey', ObjPubKey()),
+                (b'your_start', DateTime()),
+                (b'your_ttl', DateTime()),
+                (b'your_hash', ObjHash()),
+                (b'my_sig', ObjSig())]
 
 
+@PublishRequest.responder
 def PublishGrant():
     pass
 
 
-def SubscribeRequest():
-    pass
+class SubscribeRequest(Command):
+    arguments = [(b'my_pubkey', ObjPubKey()),
+                 (b'my_start', DateTime()),
+                 (b'my_ttl', DateTime()),
+                 (b'my_hash', ObjHash()),
+                 (b'my_sig', ObjSig())]
+    response = [(b'your_pubkey', ObjPubKey()),
+                (b'your_start', DateTime()),
+                (b'your_ttl', DateTime()),
+                (b'your_hash', ObjHash()),
+                (b'my_sig', ObjSig())]
 
 
+@SubscribeRequest.responder
 def SubscribeGrant():
     pass
 
@@ -92,18 +135,38 @@ relays are public addresses that speak on behalf of a server.
 """
 
 
-def RendesvousRequest():
-    pass
+class RendesvousRequest(Command):
+    arguments = [(b'my_pubkey', ObjPubKey()),
+                 (b'my_start', DateTime()),
+                 (b'my_ttl', DateTime()),
+                 (b'my_hash', ObjHash()),
+                 (b'my_sig', ObjSig())]
+    response = [(b'your_pubkey', ObjPubKey()),
+                (b'your_start', DateTime()),
+                (b'your_ttl', DateTime()),
+                (b'your_hash', ObjHash()),
+                (b'my_sig', ObjSig())]
 
 
+@RendesvousRequest.responder
 def RendesvousGrant():
     pass
 
 
-def CourierRequest():
-    pass
+class CourierRequest(Command):
+    arguments = [(b'my_pubkey', ObjPubKey()),
+                 (b'my_start', DateTime()),
+                 (b'my_ttl', DateTime()),
+                 (b'my_hash', ObjHash()),
+                 (b'my_sig', ObjSig())]
+    response = [(b'your_pubkey', ObjPubKey()),
+                (b'your_start', DateTime()),
+                (b'your_ttl', DateTime()),
+                (b'your_hash', ObjHash()),
+                (b'my_sig', ObjSig())]
 
 
+@CourierRequest.responder
 def CourierGrant():
     pass
 
@@ -115,17 +178,37 @@ is the permission to act as a tor-like relay
 """
 
 
-def SanctuaryRequest():
-    pass
+class SanctuaryRequest(Command):
+    arguments = [(b'my_pubkey', ObjPubKey()),
+                 (b'my_start', DateTime()),
+                 (b'my_ttl', DateTime()),
+                 (b'my_hash', ObjHash()),
+                 (b'my_sig', ObjSig())]
+    response = [(b'your_pubkey', ObjPubKey()),
+                (b'your_start', DateTime()),
+                (b'your_ttl', DateTime()),
+                (b'your_hash', ObjHash()),
+                (b'my_sig', ObjSig())]
 
 
+@SanctuaryRequest.responder
 def SanctuaryGrant():
     pass
 
 
-def SafePassageRequest():
-    pass
+class SafePassageRequest(Command):
+    arguments = [(b'my_pubkey', ObjPubKey()),
+                 (b'my_start', DateTime()),
+                 (b'my_ttl', DateTime()),
+                 (b'my_hash', ObjHash()),
+                 (b'my_sig', ObjSig())]
+    response = [(b'your_pubkey', ObjPubKey()),
+                (b'your_start', DateTime()),
+                (b'your_ttl', DateTime()),
+                (b'your_hash', ObjHash()),
+                (b'my_sig', ObjSig())]
 
 
+@SafePassageRequest.responder
 def SafePassageGrant():
     pass

@@ -27,88 +27,203 @@ Proposed:
 from __future__ import absolute_import
 from __future__ import unicode_literals
 from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
-
+from ..types import EncAddress, EncHash, EncBool, EncSig, PrivAES, EncBlob
+from ..types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
 
 # blockable pubkeys
+
+
 class PrivateBlacklistChange(Command):
-    arguments = [(b'name', String()),
-                 (b'port', Integer())]
-    response = [(b'hello', String())]
+    arguments = [(b'enc_address', EncAddress()),
+                 (b'enc_hash', EncHash()),
+                 (b'enc_action', EncBool()),
+                 (b'enc_sig', EncSig()),
+                 (b'sesh_key', PrivAES()),
+                 (b'sesh_hash', ObjHash()),
+                 (b'sesh_sig', ObjSig())]
+    response = [(b'enc_action', EncBool()),
+                (b'enc_hash', EncHash()),
+                (b'enc_sig', EncSig()),
+                (b'sesh_hash', ObjHash()),
+                (b'sesh_sig', ObjSig())]
     """
-    I: signed request, encrypted session key, encrypted address
-    O: encrypted signed response, encrypted hash, hash
+    Sign & Encrypt Action
+        - encrypt for the TO field.
+    Create Integrity Data
+        - sign with external key
+
+        Check Integrity data (sesh hash/sig)
+        - must be signed with FROM field
+        Check Signature for action
+            - must be in Admins keyspace
+        Perform Action
+            - Remove from blacklist.
+        Return Response (encrypted, signed)
+    Check Integrity Data
+        - must be from TO field
+    Check Encrypted Signature
+        - must be from your server
     """
 
 
-def PrivateBlacklistView():
+@PrivateBlacklistChange.responder
+def ChangePrivateBlacklist(pubkey, address, direction):
+    pass
+
+
+class PrivateBlacklistView(Command):
+    arguments = [(b'enc_req_nonce', EncBlob()),
+                 (b'enc_hash', EncHash()),
+                 (b'enc_sig', EncSig()),
+                 (b'sesh_key', PrivAES()),
+                 (b'sesh_hash', ObjHash()),
+                 (b'sesh_sig', ObjSig())]
+    response = [(b'enc_blacklist', ListOf(EncAddress())),
+                (b'sesh_hash', ObjHash()),
+                (b'sesh_sig', ObjSig())]
     """
     I: signed request, encrypted session key
     O: encrypted blacklist, encrypted sig
     """
-    pass
 
 
-def PrivateWhitelistChange():
+class PrivateWhitelistChange(Command):
+    arguments = [(b'enc_address', EncAddress()),
+                 (b'enc_hash', EncHash()),
+                 (b'enc_action', EncBool()),
+                 (b'enc_sig', EncSig()),
+                 (b'sesh_key', PrivAES()),
+                 (b'sesh_hash', ObjHash()),
+                 (b'sesh_sig', ObjSig())]
+    response = [(b'enc_action', EncBool()),
+                (b'enc_hash', EncHash()),
+                (b'enc_sig', EncSig()),
+                (b'sesh_hash', ObjHash()),
+                (b'sesh_sig', ObjSig())]
     """
     I: signed request, encrypted session key, encrypted address
     O: encrypted signed response, encrypted hash, hash
     """
-    pass
 
 
-def PrivateWhitelistView():
+class PrivateWhitelistView(Command):
+    arguments = [(b'enc_req_nonce', EncBlob()),
+                 (b'enc_hash', EncHash()),
+                 (b'enc_sig', EncSig()),
+                 (b'sesh_key', PrivAES()),
+                 (b'sesh_hash', ObjHash()),
+                 (b'sesh_sig', ObjSig())]
+    response = [(b'enc_blacklist', ListOf(EncAddress())),
+                (b'sesh_hash', ObjHash()),
+                (b'sesh_sig', ObjSig())]
     """
     I: signed request, encrypted session key
     O: encrypted whitelist
     """
-    pass
 # peers
 
 
-def PrivatePeersChange():
+class PrivatePeersChange(Command):
+    arguments = [(b'enc_address', EncAddress()),
+                 (b'enc_hash', EncHash()),
+                 (b'enc_action', EncBool()),
+                 (b'enc_sig', EncSig()),
+                 (b'sesh_key', PrivAES()),
+                 (b'sesh_hash', ObjHash()),
+                 (b'sesh_sig', ObjSig())]
+    response = [(b'enc_action', EncBool()),
+                (b'enc_hash', EncHash()),
+                (b'enc_sig', EncSig()),
+                (b'sesh_hash', ObjHash()),
+                (b'sesh_sig', ObjSig())]
     """
     I: signed request, encrypted session key, encrypted address
     O: encrypted whitelist
     """
-    pass
 
 
-def PrivatePeersView():
+class PrivatePeersView(Command):
+    arguments = [(b'enc_req_nonce', EncBlob()),
+                 (b'enc_hash', EncHash()),
+                 (b'enc_sig', EncSig()),
+                 (b'sesh_key', PrivAES()),
+                 (b'sesh_hash', ObjHash()),
+                 (b'sesh_sig', ObjSig())]
+    response = [(b'enc_blacklist', ListOf(EncAddress())),
+                (b'sesh_hash', ObjHash()),
+                (b'sesh_sig', ObjSig())]
     """
     I: signed request, encrypted session key
     O: encrypted whitelist
     """
-    pass
 # users/admins
 
 
-def PrivateUsersChange():
+class PrivateUsersChange(Command):
+    arguments = [(b'enc_address', EncAddress()),
+                 (b'enc_hash', EncHash()),
+                 (b'enc_action', EncBool()),
+                 (b'enc_sig', EncSig()),
+                 (b'sesh_key', PrivAES()),
+                 (b'sesh_hash', ObjHash()),
+                 (b'sesh_sig', ObjSig())]
+    response = [(b'enc_action', EncBool()),
+                (b'enc_hash', EncHash()),
+                (b'enc_sig', EncSig()),
+                (b'sesh_hash', ObjHash()),
+                (b'sesh_sig', ObjSig())]
     """
     I: signed request, encrypted session key
     O: encrypted whitelist
     """
-    pass
 
 
-def PrivateUsersView():
+class PrivateUsersView(Command):
+    arguments = [(b'enc_req_nonce', EncBlob()),
+                 (b'enc_hash', EncHash()),
+                 (b'enc_sig', EncSig()),
+                 (b'sesh_key', PrivAES()),
+                 (b'sesh_hash', ObjHash()),
+                 (b'sesh_sig', ObjSig())]
+    response = [(b'enc_blacklist', ListOf(EncAddress())),
+                (b'sesh_hash', ObjHash()),
+                (b'sesh_sig', ObjSig())]
     """
     I: signed request, encrypted session key
     O: encrypted whitelist
     """
-    pass
 
 
-def PrivateAdminsChange():
+class PrivateAdminsChange(Command):
+    arguments = [(b'enc_address', EncAddress()),
+                 (b'enc_hash', EncHash()),
+                 (b'enc_action', EncBool()),
+                 (b'enc_sig', EncSig()),
+                 (b'sesh_key', PrivAES()),
+                 (b'sesh_hash', ObjHash()),
+                 (b'sesh_sig', ObjSig())]
+    response = [(b'enc_action', EncBool()),
+                (b'enc_hash', EncHash()),
+                (b'enc_sig', EncSig()),
+                (b'sesh_hash', ObjHash()),
+                (b'sesh_sig', ObjSig())]
     """
     I: signed request, encrypted session key
     O: encrypted whitelist
     """
-    pass
 
 
-def PrivateAdminsView():
+class PrivateAdminsView(Command):
+    arguments = [(b'enc_req_nonce', EncBlob()),
+                 (b'enc_hash', EncHash()),
+                 (b'enc_sig', EncSig()),
+                 (b'sesh_key', PrivAES()),
+                 (b'sesh_hash', ObjHash()),
+                 (b'sesh_sig', ObjSig())]
+    response = [(b'enc_blacklist', ListOf(EncAddress())),
+                (b'sesh_hash', ObjHash()),
+                (b'sesh_sig', ObjSig())]
     """
     I: signed request, encrypted session key
     O: encrypted whitelist
     """
-    pass

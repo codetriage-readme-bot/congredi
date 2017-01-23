@@ -21,6 +21,11 @@ from ..utils.whoops import CongrediError
 #from ..utils.iter import pairwise
 
 
+class CongrediNoRouteError(CongrediError):
+    """No route to host"""
+    pass
+
+
 class router():
     nodes = []
 
@@ -32,8 +37,7 @@ class router():
         """generate a route to an introduction node using a list of keys (see alternate in packet/hybrid.py)"""
         # self, node, returnaddr, rendesvous
         if rendesvousKey not in self.nodes:
-            # need test case
-            raise CongrediError('Rendesvous Key not in node list')
+            raise CongrediNoRouteError('Rendesvous Key not in node list')
         tempNodes = list(self.nodes)
         result = []
 

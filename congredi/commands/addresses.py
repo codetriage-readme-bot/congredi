@@ -17,28 +17,44 @@ PeerBeat).
 from __future__ import absolute_import
 from __future__ import unicode_literals
 from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
-
+from ..types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
 
 # find address from outside
+
+
 class AddressAsk(Command):
-    arguments = [(b'name', String()),
+    arguments = [(b'name', ObjAddress()),
                  (b'port', Integer())]
-    response = [(b'hello', String())]
+    response = [(b'name', ObjAddress()),
+                (b'port', Integer())]
 
 
+@AddressAsk.responder
 def AddressTell():
+    """
+    Add that person to the ephemeral recently-seen list.
+    Send back what their IP/port was.
+    """
     pass
 # ask the directory, while sending your own
 
 
-def SyncPeerDirectoryAsk():
+class SyncPeerDirectoryAsk(Command):
+    # would have prefered dict capability.
+    # these may need encoding...
+    arguments = [(b'dir_pubkey', ListOf(ObjPubKey())),
+                 (b'dir_addrs', ListOf(ObjAddress())),
+                 (b'dir_ports', ListOf(Integer()))]
+    response = [(b'dir_pubkey', ListOf(ObjPubKey())),
+                (b'dir_addrs', ListOf(ObjAddress())),
+                (b'dir_ports', ListOf(Integer()))]
     """
     in: list((key,ip))
     out: list((key,ip))
     """
-    pass
 
 
+@SyncPeerDirectoryAsk.responder
 def SyncPeerDirectoryTell():
     """
     in: list((key,ip))
@@ -48,14 +64,20 @@ def SyncPeerDirectoryTell():
 # rendesvous/courriers
 
 
-def SyncRendesvousDirectoryAsk():
+class SyncRendesvousDirectoryAsk(Command):
+    arguments = [(b'dir_pubkey', ListOf(ObjPubKey())),
+                 (b'dir_addrs', ListOf(ObjAddress())),
+                 (b'dir_ports', ListOf(Integer()))]
+    response = [(b'dir_pubkey', ListOf(ObjPubKey())),
+                (b'dir_addrs', ListOf(ObjAddress())),
+                (b'dir_ports', ListOf(Integer()))]
     """
     in: list((key, rendesvous key, proof))
     out: list((key, rendesvous key, proof))
     """
-    pass
 
 
+@SyncRendesvousDirectoryAsk.responder
 def SyncRendesvousDirectoryTell():
     """
     in: list((key, rendesvous key, proof))
@@ -64,17 +86,19 @@ def SyncRendesvousDirectoryTell():
     pass
 
 
-def SyncCourierDirectoryAsk():
+class SyncCourierDirectoryAsk(Command):
+    arguments = [(b'dir_pubkey', ListOf(ObjPubKey())),
+                 (b'dir_addrs', ListOf(ObjAddress())),
+                 (b'dir_ports', ListOf(Integer()))]
+    response = [(b'dir_pubkey', ListOf(ObjPubKey())),
+                (b'dir_addrs', ListOf(ObjAddress())),
+                (b'dir_ports', ListOf(Integer()))]
     """
     in: list((key, courier key, proof))
     out: list((key, courier key, proof))
     """
-    pass
 
 
+@SyncCourierDirectoryAsk.responder
 def SyncCourierDirectoryTell():
-    """
-    in: list((key, rendesvous key, proof))
-    out: list((key, rendesvous key, proof))
-    """
     pass

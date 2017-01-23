@@ -20,11 +20,25 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 import unittest
-from ..command import PeerOptions, PeerOnions, PeerGet, PeerSet, PeerIndex, PeerSearch
-
+from ..setting import ChangePrivateBlacklist
 
 # pylint: disable=no-self-use
+
+
 class test_setting(unittest.TestCase):
+    blacklist = []
+    whitelist = []
+    peers = []
+    users = []
+    admins = []
+
+    def setUp(self):
+        self.blacklist = ['a', 'b']
+        self.whitelist = ['c']
+        self.peers = ['d', 'e']
+        self.users = ['a', 'b', 'f']
+        self.admins = ['c', 'g']
 
     def test_command_a(self):
+        ChangePrivateBlacklist('a', 'b', 'c')
         print('IMPLEMENT tests/test_setting')

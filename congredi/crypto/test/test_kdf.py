@@ -17,9 +17,11 @@ class test_kdf(unittest.TestCase):
         strong_key_1 = default_kdf('password123_stupid')
         strong_key_2 = default_kdf('password123_stupid')
         assert strong_key_1 != strong_key_2
+        assert len(strong_key_1) == 32
 
     def test_random_password(self):
         """Grab random password, assert it doesn't equal the next one"""
         password_1 = random_password()
         password_2 = random_password()
         assert password_1 != password_2
+        assert len(password_1) == 32
