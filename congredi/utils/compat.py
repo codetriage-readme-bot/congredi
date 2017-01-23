@@ -1,4 +1,5 @@
 import sys
+import binascii
 # CharDet...
 # pylint: disable=redefined-variable-type, undefined-variable
 if sys.version_info < (3, 0):
@@ -24,7 +25,7 @@ def ensureBinary(statement, hexr=False):
         if not hexr:
             statement = statement.encode('utf8')
         else:
-            statement = statement.encode('hex')
+            statement = binascii.hexlify(statement)
     return statement
 
 

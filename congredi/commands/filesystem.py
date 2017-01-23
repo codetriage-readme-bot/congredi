@@ -39,16 +39,6 @@ class SyncHavesWantsAsk(Command):
     I: list of hashes, list of hashes
     O: list of hashes, list of hashes
     """
-
-
-@SyncHavesWantsAsk.responder
-def SyncHavesWantsTell():
-    """
-    'I have [x,y,z], I want [x,y,z], what do you have/want'
-    I: list of hashes, list of hashes
-    O: list of hashes, list of hashes
-    """
-    pass
 # union operation (data transfer)
 
 
@@ -61,19 +51,7 @@ class SyncStorageAsk(Command):
     I: list of hashes, list of hashes
     O: list of hashes, list of hashes
     """
-
-
-@SyncStorageAsk.responder
-def SyncStorageTell():
-    """
-    'I have [x,y,z], I want [x,y,z], what do you have/want'
-    I: list of hashes, list of hashes
-    O: list of hashes, list of hashes
-    """
-    pass
-# store object
-
-# store object
+# store object (encrypted or not)
 
 
 class StoreSet(Command):
@@ -119,16 +97,6 @@ class StoreSet(Command):
     """
 
 
-@StoreSet.responder
-def StoreConfirm():
-    """
-    'store blob [blob] of type [type]'
-    I: blob, type
-    O: bool, ttl
-    """
-    pass
-
-
 class EncryptedStoreSet(Command):
     arguments = [(b'blob', ObjBlob()),
                  (b'type', String())]
@@ -140,17 +108,7 @@ class EncryptedStoreSet(Command):
     I: blob, type
     O: bool, ttl
     """
-
-
-@EncryptedStoreSet.responder
-def EncryptedStoreConfirm():
-    """
-    'store blob [blob] of type [type]'
-    I: blob, type
-    O: bool, ttl
-    """
-    pass
-# get object
+# get object (encrypted or not)
 
 
 class StoreGet(Command):
@@ -188,16 +146,6 @@ class StoreGet(Command):
     """
 
 
-@StoreGet.responder
-def StoreRespond():
-    """
-    'send blob [blob] of type [type]'
-    I: list of hashes, type
-    O: list of blobs, ttl
-    """
-    pass
-
-
 class EncryptedStoreGet(Command):
     arguments = [(b'hash', ObjHash()),
                  (b'type', String())]
@@ -209,16 +157,6 @@ class EncryptedStoreGet(Command):
     I: list of hashes, type
     O: list of blobs, ttl
     """
-
-
-@EncryptedStoreGet.responder
-def EncryptedStoreRespond():
-    """
-    'send blob [blob] of type [type]'
-    I: list of hashes, type
-    O: list of blobs, ttl
-    """
-    pass
 # seek item ([hash]->num)
 
 
@@ -253,18 +191,7 @@ class SeekGet(Command):
     I: hash, number, direction
     O: list of hashes
     """
-
-
-@SeekGet.responder
-def SeekRespond():
-    """
-    'seek hashes key [hash] count [number] direction [+/-]'
-    I: hash, number, direction
-    O: list of hashes
-    """
-    pass
 # resolve item ([hash])
-
 # ?? might simply do 'send me the blobs'...
 
 
@@ -277,17 +204,6 @@ class ResolveGet(Command):
     I: hash
     O: blob
     """
-
-
-@ResolveGet.responder
-def ResolveRespond():
-    """
-    'resolve [hash]'
-    I: hash
-    O: blob
-    """
-    pass
-
 # search items
 
 
@@ -321,10 +237,91 @@ class SearchRun(Command):
     """
 
 
-def SearchResolve():
-    """
-    'resolve [hash]'
-    I: hash
-    O: blob
-    """
-    pass
+class filesystemResponders(object):
+    redis = None
+    neo4j = None
+
+    def __init__(self):
+        # would pulll Redis online
+        pass
+
+    @SyncHavesWantsAsk.responder
+    def SyncHavesWantsTell(self, ):
+        """
+        'I have [x,y,z], I want [x,y,z], what do you have/want'
+        I: list of hashes, list of hashes
+        O: list of hashes, list of hashes
+        """
+        pass
+
+    @SyncStorageAsk.responder
+    def SyncStorageTell(self, ):
+        """
+        'I have [x,y,z], I want [x,y,z], what do you have/want'
+        I: list of hashes, list of hashes
+        O: list of hashes, list of hashes
+        """
+        pass
+
+    @StoreSet.responder
+    def StoreSetConfirm(self, ):
+        """
+        'store blob [blob] of type [type]'
+        I: blob, type
+        O: bool, ttl
+        """
+        pass
+
+    @EncryptedStoreSet.responder
+    def EncryptedStoreSetConfirm(self, ):
+        """
+        'store blob [blob] of type [type]'
+        I: blob, type
+        O: bool, ttl
+        """
+        pass
+
+    @StoreGet.responder
+    def StoreGetRespond(self, ):
+        """
+        'send blob [blob] of type [type]'
+        I: list of hashes, type
+        O: list of blobs, ttl
+        """
+        pass
+
+    @EncryptedStoreGet.responder
+    def EncryptedStoreGetRespond(self, ):
+        """
+        'send blob [blob] of type [type]'
+        I: list of hashes, type
+        O: list of blobs, ttl
+        """
+        pass
+
+    @SeekGet.responder
+    def SeekRespond(self, ):
+        """
+        'seek hashes key [hash] count [number] direction [+/-]'
+        I: hash, number, direction
+        O: list of hashes
+        """
+        pass
+
+    @ResolveGet.responder
+    def ResolveRespond(self, ):
+        """
+        'resolve [hash]'
+        I: hash
+        O: blob
+        """
+        pass
+
+    @SearchRun.responder
+    def SearchResolve(self, ):
+        """
+        'resolve [hash]'
+        I: hash
+        O: blob
+        """
+        pass

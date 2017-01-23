@@ -52,14 +52,6 @@ class StoreRequest(Command):
                 (b'your_hash', ObjHash()),
                 (b'my_sig', ObjSig())]
 # PubKey, TTL -> Boolean, TTL
-
-
-@StoreRequest.responder
-def StoreGrant(pubkey, ttl):
-    """
-    Compute 
-    """
-    pass
 """
 Encrypted storage applies an inverted sensor. It better
 look like it's ben tripleSec encrypted, and we'll do it
@@ -78,12 +70,6 @@ class StoreEncryptedRequest(Command):
                 (b'your_ttl', DateTime()),
                 (b'your_hash', ObjHash()),
                 (b'my_sig', ObjSig())]
-
-
-@StoreEncryptedRequest.responder
-def StoreEncryptedGrant():
-    pass
-
 # private servers acting as publisher (permissioned or not)
 """
 As a private server, a user will connect to them to find any
@@ -106,11 +92,6 @@ class PublishRequest(Command):
                 (b'my_sig', ObjSig())]
 
 
-@PublishRequest.responder
-def PublishGrant():
-    pass
-
-
 class SubscribeRequest(Command):
     arguments = [(b'my_pubkey', ObjPubKey()),
                  (b'my_start', DateTime()),
@@ -122,12 +103,6 @@ class SubscribeRequest(Command):
                 (b'your_ttl', DateTime()),
                 (b'your_hash', ObjHash()),
                 (b'my_sig', ObjSig())]
-
-
-@SubscribeRequest.responder
-def SubscribeGrant():
-    pass
-
 # private servers acting as rendesvous to a server
 """
 The Rendesvous (or publishing) and Courier (or subscribing)
@@ -148,11 +123,6 @@ class RendesvousRequest(Command):
                 (b'my_sig', ObjSig())]
 
 
-@RendesvousRequest.responder
-def RendesvousGrant():
-    pass
-
-
 class CourierRequest(Command):
     arguments = [(b'my_pubkey', ObjPubKey()),
                  (b'my_start', DateTime()),
@@ -164,12 +134,6 @@ class CourierRequest(Command):
                 (b'your_ttl', DateTime()),
                 (b'your_hash', ObjHash()),
                 (b'my_sig', ObjSig())]
-
-
-@CourierRequest.responder
-def CourierGrant():
-    pass
-
 # onion network / onion storage
 """
 Sanctuary is an unlisted, encrypted server that
@@ -191,11 +155,6 @@ class SanctuaryRequest(Command):
                 (b'my_sig', ObjSig())]
 
 
-@SanctuaryRequest.responder
-def SanctuaryGrant():
-    pass
-
-
 class SafePassageRequest(Command):
     arguments = [(b'my_pubkey', ObjPubKey()),
                  (b'my_start', DateTime()),
@@ -209,6 +168,45 @@ class SafePassageRequest(Command):
                 (b'my_sig', ObjSig())]
 
 
-@SafePassageRequest.responder
-def SafePassageGrant():
-    pass
+class passportResponders(object):
+    redis = None
+    neo4j = None
+
+    def __init__(self):
+        # would pulll Redis online
+        pass
+
+    @StoreRequest.responder
+    def StoreGrant(self, pubkey, ttl):
+        """
+        Compute 
+        """
+        pass
+
+    @StoreEncryptedRequest.responder
+    def StoreEncryptedGrant(self, ):
+        pass
+
+    @PublishRequest.responder
+    def PublishGrant(self, ):
+        pass
+
+    @SubscribeRequest.responder
+    def SubscribeGrant(self, ):
+        pass
+
+    @RendesvousRequest.responder
+    def RendesvousGrant(self, ):
+        pass
+
+    @CourierRequest.responder
+    def CourierGrant(self, ):
+        pass
+
+    @SanctuaryRequest.responder
+    def SanctuaryGrant(self, ):
+        pass
+
+    @SafePassageRequest.responder
+    def SafePassageGrant(self, ):
+        pass

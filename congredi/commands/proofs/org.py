@@ -23,120 +23,255 @@ class OrgConsensusBegin(Command):
     response = [(b'hello', String())]
 
 
-def OrgConsensusIncrement():
-    pass
+class OrgConsensusIncrement(Command):
+    response = []
 
 
-def OrgConsensusVerify():
-    pass
+class OrgConsensusVerify(Command):
+    response = []
 # bio items
 
 
-def OrgBorderBegin():  # border object [(lat,long),...], yea/nay-date
-    pass
+class OrgBorderBegin(Command):  # border object [(lat,long),...], yea/nay-date
+    response = []
 
 
-def OrgBorderIncrement():
-    pass
+class OrgBorderIncrement(Command):
+    response = []
 
 
-def OrgBorderVerify():
-    pass
+class OrgBorderVerify(Command):
+    response = []
 
 
-def OrgManifestoBegin():  # manifesto (markdown), yea/nay-date
-    pass
+class OrgManifestoBegin(Command):  # manifesto (markdown), yea/nay-date
+    response = []
 
 
-def OrgManifestoIncrement():
-    pass
+class OrgManifestoIncrement(Command):
+    response = []
 
 
-def OrgManifestoVerify():
-    pass
+class OrgManifestoVerify(Command):
+    response = []
 # org couriers:
 
 
-def OrgStaffCouriersBegin():  # key, ip, voters in favor, admins in favor
-    pass
+# key, ip, voters in favor, admins in favor
+class OrgStaffCouriersBegin(Command):
+    response = []
 
 
-def OrgStaffCouriersIncrement():
-    pass
+class OrgStaffCouriersIncrement(Command):
+    response = []
 
 
-def OrgStaffCouriersVerify():
-    pass
+class OrgStaffCouriersVerify(Command):
+    response = []
 
 
-def OrgVolunteerCouriersBegin():  # key, ip, voters in favor, admins in favor
-    pass
+# key, ip, voters in favor, admins in favor
+class OrgVolunteerCouriersBegin(Command):
+    response = []
 
 
-def OrgVolunteerCouriersIncrement():
-    pass
+class OrgVolunteerCouriersIncrement(Command):
+    response = []
 
 
-def OrgVolunteerCouriersVerify():
-    pass
+class OrgVolunteerCouriersVerify(Command):
+    response = []
 # memberships
 
 
-def OrgMembershipBegin():  # membership proposal object, yea/nay-date
-    pass
+class OrgMembershipBegin(Command):  # membership proposal object, yea/nay-date
+    response = []
 
 
-def OrgMembershipIncrement():
-    pass
+class OrgMembershipIncrement(Command):
+    response = []
 
 
-def OrgMembershipVerify():
-    pass
+class OrgMembershipVerify(Command):
+    response = []
 
 
-def OrgProposalBegin():  # proposal object, yea/nay-date
-    pass
+class OrgProposalBegin(Command):  # proposal object, yea/nay-date
+    response = []
 
 
-def OrgProposalIncrement():
-    pass
+class OrgProposalIncrement(Command):
+    response = []
 
 
-def OrgProposalVerify():
-    pass
+class OrgProposalVerify(Command):
+    response = []
 
 
-def OrgVoteTallyBegin():  # vote object, ballots cast, yea/nay-date
-    pass
+class OrgVoteTallyBegin(Command):  # vote object, ballots cast, yea/nay-date
+    response = []
 
 
-def OrgVoteTallyIncrement():
-    pass
+class OrgVoteTallyIncrement(Command):
+    response = []
 
 
-def OrgVoteTallyVerify():
-    pass
+class OrgVoteTallyVerify(Command):
+    response = []
 
 
-def OrgPollTallyBegin():  # poll object, ballots answered, yea/nay-date
-    pass
+class OrgPollTallyBegin(Command):  # poll object, ballots answered, yea/nay-date
+    response = []
 
 
-def OrgPollTallyIncrement():
-    pass
+class OrgPollTallyIncrement(Command):
+    response = []
 
 
-def OrgPollTallyVerify():
-    pass
+class OrgPollTallyVerify(Command):
+    response = []
 
 
-def OrgSavesBegin():  # hash to save, yea/nay-date
-    pass
+class OrgSavesBegin(Command):  # hash to save, yea/nay-date
+    response = []
 
 
-def OrgSavesIncrement():
-    pass
+class OrgSavesIncrement(Command):
+    response = []
 
 
-def OrgSavesVerify():
-    pass
+class OrgSavesVerify(Command):
+    response = []
+
+
+class orgResponders(object):
+    redis = None
+    neo4j = None
+
+    def __init__(self):
+        # would pulll Redis online
+        pass
+
+    @OrgConsensusBegin.responder
+    def ConsensusBegin(self):
+        pass
+
+    @OrgConsensusIncrement.responder
+    def ConsensusIncrement(self):
+        pass
+
+    @OrgConsensusVerify.responder
+    def ConsensusVerify(self):
+        pass
+    # bio items
+
+    @OrgBorderBegin.responder  # border object [.responder
+    def BorderBegin(self):  # border object [(lat,long),...], yea/nay-date
+        pass
+
+    @OrgBorderIncrement.responder
+    def BorderIncrement(self):
+        pass
+
+    @OrgBorderVerify.responder
+    def BorderVerify(self):
+        pass
+
+    @OrgManifestoBegin.responder  # manifesto .responder
+    def ManifestoBegin(self):  # manifesto (markdown), yea/nay-date
+        pass
+
+    @OrgManifestoIncrement.responder
+    def ManifestoIncrement(self):
+        pass
+
+    @OrgManifestoVerify.responder
+    def ManifestoVerify(self):
+        pass
+    # org couriers:
+
+    @OrgStaffCouriersBegin.responder
+    def StaffCouriersBegin(self):  # key, ip, voters in favor, admins in favor
+        pass
+
+    @OrgStaffCouriersIncrement.responder
+    def StaffCouriersIncrement(self):
+        pass
+
+    @OrgStaffCouriersVerify.responder
+    def StaffCouriersVerify(self):
+        pass
+
+    @OrgVolunteerCouriersBegin.responder
+    # key, ip, voters in favor, admins in favor
+    def VolunteerCouriersBegin(self):
+        pass
+
+    @OrgVolunteerCouriersIncrement.responder
+    def VolunteerCouriersIncrement(self):
+        pass
+
+    @OrgVolunteerCouriersVerify.responder
+    def VolunteerCouriersVerify(self):
+        pass
+    # memberships
+
+    @OrgMembershipBegin.responder
+    def MembershipBegin(self):  # membership proposal object, yea/nay-date
+        pass
+
+    @OrgMembershipIncrement.responder
+    def MembershipIncrement(self):
+        pass
+
+    @OrgMembershipVerify.responder
+    def MembershipVerify(self):
+        pass
+
+    @OrgProposalBegin.responder
+    def ProposalBegin(self):  # proposal object, yea/nay-date
+        pass
+
+    @OrgProposalIncrement.responder
+    def ProposalIncrement(self):
+        pass
+
+    @OrgProposalVerify.responder
+    def ProposalVerify(self):
+        pass
+
+    @OrgVoteTallyBegin.responder
+    def VoteTallyBegin(self):  # vote object, ballots cast, yea/nay-date
+        pass
+
+    @OrgVoteTallyIncrement.responder
+    def VoteTallyIncrement(self):
+        pass
+
+    @OrgVoteTallyVerify.responder
+    def VoteTallyVerify(self):
+        pass
+
+    @OrgPollTallyBegin.responder
+    def PollTallyBegin(self):  # poll object, ballots answered, yea/nay-date
+        pass
+
+    @OrgPollTallyIncrement.responder
+    def PollTallyIncrement(self):
+        pass
+
+    @OrgPollTallyVerify.responder
+    def PollTallyVerify(self):
+        pass
+
+    @OrgSavesBegin.responder
+    def SavesBegin(self):  # hash to save, yea/nay-date
+        pass
+
+    @OrgSavesIncrement.responder
+    def SavesIncrement(self):
+        pass
+
+    @OrgSavesVerify.responder
+    def SavesVerify(self):
+        pass

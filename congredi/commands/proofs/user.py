@@ -19,85 +19,192 @@ class UserUpdate(Command):
     """
 
 
-def UserSync():
-    pass
+class UserSync(Command):
+    response = []
 
 
-def UserBioUpdate():  # blob, previous hash, sig
-    pass
+class UserBioUpdate(Command):  # blob, previous hash, sig
+    response = []
 
 
-def UserBioSync():
-    pass
+class UserBioSync(Command):
+    response = []
 
 
-def UserLocationUpdate():  # zkp, previous hash, sig
-    pass
+class UserLocationUpdate(Command):  # zkp, previous hash, sig
+    response = []
 
 
-def UserLocationSync():
-    pass
+class UserLocationSync(Command):
+    response = []
 
 
-def UserCourierUpdate():  # fingerprint, ip, previous hash, sig
-    pass
+class UserCourierUpdate(Command):  # fingerprint, ip, previous hash, sig
+    response = []
 
 
-def UserCourierSync():
-    pass
+class UserCourierSync(Command):
+    response = []
 
 
-def UserRendesvousUpdate():  # fingerprint, ip, previous hash, sig
-    pass
+class UserRendesvousUpdate(Command):  # fingerprint, ip, previous hash, sig
+    response = []
 
 
-def UserRendesvousSync():
-    pass
+class UserRendesvousSync(Command):
+    response = []
 
 
-def UserReqJoinUpdate():  # org fingerprints summary, previous hash, sig
-    pass
+class UserReqJoinUpdate(Command):  # org fingerprints summary, previous hash, sig
+    response = []
 
 
-def UserReqJoinSync():
-    pass
+class UserReqJoinSync(Command):
+    response = []
 
 
-def UserProposalUpdate():  # org fingerprints summary, commit hash, vote object, previous, sig
-    pass
+# org fingerprints summary, commit hash, vote object, previous, sig
+class UserProposalUpdate(Command):
+    response = []
 
 
-def UserProposalSync():
-    pass
+class UserProposalSync(Command):
+    response = []
 
 
-def UserMembershipUpdate():  # org fingerprints summary, proof of membership, previous, sig
-    pass
+# org fingerprints summary, proof of membership, previous, sig
+class UserMembershipUpdate(Command):
+    response = []
 
 
-def UserMembershipSync():
-    pass
+class UserMembershipSync(Command):
+    response = []
 
 
-def UserCastedVotesUpdate():  # the vote, my ballot, previous hash, sig
-    pass
+# the vote, my ballot, previous hash, sig
+class UserCastedVotesUpdate(Command):
+    response = []
 
 
-def UserCastedVotesSync():
-    pass
+class UserCastedVotesSync(Command):
+    response = []
 
 
-def UserTreeUpdate():  # hash of the starting commit, commit blob, previous hash, sig
-    pass
+# hash of the starting commit, commit blob, previous hash, sig
+class UserTreeUpdate(Command):
+    response = []
 
 
-def UserTreeSync():
-    pass
+class UserTreeSync(Command):
+    response = []
 
 
-def UserSavesUpdate():  # hash to save, previous saves hash, sig
-    pass
+class UserSavesUpdate(Command):  # hash to save, previous saves hash, sig
+    response = []
 
 
-def UserSavesSync():
-    pass
+class UserSavesSync(Command):
+    response = []
+
+
+class userResponders(object):
+    redis = None
+    neo4j = None
+
+    def __init__(self):
+        # would pulll Redis online
+        pass
+
+    @UserUpdate.responder
+    def Update(self):
+        # arguments = [(b'name', String()),
+        #              (b'port', Integer())]
+        # response = [(b'hello', String())]
+        """
+        new public key, previous one signing it
+        """
+    @UserSync.responder
+    def Sync(self):
+        pass
+
+    @UserBioUpdate.responder
+    def BioUpdate(self):  # blob, previous hash, sig
+        pass
+
+    @UserBioSync.responder
+    def BioSync(self):
+        pass
+
+    @UserLocationUpdate.responder
+    def LocationUpdate(self):  # zkp, previous hash, sig
+        pass
+
+    @UserLocationSync.responder
+    def LocationSync(self):
+        pass
+
+    @UserCourierUpdate.responder
+    def CourierUpdate(self):  # fingerprint, ip, previous hash, sig
+        pass
+
+    @UserCourierSync.responder
+    def CourierSync(self):
+        pass
+
+    @UserRendesvousUpdate.responder
+    def RendesvousUpdate(self):  # fingerprint, ip, previous hash, sig
+        pass
+
+    @UserRendesvousSync.responder
+    def RendesvousSync(self):
+        pass
+
+    @UserReqJoinUpdate.responder
+    def ReqJoinUpdate(self):  # org fingerprints summary, previous hash, sig
+        pass
+
+    @UserReqJoinSync.responder
+    def ReqJoinSync(self):
+        pass
+
+    @UserProposalUpdate.responder
+    # org fingerprints summary, commit hash, vote object, previous, sig
+    def ProposalUpdate(self):
+        pass
+
+    @UserProposalSync.responder
+    def ProposalSync(self):
+        pass
+
+    @UserMembershipUpdate.responder
+    # org fingerprints summary, proof of membership, previous, sig
+    def MembershipUpdate(self):
+        pass
+
+    @UserMembershipSync.responder
+    def MembershipSync(self):
+        pass
+
+    @UserCastedVotesUpdate.responder
+    def CastedVotesUpdate(self):  # the vote, my ballot, previous hash, sig
+        pass
+
+    @UserCastedVotesSync.responder
+    def CastedVotesSync(self):
+        pass
+
+    @UserTreeUpdate.responder
+    def TreeUpdate(self):  # hash of the starting commit, commit blob, previous hash, sig
+        pass
+
+    @UserTreeSync.responder
+    def TreeSync(self):
+        pass
+
+    @UserSavesUpdate.responder
+    def SavesUpdate(self):  # hash to save, previous saves hash, sig
+        pass
+
+    @UserSavesSync.responder
+    def SavesSync(self):
+        pass

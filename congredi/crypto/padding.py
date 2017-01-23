@@ -10,7 +10,6 @@ from six.moves import zip
 from .kdf import random_aes_32_key
 from .AES import default_aes
 from .hash import make_hash
-from ..utils.compat import ensureBinary
 
 
 def AONTencrypt(content):
@@ -61,4 +60,4 @@ def AONTdecrypt(cyphertext):
         key2 = b"".join(
             [chr(ord(a) ^ ord(b)) for a, b in
              zip(hashable, key_xored)])
-    return ensureBinary(default_aes(key2).decrypt(cyphertext[:-32]))
+    return default_aes(key2).decrypt(cyphertext[:-32])

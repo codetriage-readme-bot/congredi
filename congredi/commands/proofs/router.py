@@ -8,9 +8,9 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
 from ...types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
-
-
 # addresses
+
+
 class AddrGet(Command):
     arguments = [(b'name', String()),
                  (b'port', Integer())]
@@ -22,175 +22,175 @@ class AddrGet(Command):
     """
 
 
-def AddrRespond():
-    """
-    'what is the address of the key [x]'
-    I: key
-    O: string
-    """
-    pass
-
-
-def CensorPolicyGet():
+class CensorPolicyGet(Command):
     """
     'what is the censor policy of the key [x]'
     I: key
     O: string
     """
-    pass
-
-
-def CensorPolicyRespond():
-    """
-    'what is the censor policy of the key [x]'
-    I: key
-    O: string
-    """
-    pass
 # ranks
 
 
-def RankGet():
+class RankGet(Command):
     """
     'what is the rank of the key [x]'
     I: key
     O: string
     """
-    pass
 
 
-def RankRespond():
-    """
-    'what is the rank of the key [x]'
-    I: key
-    O: string
-    """
-    pass
-
-
-def SeenGet():
+class SeenGet(Command):
     """
     'when was key [x] last seen'
     I: key
     O: string
     """
-    pass
 
 
-def SeenRespond():
-    """
-    'when was key [x] last seen'
-    I: key
-    O: string
-    """
-    pass
-
-
-def UptimeGet():
+class UptimeGet(Command):
     """
     'what is the uptime of key [x]'
     I: key
     O: string
     """
-    pass
-
-
-def UptimeRespond():
-    """
-    'what is the uptime of key [x]'
-    I: key
-    O: string
-    """
-    pass
 # haves/wants
 
 
-def WantsGet():
+class WantsGet(Command):
     """
     'what does key [x] want'
     I: key
     O: list of hashes
     """
-    pass
 
 
-def WantsRespond():
-    """
-    'what does key [x] want'
-    I: key
-    O: list of hashes
-    """
-    pass
-
-
-def HasGet():
+class HasGet(Command):
     """
     'what does key [x] have'
     I: key
     O: list of hashes
     """
-    pass
 
 
-def HasRespond():
-    """
-    'what does key [x] have'
-    I: key
-    O: list of hashes
-    """
-    pass
-
-
-def ProofGet():
+class ProofGet(Command):
     """
     'prove key [x] has [hash] section[:] with [nonce]'
     I: key, hash, start, end, nonce
     O: proof
     """
-    pass
-
-
-def ProofRespond():
-    """
-    'prove key [x] has [hash] section[:] with [nonce]'
-    I: key, hash, start, end, nonce
-    O: proof
-    """
-    pass
 # publish functions
 
 
-def RendesvousGet():
+class RendesvousGet(Command):
     """
     'rendesvous of key [x]'
     I: key
     O: of, by
     """
-    pass
 
 
-def RendesvousRespond():
-    """
-    'rendesvous of key [x]'
-    I: key
-    O: of, by
-    """
-    pass
-
-
-def CourierGet():
+class CourierGet(Command):
     """
     'courier of key [x]'
     I: key
     O: of, by
     """
-    pass
 
 
-def CourierRespond():
-    """
-    'courier of key [x]'
-    I: key
-    O: of, by
-    """
-    pass
+class routerResponders(object):
+    redis = None
+    neo4j = None
+
+    def __init__(self):
+        # would pulll Redis online
+        pass
+
+    @AddrGet.responder
+    def GetAddr(self, ):
+        """
+        'what is the address of the key [x]'
+        I: key
+        O: string
+        """
+        pass
+
+    @CensorPolicyGet.responder
+    def GetCensorPolicy(self, ):
+        """
+        'what is the censor policy of the key [x]'
+        I: key
+        O: string
+        """
+        pass
+
+    @RankGet.responder
+    def GetRank(self, ):
+        """
+        'what is the rank of the key [x]'
+        I: key
+        O: string
+        """
+        pass
+
+    @SeenGet.responder
+    def GetSeen(self, ):
+        """
+        'when was key [x] last seen'
+        I: key
+        O: string
+        """
+        pass
+
+    @UptimeGet.responder
+    def GetUptime(self, ):
+        """
+        'what is the uptime of key [x]'
+        I: key
+        O: string
+        """
+        pass
+
+    @WantsGet.responder
+    def GetWants(self, ):
+        """
+        'what does key [x] want'
+        I: key
+        O: list of hashes
+        """
+        pass
+
+    @HasGet.responder
+    def GetHas(self, ):
+        """
+        'what does key [x] have'
+        I: key
+        O: list of hashes
+        """
+        pass
+
+    @ProofGet.responder
+    def GetProof(self, ):
+        """
+        'prove key [x] has [hash] section[:] with [nonce]'
+        I: key, hash, start, end, nonce
+        O: proof
+        """
+        pass
+
+    @RendesvousGet.responder
+    def GetRendesvous(self, ):
+        """
+        'rendesvous of key [x]'
+        I: key
+        O: of, by
+        """
+        pass
+
+    @CourierGet.responder
+    def GetCourier(self, ):
+        """
+        'courier of key [x]'
+        I: key
+        O: of, by
+        """
+        pass

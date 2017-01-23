@@ -20,7 +20,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 import unittest
-from ..setting import ChangePrivateBlacklist
+from ..setting import settingResponders
 
 # pylint: disable=no-self-use
 
@@ -31,6 +31,7 @@ class test_setting(unittest.TestCase):
     peers = []
     users = []
     admins = []
+    responderToTest = None
 
     def setUp(self):
         self.blacklist = ['a', 'b']
@@ -38,7 +39,8 @@ class test_setting(unittest.TestCase):
         self.peers = ['d', 'e']
         self.users = ['a', 'b', 'f']
         self.admins = ['c', 'g']
+        self.responderToTest = settingResponders()
 
     def test_command_a(self):
-        ChangePrivateBlacklist('a', 'b', 'c')
+        self.responderToTest.ChangePrivateBlacklist('a', 'b', 'c')
         print('IMPLEMENT tests/test_setting')

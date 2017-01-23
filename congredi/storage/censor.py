@@ -36,6 +36,8 @@ try:
     WINDOWS = False
 except ImportError as e:
     WINDOWS = True
+    print(e.message)
+    WINDOWS_ERROR = e.message
     logger.warning('windows users will have pycld2 disabled for now')
 
 
@@ -58,6 +60,7 @@ def stateLanguage(statement):
         # wasn't checking the exception block... whoops.
     except:
         if WINDOWS is True:
+            print(WINDOWS_ERROR)
             logger.warning('windows users will have pycld2 disabled for now')
             # raise Exception('windows users will have pycld2 disabled for now')
         return None

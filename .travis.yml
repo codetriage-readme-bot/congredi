@@ -47,8 +47,8 @@ script:
 #   incompatible"; fi
 - python setup.py install
 - pylint congredi
-- pip install mkdocs mkdocs-bootswatch || echo "mkdocs problems"
-- mkdocs build || echo "Docs fail..."
+# OSX is a bit slow at best. Not building docs...
+- if [[ $TRAVIS_OS_NAME != 'osx' ]]; then pip install mkdocs mkdocs-bootswatch; mkdocs build; fi
 deploy:
   provider: pypi
   user: thetoxicarcade

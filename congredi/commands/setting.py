@@ -66,11 +66,6 @@ class PrivateBlacklistChange(Command):
     """
 
 
-@PrivateBlacklistChange.responder
-def ChangePrivateBlacklist(pubkey, address, direction):
-    pass
-
-
 class PrivateBlacklistView(Command):
     arguments = [(b'enc_req_nonce', EncBlob()),
                  (b'enc_hash', EncHash()),
@@ -227,3 +222,58 @@ class PrivateAdminsView(Command):
     I: signed request, encrypted session key
     O: encrypted whitelist
     """
+
+
+class settingResponders(object):
+    config = None
+    redis = None
+    neo4j = None
+
+    def __init__(self):
+        # would pulll Redis online
+        pass
+    # blacklist
+
+    @PrivateBlacklistChange.responder
+    def ChangePrivateBlacklist(self, pubkey, address, direction):
+        pass
+
+    @PrivateBlacklistView.responder
+    def ViewPrivateBlacklist(self, pubkey, address, direction):
+        pass
+    # whitelist
+
+    @PrivateWhitelistChange.responder
+    def ChangePrivateWhitelist(self, pubkey, address, direction):
+        pass
+
+    @PrivateWhitelistView.responder
+    def ViewPrivateWhitelist(self, pubkey, address, direction):
+        pass
+    # peers
+
+    @PrivatePeersChange.responder
+    def ChangePrivatePeers(self, pubkey, address, direction):
+        pass
+
+    @PrivatePeersView.responder
+    def ViewPrivatePeers(self, pubkey, address, direction):
+        pass
+    # users
+
+    @PrivateUsersChange.responder
+    def ChangePrivateUsers(self, pubkey, address, direction):
+        pass
+
+    @PrivateUsersView.responder
+    def ViewPrivateUsers(self, pubkey, address, direction):
+        pass
+    # admins
+
+    @PrivateAdminsChange.responder
+    def ChangePrivateAdmins(self, pubkey, address, direction):
+        pass
+
+    @PrivateAdminsView.responder
+    def ViewPrivateAdmins(self, pubkey, address, direction):
+        pass

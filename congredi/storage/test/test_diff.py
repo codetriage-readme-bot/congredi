@@ -8,7 +8,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 import unittest
 import hashlib
-import codecs
+import binascii
 # try:
 #     from StringIO import StringIO
 # except ImportError:
@@ -53,21 +53,17 @@ class test_diff(unittest.TestCase):
         data['length'] = len(comp)
         data['hash'] = hashlib.sha256(comp).digest()
         splt = chunkSplit(comp)
-        # not python3 compatible...
-        # for c in splt:
-        #     key = hashlib.sha256(c).hexdigest()
-        #     print(type(c))
-        #     data['pieces'][key] = c.encode('hex')
-        # for k, v in data['pieces'].items():
-        #     print(k,v.encode('hex'))
+        for c in splt:
+            key = hashlib.sha256(c).hexdigest()
+            print(type(c))
+            data['pieces'][key] = binascii.hexlify(c)
+        for k, v in data['pieces'].items():
+            print(k, binascii.hexlify(v))
         jnd = b''.join(splt)
         final = hashlib.sha256(jnd).digest()
         print(('join %d' % len(jnd)))
-        try:
-            print(('hash: %(one)s\nhash: %(two)s' %
-                   {'one': codecs.encode(data['hash'], 'hex'), 'two': codecs.encode(final, 'hex')}))
-        except LookupError:
-            print('Python 3.3 encode hex problem...')
+        print(('hash: %(one)s\nhash: %(two)s' %
+               {'one': binascii.hexlify(data['hash']), 'two': binascii.hexlify(final)}))
 
     def test_uni(self):
         """Unified Diffs..."""

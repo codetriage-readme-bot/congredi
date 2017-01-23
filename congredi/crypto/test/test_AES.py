@@ -17,7 +17,7 @@ from six.moves import range
 class test_default_aes(unittest.TestCase):
 
     def test_default_aes_passwords(self):
-        """A == B == C"""
+        """AES A.disclose() == B(A) == C(A)"""
         key = default_aes().disclose()
         a = default_aes(key)
         b = default_aes(key)

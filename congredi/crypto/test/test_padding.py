@@ -7,7 +7,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 import unittest
-import codecs
+import binascii
 from ..padding import AONTencrypt, AONTdecrypt
 from ...tests.censorable import random, hexify, phony
 from six.moves import range
@@ -20,25 +20,14 @@ class test_padding(unittest.TestCase):
     def test_padding(self):
         """one AONT using pre-existing value"""
         value = b"Secret Message!"
-        try:
-            print(("plaintext hex is: %s" % codecs.encode(value, 'hex')))
-        except LookupError:
-            print("Python3.3 bug...")
+        print(("plaintext hex is: %s" % binascii.hexlify(value)))
         cyphertext = AONTencrypt(value)
-        try:
-            print(("cyphertext is %s" % codecs.encode(cyphertext, 'hex')))
-        except LookupError:
-            print("Python3.3 bug...")
+        print(("cyphertext is %s" % binascii.hexlify(cyphertext)))
         plaintext = AONTdecrypt(cyphertext)
+        print(type(plaintext))
         # pylint: disable=bare-except
-        try:
-            print(("plaintext hex is: " + codecs.encode(plaintext, 'hex')))
-        except:
-            print('Well, python3 needs fixing on encoding %s to hex...' %
-                  type(plaintext))
-            plaintext = plaintext.decode('utf-8')
-
-        print(("plaintext is: " + plaintext))
+        print(("plaintext hex is: %s" % binascii.hexlify(plaintext)))
+        print(("plaintext is: %s" % plaintext))
 
     def test_gauntlet(self):
         """10 random AONTs - message should decrypt"""

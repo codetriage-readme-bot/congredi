@@ -14,7 +14,13 @@ from twisted.internet import reactor
 import logging
 logger = logging.getLogger('congredi')
 
-from .commands.addresses import AddressAsk, SyncPeerDirectoryAsk
+from .commands.addresses import AddressAsk, SyncPeerDirectoryAsk, addressesResponders
+from .commands.filesystem import filesystemResponders
+from .commands.passport import passportResponders
+from .commands.setting import settingResponders
+from .commands.proofs.org import orgResponders
+from .commands.proofs.router import routerResponders
+from .commands.proofs.user import userResponders
 
 # pylint: disable=signature-differs, abstract-method, too-many-ancestors
 # https://github.com/twisted/twisted/blob/e38cc25a67747899c6984d6ebaa8d3d134799415/src/twisted/protocols/portforward.py
@@ -22,7 +28,9 @@ from .commands.addresses import AddressAsk, SyncPeerDirectoryAsk
 # #protocol.ServerFactory
 
 
-class CongrediPeerProtocol(AMP):
+class CongrediPeerProtocol(AMP, addressesResponders, filesystemResponders,
+                           passportResponders, settingResponders, orgResponders,
+                           routerResponders, userResponders):
     """
     def __init__(self, factory):
         self.factory = factory
