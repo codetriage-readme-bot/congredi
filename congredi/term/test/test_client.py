@@ -17,6 +17,7 @@ class test_client(unittest.TestCase):
     key = "abab"
 
     def test_client(self):
+        """Will need to have the client being tested (duplicate from test_run?)"""
         factory = CongrediClient(self.host, self.port, self.key)
         protocol = ClientProtocol(self.host, self.port, self.key)
         print('Well, this one will be interesting')

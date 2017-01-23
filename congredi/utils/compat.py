@@ -17,7 +17,8 @@ else:
 # will need to write tests for these
 # and in general just avoid not telling what type variables are
 
-def ensureBinary(statement,hexr=False):
+
+def ensureBinary(statement, hexr=False):
     if not isinstance(statement, bin_type):
         print('EnsureBinary: swapping to binary from %s' % type(statement))
         if not hexr:
@@ -25,7 +26,9 @@ def ensureBinary(statement,hexr=False):
         else:
             statement = statement.encode('hex')
     return statement
-def ensureString(statement,hexr=False):
+
+
+def ensureString(statement, hexr=False):
     if not isinstance(statement, text_type):
         print('EnsureString: swapping to string from %s' % type(statement))
         if not hexr:

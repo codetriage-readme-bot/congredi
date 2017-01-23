@@ -27,4 +27,4 @@ class test_factory(unittest.TestCase):
         a = CongrediPeerFactory()
 
         a.startedConnecting('well then')
-        print('IMPLEMENT tests/test_factory')
+        print('IMPLEMENT tests/test_factory with StringTransport')

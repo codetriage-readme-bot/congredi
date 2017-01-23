@@ -1,3 +1,0 @@
-"""
-Periodically audit a vote
-"""

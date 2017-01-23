@@ -1,11 +1,43 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+AMP filesystem operations
+
+Bulk Operations:
+* SyncHavesWants        - send a list of hashes, recieve a list of hashes
+
+New Bulk Operation:
+* SyncStorage           - send a list of blobs, recieve a list of blobs
+
+
+Smaller, previous non-bulk operations:
+* StoreSet              - basic Redis operations...
+* EncryptedStoreSet
+* StoreGet
+* EncryptedStoreGet
+* Seek                  - send hashes by keyspace offset (hash, number, direction)
+* Resolve               - not documented yet. Part of periodic tasks, http iface
+* Search                - will not work on encrypted stores
+
+"""
+# pylint: disable=unused-import
+from __future__ import absolute_import
+from __future__ import unicode_literals
+from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
+
+
 # union operation (data transfer)
-def SyncHavesWantsAsk():
+class SyncHavesWantsAsk(Command):
+    arguments = [(b'name', String()),
+                 (b'port', Integer())]
+    response = [(b'hello', String())]
     """
     'I have [x,y,z], I want [x,y,z], what do you have/want'
     I: list of hashes, list of hashes
     O: list of hashes, list of hashes
     """
-    pass
+
+
 def SyncHavesWantsTell():
     """
     'I have [x,y,z], I want [x,y,z], what do you have/want'
@@ -14,6 +46,8 @@ def SyncHavesWantsTell():
     """
     pass
 # store object
+
+
 def StoreSet():
     """
     'store blob [blob] of type [type]'
@@ -21,6 +55,8 @@ def StoreSet():
     O: bool, ttl
     """
     pass
+
+
 def StoreConfirm():
     """
     'store blob [blob] of type [type]'
@@ -28,6 +64,8 @@ def StoreConfirm():
     O: bool, ttl
     """
     pass
+
+
 def EncryptedStoreSet():
     """
     'store blob [blob] of type [type]'
@@ -35,6 +73,8 @@ def EncryptedStoreSet():
     O: bool, ttl
     """
     pass
+
+
 def EncryptedStoreConfirm():
     """
     'store blob [blob] of type [type]'
@@ -43,6 +83,8 @@ def EncryptedStoreConfirm():
     """
     pass
 # get object
+
+
 def StoreGet():
     """
     'send blob [blob] of type [type]'
@@ -50,6 +92,8 @@ def StoreGet():
     O: list of blobs, ttl
     """
     pass
+
+
 def StoreRespond():
     """
     'send blob [blob] of type [type]'
@@ -57,6 +101,8 @@ def StoreRespond():
     O: list of blobs, ttl
     """
     pass
+
+
 def EncryptedStoreGet():
     """
     'send blob [blob] of type [type]'
@@ -64,6 +110,8 @@ def EncryptedStoreGet():
     O: list of blobs, ttl
     """
     pass
+
+
 def EncryptedStoreRespond():
     """
     'send blob [blob] of type [type]'
@@ -72,6 +120,8 @@ def EncryptedStoreRespond():
     """
     pass
 # seek item ([hash]->num)
+
+
 def SeekGet():
     """
     'seek hashes key [hash] count [number] direction [+/-]'
@@ -79,6 +129,8 @@ def SeekGet():
     O: list of hashes
     """
     pass
+
+
 def SeekRespond():
     """
     'seek hashes key [hash] count [number] direction [+/-]'
@@ -87,6 +139,8 @@ def SeekRespond():
     """
     pass
 # resolve item ([hash])
+
+
 def ResolveGet():
     """
     'resolve [hash]'
@@ -94,6 +148,8 @@ def ResolveGet():
     O: blob
     """
     pass
+
+
 def ResolveRespond():
     """
     'resolve [hash]'
@@ -103,6 +159,8 @@ def ResolveRespond():
     pass
 
 # search items
+
+
 def SearchRun():
     """
     'resolve [hash]'
@@ -110,6 +168,8 @@ def SearchRun():
     O: blob
     """
     pass
+
+
 def SearchResolve():
     """
     'resolve [hash]'

@@ -2,7 +2,12 @@
 # -*- coding: utf-8 -*-
 """
 JWT tokens (for web interface, mostly, as all peer operations function on
-public key cryptography)
+public key cryptography).
+
+
+Tokens provide heartbeat functionality, and do not log the user directly
+into the database. Any of the methods in "register" give the user a long-term
+JWT by using these functions.
 """
 from __future__ import absolute_import
 from __future__ import print_function

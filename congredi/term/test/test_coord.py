@@ -22,6 +22,7 @@ def prep():
 class test_coord(unittest.TestCase):
 
     def test_coord(self):
+        """Coordination code workarounds"""
         prep()
         h, p = fileCoord.read('b')
         fileCoord.write(h, p, 'b')

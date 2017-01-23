@@ -9,8 +9,8 @@ from __future__ import unicode_literals
 import socket
 from twisted.internet import protocol, reactor, task
 from .protocol import CongrediPeerProtocol
-from .scheduled.peerBeat import peerBeat, peerSuccess, peerFailure
-from .command import PeerOptions
+from .storage.scheduled.peerBeat import peerBeat, peerSuccess, peerFailure
+from .commands.command import PeerOptions
 import logging
 from .utils.whoops import whoops
 logger = logging.getLogger('congredi')

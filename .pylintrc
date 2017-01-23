@@ -112,7 +112,7 @@ redefining-builtins-modules=six.moves,future.builtins
 min-similarity-lines=6
 ignore-comments=yes
 ignore-docstrings=yes
-ignore-imports=no
+ignore-imports=yes
 [CLASSES]
 defining-attr-methods=__init__,__new__,setUp
 valid-classmethod-first-arg=cls

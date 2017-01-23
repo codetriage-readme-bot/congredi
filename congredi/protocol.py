@@ -14,7 +14,7 @@ from twisted.internet import reactor
 import logging
 logger = logging.getLogger('congredi')
 
-from .command import PeerOptions, PeerOnions
+from .commands.command import PeerOptions, PeerOnions
 
 # pylint: disable=signature-differs, abstract-method, too-many-ancestors
 # https://github.com/twisted/twisted/blob/e38cc25a67747899c6984d6ebaa8d3d134799415/src/twisted/protocols/portforward.py

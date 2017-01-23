@@ -1,3 +1,0 @@
-"""
-periodically resolve a tree
-"""

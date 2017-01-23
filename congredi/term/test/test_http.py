@@ -15,19 +15,16 @@ from ...protocol import CongrediPeerProtocol
 from ..client import CongrediClient #, ClientProtocol
 
 # pylint: disable=no-self-use, unused-variable
-class test_run(unittest.TestCase):
+class test_http(unittest.TestCase):
 
     def setUp(self):
+        #https://github.com/twisted/klein/blob/master/src/klein/test/test_app.py
         self.tr = StringTransport()
         users = ['a', 'b']
         self.factory = CongrediPeerFactory()
         self.proto = CongrediPeerProtocol(self.factory, users)
         self.proto.makeConnection(self.tr)
-        client = CongrediClient(
-            host="0.0.0.0", port="9000",
-            clientKey=None)
-        #stdio.StandardIO(client)
 
-    def test_run(self):
-        """Will need to look at how twisted runs their tests"""
-        print('IMPLEMENT term/test/test_run StringTransport')
+    def test_http(self):
+        """Klein has a few test case examples"""
+        print('IMPLEMENT term/test/test_http StringTransport')

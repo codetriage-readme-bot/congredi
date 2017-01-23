@@ -3,7 +3,6 @@
 """
 protocol tests
 """
-# pylint: disable=duplicate-code
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
@@ -29,6 +28,6 @@ class test_protocol(unittest.TestCase):
 
     def test_protocol(self):
         # a = CongrediPeerProtocol(object, object)
-        print('IMPLEMENT tests/test_protocol')
+        print('IMPLEMENT tests/test_protocol with StringTransport')
         # self.proto.dataReceived('%s %d %d\r\n' % (operation, a, b))
         # self.assertEqual(int(self.tr.value()), expected)

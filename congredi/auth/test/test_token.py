@@ -3,6 +3,16 @@
 """
 JWT tokens (for web interface, mostly, as all peer operations function on
 public key cryptography)
+
+JWT tokens can be one of:
+
+* Good
+* Expired
+* Invalid
+
+And granting them should not take database access. They are meant to
+figure out if a user is auth'd without using the database to do so.
+
 """
 # pylint: disable=unused-import
 from __future__ import absolute_import
