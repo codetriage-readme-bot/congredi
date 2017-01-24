@@ -12,7 +12,7 @@ from ..utils.compat import ensureBinary
 
 def chunkSplit(compressed):  # restore: ''.join()
     """Split chunks into the maximum size for AMP messages (if tripple encrypted) (Design - find that byte limit #F)"""
-    compressed = ensureBinary(compressed, True)
+    compressed = ensureBinary(compressed)
     return [compressed[k:k + 250] for k in range(0, len(compressed), 250)]
 
 

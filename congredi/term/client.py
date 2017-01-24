@@ -11,26 +11,29 @@ import os
 logger = logging.getLogger('congredi')
 from twisted.protocols.basic import LineReceiver
 from ..crypto.padding import AONTdecrypt, AONTencrypt
+from ..crypto.RSA import default_rsa
 from ..storage.redis import Rget
 from twisted.internet import protocol
-#from ..tasks import garbageCollect
+import binascii
 
 
-# pylint: disable=abstract-method
-# rawDataReceived
 class ClientProtocol(LineReceiver):
 
     def connectionMade(self):  # test
-        self.transport.write('>>> ')
+        self.transport.write(b'>>> ')
+
+    def rawDataReceived(self, data):
+        print(binascii.hexlify(data))
 
     def lineReceived(self, line):  # test
-        params = line.split(" ")
+        params = line.split(b" ")
         print(params)
         """Reimplement commands... bad idea"""
         if line[0] == 'get':
             res = Rget(line[1:])
-        self.sendLine('Echo: ' + res)
-        self.transport.write('>>> ')
+            res = res + b'two'
+        self.sendLine(b'Echo: ' + line)
+        self.transport.write(b'>>> ')
 
     host = None
     port = None
@@ -42,8 +45,8 @@ class ClientProtocol(LineReceiver):
         self.port = port
         if clientKey:
             self.key = clientKey
-        # else:
-        #     self.key = asym()
+        else:
+            self.key = default_rsa()
         if clientPass:
             self.password = clientPass
         else:
@@ -56,7 +59,7 @@ class ClientProtocol(LineReceiver):
         return encryptedRequest
 
     def unwrapRequest(self, encryptedRequest):  # test
-        decryptedPadding = self.key.decrypt(encryptedRequest, self.key)
+        decryptedPadding = self.key.decrypt(encryptedRequest)
         request = AONTdecrypt(decryptedPadding)
         return request
 

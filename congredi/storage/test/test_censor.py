@@ -10,6 +10,8 @@ from ...tests.timing import TimedTestCase
 import platform
 from ..censor import censor
 from ..censor import stateEncoding
+from ..censor import stateEntropy
+from ..censor import stateProfanity
 from ...utils.compat import ensureBinary
 from ...tests.censorable import random, hexify, phony
 from six.moves import range
@@ -79,6 +81,13 @@ class test_censor(TimedTestCase):
         self.threshold = .4
         assert stateEncoding('hello 你好') == 'utf-8'
 
+    def test_entropy(self):
+        self.threshold = .3
+        print(stateEntropy(b'b'))
+
+    def test_profanity(self):
+        self.threshold = .3
+        print(stateProfanity(u'b'))
     # def test_steno_check():
 
     def test_valid_english(self):

@@ -46,8 +46,10 @@ class default_rsa():
 
         # message key
         messageKey = random_aes_32_key()
-
-        key = RSA.importKey(pubkey)
+        if not isinstance(pubkey, RSA.RsaKey):
+            key = RSA.importKey(pubkey)
+        else:
+            key = pubkey
         skey = PKCS1_OAEP.new(key)
         frontMatter = skey.encrypt(messageKey)  # , 16)
         # print('RSA calls AES Encrypt with private key: %s' % key.publickey().exportKey())

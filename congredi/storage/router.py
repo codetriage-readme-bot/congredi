@@ -91,12 +91,12 @@ class onion():
             choice = random.choice(tempNodes)
             add(choice)
         return result
-    """
 
     def UnPackMsg(self, msg):  # test
         nextNode = msg[:64]
         message = self.nodeKey.decrypt(msg[64:])
         return message, nextNode
+    """
 # 65535 bytes 65 kb
 
 """
@@ -157,12 +157,7 @@ recipient:
 	sendToNext
 		:decrypt
 circuit table: from - to
-"""
-
-
 class CongrediProtocol():
-
-    """
     def GetPacket(pkt):  # test
         if lookupKey(pkt[:64]) == False:
             if lookupTrust(peer.key) == False:
@@ -178,7 +173,6 @@ class CongrediProtocol():
             GetCommand(pkt)
         else:
             pass
-    """
 
     def PickIntro(self):  # test
         pass
@@ -202,7 +196,6 @@ class CongrediProtocol():
     def UpOnion(self):
         pass
 
-"""
 def encryptHops(rendesvous, gateway, server, numHops=3):
     for hop in numHops:
         aeskey = rand()

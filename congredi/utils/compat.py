@@ -6,7 +6,6 @@ PY3 Compatibility
 Will need to look into each of the times this is used.
 """
 import sys
-import binascii
 # CharDet...
 # pylint: disable=redefined-variable-type
 if sys.version_info < (3, 0):
@@ -16,7 +15,7 @@ if sys.version_info < (3, 0):
     text_type = unicode
     # pylint: enable=undefined-variable
     bin_type = str
-else:
+else:  # not used in py2 coverage
     PY3 = True
     # base_str = (bytes, str)
     text_type = str
@@ -27,22 +26,16 @@ else:
 # and in general just avoid not telling what type variables are
 
 
-def ensureBinary(statement, hexr=False):
+def ensureBinary(statement):
     if not isinstance(statement, bin_type):
         print('EnsureBinary: swapping to binary from %s' % type(statement))
-        if not hexr:
-            statement = statement.encode('utf8')
-        else:
-            statement = binascii.hexlify(statement)
+        statement = statement.encode('utf8')
     return statement
 
 
-def ensureString(statement, hexr=False):
+def ensureString(statement):
     if not isinstance(statement, text_type):
         print('EnsureString: swapping to string from %s' % type(statement))
-        if not hexr:
-            statement = statement.decode('utf8')
-        else:
-            statement = statement.decode('hex')
+        statement = statement.decode('utf8')
     return statement
 # congredi/utils/compat.py                    27      7    74%   12-16, 28, 38

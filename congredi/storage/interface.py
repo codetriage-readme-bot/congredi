@@ -8,6 +8,15 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 from abc import ABCMeta, abstractmethod
 import six
+from ..utils.whoops import CongrediError
+
+
+class CongrediBadInterfaceError(CongrediError):
+    pass
+
+
+class CongrediIncompatibleVersionError(CongrediBadInterfaceError):
+    pass
 
 
 class abstractStorageProvider(six.with_metaclass(ABCMeta, object)):
@@ -39,9 +48,9 @@ class abstractStorageConsumer(object):
 
     def __init__(self, storage):
         if not isinstance(storage, abstractStorageProvider):
-            raise Exception('Bad Interface!')
+            raise CongrediBadInterfaceError('Bad Interface!')
         if not storage.version() == '1.0':
-            raise Exception('Non-compatible version!')
+            raise CongrediIncompatibleVersionError('Non-compatible version!')
         self._storage = storage
 
     def write(self, key, value):

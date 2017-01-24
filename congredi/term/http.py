@@ -90,7 +90,7 @@ def set_value(permission, typeOf):
 
 
 @app.route('/get/<int:permission>/<typeOf>')
-def get_Value(permission, typeOf):
+def get_value(permission, typeOf):
     pass
 
 

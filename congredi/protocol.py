@@ -65,6 +65,7 @@ class CongrediPeerProtocol(AMP, addressesResponders, filesystemResponders,
         d.addCallback(prin)
         return d
     """
+    host = None
 
     def __init__(self, factory, users):  # **starts
         self.factory = factory
@@ -75,11 +76,11 @@ class CongrediPeerProtocol(AMP, addressesResponders, filesystemResponders,
         # self.users = starts  # self.prefix = prefix
         super(CongrediPeerProtocol, self).__init__()
 
-    def incomingConnectionBegin(self, data):  # test
-        super(CongrediPeerProtocol, self).incomingConnectionBegin(data)
-        """De-lace router-encrypted trafic, tell if this connection is an onion, or a direct command"""
-        # if data[0] == "Congredi Request forward to ":
-        #    self.state = "ONION"
+    # def incomingConnectionBegin(self, data):  # test
+    #     super(CongrediPeerProtocol, self).incomingConnectionBegin(data)
+    #     """De-lace router-encrypted trafic, tell if this connection is an onion, or a direct command"""
+    #     # if data[0] == "Congredi Request forward to ":
+    #     #    self.state = "ONION"
 
     def makeConnection(self, transport):  # test
         self.transport = transport
@@ -105,12 +106,12 @@ class CongrediPeerProtocol(AMP, addressesResponders, filesystemResponders,
     def dataReceived(self, data):  # test
         super(CongrediPeerProtocol, self).dataReceived(data)
 
-    def lineReceived(self, line):  # test
-        logger.info("line in: " + str(line))
-        super(CongrediPeerProtocol, self).lineReceived(line)
-        # factory = protocol.ClientFactory()
-        # factory.protocol = SomeClientProtocol
-        # reactor.connectTCP(host, port, factory)
+    # def lineReceived(self, line):  # test
+    #     logger.info("line in: " + str(line))
+    #     super(CongrediPeerProtocol, self).lineReceived(line)
+    #     # factory = protocol.ClientFactory()
+    #     # factory.protocol = SomeClientProtocol
+    #     # reactor.connectTCP(host, port, factory)
 
     @SyncPeerDirectoryAsk.responder
     def hello(self, name, port):  # test

@@ -11,6 +11,8 @@ from twisted.test.proto_helpers import StringTransport
 from ...factory import CongrediPeerFactory
 from ...protocol import CongrediPeerProtocol
 from ..http import app, key
+from ..http import get_auths, next_key, check_online
+from ..http import set_value, get_value, tell_index, search_term
 
 
 class test_http(TimedTestCase):
@@ -31,3 +33,10 @@ class test_http(TimedTestCase):
         a = app
         k = key
         assert a != k
+        get_auths()
+        next_key()
+        check_online()
+        set_value(None, None)
+        get_value(None, None)
+        tell_index(None, None, None, None, None)
+        search_term(None, None, None, None)

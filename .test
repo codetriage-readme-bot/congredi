@@ -1,0 +1,5 @@
+!!python/unicode 'admins': !!set {!!python/unicode 'selfkey': null}
+!!python/unicode 'peers': []
+!!python/unicode 'routekey': !!set {!!python/unicode 'othernewkey': null}
+!!python/unicode 'sitekey': !!set {!!python/unicode 'newkey': null}
+!!python/unicode 'users': !!set {!!python/unicode 'selfkey': null}

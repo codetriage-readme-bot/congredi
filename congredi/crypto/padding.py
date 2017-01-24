@@ -27,7 +27,7 @@ def AONTencrypt(content):
     concattenate token with xor'd key.
     """
     hashable = make_hash(token).digest()
-    if PY3:
+    if PY3:  # py2 won't test
         chard = int.from_bytes(hashable, byteorder="big") ^ int.from_bytes(
             key_raw, byteorder="big")
         chard = chard.to_bytes(32, byteorder="big")
@@ -47,7 +47,7 @@ def AONTdecrypt(cyphertext):
     """
     hashable = make_hash(cyphertext[:-32]).digest()
     key_xored = cyphertext[-32:]
-    if PY3:
+    if PY3:  # py2 won't test
         key2 = int.from_bytes(hashable, byteorder="big") ^ int.from_bytes(
             key_xored, byteorder="big")
         key2 = key2.to_bytes(32, byteorder="big")

@@ -54,8 +54,8 @@ class CongrediPeerFactory(protocol.Factory):
         self.redisPort = redisPort
         self.neo4jPort = neo4jPort
         if initialKey:  # need test case
-            self.commandKeys.add(initialKey)
-            self.redis.addToKeys(initialKey)
+            self.commandKeys.append(initialKey)
+            # self.redis.addToKeys(initialKey)
         """Add loops to factory? why not add loops to main reactor??"""
         defly = task.deferLater(reactor, 10, self.ping)
         defly.addErrback(whoops)

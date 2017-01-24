@@ -23,7 +23,7 @@ class RedisStore(abstractStorageProvider):
 
     def __init__(self, connection):  # test
         self._conn = connection
-        super(RedisStore, self).__init__()
+        super(RedisStore, self).__init__(connection)
 
     # actual writers
     @defer.inlineCallbacks

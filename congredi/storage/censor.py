@@ -34,7 +34,7 @@ logger = logging.getLogger('congredi')
 try:
     import pycld2 as cld2
     WINDOWS = False
-except ImportError as e:
+except ImportError as e:  # no test for this
     WINDOWS = True
     print(e)
     WINDOWS_ERROR = e
@@ -60,7 +60,7 @@ def stateLanguage(statement):
     # pylint: disable=broad-except
     except Exception as e:
         print(e)
-        if WINDOWS is True:
+        if WINDOWS is True:  # needs a test
             print(WINDOWS_ERROR)
             logger.warning('windows users will have pycld2 disabled for now')
             # raise Exception('windows users will have pycld2 disabled for now')

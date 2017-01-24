@@ -21,8 +21,7 @@ class test_sig(TimedTestCase):
         print('Implement register/test/sig')
         self.threshold = .1
         a = datetime.datetime.now()
-        b = datetime.datetime.now()
-        assert a != b
+        assert a != None
         # bob = token('bob')
         # example = bob.make('print')
         # bob.check(example)

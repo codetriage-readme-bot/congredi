@@ -13,28 +13,34 @@ from ...tests.censorable import random, hexify, phony, pick_range
 
 
 class test_RSA(TimedTestCase):
+    global_rsa_left = None
+    global_rsa_right = None
+
+    def setUp(self):
+        self.global_rsa_left = default_rsa()
+        self.global_rsa_right = default_rsa()
+        super(test_RSA, self).setUp()
 
     def test_encrypt(self):
         """Encrypt something, decrypt it"""
         self.threshold = 5
-        a = default_rsa()
-        c = default_rsa()
         # .pubkey isn't the actual method right now.
-        msg = a.encrypt(b"hello", c.publicKey())
-        res = c.decrypt(msg)
+        msg = self.global_rsa_left.encrypt(
+            b"hello", self.global_rsa_right.publicKey())
+        res = self.global_rsa_right.decrypt(msg)
         assert res == b"hello"
 
     def test_gauntlet_encrypt_single(self):
         """Random objects encrypted - multiple renders, one reciever"""
         self.threshold = 24
-        reciever = default_rsa()
         ranges = pick_range(5)
         for x in ranges:
             sender = default_rsa()
             message = phony(hexify(random()))[:1 + x]
             print(len(message), message)
-            encrypted = sender.encrypt(message, reciever.publicKey())
-            decrypted = reciever.decrypt(encrypted)
+            encrypted = sender.encrypt(
+                message, self.global_rsa_left.publicKey())
+            decrypted = self.global_rsa_left.decrypt(encrypted)
             assert decrypted == message
             del sender
 
@@ -56,22 +62,26 @@ class test_RSA(TimedTestCase):
     def test_signing(self):
         """Verify something that was signed"""
         self.threshold = 3.98
-        a1 = default_rsa()
-        b1 = default_rsa()
         msg = b'hash of something'
         hc = make_hash(msg)
         print(hc.hexdigest())
-        sig = a1.sign(hc)
-        ver = b1.verify(hc, a1.publicKey(), sig)
+        sig = self.global_rsa_left.sign(hc)
+        ver = self.global_rsa_right.verify(
+            hc, self.global_rsa_left.publicKey(), sig)
         assert ver is True
 
     def test_backups(self):
         """Backup and restore a key, (assure equal?)"""
         self.threshold = 3.8
-        a2 = default_rsa()
-        print((a2.publicKey()))
-        backupVals, backupPhrase = a2.backup()
+        print((self.global_rsa_left.publicKey()))
+        backupVals, backupPhrase = self.global_rsa_left.backup()
         restoreVals = default_rsa()
         restoreVals.restore(backupVals, backupPhrase)
 
-        assert a2.publicKey() == restoreVals.publicKey()
+        assert self.global_rsa_left.publicKey() == restoreVals.publicKey()
+
+    def test_inits_options(self):
+        a = default_rsa(publicKey=self.global_rsa_left.publicKey())
+        assert a.publicKey() == self.global_rsa_left.publicKey()
+        #b = default_rsa(privateKey=self.global_rsa_right.key)
+        #assert b.key == self.global_rsa_right.key
