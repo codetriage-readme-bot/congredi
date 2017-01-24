@@ -6,17 +6,17 @@ tests for curve
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 from ..RSA import default_rsa
 from ..hash import make_hash
 from ...tests.censorable import random, hexify, phony, pick_range
 
 
-# pylint: disable=no-self-use, bare-except, unused-variable
-class test_RSA(unittest.TestCase):
+class test_RSA(TimedTestCase):
 
     def test_encrypt(self):
         """Encrypt something, decrypt it"""
+        self.threshold = 5
         a = default_rsa()
         c = default_rsa()
         # .pubkey isn't the actual method right now.
@@ -26,6 +26,7 @@ class test_RSA(unittest.TestCase):
 
     def test_gauntlet_encrypt_single(self):
         """Random objects encrypted - multiple renders, one reciever"""
+        self.threshold = 24
         reciever = default_rsa()
         ranges = pick_range(5)
         for x in ranges:
@@ -39,6 +40,7 @@ class test_RSA(unittest.TestCase):
 
     def test_gauntlet_encrypt_multi(self):
         """Random objects encrypted - multiple senders/recievers"""
+        self.threshold = 17
         ranges = pick_range(3)
         for x in ranges:
             reciever = default_rsa()
@@ -53,6 +55,7 @@ class test_RSA(unittest.TestCase):
 
     def test_signing(self):
         """Verify something that was signed"""
+        self.threshold = 3.98
         a1 = default_rsa()
         b1 = default_rsa()
         msg = b'hash of something'
@@ -64,6 +67,7 @@ class test_RSA(unittest.TestCase):
 
     def test_backups(self):
         """Backup and restore a key, (assure equal?)"""
+        self.threshold = 3.8
         a2 = default_rsa()
         print((a2.publicKey()))
         backupVals, backupPhrase = a2.backup()

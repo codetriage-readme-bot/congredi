@@ -3,17 +3,18 @@
 """
 These are the user properties.
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
-from ...types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
+from twisted.protocols.amp import Command
+#, String, Integer, ListOf, Boolean, DateTime
+#from ...types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
 
 
 class UserUpdate(Command):
-    arguments = [(b'name', String()),
-                 (b'port', Integer())]
-    response = [(b'hello', String())]
+    # arguments = [(b'name', String()),
+    #              (b'port', Integer())]
+    # response = [(b'hello', String())]
+    response = []
     """
     new public key, previous one signing it
     """
@@ -208,3 +209,6 @@ class userResponders(object):
     @UserSavesSync.responder
     def SavesSync(self):
         pass
+# congredi/commands/proofs/user.py            99     22    78%   116, 128,
+# 132, 136, 140, 144, 148, 152, 156, 160, 164, 168, 173, 177, 182, 186,
+# 190, 194, 198, 202, 206, 210

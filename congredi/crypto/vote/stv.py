@@ -36,3 +36,5 @@ class stvPoll(poll):
 
     def certify(self):  # test
         pass
+# congredi/crypto/vote/stv.py                 21      8    62%   14, 17,
+# 20, 23, 29, 32, 35, 38

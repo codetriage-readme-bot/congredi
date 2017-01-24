@@ -15,7 +15,6 @@ ObjBlob/EncBlob         - General Blobs
 PrivAES                 - RSA encrypted session key
 
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import unicode_literals
 from twisted.protocols.amp import Argument
@@ -137,3 +136,6 @@ class PrivAES(Argument):
 
     def fromString(self, inBlob):
         return inBlob
+# congredi/types.py                           64     24    63%   31, 34,
+# 41, 44, 50, 53, 60, 63, 69, 72, 79, 82, 88, 91, 98, 101, 107, 110, 117,
+# 120, 126, 129, 136, 139

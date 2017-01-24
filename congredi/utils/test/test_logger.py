@@ -5,14 +5,14 @@ test logger
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 from ..logger import formatLevel
 
 
-# pylint: disable=no-self-use
-class test_logger(unittest.TestCase):
+class test_logger(TimedTestCase):
 
     def test_logger_level(self):
         """Changing FormatLevel"""
         # need to check if this is logging correctly
+        self.threshold = .4
         formatLevel('INFO')

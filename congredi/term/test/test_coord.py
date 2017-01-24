@@ -6,23 +6,22 @@ testing coordination code
 from __future__ import absolute_import
 from __future__ import unicode_literals
 import os
-import unittest
+from ...tests.timing import TimedTestCase
 from ..coord import fileCoord
 
 
 def prep():
-    # pylint: disable=bare-except
     try:
         os.remove('b')
-    except:
+    except OSError:
         pass
 
 
-# pylint: disable=no-self-use
-class test_coord(unittest.TestCase):
+class test_coord(TimedTestCase):
 
     def test_coord(self):
         """Coordination code workarounds"""
+        self.threshold = .1
         prep()
         h, p = fileCoord.read('b')
         fileCoord.write(h, p, 'b')

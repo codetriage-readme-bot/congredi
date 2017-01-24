@@ -3,13 +3,11 @@
 """
 Basic protocol.
 """
-# pylint: disable=unused-import
 # from builtins import str
 from __future__ import unicode_literals
 from __future__ import absolute_import
 from twisted.protocols.amp import AMP
-from twisted.internet import reactor
-#from twisted.protocols.basic import LineReceiver
+#from twisted.internet import reactor
 
 import logging
 logger = logging.getLogger('congredi')
@@ -24,8 +22,6 @@ from .commands.proofs.user import userResponders
 
 # pylint: disable=signature-differs, abstract-method, too-many-ancestors
 # https://github.com/twisted/twisted/blob/e38cc25a67747899c6984d6ebaa8d3d134799415/src/twisted/protocols/portforward.py
-# class BogusProtocol(LineReceiver):  # protocol.Protocol):
-# #protocol.ServerFactory
 
 
 class CongrediPeerProtocol(AMP, addressesResponders, filesystemResponders,
@@ -134,3 +130,5 @@ class CongrediPeerProtocol(AMP, addressesResponders, filesystemResponders,
             peer = c._peer
             clientNames += peer.host + ":" + str(peer.port)
         return(clientNames)
+# congredi/protocol.py                        61     22    64%   83-84,
+# 102-107, 110, 113-114, 121-127, 131-136

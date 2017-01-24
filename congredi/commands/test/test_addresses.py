@@ -3,17 +3,21 @@
 """
 test commands
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 from ..addresses import addressesResponders
 
-# pylint: disable=no-self-use
 
+class test_addresses(TimedTestCase):
 
-class test_addresses(unittest.TestCase):
+    responderToTest = None
+
+    def setUp(self):
+        self.responderToTest = addressesResponders()
+        super(test_addresses, self).setUp()
 
     def test_addresses_a(self):
-        print('IMPLEMENT tests/test_addresses')
+        self.responderToTest.AddressTell()
+        print('IMPLEMENT tests/test_setting')

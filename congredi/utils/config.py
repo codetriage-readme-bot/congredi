@@ -31,12 +31,13 @@ def makePath(givenPath):
 
 
 def openTest(configFilePath):
-    # pylint: disable=undefined-variable
     with open(configFilePath, 'r') as f:
         config = yaml.load(f.read())
+    # pylint: disable=undefined-variable
     if any(k not in config for k in ('admins', 'users')):  # need test case
         logger.warning('Config does not contain "admins" or "users"')
         raise CongrediConfigError('Config missing %s' % k)
+    # pylint: enable=undefined-variable
     return config
 
 
@@ -157,3 +158,5 @@ defaultConfig = {
         }
     }
 }
+# congredi/utils/config.py                    49     17    65%   30,
+# 38-39, 44-45, 50-57, 68-76

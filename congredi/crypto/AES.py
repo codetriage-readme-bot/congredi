@@ -10,6 +10,8 @@ from Crypto import Random
 from .kdf import random_aes_32_key
 from Crypto.Util.Padding import unpad, pad
 # Class instances for the Symetric crypto inside Congredi.
+import logging
+logger = logging.getLogger('congredi')
 
 
 class default_aes():
@@ -17,7 +19,7 @@ class default_aes():
 
     def __init__(self, secret=None):
         if secret is None or len(secret) != 32:
-            print('Error: using random')
+            logger.warning('using random AES key.')
             secret = random_aes_32_key()
         self.secret = secret
 

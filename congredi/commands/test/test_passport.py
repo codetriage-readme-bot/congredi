@@ -19,17 +19,31 @@ Reasons to grant that need testing:
 Possibly need to rework that server-load one
 
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 from ..passport import passportResponders
 
-# pylint: disable=no-self-use
 
+class test_passport(TimedTestCase):
 
-class test_passport(unittest.TestCase):
+    blacklist = []
+    whitelist = []
+    peers = []
+    users = []
+    admins = []
+    responderToTest = None
+
+    def setUp(self):
+        self.blacklist = ['a', 'b']
+        self.whitelist = ['c']
+        self.peers = ['d', 'e']
+        self.users = ['a', 'b', 'f']
+        self.admins = ['c', 'g']
+        self.responderToTest = passportResponders()
+        super(test_passport, self).setUp()
 
     def test_passport_a(self):
-        print('IMPLEMENT tests/test_passport')
+        self.responderToTest.StoreGrant(None, None)
+        print('IMPLEMENT tests/test_setting')

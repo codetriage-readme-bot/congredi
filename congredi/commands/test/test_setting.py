@@ -15,31 +15,19 @@ Ordering:
 Each of the setting options should be able to be changed and viewed.
 
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 from ..setting import settingResponders
 
-# pylint: disable=no-self-use
 
-
-class test_setting(unittest.TestCase):
-    blacklist = []
-    whitelist = []
-    peers = []
-    users = []
-    admins = []
+class test_setting(TimedTestCase):
     responderToTest = None
 
     def setUp(self):
-        self.blacklist = ['a', 'b']
-        self.whitelist = ['c']
-        self.peers = ['d', 'e']
-        self.users = ['a', 'b', 'f']
-        self.admins = ['c', 'g']
         self.responderToTest = settingResponders()
+        super(test_setting, self).setUp()
 
     def test_command_a(self):
         self.responderToTest.ChangePrivateBlacklist('a', 'b', 'c')

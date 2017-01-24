@@ -7,11 +7,10 @@ added, the org keys fundimentally change hands.
 Operations involving adding or removing citizens,
 however, occur under the existing keys.
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
-from ...types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
+from twisted.protocols.amp import Command, String, Integer
+#from ...types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
 
 
 class OrgConsensusBegin(Command):
@@ -275,3 +274,6 @@ class orgResponders(object):
     @OrgSavesVerify.responder
     def SavesVerify(self):
         pass
+# congredi/commands/proofs/org.py            131     30    77%   157, 161,
+# 165, 170, 174, 178, 182, 186, 190, 195, 199, 203, 208, 212, 216, 221,
+# 225, 229, 233, 237, 241, 245, 249, 253, 257, 261, 265, 269, 273, 277

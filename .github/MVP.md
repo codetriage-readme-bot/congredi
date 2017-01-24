@@ -1,0 +1,32 @@
+Code Practices
+- Slogans
+    - YouAren'tGonnaNeedIt - build what you use
+    - DoTheSimplestThingThatCouldPossiblyWork - just make it work
+    - MoSCoW: Must, Should, Could, Won't - tell what you'll do
+    - incomplete tests are better than none
+    - Review (Publish) Frequently
+- Tests
+    - factored/readable
+    - good test names
+    - comment reason for test
+    - raise the reason for failed assertion - know what component failed
+    - easy to run (even installed: green congredi)
+    - easy to maintain - when code changes, only that bit of the test needs to change
+    :Right BICEP:
+        - Right (correct behavior)
+        - boundary conditions
+        - (if/else/members
+        - Cross-Check with other means
+        - force errors
+        - Performance
+    - specify by example: build in runnable code
+    :MIT:
+        - simple & clean implementation/interface
+        - correct API I/O
+        - consistent & uniform style & docs
+        - complete (all expected cases)
+- Mock Oracles
+    - 3rd party get/set, dependencies
+    - inspectable/logging object
+    - give all good / bad outputs we want
+    - transient vs persistent

@@ -5,15 +5,15 @@ Yaml Config Loading - & default configs
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 from ..config import configArr
 
 
-# pylint: disable=no-self-use
-# pylint: disable=unused-variable
-class test_config(unittest.TestCase):
+class test_config(TimedTestCase):
 
     def test_config(self):
         """Grab Configuration From File"""
+        self.threshold = .4
         newConf = configArr()
         existsConf = configArr()
+        assert newConf == existsConf

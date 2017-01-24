@@ -3,18 +3,19 @@
 """
 AMP command tests
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
-from ...types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
+from twisted.protocols.amp import Command
+#, String, Integer, ListOf, Boolean, DateTime
+#from ...types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
 # addresses
 
 
 class AddrGet(Command):
-    arguments = [(b'name', String()),
-                 (b'port', Integer())]
-    response = [(b'hello', String())]
+    # arguments = [(b'name', String()),
+    #              (b'port', Integer())]
+    # response = [(b'hello', String())]
+    response = []
     """
     'what is the address of the key [x]'
     I: key
@@ -194,3 +195,5 @@ class routerResponders(object):
         O: of, by
         """
         pass
+# congredi/commands/proofs/router.py          43     11    74%   106, 115,
+# 124, 133, 142, 151, 160, 169, 178, 187, 196

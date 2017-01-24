@@ -53,3 +53,5 @@ def stop_rendesvous(service, tor_process):  # test
         controller.authenticate()
         controller.remove_ephemeral_hidden_service(service.service_id)
         tor_process.kill()
+# congredi/extra/tor.py                       30     19    37%   16,
+# 20-28, 32-48, 52-55

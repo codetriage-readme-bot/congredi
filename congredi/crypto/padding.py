@@ -5,11 +5,12 @@ All Or Nothing Padding (coulda just used the library's version)
 """
 # Crypto.Protocol.AllOrNothing
 from __future__ import absolute_import
-#from __future__ import unicode_literals
+from __future__ import unicode_literals
 from six.moves import zip
 from .kdf import random_aes_32_key
 from .AES import default_aes
 from .hash import make_hash
+from ..utils.compat import PY3
 
 
 def AONTencrypt(content):
@@ -26,14 +27,11 @@ def AONTencrypt(content):
     concattenate token with xor'd key.
     """
     hashable = make_hash(token).digest()
-    # ugly, ugly python3 hack...
-    mash = list(zip(hashable, key_raw))
-    if isinstance(mash[0][0], int):
+    if PY3:
         chard = int.from_bytes(hashable, byteorder="big") ^ int.from_bytes(
             key_raw, byteorder="big")
         chard = chard.to_bytes(32, byteorder="big")
     else:
-        # python2 way, original one
         chard = b"".join(
                 [chr(ord(a) ^ ord(b)) for a, b in
                  zip(hashable, key_raw)])
@@ -49,14 +47,11 @@ def AONTdecrypt(cyphertext):
     """
     hashable = make_hash(cyphertext[:-32]).digest()
     key_xored = cyphertext[-32:]
-    # ugly python3 fix
-    mash = list(zip(hashable, key_xored))
-    if isinstance(mash[0][0], int):
+    if PY3:
         key2 = int.from_bytes(hashable, byteorder="big") ^ int.from_bytes(
             key_xored, byteorder="big")
         key2 = key2.to_bytes(32, byteorder="big")
     else:
-        # old python2 rendition
         key2 = b"".join(
             [chr(ord(a) ^ ord(b)) for a, b in
              zip(hashable, key_xored)])

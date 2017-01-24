@@ -84,22 +84,22 @@ def check_online():
     pass
 
 
-@app.route('/set/<permission[0|1]>/<typeOf>')
+@app.route('/set/<int:permission>/<typeOf>')
 def set_value(permission, typeOf):
     pass
 
 
-@app.route('/get/<permission[0|1]>/<typeOf>')
+@app.route('/get/<int:permission>/<typeOf>')
 def get_Value(permission, typeOf):
     pass
 
 
-@app.route('/index/<typeOf>/<direction>/<offset>/<count:double>/<hashPtr>')
+@app.route('/index/<typeOf>/<direction>/<offset>/<float:count>/<hashPtr>')
 def tell_index(typeOf, direction, offset, count, hashPtr):
     pass
 
 
-@app.route('/search/<typeOf>/<offset>/<count:double>/<term>')
+@app.route('/search/<typeOf>/<offset>/<float:count>/<term>')
 def search_term(typeOf, offset, count, term):
     pass
 

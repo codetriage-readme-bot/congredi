@@ -6,15 +6,23 @@ ThresholdPGP tests...
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 from ..threshold import ThresholdPGP
 
 
-# pylint: disable=no-self-use
-class test_threshold(unittest.TestCase):
+class test_threshold(TimedTestCase):
+    sigGen = None
 
-    def test_threshold(self):
+    def setUp(self):
+        self.sigGen = ThresholdPGP()
+        super(test_threshold, self).setUp()
+
+    def test_threshold_generate(self):
         """Call init, sign"""
-        thresh = ThresholdPGP()
-        thresh.sign(None)
+        self.sigGen.generate()
+        print('IMPLEMENT crypto/test/test_threshold')
+
+    def test_threshold_sign(self):
+        """Call init, sign"""
+        self.sigGen.sign(None)
         print('IMPLEMENT crypto/test/test_threshold')

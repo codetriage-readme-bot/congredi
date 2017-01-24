@@ -70,3 +70,5 @@ class vote(poll):
 
     This class uses different cryptography primatives
     """
+# congredi/crypto/vote/vote.py                23      5    78%   31, 43,
+# 50, 57, 64

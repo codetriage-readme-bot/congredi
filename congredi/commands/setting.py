@@ -23,12 +23,13 @@ Proposed:
     Problem: they could be in proxy mode?
 
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
+from twisted.protocols.amp import Command, ListOf
+#, String, Integer, Boolean, DateTime
 from ..types import EncAddress, EncHash, EncBool, EncSig, PrivAES, EncBlob
-from ..types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
+from ..types import ObjHash, ObjSig
+#, ObjPubKey, ObjAddress, ObjBlob
 
 # blockable pubkeys
 
@@ -277,3 +278,5 @@ class settingResponders(object):
     @PrivateAdminsView.responder
     def ViewPrivateAdmins(self, pubkey, address, direction):
         pass
+# congredi/commands/setting.py                72      9    88%   243, 248,
+# 252, 257, 261, 266, 270, 275, 279

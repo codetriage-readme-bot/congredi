@@ -1,19 +1,27 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+PY3 Compatibility
+
+Will need to look into each of the times this is used.
+"""
 import sys
 import binascii
 # CharDet...
-# pylint: disable=redefined-variable-type, undefined-variable
+# pylint: disable=redefined-variable-type
 if sys.version_info < (3, 0):
-    PY2 = True
     PY3 = False
-    base_str = (str, unicode)
+    # base_str = (str, unicode)
+    # pylint: disable=undefined-variable
     text_type = unicode
+    # pylint: enable=undefined-variable
     bin_type = str
 else:
-    PY2 = False
     PY3 = True
-    base_str = (bytes, str)
+    # base_str = (bytes, str)
     text_type = str
     bin_type = (bytes, bytearray)
+# pylint: enable=redefined-variable-type
 
 # will need to write tests for these
 # and in general just avoid not telling what type variables are
@@ -37,3 +45,4 @@ def ensureString(statement, hexr=False):
         else:
             statement = statement.decode('hex')
     return statement
+# congredi/utils/compat.py                    27      7    74%   12-16, 28, 38

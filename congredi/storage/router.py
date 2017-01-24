@@ -210,3 +210,5 @@ def encryptHops(rendesvous, gateway, server, numHops=3):
         head = ecc(hop.pubkey, aeskey)
         msg = head + ':' + msg
 """
+# congredi/storage/router.py                  48     10    79%   61,
+# 97-99, 184, 190, 193, 197, 200, 203

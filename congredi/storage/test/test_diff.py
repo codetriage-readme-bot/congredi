@@ -6,7 +6,7 @@ tests on the simplistic censor library.
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 import hashlib
 import binascii
 # try:
@@ -14,7 +14,6 @@ import binascii
 # except ImportError:
 #     from io import StringIO
 # from patch import PatchSet, fromstring
-# pylint: disable=unused-import
 from ..diff import resolveUnifiedDiff
 from ..diff import resolveDiff
 from ..diff import rebuildFile
@@ -22,14 +21,13 @@ from ..diff import tick
 from ..diff import tock
 from ...tests.sources import source, source2, empty, empty2
 from ...storage.zlibs import chunkSplit
-from ...utils.compat import ensureBinary, ensureString
-# pylint: disable=no-self-use
 
 
-class test_diff(unittest.TestCase):
+class test_diff(TimedTestCase):
 
     def test_resolve_ndiff(self):
         """NDiff of source, source2, rebuild diff"""
+        self.threshold = .2
         print('The Diff:')
         result = resolveDiff(source, source2)
         print((''.join(result)))
@@ -39,6 +37,7 @@ class test_diff(unittest.TestCase):
 
     def test_compression(self):
         """Full-integrated Tick/Tock compression"""
+        self.threshold = .2
         # Direct conversion
         res = tick(source, source2)
         beep = tock(res, 1)
@@ -47,6 +46,7 @@ class test_diff(unittest.TestCase):
 
     def test_splits(self):
         """Split & recombine, check hashes."""
+        self.threshold = .2
         data = {'pieces': {}}
         comp = tick(empty, empty2)
         print(('compressed %d' % len(comp)))
@@ -67,6 +67,7 @@ class test_diff(unittest.TestCase):
 
     def test_uni(self):
         """Unified Diffs..."""
+        self.threshold = .2
         diff = resolveUnifiedDiff(
             source, source2,
             'congredi/test/core/algos/a.txt',

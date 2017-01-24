@@ -32,10 +32,10 @@ class default_rsa():
     def __init__(self, publicKey=None, privateKey=None):
         if publicKey is None and privateKey is None:
             self.key = RSA.generate(2048)
-        else:
-            if privateKey is None:
+        else:  # test
+            if privateKey is None:  # test
                 self.key = RSA.importKey(publicKey)
-            else:
+            else:  # test
                 self.key = RSA.importKey(privateKey)
 
     @classmethod

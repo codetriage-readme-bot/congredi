@@ -31,7 +31,6 @@ class token():
 
     def check(self, json):
         """Checking a JWT against passphrase and expiry"""
-        # pylint: disable=bare-except
         try:
             payload = jwt.decode(json, self.secret, algorithms=['HS256'])
             return payload['pgp'], True
@@ -40,8 +39,6 @@ class token():
             return "Invalid Token", False
         except jwt.ExpiredSignature:  # test
             return "Expired Token", False
-        except:  # test
-            return "Token error", False
 
     def make(self, fingerprint):
         """Create a JWT based on UTC time"""
@@ -77,3 +74,5 @@ def jwt_use():  # test
     # if checks: return func(response) # response is pgp fingerprint
     # else:
     return response  # response is token error
+# congredi/auth/token.py                      39     12    69%   41-44,
+# 66-68, 73-79

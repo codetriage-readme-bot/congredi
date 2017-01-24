@@ -17,6 +17,7 @@ from twisted.internet import protocol
 
 
 # pylint: disable=abstract-method
+# rawDataReceived
 class ClientProtocol(LineReceiver):
 
     def connectionMade(self):  # test
@@ -81,3 +82,5 @@ class CongrediClient(protocol.ClientFactory):
 
     def clientConnectionFailed(self, connector, reason):  # test
         print(('Connection failed. Reason:', reason))
+# congredi/term/client.py                     56     18    68%   23,
+# 26-32, 47, 53-55, 58-60, 74, 77, 80, 83

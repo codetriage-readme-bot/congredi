@@ -42,3 +42,4 @@ def setLog(level, formatting):
         "%Y-%m-%d %H:%M:%S")
     fh.setFormatter(fm)
     logger.addHandler(fh)
+# congredi/utils/logger.py                    26      9    65%   17-24, 31

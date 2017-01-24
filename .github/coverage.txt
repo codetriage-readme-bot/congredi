@@ -8,10 +8,7 @@ congredi/commands/proofs/org.py            131     30    77%   157, 161, 165, 17
 congredi/commands/proofs/router.py          43     11    74%   106, 115, 124, 133, 142, 151, 160, 169, 178, 187, 196
 congredi/commands/proofs/user.py            99     22    78%   116, 128, 132, 136, 140, 144, 148, 152, 156, 160, 164, 168, 173, 177, 182, 186, 190, 194, 198, 202, 206, 210
 congredi/commands/setting.py                72      9    88%   243, 248, 252, 257, 261, 266, 270, 275, 279
-congredi/crypto/AES.py                      27      0   100%
 congredi/crypto/RSA.py                      57      3    95%   36-39
-congredi/crypto/hash.py                      7      0   100%
-congredi/crypto/kdf.py                      15      0   100%
 congredi/crypto/padding.py                  25      4    84%   32-34, 55-57
 congredi/crypto/threshold.py                 7      1    86%   7
 congredi/crypto/vote/stv.py                 21      8    62%   14, 17, 20, 23, 29, 32, 35, 38
@@ -21,22 +18,16 @@ congredi/extra/tor.py                       30     19    37%   16, 20-28, 32-48,
 congredi/factory.py                         57     16    72%   59-60, 75, 79, 83, 86, 91-92, 95-103, 107
 congredi/protocol.py                        61     22    64%   83-84, 102-107, 110, 113-114, 121-127, 131-136
 congredi/storage/censor.py                  59     12    80%   37-41, 46, 51, 63-64, 74-75, 91
-congredi/storage/diff.py                    32      0   100%
-congredi/storage/gfm.py                      7      0   100%
 congredi/storage/interface.py               29     13    55%   16, 19, 23, 27, 31, 35, 41-45, 48, 51
 congredi/storage/neo4j.py                   13      4    69%   14-16, 20, 25
 congredi/storage/redis.py                   68     42    38%   19, 25-26, 31-32, 36-37, 41-42, 45-46, 50, 53, 59-63, 69-72, 77-81, 85, 90-97, 102-109
 congredi/storage/router.py                  48     10    79%   61, 97-99, 184, 190, 193, 197, 200, 203
 congredi/storage/scheduled/peerBeat.py      35     12    66%   23, 31, 39, 53-57, 63, 67-69
-congredi/storage/zlibs.py                   14      0   100%
 congredi/term/client.py                     56     18    68%   23, 26-32, 47, 53-55, 58-60, 74, 77, 80, 83
-congredi/term/coord.py                      19      0   100%
 congredi/types.py                           64     24    63%   31, 34, 41, 44, 50, 53, 60, 63, 69, 72, 79, 82, 88, 91, 98, 101, 107, 110, 117, 120, 126, 129, 136, 139
 congredi/utils/compat.py                    27      7    74%   12-16, 28, 38
 congredi/utils/config.py                    49     17    65%   30, 38-39, 44-45, 50-57, 68-76
 congredi/utils/logger.py                    26      9    65%   17-24, 31
-congredi/utils/options.py                   21      0   100%
-congredi/utils/whoops.py                     9      0   100%
 ----------------------------------------------------------------------
 TOTAL                                     1467    365    75%
 

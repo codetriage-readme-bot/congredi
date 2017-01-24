@@ -3,18 +3,16 @@
 """
 factory tests
 """
-# pylint: disable=duplicate-code
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from .timing import TimedTestCase
 from twisted.test.proto_helpers import StringTransport
 from ..factory import CongrediPeerFactory
 from ..protocol import CongrediPeerProtocol
 
 
-# pylint: disable=no-self-use
-class test_factory(unittest.TestCase):
+class test_factory(TimedTestCase):
 
     def setUp(self):
         self.tr = StringTransport()
@@ -22,9 +20,11 @@ class test_factory(unittest.TestCase):
         self.factory = CongrediPeerFactory()
         self.proto = CongrediPeerProtocol(self.factory, users)
         self.proto.makeConnection(self.tr)
+        super(test_factory, self).setUp()
 
     def test_factory(self):
         """Make sure everything is in order..."""
+        self.threshold = .1
         a = CongrediPeerFactory()
 
         a.startedConnecting('well then')

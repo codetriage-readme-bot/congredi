@@ -13,11 +13,12 @@ These commands manage connections on the network (along with Router.py and
 PeerBeat).
 
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
-from ..types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
+# , String, Boolean, DateTime
+from twisted.protocols.amp import Command, Integer, ListOf
+from ..types import ObjAddress, ObjPubKey
+#ObjHash, ObjSig,
 
 # find address from outside
 
@@ -107,3 +108,5 @@ class addressesResponders(object):
     @SyncCourierDirectoryAsk.responder
     def SyncCourierDirectoryTell(self):
         pass
+# congredi/commands/addresses.py              33      5    85%   80, 88,
+# 97, 105, 109

@@ -6,36 +6,39 @@ zlib tests
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 from ...storage.zlibs import compressDiff
 from ...storage.zlibs import uncompressDiff
 from ...storage.zlibs import chunkSplit
 from ...tests.sources import source, source2
 
-things = [
-    'a',
-    'b',
-    'c'
-]
 
-
-# pylint: disable=no-self-use
-class test_zlib(unittest.TestCase):
+class test_zlib(TimedTestCase):
+    things = [
+        'a',
+        'b',
+        'c'
+    ]
+    splits = None
+    thing1 = None
+    res = None
 
     def test_split(self):
         """Split something into chunks"""
-        splits = chunkSplit(source)
-        print((len(splits)))
+        self.threshold = .2
+        self.splits = chunkSplit(source)
+        print((len(self.splits)))
 
     def test_compression(self):
         """Compress, Uncompress, ensure equal"""
-        thing1 = compressDiff(source2)
-        res = uncompressDiff(thing1)
+        self.threshold = .2
+        self.thing1 = compressDiff(source2)
+        self.res = uncompressDiff(self.thing1)
         print('New')
-        print(res)
+        print(self.res)
         print('Original')
         print(source2)
-        assert res == source2
+        assert self.res == source2
 
     # test split error-raising
 

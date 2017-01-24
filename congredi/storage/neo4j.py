@@ -28,3 +28,4 @@ Redis social graphs (would still need to implement acyclic search, best to load
 into local memory instead T.B.H.).
 http://nosql.mypopescu.com/post/1083079162/redis-snippet-for-storing-the-social-graph
 """
+# congredi/storage/neo4j.py                   13      4    69%   14-16, 20, 25

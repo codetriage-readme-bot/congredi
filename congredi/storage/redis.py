@@ -107,3 +107,6 @@ def todoRemove(mutexKey, todoList):  # test
     mutexKey.release()
     yield rc.disconnect()
     defer.returnValue(ret)
+# congredi/storage/redis.py                   68     42    38%   19,
+# 25-26, 31-32, 36-37, 41-42, 45-46, 50, 53, 59-63, 69-72, 77-81, 85,
+# 90-97, 102-109

@@ -34,3 +34,4 @@ if __name__ == "__main__":  # test
     finally:
         dork.terminate()
         lone.terminate()
+# congredi/extra/daemon.py                    23     11    52%   18, 24, 27-36

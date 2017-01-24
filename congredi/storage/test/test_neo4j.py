@@ -3,18 +3,16 @@
 """
 neo4j tests
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
-from ..neo4j import assertTrustXY, queryTrustXY, dependencies
-
-# pylint: disable=no-self-use
+from ...tests.timing import TimedTestCase
+#from ..neo4j import assertTrustXY, queryTrustXY, dependencies
 
 
-class test_neo4j(unittest.TestCase):
+class test_neo4j(TimedTestCase):
 
     def test_neo4j(self):
         """Connect to neo4j or use a mock? acyclic graph mock interfaces???"""
+        self.threshold = .1
         print('IMPLEMENT storage/test/test_neo4j')

@@ -3,12 +3,11 @@
 """
 Diff utils (instead of using a raw git library - a design problem)
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import unicode_literals
 from difflib import unified_diff, ndiff, restore
-from ..utils.compat import ensureBinary, ensureString
-from ..storage.zlibs import chunkSplit, compressDiff, uncompressDiff
+from ..utils.compat import ensureString
+from ..storage.zlibs import compressDiff, uncompressDiff
 #from patch import fromstring
 
 

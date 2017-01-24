@@ -20,11 +20,11 @@ Smaller, previous non-bulk operations:
 * Search                - will not work on encrypted stores
 
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
-from ..types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
+from twisted.protocols.amp import Command, ListOf, Boolean, DateTime, String, Integer
+from ..types import ObjHash, ObjBlob
+#ObjSig, ObjPubKey, ObjAddress,
 
 
 # union operation (data transfer)
@@ -325,3 +325,5 @@ class filesystemResponders(object):
         O: blob
         """
         pass
+# congredi/commands/filesystem.py             71     10    86%   246, 255,
+# 264, 273, 282, 291, 300, 309, 318, 327

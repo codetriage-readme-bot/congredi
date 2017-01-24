@@ -6,18 +6,17 @@ test AES
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 from ..AES import default_aes
 from ...tests.censorable import random, hexify, phony
 from six.moves import range
 
-# pylint: disable=no-self-use
 
-
-class test_default_aes(unittest.TestCase):
+class test_default_aes(TimedTestCase):
 
     def test_default_aes_passwords(self):
         """AES A.disclose() == B(A) == C(A)"""
+        self.threshold = 2
         key = default_aes().disclose()
         a = default_aes(key)
         b = default_aes(key)
@@ -28,6 +27,7 @@ class test_default_aes(unittest.TestCase):
 
     def test_gauntlet_single(self):
         '''Random AES gauntlet single tests'''
+        self.threshold = 5
         v = default_aes()
         for x in range(0, 32):
             message = phony(hexify(random()))[:1 + x]
@@ -38,6 +38,7 @@ class test_default_aes(unittest.TestCase):
 
     def test_gauntlet(self):
         '''Random AES gauntlet tests (delete object)'''
+        self.threshold = 18.33
         for x in range(0, 32):
             v = default_aes()
             message = phony(hexify(random()))[:1 + x]
@@ -49,6 +50,7 @@ class test_default_aes(unittest.TestCase):
 
     def test_default_aes_disclose(self):
         """getter must return correct attribute"""
+        self.threshold = 1
         q = default_aes()
         res = q.disclose()
         assert res == q.secret

@@ -24,7 +24,7 @@ the encoding we give it (ASCII/UTF-8/others?)
 
 """
 from __future__ import absolute_import
-# from __future__ import unicode_literals
+from __future__ import unicode_literals
 import logging
 import entropy
 import chardet
@@ -36,8 +36,8 @@ try:
     WINDOWS = False
 except ImportError as e:
     WINDOWS = True
-    print(e.message)
-    WINDOWS_ERROR = e.message
+    print(e)
+    WINDOWS_ERROR = e
     logger.warning('windows users will have pycld2 disabled for now')
 
 
@@ -52,18 +52,20 @@ def stateEntropy(statement):  # needs a test
 
 
 def stateLanguage(statement):
-    # pylint: disable=bare-except
     """"Language detection (Design: still a bare except - #C)"""
     try:
         return cld2.detect(statement)[2][0][0]
         # this is throwing on python 2.0 for some reason on tests.
         # wasn't checking the exception block... whoops.
-    except:
+    # pylint: disable=broad-except
+    except Exception as e:
+        print(e)
         if WINDOWS is True:
             print(WINDOWS_ERROR)
             logger.warning('windows users will have pycld2 disabled for now')
             # raise Exception('windows users will have pycld2 disabled for now')
         return None
+    # pylint: enable=broad-except
 
 
 def stateEncoding(statement):
@@ -114,3 +116,5 @@ class censor():
             res_human = "BLOCK"
         """Results objects.... (Design: reorder? - #D)"""
         return res, res_human, res_encode, res_lang, res_encode_ok, res_lang_ok, res_profanities
+# congredi/storage/censor.py                  59     12    80%   37-41,
+# 46, 51, 63-64, 74-75, 91

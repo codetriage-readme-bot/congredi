@@ -25,11 +25,12 @@ Permissions are granted/lost on:
 Could possibly introduce rate limits?
 
 """
-# pylint: disable=unused-import
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
-from ..types import ObjHash, ObjSig, ObjPubKey, ObjAddress, ObjBlob
+from twisted.protocols.amp import Command, DateTime
+#, String, Integer, ListOf, Boolean
+from ..types import ObjHash, ObjSig, ObjPubKey
+#ObjAddress, ObjBlob
 
 
 # storage
@@ -210,3 +211,5 @@ class passportResponders(object):
     @SafePassageRequest.responder
     def SafePassageGrant(self, ):
         pass
+# congredi/commands/passport.py               50      9    82%   177, 184,
+# 188, 192, 196, 200, 204, 208, 212

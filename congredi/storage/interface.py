@@ -50,3 +50,5 @@ class abstractStorageConsumer(object):
     def read(self, key):
         return self._storage._lockRead(key)
 # class Base(metaclass=ABCMeta):
+# congredi/storage/interface.py               29     13    55%   16, 19,
+# 23, 27, 31, 35, 41-45, 48, 51

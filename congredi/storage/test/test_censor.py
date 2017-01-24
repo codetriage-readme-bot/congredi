@@ -6,7 +6,7 @@ tests on the simplistic censor library.
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 import platform
 from ..censor import censor
 from ..censor import stateEncoding
@@ -16,14 +16,11 @@ from six.moves import range
 test = censor(encodings=['UTF-8', 'ascii'], languages=['ENGLISH', 'CHINESE'])
 
 
-# pylint: disable=no-self-use
-# pylint: disable=unused-variable
-
-
-class test_censor(unittest.TestCase):
+class test_censor(TimedTestCase):
 
     def test_encode_decode_python_2_3(self):
         '''encode/decode python 2/3 problems'''
+        self.threshold = .4
         b_string = b"a string"
         u_string = u"a string"
         reg_string = "a string"
@@ -42,8 +39,9 @@ class test_censor(unittest.TestCase):
 
     def test_obvious_catch(self):
         '''Should block (best 8/10, os.urandom()):'''
+        self.threshold = .4
         passes = 0
-        for x in range(0, 10):
+        for _ in range(0, 10):
             actual_random = random()
             res = test.check(actual_random)
             if not res:
@@ -53,8 +51,9 @@ class test_censor(unittest.TestCase):
 
     def test_encode(self):
         '''Should safe (best 14/15, os.urandom()):'''
+        self.threshold = .4
         passes = 0
-        for x in range(0, 15):
+        for _ in range(0, 15):
             encoded_random = hexify(random())
             if stateEncoding(encoded_random) == 'ascii':
                 passes += 1
@@ -63,8 +62,9 @@ class test_censor(unittest.TestCase):
 
     def test_trivial_bypass(self):
         '''Should safe (best 24/25, os.urandom()):'''
+        self.threshold = .4
         passes = 0
-        for x in range(0, 25):
+        for _ in range(0, 25):
             phonetic_random = phony(hexify(random()))
             if test.check(phonetic_random):
                 passes += 1
@@ -76,12 +76,14 @@ class test_censor(unittest.TestCase):
 
     def test_unicode(self):
         '''Chinese characters should be UTF-8'''
+        self.threshold = .4
         assert stateEncoding('hello 你好') == 'utf-8'
 
     # def test_steno_check():
 
     def test_valid_english(self):
         """Valid ASCII content:"""
+        self.threshold = .4
         if platform.system() == 'Windows':
             print('Windows tests will not check valid english')
         else:

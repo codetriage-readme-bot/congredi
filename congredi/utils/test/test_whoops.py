@@ -6,26 +6,25 @@ error utilities tests
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 from ..whoops import CongrediError, whoops
 
 
-# pylint: disable=no-self-use
-class test_whoops(unittest.TestCase):
+class test_whoops(TimedTestCase):
 
     def test_whoops(self):
         """The stack-trace printer needs work"""
         print('IMPLEMENT utils/test/test_whoops')
+        self.threshold = .4
         whoops('hello')
 
 
-# pylint: disable=no-self-use
-class test_CongrediErrors(unittest.TestCase):
+class test_CongrediErrors(TimedTestCase):
 
     def test_CongrediErrors(self):
         """Raising a CongrediError class"""
-        # pylint: disable=broad-except
+        self.threshold = .4
         try:
             raise CongrediError('Well then')
-        except Exception as E:
+        except CongrediError as E:
             assert isinstance(E, CongrediError)

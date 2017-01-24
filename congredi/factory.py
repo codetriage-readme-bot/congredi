@@ -18,8 +18,6 @@ logger = logging.getLogger('congredi')
 
 defaultHost = socket.gethostname()
 
-# pylint: disable=no-self-use
-
 
 class CongrediPeerFactory(protocol.Factory):
     """
@@ -68,6 +66,7 @@ class CongrediPeerFactory(protocol.Factory):
         loopDeferred.addCallback(peerSuccess)
         loopDeferred.addErrback(peerFailure)
 
+    # pylint: disable=no-self-use
     def startedConnecting(self, connector):  # test
         logger.info('Factory - Connecting')
 
@@ -78,6 +77,7 @@ class CongrediPeerFactory(protocol.Factory):
     def clientConnectionFailed(self, connector, reason):  # test
         logger.critical(
             'Factory - Connection failed. Reason:%s', reason.getErrorMessage())
+    # pylint: enable=no-self-use
 
     def startFactory(self):  # test
         self.online = True
@@ -105,3 +105,5 @@ class CongrediPeerFactory(protocol.Factory):
 
 def gotit(result):
     logger.critical(result)
+# congredi/factory.py                         57     16    72%   59-60,
+# 75, 79, 83, 86, 91-92, 95-103, 107

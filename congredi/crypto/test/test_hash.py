@@ -6,12 +6,12 @@ Testing hashes
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ...tests.timing import TimedTestCase
 from ..hash import make_hash
 
 
-# pylint: disable=no-self-use
-class test_hash(unittest.TestCase):
+class test_hash(TimedTestCase):
+    good_hash = None
 
     def test_good_hash(self):
         """Make sure a hex-digest of the current library works"""
@@ -21,3 +21,4 @@ class test_hash(unittest.TestCase):
         print(res)
         print(check)
         assert res == check
+        self.good_hash = res

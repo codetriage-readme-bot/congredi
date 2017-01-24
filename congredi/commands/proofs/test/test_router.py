@@ -6,17 +6,17 @@ test commands
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-import unittest
+from ....tests.timing import TimedTestCase
 from ..router import routerResponders
 
-# pylint: disable=no-self-use
 
-
-class test_addresses(unittest.TestCase):
+class test_router(TimedTestCase):
     responderToTest = None
 
     def SetUp(self):
         self.responderToTest = routerResponders()
+        super(test_router, self).setUp()
 
-    def test_addresses_a(self):
+    def test_router_a(self):
+        self.threshold = .1
         print('IMPLEMENT tests/test_router')
