@@ -5,7 +5,7 @@ Yaml Config Loading - & default configs
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from ...tests.timing import TimedTestCase
+from ...utils.timing import TimedTestCase
 from ..config import configArr, generateConfig, writeConfig, openTest
 
 

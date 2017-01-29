@@ -6,7 +6,7 @@ options testing
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-from ...tests.timing import TimedTestCase
+from ...utils.timing import TimedTestCase
 from ..options import MainOptions
 import argparse
 goodOpts = {

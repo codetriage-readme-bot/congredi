@@ -10,18 +10,5 @@ use_directory_urls: true
 pages:
     - 'index': 'index.md'
     - 'Setup': 'Setup.md'
-    - 'Contributing':
-         - 'intro': 'contributing/intro.md'
-         - 'style': 'contributing/style.md'
-         - 'tests': 'contributing/tests.md'
-         - 'commits': 'contributing/commits.md'
-         - 'Tags/Emoji': 'contributing/tags.md'
-    - 'Extending':
-         - 'angular': 'extending/angular.md'
-         - 'database': 'extending/database.md'
-    - 'Specification':
-         - 'Commands': 'spec/commands.md'
-         - 'Storage': 'spec/storage.md'
-         - 'Packets': 'spec/packet.md'
 
 repo_url: https://github.com/thetoxicarcade/congredi

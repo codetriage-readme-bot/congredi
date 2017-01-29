@@ -6,10 +6,10 @@ Testing the padding (and underlying function I suppose)
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-from ...tests.timing import TimedTestCase
+from ...utils.timing import TimedTestCase
 import binascii
 from ..padding import AONTencrypt, AONTdecrypt
-from ...tests.censorable import random, hexify, phony
+from ...utils.censorable import random, hexify, phony
 from six.moves import range
 
 

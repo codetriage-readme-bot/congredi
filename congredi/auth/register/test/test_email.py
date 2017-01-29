@@ -12,7 +12,7 @@ The auths must be able to be tested as:
 from __future__ import absolute_import
 from __future__ import unicode_literals
 import datetime
-from ....tests.timing import TimedTestCase
+from ....utils.timing import TimedTestCase
 
 
 class test_email(TimedTestCase):

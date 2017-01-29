@@ -1,4 +1,6 @@
 dist
+*.pyv
+*.pyvv
 *.pyc
 *.swp
 *.egg-info

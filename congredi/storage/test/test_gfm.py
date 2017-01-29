@@ -5,9 +5,9 @@ HTML tests
 """
 from __future__ import absolute_import
 from __future__ import print_function
-from ...tests.timing import TimedTestCase
+from ...utils.timing import TimedTestCase
 from ...storage.gfm import resolveHtml
-from ...tests.sources import source
+from ...utils.sources import source
 
 
 class test_html(TimedTestCase):

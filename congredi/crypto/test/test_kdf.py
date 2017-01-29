@@ -5,7 +5,7 @@ Still hanging around with a KDF...
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from ...tests.timing import TimedTestCase
+from ...utils.timing import TimedTestCase
 from ..kdf import default_kdf, random_password
 
 

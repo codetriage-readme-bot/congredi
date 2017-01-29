@@ -6,7 +6,7 @@ tests on the simplistic censor library.
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-from ...tests.timing import TimedTestCase
+from ...utils.timing import TimedTestCase
 import hashlib
 import binascii
 # try:
@@ -19,7 +19,7 @@ from ..diff import resolveDiff
 from ..diff import rebuildFile
 from ..diff import tick
 from ..diff import tock
-from ...tests.sources import source, source2, empty, empty2
+from ...utils.sources import source, source2, empty, empty2
 from ...storage.zlibs import chunkSplit
 
 

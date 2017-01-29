@@ -6,11 +6,11 @@ zlib tests
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-from ...tests.timing import TimedTestCase
+from ...utils.timing import TimedTestCase
 from ...storage.zlibs import compressDiff
 from ...storage.zlibs import uncompressDiff
 from ...storage.zlibs import chunkSplit
-from ...tests.sources import source, source2
+from ...utils.sources import source, source2
 
 
 class test_zlib(TimedTestCase):

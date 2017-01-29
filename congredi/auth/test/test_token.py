@@ -17,7 +17,7 @@ figure out if a user is auth'd without using the database to do so.
 from __future__ import absolute_import
 from __future__ import unicode_literals
 import datetime
-from ...tests.timing import TimedTestCase
+from ...utils.timing import TimedTestCase
 from ..token import token, jwt_get, jwt_use
 
 

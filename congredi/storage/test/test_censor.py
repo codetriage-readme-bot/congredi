@@ -6,14 +6,14 @@ tests on the simplistic censor library.
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-from ...tests.timing import TimedTestCase
+from ...utils.timing import TimedTestCase
 import platform
 from ..censor import censor
 from ..censor import stateEncoding
 from ..censor import stateEntropy
 from ..censor import stateProfanity
 from ...utils.compat import ensureBinary
-from ...tests.censorable import random, hexify, phony
+from ...utils.censorable import random, hexify, phony
 from six.moves import range
 test = censor(encodings=['UTF-8', 'ascii'], languages=['ENGLISH', 'CHINESE'])
 

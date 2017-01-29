@@ -6,7 +6,7 @@ general tests
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-from ..tests.timing import TimedTestCase
+from ..utils.timing import TimedTestCase
 from ..types import PrivAES, EncBlob, ObjBlob, ObjSig, EncSig
 from ..types import EncHash, ObjHash, EncPubKey, ObjPubKey, EncAddress
 from ..types import ObjAddress, EncBool

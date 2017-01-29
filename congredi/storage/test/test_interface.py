@@ -6,7 +6,7 @@ Redis object tests
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-from ...tests.timing import TimedTestCase
+from ...utils.timing import TimedTestCase
 from ..interface import abstractStorageProvider, abstractStorageConsumer
 from ..interface import CongrediBadInterfaceError, CongrediIncompatibleVersionError
 class good_provider(abstractStorageProvider):

@@ -6,10 +6,10 @@ tests for curve
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-from ...tests.timing import TimedTestCase
+from ...utils.timing import TimedTestCase
 from ..RSA import default_rsa
 from ..hash import make_hash
-from ...tests.censorable import random, hexify, phony, pick_range
+from ...utils.censorable import random, hexify, phony, pick_range
 
 
 class test_RSA(TimedTestCase):
