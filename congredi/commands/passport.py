@@ -182,34 +182,51 @@ class passportResponders(object):
         """
         Compute 
         """
-        pass
+        # somehow store TTL?
+        if self.neo4j.TrustWithin(3):
+            self.redis.write(b'permissions:store',pubkey)
+        return signedStorage, ttl
 
     @StoreEncryptedRequest.responder
-    def StoreEncryptedGrant(self, ):
-        pass
+    def StoreEncryptedGrant(self, pubkey, ttl):
+        if self.neo4j.TrustWithin(2):
+            self.redis.write(b'permissions:storeEncrypted',pubkey)
+        return signedStorage, ttl
 
     @PublishRequest.responder
-    def PublishGrant(self, ):
-        pass
+    def PublishGrant(self, pubkey, ttl):
+        if self.neo4j.TrustWithin(3):
+            self.redis.write(b'permissions:publish',pubkey)
+        return signedPublish, ttl
 
     @SubscribeRequest.responder
-    def SubscribeGrant(self, ):
-        pass
+    def SubscribeGrant(self, pubkey, ttl):
+        if self.neo4j.TrustWithin(2):
+            self.redis.write(b'permissions:subscribe',pubkey)
+        return signedSubscribe, ttl
 
     @RendesvousRequest.responder
-    def RendesvousGrant(self, ):
-        pass
+    def RendesvousGrant(self, pubkey, ttl):
+        if self.neo4j.TrustWithin(1):
+            self.redis.write(b'rendesvous',pubkey)
+        return signedRendesvous, ttl
 
     @CourierRequest.responder
-    def CourierGrant(self, ):
-        pass
+    def CourierGrant(self, pubkey, ttl):
+        if self.neo4j.TrustWithin(1):
+            self.redis.write(b'courier',pubkey)
+        return signedRendesvous, ttl
 
     @SanctuaryRequest.responder
     def SanctuaryGrant(self, ):
-        pass
+        if self.neo4j.TrustWithin(1):
+            self.redis.write(b'permissions:sanctuary',pubkey)
+        return signedRendesvous, ttl
 
     @SafePassageRequest.responder
     def SafePassageGrant(self, ):
-        pass
+        if self.neo4j.TrustWithin(1):
+            self.redis.write(b'permissions:onion',pubkey)
+        return signedRendesvous, ttl
 # congredi/commands/passport.py               50      9    82%   177, 184,
 # 188, 192, 196, 200, 204, 208, 212

@@ -3,16 +3,18 @@
 import hashlib
 import time
 max_nonce = 2 ** 32 # 4 billion
-def proof_of_work(header, difficulty_bits):
-    target = 2 ** (256-difficulty_bits)
+def proof_of_work(header, difficulty_bits_in):
+    target = 2 ** (256-difficulty_bits_in)
     for nonce in xrange(max_nonce):
         hash_result = hashlib.sha256(str(header)+str(nonce)).hexdigest()
         if long(hash_result, 16) < target:
             print "Success with nonce %d" % nonce
             print "Hash is %s" % hash_result
             return (hash_result, nonce)
+    # pylint: disable=undefined-loop-variable
     print "Failed after %d (max_nonce) tries" % nonce
     return nonce
+    # pylint: enable=undefined-loop-variable
 if __name__ == '__main__':
     
     resnonce = 0

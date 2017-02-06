@@ -124,6 +124,9 @@ class userResponders(object):
         """
         new public key, previous one signing it
         """
+        #checkPreviousKeySignsNewOne()
+        self.redis.write(b'users:'+userKeyFingerprint,userKey)
+        return True
     @UserSync.responder
     def Sync(self):
         pass

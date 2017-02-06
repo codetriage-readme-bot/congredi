@@ -86,27 +86,34 @@ class addressesResponders(object):
         Add that person to the ephemeral recently-seen list.
         Send back what their IP/port was.
         """
-        pass
+        myAddress = self.redis.read(b'self:addr')
+        return myAddress
     # ask the directory, while sending your own
 
     @SyncPeerDirectoryAsk.responder
-    def SyncPeerDirectoryTell(self):
+    def SyncPeerDirectoryTell(self, yourPeers):
         """
         in: list((key,ip))
         out: list((key,ip))
         """
-        pass
+        myPeers = self.redis.read(b'list:peers')
+        self.redis.write(b'todo:peers',yourPeers)
+        return myPeers
 
     @SyncRendesvousDirectoryAsk.responder
-    def SyncRendesvousDirectoryTell(self):
+    def SyncRendesvousDirectoryTell(self, yourRendesvous):
         """
         in: list((key, rendesvous key, proof))
         out: list((key, rendesvous key, proof))
         """
+        myRendesvous = self.redis.read(b'list:rendesvous')
+        self.redis.write(b'todo:rendesvous',yourRendesvous)
         pass
 
     @SyncCourierDirectoryAsk.responder
-    def SyncCourierDirectoryTell(self):
+    def SyncCourierDirectoryTell(self, yourCouriers):
+        myCouriers = self.redis.read(b'list:couriers')
+        self.redis.write(b'todo:couriers',yourCouriers)
         pass
 # congredi/commands/addresses.py              33      5    85%   80, 88,
 # 97, 105, 109

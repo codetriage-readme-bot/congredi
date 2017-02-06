@@ -19,24 +19,24 @@ class Speed(Widget):
 
         return self.FORMAT % (scaled, self.PREFIXES[power])
 #http://www.artima.com/weblogs/viewpost.jsp?thread=240845
-class example(object):
-    # def wrapped(*args):
-    #     f(args)
-    # return wrapped
-    def __init__(self, f):
-        self.f = f
-    def __call__(self, *args):
-        """
-        The __call__ method is not called until the
-        decorated function is called.
-        """
-        print "Inside __call__()"
-        self.f(*args)
-@example
+# class example(object):
+#     # def wrapped(*args):
+#     #     f(args)
+#     # return wrapped
+#     def __init__(self, f):
+#         self.f = f
+#     def __call__(self, *args):
+#         """
+#         The __call__ method is not called until the
+#         decorated function is called.
+#         """
+#         print "Inside __call__()"
+#         self.f(*args)
+# @example
 def together(interval=10000):
     things=[AnimatedMarker(), " ", Counter(), "/{} ".format(interval), Percentage(), ' ', Speed(), ' ', Bar(), ' ', Timer(), ' ', ETA()]
     pbar = ProgressBar(widgets=things, maxval=interval).start()
     for i in range(interval):
         pbar.update(i+1)
     pbar.finish()
-together(100000000)
+#together(100000000)

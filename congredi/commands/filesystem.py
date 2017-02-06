@@ -246,84 +246,137 @@ class filesystemResponders(object):
         pass
 
     @SyncHavesWantsAsk.responder
-    def SyncHavesWantsTell(self, ):
+    def SyncHavesWantsTell(self, yourWants, yourHaves):
         """
         'I have [x,y,z], I want [x,y,z], what do you have/want'
         I: list of hashes, list of hashes
         O: list of hashes, list of hashes
         """
-        pass
+        myWants = self.redis.read(b'wants')
+        myHaves = self.redis.read(b'haves')
+        self.redis.write(b'peer:wantsof:'+peerName, yourWants)
+        self.redis.write(b'peer:havesof:'+peerName, yourHaves)
+        return myWants, myHaves
 
     @SyncStorageAsk.responder
-    def SyncStorageTell(self, ):
+    def SyncStorageTell(self, yourBlobs, yourRequests):
         """
         'I have [x,y,z], I want [x,y,z], what do you have/want'
         I: list of hashes, list of hashes
         O: list of hashes, list of hashes
         """
-        pass
+        results = {}
+        for request in yourRequests:
+            results[request] = self.redis.read(b'blobs',request)
+        self.redis.write(b'blobs', yourBlobs)
+        #generateWants?
+        #wants = self.redis.read(b'wants')
+        return results #, wants
 
     @StoreSet.responder
-    def StoreSetConfirm(self, ):
+    def StoreSetConfirm(self, blob, typeOf, author, sig):
         """
         'store blob [blob] of type [type]'
         I: blob, type
         O: bool, ttl
         """
-        pass
+        #checksig(sig)
+        #checkPermissionForStorage()
+        self.redis.write(blob)
+        return True, ttl
 
     @EncryptedStoreSet.responder
-    def EncryptedStoreSetConfirm(self, ):
+    def EncryptedStoreSetConfirm(self, blob, typeOf, author, sig):
         """
         'store blob [blob] of type [type]'
         I: blob, type
         O: bool, ttl
         """
-        pass
+        #if checksig(sig)
+        #if checkPermissionForEncryption()
+        self.redis.write(blob)
+        return True, ttl
 
     @StoreGet.responder
-    def StoreGetRespond(self, ):
+    def StoreGetRespond(self, keys, typeOf, author, sig):
         """
         'send blob [blob] of type [type]'
         I: list of hashes, type
         O: list of blobs, ttl
         """
-        pass
+        results = {}
+        for request in keys:
+            #sql escape on this keyspace...
+            results[request] = self.redis.read(typeOf, request)
+        return results, ttl
 
     @EncryptedStoreGet.responder
-    def EncryptedStoreGetRespond(self, ):
+    def EncryptedStoreGetRespond(self, keys, typeOf, author, sig):
         """
         'send blob [blob] of type [type]'
         I: list of hashes, type
         O: list of blobs, ttl
         """
-        pass
+        #checkReadPermission()
+        results = {}
+        for request in keys:
+            #sql escape...
+            results[request] = self.redis.read(typeOf, request)
+        return results, ttl
+        
 
     @SeekGet.responder
-    def SeekRespond(self, ):
+    def SeekRespond(self, key, count, direction):
         """
         'seek hashes key [hash] count [number] direction [+/-]'
         I: hash, number, direction
         O: list of hashes
         """
-        pass
+        result = []
+        current = key
+        seek = b'next:'
+        if direction == True:
+            seek = b'previous:'
+        try:
+            for c in count:
+                nextKey = self.redis.read(seek + current)
+                result.append(nextKey)
+                current = nextKey
+        except:
+            if len(result) == 0:
+                return ErrNoPrevious()
+            return ErrIncompleteListing()
+        return result
 
     @ResolveGet.responder
-    def ResolveRespond(self, ):
+    def ResolveRespond(self, keyhash, typeOf):
         """
         'resolve [hash]'
         I: hash
         O: blob
         """
-        pass
+        #check if that resolve exists?
+        #findFirst()
+        current = keyhash.first()
+        for itter in keyHashList:
+            current = diff.apply(current,modification)
+        self.redis.write(b'resolved:'+keyhash,current)
+        return current
+            
 
     @SearchRun.responder
-    def SearchResolve(self, ):
+    def SearchRespond(self, keyspace, term):
         """
         'resolve [hash]'
         I: hash
         O: blob
         """
-        pass
+        regex = term
+        results = []
+        for keys in keyspace:
+            key = self.redis.read(keys)
+            lookup = regex(key)
+            results.append(lookup)
+        return results
 # congredi/commands/filesystem.py             71     10    86%   246, 255,
 # 264, 273, 282, 291, 300, 309, 318, 327

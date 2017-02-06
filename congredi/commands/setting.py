@@ -237,46 +237,76 @@ class settingResponders(object):
 
     @PrivateBlacklistChange.responder
     def ChangePrivateBlacklist(self, pubkey, address, direction):
-        pass
+        if pubkey in self.redis.read(b'admins'):
+            self.redis.write(b'blacklist', address)
+            return True
+        return False
 
     @PrivateBlacklistView.responder
     def ViewPrivateBlacklist(self, pubkey, address, direction):
-        pass
+        if pubkey in self.redis.read(b'admins'):
+            blacklist = self.redis.read(b'blacklist')
+            return blacklist
+        return False
     # whitelist
 
     @PrivateWhitelistChange.responder
     def ChangePrivateWhitelist(self, pubkey, address, direction):
-        pass
+        if pubkey in self.redis.read(b'admins'):
+            self.redis.write(b'whitelist', address)
+            return True
+        return False
 
     @PrivateWhitelistView.responder
     def ViewPrivateWhitelist(self, pubkey, address, direction):
-        pass
+        if pubkey in self.redis.read(b'admins'):
+            whitelist = self.redis.read(b'whitelist')
+            return whitelist
+        return False
     # peers
 
     @PrivatePeersChange.responder
     def ChangePrivatePeers(self, pubkey, address, direction):
-        pass
+        if pubkey in self.redis.read(b'admins'):
+            self.redis.write(b'peers', address)
+            return True
+        return False
 
     @PrivatePeersView.responder
     def ViewPrivatePeers(self, pubkey, address, direction):
-        pass
+        if pubkey in self.redis.read(b'admins'):
+            peers = self.redis.read(b'peers')
+            return peers
+        return False
     # users
 
     @PrivateUsersChange.responder
     def ChangePrivateUsers(self, pubkey, address, direction):
-        pass
+        if pubkey in self.redis.read(b'admins'):
+            self.redis.write(b'users', address)
+            return True
+        return False
 
     @PrivateUsersView.responder
     def ViewPrivateUsers(self, pubkey, address, direction):
-        pass
+        if pubkey in self.redis.read(b'admins'):
+            users = self.redis.read(b'users')
+            return users
+        return False
     # admins
 
     @PrivateAdminsChange.responder
     def ChangePrivateAdmins(self, pubkey, address, direction):
-        pass
+        if pubkey in self.redis.read(b'admins'):
+            self.redis.write(b'admins', address)
+            return True
+        return False
 
     @PrivateAdminsView.responder
     def ViewPrivateAdmins(self, pubkey, address, direction):
-        pass
+        if pubkey in self.redis.read(b'admins'):
+            admins = self.redis.read(b'admins')
+            return admins
+        return False
 # congredi/commands/setting.py                72      9    88%   243, 248,
 # 252, 257, 261, 266, 270, 275, 279
