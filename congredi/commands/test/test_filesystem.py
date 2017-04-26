@@ -10,6 +10,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 from ...utils.timing import TimedTestCase
 from ..filesystem import filesystemResponders
+from ...storage.MockRedis import RedisMock
 
 
 class test_filesystem(TimedTestCase):
@@ -17,9 +18,12 @@ class test_filesystem(TimedTestCase):
     responderToTest = None
 
     def setUp(self):
-        self.responderToTest = filesystemResponders()
+        mock = RedisMock()
+        self.responderToTest = filesystemResponders(mock)
         super(test_filesystem, self).setUp()
 
     def test_command_a(self):
-        self.responderToTest.SyncStorageTell()
+        ourBlobs = [b'1',b'2']
+        ourReqs = [b'3',b'4']
+        self.responderToTest.SyncStorageTell(ourBlobs,ourReqs)
         print('IMPLEMENT tests/test_setting')

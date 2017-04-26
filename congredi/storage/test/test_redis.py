@@ -9,19 +9,9 @@ from __future__ import unicode_literals
 from ...utils.timing import TimedTestCase
 # , redisSetup, Rget, Rset, RrandKey, todoAdd, todoRemove
 from ..redis import RedisStore
+from ..MockRedis import RedisMock
 
-# https://seeknuance.com/2012/02/18/replacing-redis-with-a-python-mock/
 
-
-class RedisMock(object):
-    arr = {}
-
-    def set(self, key, value):
-        self.arr[key] = value
-        return b'OK'
-
-    def get(self, key):
-        return self.arr[key]
 
 
 class test_redis(TimedTestCase):

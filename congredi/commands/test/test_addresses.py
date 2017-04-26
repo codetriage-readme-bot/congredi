@@ -8,6 +8,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 from ...utils.timing import TimedTestCase
 from ..addresses import addressesResponders
+from ...storage.MockRedis import RedisMock
 
 
 class test_addresses(TimedTestCase):
@@ -15,7 +16,8 @@ class test_addresses(TimedTestCase):
     responderToTest = None
 
     def setUp(self):
-        self.responderToTest = addressesResponders()
+        mock = RedisMock()
+        self.responderToTest = addressesResponders(mock)
         super(test_addresses, self).setUp()
 
     def test_addresses_a(self):

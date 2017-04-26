@@ -76,7 +76,8 @@ class addressesResponders(object):
     redis = None
     neo4j = None
 
-    def __init__(self):
+    def __init__(self, givenRedis):
+        self.redis = givenRedis
         # would pulll Redis online
         pass
 

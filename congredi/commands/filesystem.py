@@ -241,7 +241,8 @@ class filesystemResponders(object):
     redis = None
     neo4j = None
 
-    def __init__(self):
+    def __init__(self, givenRedis):
+        self.redis = givenRedis
         # would pulll Redis online
         pass
 
@@ -267,7 +268,7 @@ class filesystemResponders(object):
         """
         results = {}
         for request in yourRequests:
-            results[request] = self.redis.read(b'blobs',request)
+            results[request] = self.redis.read(request)
         self.redis.write(b'blobs', yourBlobs)
         #generateWants?
         #wants = self.redis.read(b'wants')
@@ -323,7 +324,7 @@ class filesystemResponders(object):
             #sql escape...
             results[request] = self.redis.read(typeOf, request)
         return results, ttl
-        
+
 
     @SeekGet.responder
     def SeekRespond(self, key, count, direction):
@@ -362,7 +363,7 @@ class filesystemResponders(object):
             current = diff.apply(current,modification)
         self.redis.write(b'resolved:'+keyhash,current)
         return current
-            
+
 
     @SearchRun.responder
     def SearchRespond(self, keyspace, term):

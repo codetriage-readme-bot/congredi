@@ -24,7 +24,8 @@ from __future__ import print_function
 from __future__ import unicode_literals
 from ...utils.timing import TimedTestCase
 from ..passport import passportResponders
-
+from ...storage.MockRedis import RedisMock
+from ...storage.MockNeo4j import Neo4jMock
 
 class test_passport(TimedTestCase):
 
@@ -41,7 +42,9 @@ class test_passport(TimedTestCase):
         self.peers = ['d', 'e']
         self.users = ['a', 'b', 'f']
         self.admins = ['c', 'g']
-        self.responderToTest = passportResponders()
+        mockR = RedisMock()
+        mockN = Neo4jMock()
+        self.responderToTest = passportResponders(mockR,mockN)
         super(test_passport, self).setUp()
 
     def test_passport_a(self):

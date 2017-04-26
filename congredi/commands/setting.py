@@ -19,7 +19,7 @@ Proposed:
     Peer commands will match either of the values within the blacklist,
     and will track the user should one change, for instance, a block of
     a public key will add the new IP address it's seen using?
-    
+
     Problem: they could be in proxy mode?
 
 """
@@ -230,9 +230,8 @@ class settingResponders(object):
     redis = None
     neo4j = None
 
-    def __init__(self):
-        # would pulll Redis online
-        pass
+    def __init__(self, givenRedis):
+        self.redis = givenRedis
     # blacklist
 
     @PrivateBlacklistChange.responder
