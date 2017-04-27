@@ -17,6 +17,11 @@ Build status (2.7 full coverage, windows & 3.* python have spotty test coverage)
 
 **updates: python3 pylint is not automatically installed correctly...**
 
+linux tests run pylint on 2.7, and unit tests across 3.3-3.6
+mac tests run 2.7 & 3.3
+
+Windows tests only run green & setup.py install across 2.7, 3.3-3.6 x32 + 3.5-6 x64. we don't test 3.3-4 on x64
+
 Linux/Mac: [![Build Status Travis](https://travis-ci.org/congredi/congredi.svg?branch=master)](https://travis-ci.org/congredi/congredi)
 Windows: [![Build status Windows](https://ci.appveyor.com/api/projects/status/mo003x9ygpnb316q?svg=true)](https://ci.appveyor.com/project/Thetoxicarcade/congredi)
 Docker: [![Build status Codeship](https://codeship.com/projects/d1cee4c0-b9b1-0134-40ad-5e5884b780cb/status?branch=master)]()

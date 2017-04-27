@@ -53,9 +53,11 @@ def peerBeat():  # repeating peer-beat task
     for admin in config['admins']:
         # logger.info('begin for admin: %s', admin)
         # test after the yields...
+        # pylint: disable=unused-variable
         retset = yield Rset('admins', admin)
         retget = yield Rget('admins')
         retdel = yield Rdelete('admins')
+        # pylint: enable=unused-variable
         # logger.info('set response:' + retset)
         # logger.info('get response:' + retget)
         # logger.info('delete response: %s', retdel)
