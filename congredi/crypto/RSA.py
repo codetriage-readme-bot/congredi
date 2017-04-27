@@ -85,6 +85,7 @@ class default_rsa():
     def verify(self, messageHash, pubKey, signature):
         key = RSA.importKey(pubKey)
         skey = PKCS1_v1_5.new(key)
+        # pylint: disable=not-callable
         res = skey.verify(messageHash, signature)
         return res
 

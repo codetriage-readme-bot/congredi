@@ -78,8 +78,6 @@ class addressesResponders(object):
 
     def __init__(self, givenRedis):
         self.redis = givenRedis
-        # would pulll Redis online
-        pass
 
     @AddressAsk.responder
     def AddressTell(self):
@@ -98,7 +96,7 @@ class addressesResponders(object):
         out: list((key,ip))
         """
         myPeers = self.redis.read(b'list:peers')
-        self.redis.write(b'todo:peers',yourPeers)
+        self.redis.write(b'todo:peers', yourPeers)
         return myPeers
 
     @SyncRendesvousDirectoryAsk.responder
@@ -108,13 +106,13 @@ class addressesResponders(object):
         out: list((key, rendesvous key, proof))
         """
         myRendesvous = self.redis.read(b'list:rendesvous')
-        self.redis.write(b'todo:rendesvous',yourRendesvous)
-        pass
+        self.redis.write(b'todo:rendesvous', yourRendesvous)
+        return myRendesvous
 
     @SyncCourierDirectoryAsk.responder
     def SyncCourierDirectoryTell(self, yourCouriers):
         myCouriers = self.redis.read(b'list:couriers')
-        self.redis.write(b'todo:couriers',yourCouriers)
-        pass
+        self.redis.write(b'todo:couriers', yourCouriers)
+        return myCouriers
 # congredi/commands/addresses.py              33      5    85%   80, 88,
 # 97, 105, 109

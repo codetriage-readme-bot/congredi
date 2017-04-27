@@ -27,13 +27,18 @@ class RedisStore(abstractStorageProvider):
 
     # actual writers
     @defer.inlineCallbacks
-    def _write(self, key, value):  # test
-        res = yield self._conn.set(key, value)
+    def _write(self, keyspace, valuespace):  # test
+        res = yield self._conn.set(keyspace, valuespace)
         defer.returnValue(res)
 
     @defer.inlineCallbacks
     def _read(self, keyspace):  # test
         res = yield self._conn.get(keyspace)
+        defer.returnValue(res)
+    # delete
+
+    def _del(self, key):
+        res = yield self._conn.delete(key)
         defer.returnValue(res)
 
     # locks on items

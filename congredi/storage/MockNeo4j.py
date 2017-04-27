@@ -5,20 +5,16 @@ Neo4j Mock code
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals
-from abc import ABCMeta, abstractmethod
+from .mock import MockStorage
 
-class Neo4jMock(object):
+
+class Neo4jMock(MockStorage):
     arr = {}
-    def TrustWithin(self, key):
-        return True
-    def read(self, key):
-        return self.get(key)
-    def set(self, key, value):
-        self.arr[key] = value
-        return b'OK'
+    within = True
 
-    def get(self, key):
-        try:
-            return self.arr[key]
-        except:
-            return []
+    def __init__(self, typeOf):
+        # pylint: disable=useless-super-delegation
+        super(Neo4jMock, self).__init__(typeOf)
+
+    def TrustWithin(self, key):
+        return self.within

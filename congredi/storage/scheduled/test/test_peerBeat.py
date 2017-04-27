@@ -8,7 +8,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 from ....utils.timing import TimedTestCase
 # twisted.internet.task.Clock
-from ..peerBeat import peerSuccess, peerFailure  # peerBeat,
+from ..peerBeat import peerSuccess, peerFailure, peerBeat
 from ..peerBeat import queryBackground, updateRead, updateWrite
 from twisted.internet.error import ReactorNotRunning
 
@@ -37,3 +37,4 @@ class test_peerBeat(TimedTestCase):
             peerFailure(fails)
         except ReactorNotRunning:
             print('good')
+        peerBeat()

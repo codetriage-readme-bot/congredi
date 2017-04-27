@@ -25,9 +25,20 @@ from __future__ import unicode_literals
 from twisted.protocols.amp import Command, ListOf, Boolean, DateTime, String, Integer
 from ..types import ObjHash, ObjBlob
 #ObjSig, ObjPubKey, ObjAddress,
+from ..storage.diff import resolveDiff
+from ..utils.whoops import CongrediError
 
+
+class ErrNoPrevious(CongrediError):
+    pass
+
+
+class ErrIncompleteListing(CongrediError):
+    pass
 
 # union operation (data transfer)
+
+
 class SyncHavesWantsAsk(Command):
     arguments = [(b'have', ListOf(ObjHash)),
                  (b'want', ListOf(ObjHash))]
@@ -243,11 +254,9 @@ class filesystemResponders(object):
 
     def __init__(self, givenRedis):
         self.redis = givenRedis
-        # would pulll Redis online
-        pass
 
     @SyncHavesWantsAsk.responder
-    def SyncHavesWantsTell(self, yourWants, yourHaves):
+    def SyncHavesWantsTell(self, peerName, yourWants, yourHaves):
         """
         'I have [x,y,z], I want [x,y,z], what do you have/want'
         I: list of hashes, list of hashes
@@ -255,8 +264,8 @@ class filesystemResponders(object):
         """
         myWants = self.redis.read(b'wants')
         myHaves = self.redis.read(b'haves')
-        self.redis.write(b'peer:wantsof:'+peerName, yourWants)
-        self.redis.write(b'peer:havesof:'+peerName, yourHaves)
+        self.redis.write(b'peer:wantsof:' + peerName, yourWants)
+        self.redis.write(b'peer:havesof:' + peerName, yourHaves)
         return myWants, myHaves
 
     @SyncStorageAsk.responder
@@ -270,9 +279,9 @@ class filesystemResponders(object):
         for request in yourRequests:
             results[request] = self.redis.read(request)
         self.redis.write(b'blobs', yourBlobs)
-        #generateWants?
+        # generateWants?
         #wants = self.redis.read(b'wants')
-        return results #, wants
+        return results  # , wants
 
     @StoreSet.responder
     def StoreSetConfirm(self, blob, typeOf, author, sig):
@@ -281,9 +290,10 @@ class filesystemResponders(object):
         I: blob, type
         O: bool, ttl
         """
-        #checksig(sig)
-        #checkPermissionForStorage()
+        # checksig(sig)
+        # checkPermissionForStorage()
         self.redis.write(blob)
+        ttl = b'TBD'
         return True, ttl
 
     @EncryptedStoreSet.responder
@@ -293,9 +303,10 @@ class filesystemResponders(object):
         I: blob, type
         O: bool, ttl
         """
-        #if checksig(sig)
-        #if checkPermissionForEncryption()
+        # if checksig(sig)
+        # if checkPermissionForEncryption()
         self.redis.write(blob)
+        ttl = b'TBD'
         return True, ttl
 
     @StoreGet.responder
@@ -307,8 +318,9 @@ class filesystemResponders(object):
         """
         results = {}
         for request in keys:
-            #sql escape on this keyspace...
+            # sql escape on this keyspace...
             results[request] = self.redis.read(typeOf, request)
+        ttl = b'TBD'
         return results, ttl
 
     @EncryptedStoreGet.responder
@@ -318,13 +330,13 @@ class filesystemResponders(object):
         I: list of hashes, type
         O: list of blobs, ttl
         """
-        #checkReadPermission()
+        # checkReadPermission()
         results = {}
         for request in keys:
-            #sql escape...
+            # sql escape...
             results[request] = self.redis.read(typeOf, request)
+        ttl = b'TBD'
         return results, ttl
-
 
     @SeekGet.responder
     def SeekRespond(self, key, count, direction):
@@ -339,15 +351,18 @@ class filesystemResponders(object):
         if direction == True:
             seek = b'previous:'
         try:
+            # pylint: disable=unused-variable
             for c in count:
                 nextKey = self.redis.read(seek + current)
                 result.append(nextKey)
                 current = nextKey
+        # pylint: disable=bare-except
         except:
             if len(result) == 0:
                 return ErrNoPrevious()
             return ErrIncompleteListing()
         return result
+        # pylint: disable=bare-except
 
     @ResolveGet.responder
     def ResolveRespond(self, keyhash, typeOf):
@@ -356,14 +371,14 @@ class filesystemResponders(object):
         I: hash
         O: blob
         """
-        #check if that resolve exists?
-        #findFirst()
+        # check if that resolve exists?
+        # findFirst()
         current = keyhash.first()
-        for itter in keyHashList:
-            current = diff.apply(current,modification)
-        self.redis.write(b'resolved:'+keyhash,current)
+        keyHashList = []
+        for modification in keyHashList:
+            current = resolveDiff(current, modification)
+        self.redis.write(b'resolved:' + keyhash, current)
         return current
-
 
     @SearchRun.responder
     def SearchRespond(self, keyspace, term):

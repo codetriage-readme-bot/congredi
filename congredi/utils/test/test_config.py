@@ -18,7 +18,7 @@ class test_config(TimedTestCase):
         existsConf = configArr()
         assert newConf == existsConf
 
-    def test_bad_config(self):
+    def test_bad_config(self):  # test for 38-39
         """corrupt yaml -> blank config"""
         self.threshold = .1
 

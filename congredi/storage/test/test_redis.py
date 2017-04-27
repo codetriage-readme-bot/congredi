@@ -12,12 +12,10 @@ from ..redis import RedisStore
 from ..MockRedis import RedisMock
 
 
-
-
 class test_redis(TimedTestCase):
 
     def setUp(self):
-        self.conn = RedisMock()
+        self.conn = RedisMock(b'redis v1')
         self.RedisStore = RedisStore(self.conn)
         super(test_redis, self).setUp()
 
@@ -27,4 +25,5 @@ class test_redis(TimedTestCase):
         print('IMPLEMENT storage/test/test_redis')
         print(self.RedisStore._write(b'a', b'b'))
         print(self.RedisStore._read(b'a'))
+        print(self.RedisStore._del(b'a'))
         #assert b'b' == self.RedisStore._read(b'a')

@@ -27,6 +27,7 @@ from ..passport import passportResponders
 from ...storage.MockRedis import RedisMock
 from ...storage.MockNeo4j import Neo4jMock
 
+
 class test_passport(TimedTestCase):
 
     blacklist = []
@@ -42,9 +43,9 @@ class test_passport(TimedTestCase):
         self.peers = ['d', 'e']
         self.users = ['a', 'b', 'f']
         self.admins = ['c', 'g']
-        mockR = RedisMock()
-        mockN = Neo4jMock()
-        self.responderToTest = passportResponders(mockR,mockN)
+        mockR = RedisMock(b'redis v1')
+        mockN = Neo4jMock(b'neo4j v1')
+        self.responderToTest = passportResponders(mockR, mockN)
         super(test_passport, self).setUp()
 
     def test_passport_a(self):

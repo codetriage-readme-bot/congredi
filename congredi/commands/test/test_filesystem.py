@@ -18,12 +18,12 @@ class test_filesystem(TimedTestCase):
     responderToTest = None
 
     def setUp(self):
-        mock = RedisMock()
+        mock = RedisMock(b'redis v1')
         self.responderToTest = filesystemResponders(mock)
         super(test_filesystem, self).setUp()
 
     def test_command_a(self):
-        ourBlobs = [b'1',b'2']
-        ourReqs = [b'3',b'4']
-        self.responderToTest.SyncStorageTell(ourBlobs,ourReqs)
+        ourBlobs = [b'1', b'2']
+        ourReqs = [b'3', b'4']
+        self.responderToTest.SyncStorageTell(ourBlobs, ourReqs)
         print('IMPLEMENT tests/test_setting')

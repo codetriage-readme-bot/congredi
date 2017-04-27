@@ -177,7 +177,6 @@ class passportResponders(object):
         # would pull Neo4j online
         self.redis = GivenRedis
         self.neo4j = GivenNeo4j
-        pass
 
     @StoreRequest.responder
     def StoreGrant(self, pubkey, ttl):
@@ -186,7 +185,7 @@ class passportResponders(object):
         """
         # somehow store TTL?
         if self.neo4j.TrustWithin(3):
-            self.redis.write(b'permissions:store',pubkey)
+            self.redis.write(b'permissions:store', pubkey)
         signedStorage = b'TBD'
         ttl = b'TBD'
         return signedStorage, ttl
@@ -194,7 +193,7 @@ class passportResponders(object):
     @StoreEncryptedRequest.responder
     def StoreEncryptedGrant(self, pubkey, ttl):
         if self.neo4j.TrustWithin(2):
-            self.redis.write(b'permissions:storeEncrypted',pubkey)
+            self.redis.write(b'permissions:storeEncrypted', pubkey)
         signedStorage = b'TBD'
         ttl = b'TBD'
         return signedStorage, ttl
@@ -202,7 +201,7 @@ class passportResponders(object):
     @PublishRequest.responder
     def PublishGrant(self, pubkey, ttl):
         if self.neo4j.TrustWithin(3):
-            self.redis.write(b'permissions:publish',pubkey)
+            self.redis.write(b'permissions:publish', pubkey)
         signedPublish = b'TBD'
         ttl = b'TBD'
         return signedPublish, ttl
@@ -210,7 +209,7 @@ class passportResponders(object):
     @SubscribeRequest.responder
     def SubscribeGrant(self, pubkey, ttl):
         if self.neo4j.TrustWithin(2):
-            self.redis.write(b'permissions:subscribe',pubkey)
+            self.redis.write(b'permissions:subscribe', pubkey)
         signedSubscribe = b'TBD'
         ttl = b'TBD'
         return signedSubscribe, ttl
@@ -218,7 +217,7 @@ class passportResponders(object):
     @RendesvousRequest.responder
     def RendesvousGrant(self, pubkey, ttl):
         if self.neo4j.TrustWithin(1):
-            self.redis.write(b'rendesvous',pubkey)
+            self.redis.write(b'rendesvous', pubkey)
         signedRendesvous = b'TBD'
         ttl = b'TBD'
         return signedRendesvous, ttl
@@ -226,21 +225,25 @@ class passportResponders(object):
     @CourierRequest.responder
     def CourierGrant(self, pubkey, ttl):
         if self.neo4j.TrustWithin(1):
-            self.redis.write(b'courier',pubkey)
+            self.redis.write(b'courier', pubkey)
         signedCourier = b'TBD'
         ttl = b'TBD'
         return signedCourier, ttl
 
     @SanctuaryRequest.responder
-    def SanctuaryGrant(self, ):
+    def SanctuaryGrant(self, pubkey):
         if self.neo4j.TrustWithin(1):
-            self.redis.write(b'permissions:sanctuary',pubkey)
-        return signedRendesvous, ttl
+            self.redis.write(b'permissions:sanctuary', pubkey)
+        signedSanctuary = b'TBD'
+        ttl = b'TBD'
+        return signedSanctuary, ttl
 
     @SafePassageRequest.responder
-    def SafePassageGrant(self, ):
+    def SafePassageGrant(self, pubkey):
         if self.neo4j.TrustWithin(1):
-            self.redis.write(b'permissions:onion',pubkey)
-        return signedRendesvous, ttl
+            self.redis.write(b'permissions:onion', pubkey)
+        signedSafePassage = b'TBD'
+        ttl = b'TBD'
+        return signedSafePassage, ttl
 # congredi/commands/passport.py               50      9    82%   177, 184,
 # 188, 192, 196, 200, 204, 208, 212

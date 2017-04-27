@@ -23,6 +23,8 @@ from twisted.protocols.amp import Argument
 # class inheritance?
 # Encrypted Boolean
 
+# pylint: disable=arguments-differ
+
 
 class EncBool(Argument):
 

@@ -22,17 +22,15 @@ from ...utils.timing import TimedTestCase
 from ..setting import settingResponders
 from ...storage.MockRedis import RedisMock
 
+
 class test_setting(TimedTestCase):
     responderToTest = None
 
     def setUp(self):
-        mock = RedisMock()
+        mock = RedisMock(b'redis v1')
         self.responderToTest = settingResponders(mock)
         super(test_setting, self).setUp()
 
     def test_command_a(self):
-        if self.responderToTest == None:
-            print('responder not loaded...')
-            self.responderTotest = settingResponders()
         self.responderToTest.ChangePrivateBlacklist('a', 'b', 'c')
         print('IMPLEMENT tests/test_setting')

@@ -16,7 +16,7 @@ class test_addresses(TimedTestCase):
     responderToTest = None
 
     def setUp(self):
-        mock = RedisMock()
+        mock = RedisMock(b'redis v1')
         self.responderToTest = addressesResponders(mock)
         super(test_addresses, self).setUp()
 

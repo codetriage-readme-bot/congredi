@@ -102,6 +102,7 @@ class CongrediPeerProtocol(AMP, addressesResponders, filesystemResponders,
         logger.info('lost connection of %s', self._peer)
         self.factory.clients.remove(self)
         super(CongrediPeerProtocol, self).connectionLost(reason)
+    # pylint: disable=useless-super-delegation
 
     def dataReceived(self, data):  # test
         super(CongrediPeerProtocol, self).dataReceived(data)

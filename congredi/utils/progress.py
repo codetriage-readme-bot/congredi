@@ -3,6 +3,8 @@
 import math
 from progressbar import AnimatedMarker, Bar, Counter, ETA, \
     Percentage, Widget, ProgressBar, Timer
+
+
 class Speed(Widget):
     FORMAT = '%6.2f %s/s'
     PREFIXES = 'okMGTPEZY'
@@ -10,7 +12,7 @@ class Speed(Widget):
     def update(self, pbar):
         """Updates the widget with the current SI prefixed speed."""
 
-        if pbar.seconds_elapsed < 2e-6 or pbar.currval < 2e-6: # =~ 0
+        if pbar.seconds_elapsed < 2e-6 or pbar.currval < 2e-6:  # =~ 0
             scaled = power = 0
         else:
             speed = pbar.currval / pbar.seconds_elapsed
@@ -18,7 +20,7 @@ class Speed(Widget):
             scaled = speed / 1000.**power
 
         return self.FORMAT % (scaled, self.PREFIXES[power])
-#http://www.artima.com/weblogs/viewpost.jsp?thread=240845
+# http://www.artima.com/weblogs/viewpost.jsp?thread=240845
 # class example(object):
 #     # def wrapped(*args):
 #     #     f(args)
@@ -33,10 +35,13 @@ class Speed(Widget):
 #         print "Inside __call__()"
 #         self.f(*args)
 # @example
+
+
 def together(interval=10000):
-    things=[AnimatedMarker(), " ", Counter(), "/{} ".format(interval), Percentage(), ' ', Speed(), ' ', Bar(), ' ', Timer(), ' ', ETA()]
+    things = [AnimatedMarker(), " ", Counter(), "/{} ".format(interval),
+              Percentage(), ' ', Speed(), ' ', Bar(), ' ', Timer(), ' ', ETA()]
     pbar = ProgressBar(widgets=things, maxval=interval).start()
     for i in range(interval):
-        pbar.update(i+1)
+        pbar.update(i + 1)
     pbar.finish()
-#together(100000000)
+# together(100000000)

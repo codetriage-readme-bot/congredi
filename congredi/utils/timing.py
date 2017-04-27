@@ -8,6 +8,8 @@ from __future__ import print_function
 from __future__ import unicode_literals
 import unittest
 import time
+
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -19,13 +21,16 @@ class bcolors:
     UNDERLINE = '\033[4m'
 warning = bcolors.WARNING + 'Timing Warning' + bcolors.ENDC + \
     ': Test Took ' + bcolors.BOLD + '%.2f' + bcolors.ENDC + \
-    's (threshold '+ bcolors.FAIL + '%.2f' + bcolors.ENDC + 's)'
+    's (threshold ' + bcolors.FAIL + '%.2f' + bcolors.ENDC + 's)'
+
+
 class TimedTestCase(unittest.TestCase):
-    
+
     def setUp(self):
         #print('ran setup for %s' % self.id())
         self.threshold = .5
         self._time_started = time.time()
+
     def tearDown(self):
         elapsed = time.time() - self._time_started
         if elapsed > self.threshold:

@@ -7,12 +7,10 @@ Will need to look into each of the times this is used.
 """
 import sys
 # CharDet...
-# pylint: disable=redefined-variable-type
 if sys.version_info < (3, 0):
     PY3 = False
     # base_str = (str, unicode)
-    # pylint: disable=undefined-variable
-    text_type = unicode
+    text_type = unicode  # pylint: disable=undefined-variable
     # pylint: enable=undefined-variable
     bin_type = str
 else:  # not used in py2 coverage
@@ -20,7 +18,6 @@ else:  # not used in py2 coverage
     # base_str = (bytes, str)
     text_type = str
     bin_type = (bytes, bytearray)
-# pylint: enable=redefined-variable-type
 
 # will need to write tests for these
 # and in general just avoid not telling what type variables are
