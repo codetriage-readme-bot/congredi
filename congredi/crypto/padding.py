@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 All Or Nothing Padding (coulda just used the library's version)
+
+    padding can use a lesser KDF (1,000 vs 10,000)
+
 """
 # Crypto.Protocol.AllOrNothing
 from __future__ import absolute_import
@@ -20,7 +23,7 @@ def AONTencrypt(content):
     that password if you have all the
     content.
     """
-    key_raw = random_aes_32_key()
+    key_raw = random_aes_32_key() # could use weaker 1,000 KDF...
     token = default_aes(key_raw).encrypt(content)
     """
     hash the token, then xor with the 32 bit key.
@@ -43,7 +46,7 @@ def AONTdecrypt(cyphertext):
     The last 32 bits of the cyphertext are the xor of
     the hash of the preceeding cypher, and the 32 bit key.
     pulling that together into a base64 string allows
-    fernet to decrypt the content.
+    AES to decrypt the content.
     """
     hashable = make_hash(cyphertext[:-32]).digest()
     key_xored = cyphertext[-32:]

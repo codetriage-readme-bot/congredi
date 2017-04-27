@@ -22,7 +22,7 @@ badOpts = {
 class test_options(TimedTestCase):
 
     def test_good_options(self):
-        """All of these options should be good:"""
+        """All of these options should be good: NO ASSERT"""
         self.threshold = .4
         for opts in goodOpts.values():
             print(opts)

@@ -28,7 +28,7 @@ class test_router(TimedTestCase):
         onion("key")
 
     def test_impossible(self):
-        """Impossible Route"""
+        """Impossible Route - catches itself if an impossible route returns without NoRouteError"""
         self.threshold = .2
         r = router('e')
         r.nodes = ["a", "b", "c", "d", "e", "f", "g", "1", "2", "3"]

@@ -1,5 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+RSA classes (not using signed digest at the end, currently)
+
+    current: [RSA pubkey(256 bit AES key)][AES(padding(message))]
+    new: <[RSA pubkey(256 bit AES key)][AES(padding(message))]>[RSA privkey(32 HASH(ciphertext))]
+
+"""
+
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals

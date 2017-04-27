@@ -1,5 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+"""
+    progressBars for functions (could use on client side)
+"""
 import math
 from progressbar import AnimatedMarker, Bar, Counter, ETA, \
     Percentage, Widget, ProgressBar, Timer

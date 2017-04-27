@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 Coordinated port opening for testing.
+
+    Is there a simpler way to do this...
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

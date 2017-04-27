@@ -3,6 +3,9 @@
 """
 Map a directed acyclic graph from one user to another,
 and map objects that people use (possibly a minimum number of people use)
+
+    pull from Neo4j examples
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

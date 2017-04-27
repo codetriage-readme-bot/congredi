@@ -1,3 +1,9 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+"""
+These are markdown sources for Diff problems.
+"""
+
 from __future__ import unicode_literals
 source = b"""
 Hello, *world*! This is a ~~good~~marvelous day!

@@ -97,6 +97,7 @@ class test_censor(TimedTestCase):
             print('Windows tests will not check valid english')
         else:
             assert test.check(b'#This *is* valid content')
+    # Broken Test...
     # def test_valid_chinese():
     #	print('Should pass:')
     #	print(test.block('#Hello 你好'))

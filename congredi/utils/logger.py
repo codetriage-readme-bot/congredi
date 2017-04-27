@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 Log management (could use twisted's log utility, but must have formating ability)
+
+    maintenance: look for usage across codebase, simplify (keep it simple, stupid)
+
 """
 #from twisted.python import log
 # log.startLogging(sys.stdout)

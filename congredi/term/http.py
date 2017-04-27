@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-http API 
+http API
+
+    Redo the spec for the api on github.com/congredi/spec
 
 # authorization stuff
 /auth/new           - check DB, get long term JWT

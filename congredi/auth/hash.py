@@ -1,5 +1,10 @@
 #!/usr/bin/env python
-# example of proof of work algorithm
+# -*- coding: utf-8 -*-
+"""
+example of proof of work algorithm - need to redo nonce-difficulty
+"""
+
+
 import hashlib
 import time
 max_nonce = 2 ** 32  # 4 billion

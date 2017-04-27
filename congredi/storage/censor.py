@@ -22,6 +22,9 @@ And that it contains no information that could be harmful. It'll be decoded,
 escaped, into a markdown format, so XSS is still a problem, but should obey
 the encoding we give it (ASCII/UTF-8/others?)
 
+
+    this object doesn't update censor properties in tests
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

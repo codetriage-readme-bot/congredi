@@ -2,6 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 Runner tests
+
+    again, simplify API
+
+    tests will run consecutive store/retrieves on good/bad values
+
+    a partial integration test, but peer-peer AMP has a regression
+    that's not in StringTransport :/
+
 """
 from __future__ import absolute_import
 from __future__ import print_function

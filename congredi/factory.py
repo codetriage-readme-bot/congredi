@@ -92,6 +92,9 @@ class CongrediPeerFactory(protocol.Factory):
         return proto
 
     def ping(self):  # test
+        """
+        factory version of ping (though /should/ be using protocol?)
+        """
         logger.info('pinging routine started.')
         for client in self.clients:
             info = client._peer

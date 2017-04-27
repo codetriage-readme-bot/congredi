@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 command line options
+
+	a bit frustrating for out-of-order parameters (see below)
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

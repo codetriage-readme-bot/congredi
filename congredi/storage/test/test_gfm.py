@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 HTML tests
+
+moving away from using HTML on the Python client.
+
 """
 from __future__ import absolute_import
 from __future__ import print_function

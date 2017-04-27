@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 testing coordination code
+
+    Again, will need to simplify this.
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

@@ -4,6 +4,21 @@
 PY3 Compatibility
 
 Will need to look into each of the times this is used.
+
+    cast to binary:
+    ./congredi/storage/test/test_censor.py
+    ./congredi/storage/censor.py
+    ./congredi/storage/zlibs.py
+
+    cast to string:
+    ./congredi/storage/diff.py
+
+    possibly better to just cast diff's output to binary, fewer steps involved
+
+
+    running an if statement on the required types,
+    better to check a global PY3 in areas where PY2/PY3 return STRs differ.
+
 """
 import sys
 # CharDet...

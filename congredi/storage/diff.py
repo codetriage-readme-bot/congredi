@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 Diff utils (instead of using a raw git library - a design problem)
+
+    move to unified diff forward/backward
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

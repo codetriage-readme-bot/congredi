@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-command line options
+pairwise implementation (used in ../storage/Router)
+
+should this be used anywhere else, or moved into Router?
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Fernet class
+AES class (padding inclusive, yes RSA knows about that)
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

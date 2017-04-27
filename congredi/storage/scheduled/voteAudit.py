@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 Periodically audit a vote
+
+    recursive on vote process (see commands/proofs/vote)
+
+    delete? send error back to other clients? certify bit?
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

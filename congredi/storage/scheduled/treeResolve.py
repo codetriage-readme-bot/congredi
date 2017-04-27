@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-periodically resolve a tree
+periodically resolve a git tree
+
+    recursive ask from contacts on tree contents.
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

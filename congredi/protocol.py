@@ -121,7 +121,13 @@ class CongrediPeerProtocol(AMP, addressesResponders, filesystemResponders,
 
     @SyncPeerDirectoryAsk.responder
     def hello(self, name, port):  # test
+        """
+            Respond with directory ASKs, though this function
+            is using a simple "hello I'm host:port". Recusion
+            through factory clients
+        """
         logger.info('running an onion')
+        # this differs from tests
         print('ONIONYALL')
         for c in self.factory.clients:
             #port = reactor.connectTCP(name, port, factory)

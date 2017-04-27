@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 """
 Redis Mock code
+
+    The actual code is using RSet/RGet, outside of classes.
+    Need the @defer.inlineCallbacks to work within a class :/
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

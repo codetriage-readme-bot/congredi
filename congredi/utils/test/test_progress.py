@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-options testing
+progress test (count to 1000)
 """
 from __future__ import absolute_import
 from __future__ import print_function

@@ -2,6 +2,16 @@
 # -*- coding: utf-8 -*-
 """
 main client class - terminal
+
+    This should start either with or without a peer.
+
+    should it stream input or be a REPL??
+
+    REPL is easiest to implement.
+
+    just duplicate commands from HTTP API or KISS with one BSON interface...
+    ugh then we loose async...
+
 """
 from __future__ import absolute_import
 from __future__ import print_function

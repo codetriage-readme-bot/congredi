@@ -14,6 +14,9 @@ import uuid
 from .interface import abstractStorageProvider
 # RedLock()
 
+# will need to pull from settings... shouldn't ConfigArr have this?
+connaddr = 'localhost'
+connport = 6379
 
 def redisSetup(host, port):  # test
     return redis.Connection(host, port)
@@ -23,7 +26,7 @@ class RedisStore(abstractStorageProvider):
 
     def __init__(self, connection=None):  # test
         if connection == None:
-            self._conn = redisSetup('localhost',6379)
+            self._conn = redisSetup(connaddr,connport)
         super(RedisStore, self).__init__(connection)
 
     # actual writers
@@ -62,7 +65,7 @@ class RedisStore(abstractStorageProvider):
 # Condensed txredisapi example... but where should yield go?
 @defer.inlineCallbacks
 def Rget(key):  # test
-    rc = yield redis.Connection("localhost")
+    rc = yield redis.Connection(connaddr)
     value = yield rc.get(key)
     # logger.info('got %(key)s:%(value)s', {'key': key, 'value': value})
     yield rc.disconnect()
@@ -71,7 +74,7 @@ def Rget(key):  # test
 
 @defer.inlineCallbacks
 def Rset(key, value):  # test
-    rc = yield redis.Connection("localhost")
+    rc = yield redis.Connection(connaddr)
     res = yield rc.set(key, value)
     # logger.info('set (%s) %s:%s', res, key, value)
     yield rc.disconnect()
@@ -80,7 +83,7 @@ def Rset(key, value):  # test
 
 @defer.inlineCallbacks
 def Rdelete(key):  # test
-    rc = yield redis.Connection("localhost")
+    rc = yield redis.Connection(connaddr)
     n = yield rc.delete(key)
     # logger.info('deleted (%s) %s', n, key)
     yield rc.disconnect()
@@ -93,7 +96,7 @@ def RrandKey():  # test
 
 @defer.inlineCallbacks
 def todoAdd(mutexKey, todoList, key):  # test
-    rc = yield redis.Connection("10.230.78.120")
+    rc = yield redis.Connection(connaddr)
     mutexKey.aquire()
     ret = yield rc.lpush(todoList, key)
     logger.info('Updated Todo list %(list)s: %(key)s:%(ret)s',
@@ -105,7 +108,7 @@ def todoAdd(mutexKey, todoList, key):  # test
 
 @defer.inlineCallbacks
 def todoRemove(mutexKey, todoList):  # test
-    rc = yield redis.Connection("10.230.78.120")
+    rc = yield redis.Connection(connaddr)
     mutexKey.aquire()
     ret = yield rc.rpop(todoList)
     logger.info('Grabbed from Todo list %(list)s: %(ret)s',

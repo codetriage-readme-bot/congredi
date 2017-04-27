@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Redis Mock code
+Mock Storage code
+
+    should abstract the get/set methods into a mock storage.
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

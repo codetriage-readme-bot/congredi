@@ -32,6 +32,7 @@ def run():
     if args.help:
         MainOptions.print_help()
         sys.exit(0)
+    # did I set the right config order in the spec?
     config = configArr()
     initialKey = config['admins']
     initialUsers = config['users']

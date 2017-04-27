@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 test logger
+## all code should be importing from ..logger, not using import logging.
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

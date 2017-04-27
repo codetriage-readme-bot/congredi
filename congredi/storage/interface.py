@@ -11,6 +11,8 @@ import six
 from ..utils.whoops import CongrediError
 
 
+# could pull error classes into ..utils.whoops
+
 class CongrediBadInterfaceError(CongrediError):
     pass
 
@@ -43,7 +45,10 @@ class abstractStorageProvider(six.with_metaclass(ABCMeta, object)):
     def _lockRead(self, keyspace):
         raise NotImplementedError()
 
-
+"""
+consumer item is confusing, should raise that error within
+the code that consumes those abstract providers (commands/[addresses,filesystem], etc)
+"""
 class abstractStorageConsumer(object):
 
     def __init__(self, storage):

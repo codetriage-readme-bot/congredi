@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Timing tests, not using assert (need to test color?)
+"""
 from ..timing import TimedTestCase
 import time
 

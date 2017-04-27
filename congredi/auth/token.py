@@ -8,6 +8,12 @@ public key cryptography).
 Tokens provide heartbeat functionality, and do not log the user directly
 into the database. Any of the methods in "register" give the user a long-term
 JWT by using these functions.
+
+Currently no expire function exists without turning over the main auth key,
+and that would need to tell other gateways that the main key needs to rotate.
+
+Maybe someone has a better way of handling short JWT-style auths?
+
 """
 from __future__ import absolute_import
 from __future__ import print_function

@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 """
 client tests
+
+    Can /technically/ execute StringTransport, while the actual connections
+    have problems these tests are finding.
+
 """
 from __future__ import absolute_import
 from __future__ import print_function

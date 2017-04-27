@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Compression/packetization functions
+
+    splitting diffs / compressing for sending
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

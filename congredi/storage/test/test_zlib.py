@@ -24,7 +24,11 @@ class test_zlib(TimedTestCase):
     res = None
 
     def test_split(self):
-        """Split something into chunks"""
+        """
+            Split something into chunks
+            passes if it doesn't throw errors
+            next design should split into a known number of chunks and assert()
+        """
         self.threshold = .2
         self.splits = chunkSplit(source)
         print((len(self.splits)))

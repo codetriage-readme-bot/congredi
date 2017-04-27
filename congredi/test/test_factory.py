@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 factory tests
+
+    regression on StringTransport vs real TCP needs addressing...
+
 """
 from __future__ import absolute_import
 from __future__ import print_function

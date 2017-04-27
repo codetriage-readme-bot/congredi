@@ -1,3 +1,12 @@
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Key Deriviation (weak or strong)
+
+optimization: will need to clarify which functions use the
+1,000 vs 10,000 cycle KDF.
+"""
 # from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 # from cryptography.hazmat.primitives import hashes
 # from cryptography.hazmat.backends import default_backend

@@ -1,7 +1,27 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-general tests
+AMP Types, which have a to-string/from-string mentality, though
+they don't actually have to be strings, just of a finite length.
+
+    Each of these tests runs b'b' == obj.fromString(obj.toString(b'b'))
+
+    PrivAES
+    EncBlob
+    ObjBlob
+    ObjSig
+    EncSig
+    EncHash
+    ObjHash
+    EncPubKey
+    ObjPubKey
+    EncAddress
+    ObjAddress
+    EncBool
+
+    We can (and should) run oracles to test the limits of the types (empty/lists/dicts/objs)
+    That'll be using an extended ../utils/censorable.py for lists/dicts
+
 """
 from __future__ import absolute_import
 from __future__ import print_function

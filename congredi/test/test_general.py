@@ -1,7 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-general tests
+general tests for string behavior. If these fail,
+lots of tests that use string interpolation will
+error because of the string interpolation.
+
+This is a good catch for people writing a test
+with a buggy print statement.
+
+Then again, there's always pylint.
+
+Thank You Py2/3 compatibility problems...
+
 """
 from __future__ import absolute_import
 from __future__ import print_function

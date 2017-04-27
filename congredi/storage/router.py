@@ -116,7 +116,8 @@ def GetPacket():  # AMP.TLS): # test
         _send(mesg, addr)
 
 
-def SendPacket():  # AMP.TLS): # test
+def SendPacket():  All Or Nothing Padding (coulda just used the library's version)
+# AMP.TLS): # test
     cKey = AES()
     ctxt = cKey.encrypt(message)
     val = recipient.encrypt(cKey)

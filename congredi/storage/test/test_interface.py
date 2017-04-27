@@ -1,7 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Redis object tests
+Abstract Interface Provider tests
+
+    basic checks for good/bad interface code:
+
+    the interfaces need to have certain functions, and while
+    we're not checking that the outputs match (feature), this
+    is a basic check that the stated internal API of a developed
+    driver matches.
+
+    These checks are of an interface that has what it
+    needs, and one that doesn't have everything, to test
+    our CongrediBadInterfaceError & CongrediIncompatibleVersionError
+
+    Feature: Check function return signatures on an abstract-method?
+
 """
 from __future__ import absolute_import
 from __future__ import print_function

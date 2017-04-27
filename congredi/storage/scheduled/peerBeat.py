@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 """
 Check if peer is online, check latest trees that people subscribe to
+
+    Two functions are missusing Ask() parameters from the rewrite.
+    Make sure to neaten everything and set that in the spec.
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

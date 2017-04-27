@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 Hash function (No clue why)
+
+    currently through PyCryptoDome.Hash.SHA256
+
 """
 from __future__ import absolute_import
 from __future__ import unicode_literals

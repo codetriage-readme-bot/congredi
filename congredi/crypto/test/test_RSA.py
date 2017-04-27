@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 tests for curve
+
+    - check number of KDFs
 """
 from __future__ import absolute_import
 from __future__ import print_function

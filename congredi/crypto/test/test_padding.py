@@ -26,6 +26,7 @@ class test_padding(TimedTestCase):
         print(type(plaintext))
         print(("plaintext hex is: %s" % binascii.hexlify(plaintext)))
         print(("plaintext is: %s" % plaintext))
+        assert plaintext == value
 
     def test_gauntlet(self):
         """10 random AONTs - message should decrypt"""

@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Testing hashes
+Testing hashes (currently testing only one hash, should test more?)
+    test via oracle? Use external utility? sha256sum with ps/shell?
 """
 from __future__ import absolute_import
 from __future__ import print_function

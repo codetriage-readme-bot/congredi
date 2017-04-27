@@ -2,6 +2,15 @@
 # -*- coding: utf-8 -*-
 """
 randomness function libraries
+
+    extensions need to include lists, dictionaries, and empty objects.
+
+    Possibly rename this into oracle.py
+
+    current tests only use a small amount of hex code, could use base64 for
+    wider oracle range of valid ASCII, or even a UTF-8 oracle for some of the
+    STR functions.
+
 """
 import binascii
 import os

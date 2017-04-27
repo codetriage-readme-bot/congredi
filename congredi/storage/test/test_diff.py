@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-tests on the simplistic censor library.
+tests on the diff utils
 """
 from __future__ import absolute_import
 from __future__ import print_function
