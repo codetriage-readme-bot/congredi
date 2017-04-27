@@ -62,6 +62,9 @@ setup(name='congredi',
       tests_require=[
           'setuptools-green',
           'green>=2.5.3',
+        #   'astroid',
+        #   'zope',
+        #   'enum34',
           'setuptools-lint',
           'pylint'
       ],

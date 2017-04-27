@@ -90,14 +90,18 @@ class addressesResponders(object):
     # ask the directory, while sending your own
 
     @SyncPeerDirectoryAsk.responder
-    def SyncPeerDirectoryTell(self, yourPeers):
+    # yourPeers):
+    def SyncPeerDirectoryTell(self, dir_pubkey, dir_addrs, dir_ports):
         """
         in: list((key,ip))
         out: list((key,ip))
         """
-        myPeers = self.redis.read(b'list:peers')
-        self.redis.write(b'todo:peers', yourPeers)
-        return myPeers
+        # myPeers
+        dir_addrs = self.redis.read(b'list:peers')
+        # self.redis.write(b'todo:peers', yourPeers)
+
+        return dir_pubkey, dir_addrs, dir_ports
+        # return myPeers
 
     @SyncRendesvousDirectoryAsk.responder
     def SyncRendesvousDirectoryTell(self, yourRendesvous):

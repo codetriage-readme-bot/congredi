@@ -96,9 +96,9 @@ class CongrediPeerFactory(protocol.Factory):
         for client in self.clients:
             info = client._peer
             logger.info('pinging peer at: %(host)s:%(port)d',
-                        (info.host, info.port))
+                        {b'host': info.host, b'port': info.port})
             d = client.callRemote(
-                SyncPeerDirectoryAsk, name=self.host, port=int(self.port))
+                SyncPeerDirectoryAsk, dir_pubkey=b'a', dir_addrs=b'a', dir_ports=[1, 2])  # name=self.host, port=int(self.port))
             d.addCallback(gotit)
             d.addErrback(whoops)
 

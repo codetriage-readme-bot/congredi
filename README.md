@@ -7,13 +7,15 @@
 individuals write changes to repositories of text, that are then
 voted on by organizations to find a consensus.
 
-***Better description to be made later***
+***Slowly waking up this project...***
 
 
 Think that's useful? Give it a try! If you have any feature requests or questions,
 hop on over to gitter & [waffle](https://waffle.io/congredi/congredi). I'm looking for contributors on some issues.
 
 Build status (2.7 full coverage, windows & 3.* python have spotty test coverage)
+
+**updates: python3 pylint is not automatically installed correctly...**
 
 Linux/Mac: [![Build Status Travis](https://travis-ci.org/congredi/congredi.svg?branch=master)](https://travis-ci.org/congredi/congredi)
 Windows: [![Build status Windows](https://ci.appveyor.com/api/projects/status/mo003x9ygpnb316q?svg=true)](https://ci.appveyor.com/project/Thetoxicarcade/congredi)
