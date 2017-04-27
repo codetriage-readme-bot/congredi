@@ -58,10 +58,9 @@ def run():
         hello_factory = CongrediPeerFactory()
         hello_host, hello_port = fileCoord.read()
         logger.info('We\'re going to say hello to %(host)s:%(port)d!',
-                    (hello_host, hello_port))
+                    {b'host':hello_host, b'port':int(hello_port)})
         reactor.connectTCP(host=hello_host, port=int(
             hello_port), factory=hello_factory)
-
         listening_factory = CongrediPeerFactory()
 
         user_endpoint = TCP4ServerEndpoint(reactor, int(args.port))

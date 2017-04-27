@@ -76,37 +76,42 @@ class CongrediPeerProtocol(AMP, addressesResponders, filesystemResponders,
         # self.users = starts  # self.prefix = prefix
         super(CongrediPeerProtocol, self).__init__()
 
-    # def incomingConnectionBegin(self, data):  # test
-    #     super(CongrediPeerProtocol, self).incomingConnectionBegin(data)
-    #     """De-lace router-encrypted trafic, tell if this connection is an onion, or a direct command"""
-    #     # if data[0] == "Congredi Request forward to ":
-    #     #    self.state = "ONION"
-
-    def makeConnection(self, transport):  # test
-        self.transport = transport
-        super(CongrediPeerProtocol, self).makeConnection(transport)
-
+    # # def incomingConnectionBegin(self, data):  # test
+    # #     super(CongrediPeerProtocol, self).incomingConnectionBegin(data)
+    # #     """De-lace router-encrypted trafic, tell if this connection is an onion, or a direct command"""
+    # #     # if data[0] == "Congredi Request forward to ":
+    # #     #    self.state = "ONION"
+    #
+    # def makeConnection(self, transport):  # test
+    #     self.transport = transport
+    #     super(CongrediPeerProtocol, self).makeConnection(transport)
+    #
     def connectionMade(self):  # ,client): # test
         self._peer = self.transport.getPeer()
         logger.info('new connection of %s', self._peer)
         self.factory.clients.append(self)
         if self.name not in self.factory.activePeers:
             self.factory.activePeers.append(self._peer)
+
         self.factory.numProtocols = self.factory.numProtocols + 1
+        print('Factory has {} conns'.format(self.factory.numProtocols))
         super(CongrediPeerProtocol, self).connectionMade()
-
-    def connectionLost(self, reason):  # ,client): # test
-        self.factory.numProtocols = self.factory.numProtocols - 1
-        if self._peer in self.factory.activePeers:
-            self.factory.activePeers.remove(self._peer)
-        logger.info('lost connection of %s', self._peer)
-        self.factory.clients.remove(self)
-        super(CongrediPeerProtocol, self).connectionLost(reason)
-    # pylint: disable=useless-super-delegation
-
-    def dataReceived(self, data):  # test
-        super(CongrediPeerProtocol, self).dataReceived(data)
-
+    #
+    # def connectionLost(self, reason):  # ,client): # test
+    #     self.factory.numProtocols = self.factory.numProtocols - 1
+    #     if self._peer in self.factory.activePeers:
+    #         self.factory.activePeers.remove(self._peer)
+    #     logger.info('lost connection of %s', self._peer)
+    #     self.factory.clients.remove(self)
+    #     super(CongrediPeerProtocol, self).connectionLost(reason)
+    # # pylint: disable=useless-super-delegation
+    #
+    # def dataReceived(self, data):  # test
+    #     try:
+    #         print('{}'.format(data))
+    #     except: pass
+    #     super(CongrediPeerProtocol, self).dataReceived(data)
+    #
     # def lineReceived(self, line):  # test
     #     logger.info("line in: " + str(line))
     #     super(CongrediPeerProtocol, self).lineReceived(line)
@@ -117,6 +122,7 @@ class CongrediPeerProtocol(AMP, addressesResponders, filesystemResponders,
     @SyncPeerDirectoryAsk.responder
     def hello(self, name, port):  # test
         logger.info('running an onion')
+        print('ONIONYALL')
         for c in self.factory.clients:
             #port = reactor.connectTCP(name, port, factory)
             c.callRemote(SyncPeerDirectoryAsk, self.host, self.port)

@@ -18,6 +18,8 @@ from __future__ import unicode_literals
 # , String, Boolean, DateTime
 from twisted.protocols.amp import Command, Integer, ListOf
 from ..types import ObjAddress, ObjPubKey
+import logging
+logger = logging.getLogger('congredi')
 #ObjHash, ObjSig,
 
 # find address from outside
@@ -39,6 +41,9 @@ class SyncPeerDirectoryAsk(Command):
     response = [(b'dir_pubkey', ListOf(ObjPubKey())),
                 (b'dir_addrs', ListOf(ObjAddress())),
                 (b'dir_ports', ListOf(Integer()))]
+    def __init__(self,commandType, *a, **kw):
+        print('Command Created')
+        super(SyncPeerDirectoryAsk).__init__(commandType, *a, **kw)
     """
     in: list((key,ip))
     out: list((key,ip))
@@ -96,6 +101,8 @@ class addressesResponders(object):
         in: list((key,ip))
         out: list((key,ip))
         """
+        logger.info('HELLOPWE')
+        print('SyncPeerDirectoryAsk')
         # myPeers
         dir_addrs = self.redis.read(b'list:peers')
         # self.redis.write(b'todo:peers', yourPeers)

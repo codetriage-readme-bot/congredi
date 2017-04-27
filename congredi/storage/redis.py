@@ -21,8 +21,9 @@ def redisSetup(host, port):  # test
 
 class RedisStore(abstractStorageProvider):
 
-    def __init__(self, connection):  # test
-        self._conn = connection
+    def __init__(self, connection=None):  # test
+        if connection == None:
+            self._conn = redisSetup('localhost',6379)
         super(RedisStore, self).__init__(connection)
 
     # actual writers
@@ -61,27 +62,27 @@ class RedisStore(abstractStorageProvider):
 # Condensed txredisapi example... but where should yield go?
 @defer.inlineCallbacks
 def Rget(key):  # test
-    rc = yield redis.Connection("10.230.78.120")
+    rc = yield redis.Connection("localhost")
     value = yield rc.get(key)
-    logger.info('got %(key)s:%(value)s', {'key': key, 'value': value})
+    # logger.info('got %(key)s:%(value)s', {'key': key, 'value': value})
     yield rc.disconnect()
     defer.returnValue(value)
 
 
 @defer.inlineCallbacks
 def Rset(key, value):  # test
-    rc = yield redis.Connection("10.230.78.120")
+    rc = yield redis.Connection("localhost")
     res = yield rc.set(key, value)
-    logger.info('set (%s) %s:%s', res, key, value)
+    # logger.info('set (%s) %s:%s', res, key, value)
     yield rc.disconnect()
     defer.returnValue(res)
 
 
 @defer.inlineCallbacks
 def Rdelete(key):  # test
-    rc = yield redis.Connection("10.230.78.120")
+    rc = yield redis.Connection("localhost")
     n = yield rc.delete(key)
-    logger.info('deleted (%s) %s', n, key)
+    # logger.info('deleted (%s) %s', n, key)
     yield rc.disconnect()
     defer.returnValue(n)
 

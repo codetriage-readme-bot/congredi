@@ -62,7 +62,7 @@ class CongrediPeerFactory(protocol.Factory):
         #reactor.callLater(2, redis_test)
         #task.deferLater(reactor, 60, hiya).addCallback(lambda _: reactor.stop())
         loop = task.LoopingCall(peerBeat)
-        loopDeferred = loop.start(10.0)
+        loopDeferred = loop.start(15.0)
         loopDeferred.addCallback(peerSuccess)
         loopDeferred.addErrback(peerFailure)
 
@@ -97,13 +97,15 @@ class CongrediPeerFactory(protocol.Factory):
             info = client._peer
             logger.info('pinging peer at: %(host)s:%(port)d',
                         {b'host': info.host, b'port': info.port})
+            # bug
             d = client.callRemote(
-                SyncPeerDirectoryAsk, dir_pubkey=b'a', dir_addrs=b'a', dir_ports=[1, 2])  # name=self.host, port=int(self.port))
+                SyncPeerDirectoryAsk, dir_pubkey=b'a', dir_addrs=b'a', dir_ports=[1, 2])
             d.addCallback(gotit)
             d.addErrback(whoops)
 
 
 def gotit(result):
+    print('GotIt Called')
     logger.critical(result)
 # congredi/factory.py                         57     16    72%   59-60,
 # 75, 79, 83, 86, 91-92, 95-103, 107

@@ -7,11 +7,6 @@ from __future__ import absolute_import
 from __future__ import unicode_literals
 from .mock import MockStorage
 # https://seeknuance.com/2012/02/18/replacing-redis-with-a-python-mock/
-# try:
-#     import redis
-#     RedisMock = redis.connect('localhost')
-# except AttributeError:
-
 
 class RedisMock(MockStorage):  # object
     arr = {}

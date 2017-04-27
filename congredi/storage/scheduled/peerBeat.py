@@ -44,17 +44,17 @@ shutDown = False
 
 @defer.inlineCallbacks
 def peerBeat():  # repeating peer-beat task
-    logger.info('peer heartbeat start')
+    # logger.info('peer heartbeat start')
     config = configArr()
     for admin in config['admins']:
-        logger.info('begin for admin: %s', admin)
+        # logger.info('begin for admin: %s', admin)
         # test after the yields...
         retset = yield Rset('admins', admin)
         retget = yield Rget('admins')
         retdel = yield Rdelete('admins')
-        logger.info('set response:' + retset)
-        logger.info('get response:' + retget)
-        logger.info('delete response: %s', retdel)
+        # logger.info('set response:' + retset)
+        # logger.info('get response:' + retget)
+        # logger.info('delete response: %s', retdel)
     # if shutDown:
     #	loop.stop()
 
