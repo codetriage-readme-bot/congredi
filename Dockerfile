@@ -1,10 +1,10 @@
 FROM python:2.7-alpine
 MAINTAINER Cameron Whiting "thetoxicarcade@gmail.com"
 ADD requirements.txt /
-RUN apk add --update gcc g++ gmp libstdc++ && \
+RUN apk add --update gcc g++ make libffi-dev openssl-dev && \
 	pip install -r requirements.txt setuptools-green green setuptools-lint pylint && \
-	apk del gcc g++
-#	apk add libstdc++
+	apk del gcc g++ make && \
+	apk add libstdc++ libcrypto1.0 openssl-dev
 # - FIXME on the del-then-re-add-libstdc++
 
 # -- The above is a "base" layer. Don't touch it for faster builds. --
