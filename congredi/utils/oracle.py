@@ -1,3 +1,5 @@
+import random as rand
+import binascii, os
 hexy = {
     # Fix to bypass dictionary as "english"
     "0": b"Zero", "1": b"One", "2": b"Two", "3": b"Three",

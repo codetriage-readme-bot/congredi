@@ -1,3 +1,7 @@
+import logging
+logger = logging.getLogger('congredi')
+
+
 def passLevel(args):
     """take an args object and set the log level"""
     level = logging.WARNING
@@ -17,11 +21,6 @@ def formatLevel(level):
     if level == logging.DEBUG:
         formatting = "%(asctime)s[%(name)s:%(levelname)s]%(filename)s(%(lineno)d) %(funcName)s: %(message)s"
     setLog(level, formatting)
-
-# load defaults from config file (we recheck this when passed a new config...)
-defaults = configArr(defaultPath)
-
-
 
 def setLog(level, formatting):
     """Set log level"""

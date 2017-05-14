@@ -1,8 +1,9 @@
 class PacketWrapper(object):
     def SendCommand(self,command):
-        return "Hello"
+        option = self.redis.read("option",command)
+        return "Hello {}".format(option)
     def GetCommand(self,command):
         if command == 'Hello':
             return ["How are you",False]
-        else:
-            return ["Well, thank you",True]
+        option = self.redis.read("option",command)
+        return ["Well, thank you {}".format(option),True]

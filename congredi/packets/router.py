@@ -1,3 +1,5 @@
+from ..utils.errors import NoRoute
+import random
 class router():
     nodes = []
 
@@ -9,7 +11,7 @@ class router():
         """generate a route to an introduction node using a list of keys (see alternate in packet/hybrid.py)"""
         # self, node, returnaddr, rendesvous
         if rendesvousKey not in self.nodes:
-            raise CongrediNoRouteError('Rendesvous Key not in node list')
+            raise NoRoute('Rendesvous Key not in node list')
         tempNodes = list(self.nodes)
         result = []
 

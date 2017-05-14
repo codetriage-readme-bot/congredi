@@ -31,11 +31,10 @@ from __future__ import print_function
 from Crypto.Hash import SHA256
 # Crypto.Protocol.AllOrNothing
 from six.moves import zip
-from .utils import PY3
+from ..utils.compat import PY3
 from Crypto import Random
 import logging
 logger = logging.getLogger('congredi')
-from abc import ABCMeta, abstractmethod
 import six
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad, pad
@@ -65,6 +64,7 @@ helps us implement other vote types besides STV... #J
 """
 
 # pylint: disable=abstract-method
+from abc import ABCMeta, abstractmethod
 
 
 class poll(six.with_metaclass(ABCMeta, object)):

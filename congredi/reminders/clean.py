@@ -95,58 +95,15 @@ import logging
 logger = logging.getLogger('congredi')
 from twisted.internet import defer
 from twisted.internet import reactor
-
-# from ...utils.config import configArr
-# from ...utils.whoops import whoops
-
-from .utils import configArr
-from .utils import whoops
-#from twisted.protocols.amp import Command, String, Integer, ListOf, Boolean, DateTime
-
-from abc import ABCMeta, abstractmethod
-import six
-from .utils import CongrediError
-
-from difflib import unified_diff, ndiff, restore
-from .utils import ensureString
-#from patch import fromstring
-import zlib
-from six.moves import range
-from .utils import ensureBinary
-import random
-logger = logging.getLogger('congredi')
-#from ..utils.iter import pairwise
-from py2neo import GraphDatabase
-driver = GraphDatabase.driver('bolt://localhost')
-import entropy
-import chardet
-from profanity import profanity
-try:
-    import pycld2 as cld2
-    WINDOWS = False
-except ImportError as e:  # no test for this
-    WINDOWS = True
-    print(e)
-    WINDOWS_ERROR = e
-    logger.warning('windows users will have pycld2 disabled for now')
-import txredisapi as redis
-from redlock import RedLock
-import uuid
-
-import markdown
-from mdx_gfm import GithubFlavoredMarkdownExtension
 # from twisted.internet import defer
 # from twisted.internet import reactor
+from ..storage.impl.redis import Rget, Rset, Rdelete
 
-# from ...utils.config import configArr
-# from ...utils.whoops import whoops
 
 
 # RedLock()
 
-# will need to pull from settings... shouldn't ConfigArr have this?
-connaddr = 'localhost'
-connport = 6379
+# will need to pull from settings... shouldn't Config have this?
 
 
 def queryBackground():  # test
@@ -179,7 +136,7 @@ shutDown = False
 @defer.inlineCallbacks
 def peerBeat():  # repeating peer-beat task
     # logger.info('peer heartbeat start')
-    config = configArr()
+    config = {}
     for admin in config['admins']:
         # logger.info('begin for admin: %s', admin)
         # test after the yields...
@@ -201,7 +158,7 @@ def peerSuccess():  # test
 
 def peerFailure(failure):  # test
     logger.info('peer failure')
-    whoops(failure.getBriefTraceback())
+    logger.critical(failure.getBriefTraceback())
     reactor.stop()
 
 

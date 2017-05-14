@@ -1,4 +1,6 @@
-class abstractStorageProvider(six.with_metaclass(ABCMeta, object)):
+from abc import ABCMeta, abstractmethod
+import six
+class absRedis(six.with_metaclass(ABCMeta, object)):
 
     def __init__(self, typeOf):
         self.type = typeOf

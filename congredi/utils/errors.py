@@ -15,3 +15,9 @@ class ConnectError(CongrediError):
 class NoRoute(ConnectError):
     """No route to host"""
     pass
+class DepsError(CongrediError):
+    """An error in a dependancy"""
+    pass
+class CensorError(CongrediError):
+    """The Censor Failed"""
+    pass

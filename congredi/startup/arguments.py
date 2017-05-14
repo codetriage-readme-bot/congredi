@@ -1,3 +1,5 @@
+import argparse
+from .defaultpath import defaultPath, defaultFile
 MainOptions = argparse.ArgumentParser(add_help=False)
 # no option ("--help") - (Design -h if -h is used as host.)
 MainOptions.add_argument(

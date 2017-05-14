@@ -46,8 +46,8 @@ The auths must be able to be tested as:
 from __future__ import absolute_import
 from __future__ import unicode_literals
 import datetime
-from .utils import TimedTestCase
-from .auth import token, jwt_get, jwt_use
+from ..utils.tests import TimedTestCase
+from ..auth.jwt import token, jwt_get, jwt_use
 
 
 class test_sms(TimedTestCase):

@@ -1,3 +1,4 @@
+import sys
 if sys.version_info < (3, 0):
     PY3 = False
     # base_str = (str, unicode)

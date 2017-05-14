@@ -1,3 +1,8 @@
+import hashlib
+import time
+max_nonce = 2 ** 32  # 4 billion
+
+
 def proof_of_work(header, difficulty_bits_in):
     target = 2 ** (256 - difficulty_bits_in)
     for nonce in xrange(max_nonce):

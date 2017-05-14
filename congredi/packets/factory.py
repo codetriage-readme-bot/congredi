@@ -1,10 +1,10 @@
 from twisted.internet.protocol import ClientFactory, Protocol
-from twisted.protocols.basic import LineReceiver
 from twisted.internet import reactor
-from packetwrapper import PacketWrapper
+from .packetwrapper import PacketWrapper
 class BareProto(Protocol, PacketWrapper):
     def __init__(self, factory):
         self.factory = factory
+        self._peer = None
         # factory holds the connections to things?
     def connectionMade(self):
         # add client to listings
@@ -15,6 +15,7 @@ class BareProto(Protocol, PacketWrapper):
         # Reduce privledge if bad client - ._peer
         if self in self.factory.clients:
             self.factory.clients.remove(self)
+        self.protocol.connectionLost(reason)
     def dataReceived(self, data):
         print("Recieved data from {}: {}".format(self._peer, data))
         resp, disconnect = self.GetCommand(data)
@@ -37,10 +38,12 @@ class BareFactory(ClientFactory):
     def startedConnecting(self, connector):
         pass
         # add trying to self
+    # pylint: disable=no-self-use
     def disconnect(self, client):
         client.transport.loseConnection()
     def poweroff(self):
         reactor.stop()
+    # pylint: enable=no-self-use
     def clientConnectionFailed(self, connector, reason):
         pass
         # check if bad connection

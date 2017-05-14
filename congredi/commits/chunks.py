@@ -1,3 +1,5 @@
+from ..utils.compat import ensureBinary
+import zlib
 def chunkSplit(compressed):  # restore: ''.join()
     """Split chunks into the maximum size for AMP messages (if tripple encrypted) (Design - find that byte limit #F)"""
     compressed = ensureBinary(compressed)

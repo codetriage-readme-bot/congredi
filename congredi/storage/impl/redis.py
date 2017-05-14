@@ -1,8 +1,16 @@
+from twisted.internet import defer
+import uuid
+import txredisapi as redis
+from redlock import RedLock
+from ..abstracts.redis import absRedis
 
-
-class RedisStore(abstractStorageProvider):
-
-    def __init__(self, connection=None):  # test
+connaddr = 'localhost'
+connport = 6379
+class txredis(object):
+    pass
+class RedisStore(absRedis):
+    def __init__(self, connection=None, host=connaddr, port=connport):  # test
+        print('Redis init host:{}:{}'.format(host,port))
         if connection == None:
             self._conn = redisSetup(connaddr, connport)
         super(RedisStore, self).__init__(connection)
@@ -91,8 +99,8 @@ def todoAdd(mutexKey, todoList, key):  # test
     rc = yield redis.Connection(connaddr)
     mutexKey.aquire()
     ret = yield rc.lpush(todoList, key)
-    logger.info('Updated Todo list %(list)s: %(key)s:%(ret)s',
-                {'list': todoList, 'key': key, 'ret': ret})
+    #logger.info('Updated Todo list %(list)s: %(key)s:%(ret)s',
+    #            {'list': todoList, 'key': key, 'ret': ret})
     mutexKey.release()
     yield rc.disconnect()
     defer.returnValue(ret)
@@ -103,8 +111,8 @@ def todoRemove(mutexKey, todoList):  # test
     rc = yield redis.Connection(connaddr)
     mutexKey.aquire()
     ret = yield rc.rpop(todoList)
-    logger.info('Grabbed from Todo list %(list)s: %(ret)s',
-                {'list': todoList, 'ret': ret})
+    #logger.info('Grabbed from Todo list %(list)s: %(ret)s',
+    #            {'list': todoList, 'ret': ret})
     mutexKey.release()
     yield rc.disconnect()
     defer.returnValue(ret)

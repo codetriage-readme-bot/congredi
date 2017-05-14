@@ -51,9 +51,6 @@ from __future__ import unicode_literals
 import jwt
 import datetime
 
-import hashlib
-import time
-max_nonce = 2 ** 32  # 4 billion
 
 # class object JWT implementation
 
@@ -92,3 +89,18 @@ class token():
         }
         json = jwt.encode(payload, self.secret, algorithm='HS256')
         return json.decode('unicode_escape')
+
+
+gate = token('password')
+
+def jwt_get(request):  # test
+    pgpkey = request
+    return gate.make(pgpkey)
+
+
+def jwt_use(tokn):  # test
+    response, checks = gate.check(tokn)
+    print(checks)
+    # if checks: return func(response) # response is pgp fingerprint
+    # else:
+    return response  # response is token error

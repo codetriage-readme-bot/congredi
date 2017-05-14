@@ -70,32 +70,13 @@ from __future__ import unicode_literals
 from __future__ import print_function
 import logging
 logger = logging.getLogger('congredi')
-import binascii
 import os
-import unittest
-import math
-import time
 import yaml
 import errno
-import argparse
-import sys
-import random as rand
-from six.moves import range
-from progressbar import AnimatedMarker, Bar, Counter, ETA, \
-    Percentage, Widget, ProgressBar, Timer
-from itertools import tee
-from six.moves import zip
-# CharDet...
-
+from .defaultpath import defaultPath, defaultFile
+from ..utils.errors import BadConfig
 # will need to write tests for these
 # and in general just avoid not telling what type variables are
-
-logger = logging.getLogger('congredi')
-
-
-
-defaultPath = os.path.expanduser('~') + '/.local/congredi/'
-defaultFile = 'congrediSettings.yaml'
 
 
 # making defaultPath
@@ -113,7 +94,7 @@ def openTest(configFilePath):
     # pylint: disable=undefined-variable
     if any(k not in config for k in ('admins', 'users')):  # need test case
         logger.warning('Config does not contain "admins" or "users"')
-        raise CongrediConfigError('Config missing %s' % k)
+        raise BadConfig('Config missing %s' % k)
     # pylint: enable=undefined-variable
     return config
 
@@ -144,8 +125,8 @@ def configArr(pathname=defaultPath):
     try:
         config = openTest(pathname + defaultFile)
     except (yaml.reader.ReaderError, IOError,
-            CongrediConfigError) as E:  # need test case
-        whoops(E)
+            BadConfig) as E:  # need test case
+        logger.critical(E)
         logger.warning('Writing new config')
 
         config = defaultConfig

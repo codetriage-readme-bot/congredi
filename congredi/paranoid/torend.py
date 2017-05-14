@@ -11,7 +11,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 import multiprocessing
 import time
-from .auth import app
+from .httphex import app
 import os
 from stem.control import Controller
 from stem import process

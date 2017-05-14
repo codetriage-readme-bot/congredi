@@ -4,23 +4,20 @@
 Main module. For whatever main is supposed to do.
 """
 from __future__ import unicode_literals
+import socket
 #import pudb; pu.db
 
-from configplugins import configplugin
-from storage.redis import txredis
-from storage.neo4j import neo4j
-from auth.jwt import jwt
-from .run import run
+from .startup.configplugins import configplugin
+from .storage.impl.redis import RedisStore
+from .storage.impl.neo4j import Neo4jStore
+from .auth.jwt import token
+from .startup.run import run
 
 # Run with the default, real client
 if __name__ == '__main__':
     Conf = configplugin()
-    Conf.setRedis(txredis,"localhost",5432)
-    Conf.setNeo4j(neo4j,"localhost",5432)
-    Conf.setJWT(jwt)
+    defaultHost = socket.gethostname()
+    Conf.setRedis(RedisStore,"localhost",5432)
+    Conf.setNeo4j(Neo4jStore,"localhost",5432)
+    Conf.setJWT(token,'onetwothree')
     run(Conf)
-
-
-defaultHost = socket.gethostname()
-app = Klein()
-key = token('onetwothree')
