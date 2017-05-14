@@ -1,5 +1,0 @@
-- name: ci
-  type: parallel
-  steps:
-  - service: congredi
-    command: green ../../code

@@ -8,32 +8,54 @@ individuals write changes to repositories of text, that are then
 voted on by organizations to find a consensus.
 
 ***Slowly waking up this project...***
+Port 4800: binary Congredi
+Port 4884: hex/http Congredi
+
+Installing: `docker pull congredi/congredi` or `pip install congredi`
+Running: `python -m congredi`
 
 
-Think that's useful? Give it a try! If you have any feature requests or questions,
-hop on over to gitter & [waffle](https://waffle.io/congredi/congredi). I'm looking for contributors on some issues.
+Tests: [![Build Status Travis](https://travis-ci.org/congredi/congredi.svg?branch=master)](https://travis-ci.org/congredi/congredi)
 
-Build status (2.7 full coverage, windows & 3.* python have spotty test coverage)
+* Linux:
+  * 2.7: docs, pylint, unit tests
+  * 3.3-3.6: unit tests
+* Mac: 2.7 & 3.3
+* Windows (No Longer testing for compatibility.)
 
-**updates: python3 pylint is not automatically installed correctly...**
 
-linux tests run pylint on 2.7, and unit tests across 3.3-3.6
-mac tests run 2.7 & 3.3
 
-Windows tests only run green & setup.py install across 2.7, 3.3-3.6 x32 + 3.5-6 x64. we don't test 3.3-4 on x64
 
-Linux/Mac: [![Build Status Travis](https://travis-ci.org/congredi/congredi.svg?branch=master)](https://travis-ci.org/congredi/congredi)
-Windows: [![Build status Windows](https://ci.appveyor.com/api/projects/status/mo003x9ygpnb316q?svg=true)](https://ci.appveyor.com/project/Thetoxicarcade/congredi)
-Docker: [![Build status Codeship](https://codeship.com/projects/d1cee4c0-b9b1-0134-40ad-5e5884b780cb/status?branch=master)]()
+Congredi Protocol and Delegito Interface Design Specs
 
-[![Documentation Status](https://readthedocs.org/projects/congredi/badge/?version=latest)](http://congredi.readthedocs.io/en/latest/?badge=latest)
-[![GitHub commits](https://img.shields.io/github/commits-since/congredi/congredi/v0.0.2-alpha.svg)](https://github.com/congredi/congredi)
-[![PyPI](https://img.shields.io/pypi/v/congredi.svg)]()
+Binary compatibility (hex conversion?) - just control the writer? Android/iOS? Browser?
+- just pump to Hex gateway
 
-Docker images:
-[`congredi:`](https://hub.docker.com/r/congredi/congredi/)
-[![](https://images.microbadger.com/badges/image/congredi/congredi.svg)](https://microbadger.com/images/congredi/congredi "Get your own image badge on microbadger.com")
-[`delegito:`](https://hub.docker.com/r/congredi/delegito/)
-[![](https://images.microbadger.com/badges/image/congredi/delegito.svg)](https://microbadger.com/images/congredi/delegito "Get your own image badge on microbadger.com")
-[`micro-peer:`](https://hub.docker.com/r/congredi/micro-peer/)
-[![](https://images.microbadger.com/badges/image/congredi/micro-peer.svg)](https://microbadger.com/images/congredi/micro-peer "Get your own image badge on microbadger.com")
+Motives/Collectives Ranked Choices
+
+Onion routing - less API's and URLs, just BSON
+name same as permissions inside storage DB
+command switchboard
+
+[TCP Packet] = [TotalLength|L|Recipient|L|Sender|L|Request|L|Data|L|Hash|L|Sig(HMac vs RSA?)]
+
+[Data] = [RecpRSAKeyOAEPEnc(AESKey) | AES( XOR(AESKEY^HASH-A)|AES(MIXPACKET)|hash-A(AES-Ciphertext) )]
+
+
+MIXPACKET = [LL][LK][to][LK][from][LR][REQ][LD][DATA][hash][hmac]
+OUTER-DATA = [OAEP-RSA(AES-ONE) | AES-ONE(INNER)]
+INNER = [(AES-TWO^HASH-INNER)|AES-TWO(FINISH)|HASH-INNER(CIPHERTEXT)]
+
+FINISH = [List Of Keys/Data By Length / Type]
+
+
+Infinite regression cascade vs efficient torrenting
+
+affidavit / registration API
+
+Configuration:
+  Storage API - REDIS / Postgres
+  Encryption API (Data at rest) - TripleSec + AONT?
+  Packet API
+  Requests
+  Loop thread
