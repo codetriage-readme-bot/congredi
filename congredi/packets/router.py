@@ -1,5 +1,7 @@
 from ..utils.errors import NoRoute
 import random
+
+
 class router():
     nodes = []
 

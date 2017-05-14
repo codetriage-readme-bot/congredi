@@ -1,3 +1,6 @@
+from ....utils.timedTests import TimedTestCase
+
+
 class test_neo4j(TimedTestCase):
 
     def test_neo4j(self):

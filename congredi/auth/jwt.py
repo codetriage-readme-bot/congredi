@@ -50,12 +50,12 @@ from __future__ import print_function
 from __future__ import unicode_literals
 import jwt
 import datetime
-
+from ..storage.abstracts.JWT import absJWT
 
 # class object JWT implementation
 
 
-class token():
+class token(absJWT):
     """Simple JWT implementation"""
     secret = None
 
@@ -66,6 +66,7 @@ class token():
         be in common between multiple nodes)
         """
         self.secret = secret
+        super(token,self).__init__(secret)
 
     def check(self, json):
         """Checking a JWT against passphrase and expiry"""
@@ -92,6 +93,7 @@ class token():
 
 
 gate = token('password')
+
 
 def jwt_get(request):  # test
     pgpkey = request

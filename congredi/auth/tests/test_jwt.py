@@ -1,53 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-JWT tokens (for web interface, mostly, as all peer operations function on
-public key cryptography)
-
-JWT tokens can be one of:
-
-* Good
-* Expired
-* Invalid
-
-And granting them should not take database access. They are meant to
-figure out if a user is auth'd without using the database to do so.
-Test register via email
-
-The auths must be able to be tested as:
-
-* Valid
-* Expired
-* Invalid
-Test register via OAuth
-
-The auths must be able to be tested as:
-
-* Valid
-* Expired
-* Invalid
-
-Test register via PGP sig
-
-The auths must be able to be tested as:
-
-* Valid
-* Expired
-* Invalid
-Test register via SMS
-
-The auths must be able to be tested as:
-
-* Valid
-* Expired
-* Invalid
-
-"""
 from __future__ import absolute_import
 from __future__ import unicode_literals
 import datetime
-from ..utils.tests import TimedTestCase
-from ..auth.jwt import token, jwt_get, jwt_use
+from ...utils.timedTests import TimedTestCase
+from ..jwt import token, jwt_get, jwt_use
 
 
 class test_sms(TimedTestCase):

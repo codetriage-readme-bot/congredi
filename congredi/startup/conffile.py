@@ -88,6 +88,13 @@ def makePath(givenPath):
             raise
 
 
+def prep():
+    try:
+        os.remove('b')
+    except OSError:
+        pass
+
+
 def openTest(configFilePath):
     with open(configFilePath, 'r') as f:
         config = yaml.load(f.read())
@@ -134,7 +141,6 @@ def configArr(pathname=defaultPath):
 
         writeConfig(pathname + defaultFile, config)
     return config
-
 
 
 defaultConfig = {

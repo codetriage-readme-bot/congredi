@@ -1,5 +1,7 @@
 import unittest
 import time
+
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -13,10 +15,11 @@ warning = bcolors.WARNING + 'Timing Warning' + bcolors.ENDC + \
     ': Test Took ' + bcolors.BOLD + '%.2f' + bcolors.ENDC + \
     's (threshold ' + bcolors.FAIL + '%.2f' + bcolors.ENDC + 's)'
 
+
 class TimedTestCase(unittest.TestCase):
-    def __init__(self):
-        self.threshold = 0
-        super(TimedTestCase).__init__(self)
+
+    threshold = 0
+
     def setUp(self):
         #print('ran setup for %s' % self.id())
         self.threshold = .5

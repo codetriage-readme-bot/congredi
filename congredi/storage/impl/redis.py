@@ -6,14 +6,18 @@ from ..abstracts.redis import absRedis
 
 connaddr = 'localhost'
 connport = 6379
+
+
 class txredis(object):
     pass
+
+
 class RedisStore(absRedis):
-    def __init__(self, connection=None, host=connaddr, port=connport):  # test
-        print('Redis init host:{}:{}'.format(host,port))
-        if connection == None:
-            self._conn = redisSetup(connaddr, connport)
-        super(RedisStore, self).__init__(connection)
+
+    def __init__(self, host=connaddr, port=connport):  # test
+        print('Redis init host:{}:{}'.format(host, port))
+        self._conn = redisSetup(connaddr, connport)
+        super(RedisStore, self).__init__(host, port)
 
     # actual writers
     @defer.inlineCallbacks
@@ -48,7 +52,6 @@ class RedisStore(absRedis):
         return self._lockRead(key)
 
 
-
 # Condensed txredisapi example... but where should yield go?
 @defer.inlineCallbacks
 def Rget(key):  # test
@@ -77,17 +80,9 @@ def Rdelete(key):  # test
     defer.returnValue(n)
 
 
-
-
 def redisSetup(host, port):  # test
     return redis.Connection(host, port)
 # could pull error classes into ..utils.whoops
-
-
-
-
-
-
 
 
 def RrandKey():  # test
@@ -99,7 +94,7 @@ def todoAdd(mutexKey, todoList, key):  # test
     rc = yield redis.Connection(connaddr)
     mutexKey.aquire()
     ret = yield rc.lpush(todoList, key)
-    #logger.info('Updated Todo list %(list)s: %(key)s:%(ret)s',
+    # logger.info('Updated Todo list %(list)s: %(key)s:%(ret)s',
     #            {'list': todoList, 'key': key, 'ret': ret})
     mutexKey.release()
     yield rc.disconnect()
@@ -111,7 +106,7 @@ def todoRemove(mutexKey, todoList):  # test
     rc = yield redis.Connection(connaddr)
     mutexKey.aquire()
     ret = yield rc.rpop(todoList)
-    #logger.info('Grabbed from Todo list %(list)s: %(ret)s',
+    # logger.info('Grabbed from Todo list %(list)s: %(ret)s',
     #            {'list': todoList, 'ret': ret})
     mutexKey.release()
     yield rc.disconnect()

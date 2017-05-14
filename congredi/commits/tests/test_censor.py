@@ -1,4 +1,14 @@
-test = censor(encodings=['UTF-8', 'ascii'], languages=['ENGLISH', 'CHINESE'])
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
+from six.moves import range
+from ...utils.timedTests import TimedTestCase
+from ...utils.oracle import random, hexify, phony
+from ...utils.compat import ensureBinary
+from ..censor import censor, stateEncoding
+test = censor(encodings=['utf-8', 'ascii'])
 
 
 class test_censor(TimedTestCase):
@@ -28,7 +38,7 @@ class test_censor(TimedTestCase):
         passes = 0
         for _ in range(0, 10):
             actual_random = random()
-            res = test.check(actual_random)
+            res = test.checkGood(actual_random)
             if not res:
                 passes += 1
         print(("%d/10" % passes))
@@ -51,34 +61,22 @@ class test_censor(TimedTestCase):
         passes = 0
         for _ in range(0, 25):
             phonetic_random = phony(hexify(random()))
-            if test.check(phonetic_random):
+            if test.checkGood(phonetic_random):
                 passes += 1
         print(("%d/25" % passes))
-        if platform.system() == 'Windows':
-            print('Windows tests will not assert > 24')
-        else:
-            assert passes >= 24
+        assert passes >= 24
 
     def test_unicode(self):
         '''Chinese characters should be UTF-8'''
         self.threshold = .4
+        print(stateEncoding(b'b'))
+        print(stateEncoding(u'b'))
+        # def test_steno_check():
         assert stateEncoding('hello 你好') == 'utf-8'
-
-    def test_entropy(self):
-        self.threshold = .3
-        print(stateEntropy(b'b'))
-        print(stateProfanity(u'b'))
-    # def test_steno_check():
-
-    def test_valid_english(self):
         """Valid ASCII content:"""
+        assert test.checkGood(b'#This *is* valid content')
+
+    def test_valid_chinese(self):
         self.threshold = .4
-        if platform.system() == 'Windows':
-            print('Windows tests will not check valid english')
-        else:
-            assert test.check(b'#This *is* valid content')
-    # Broken Test.
-    # def test_valid_chinese():
-    #	print('Should pass:')
-    #	print(test.block('#Hello 你好'))
-    #	assert test.check('#Hello 你好')
+        print(test.checkGood('#Hello 你好'))
+        assert test.checkGood('#Hello 你好')

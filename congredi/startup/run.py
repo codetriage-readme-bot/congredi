@@ -1,4 +1,5 @@
-import sys, logging
+import sys
+import logging
 from twisted.internet import reactor
 from twisted.internet.error import CannotListenError
 from ..packets.factory import BareFactory
@@ -8,6 +9,8 @@ from ..utils.logs import passLevel
 from ..utils.errors import CongrediError
 # ChatFactory(RedisVar,)
 logger = logging.getLogger('congredi')
+
+
 def run(GivenConfig):
     f = BareFactory(GivenConfig)
     # better than previous coordination/failover/errback method.
@@ -29,7 +32,6 @@ def run(GivenConfig):
         print('\ngoodbye...')
 
 
-
 def runOld():
     """
         pull args (ports, debug level, config location)
@@ -41,7 +43,7 @@ def runOld():
         sys.exit(0)
     # pull config location
     #configPath = normalConfigPath()
-    #if args.config:
+    # if args.config:
     #    configPath = args.config
     # did I set the right config order in the spec?
     # pylint: disable=unused-variable

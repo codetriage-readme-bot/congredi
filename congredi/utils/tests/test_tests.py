@@ -1,3 +1,7 @@
+import time
+from ..timedTests import TimedTestCase
+
+
 class test_timing(TimedTestCase):
 
     def test_example_no_warning(self):

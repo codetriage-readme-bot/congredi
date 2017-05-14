@@ -1,33 +1,38 @@
 from twisted.internet import defer
 from py2neo import GraphDatabase
 from ..abstracts.neo4j import absNeo4j
+
+
 class neo4jSetup():
-    def __init__(self,addr,port):
+
+    def __init__(self, addr, port):
         pass
 
 connaddr = 'localhost'
 connport = 6379
 
+
 class Neo4jStore(absNeo4j):
 
-    def __init__(self, connection=None):  # test
-        if connection == None:
+    def __init__(self, host, port):  # test
+        if host == None:
             self.driver = GraphDatabase.driver('bolt://localhost')
             self._conn = neo4jSetup(connaddr, connport)
-        super(Neo4jStore, self).__init__(connection)
+        super(Neo4jStore, self).__init__(host, port)
 
     # actual writers
     @defer.inlineCallbacks
     def assertTrustXY(self, x, y):  # test
-        #res = yield self._conn.set(keyspace, valuespace)
-        #defer.returnValue(res)
+        # res = yield self._conn.set(keyspace, valuespace)
+        # defer.returnValue(res)
         self.driver.run(
             "CREATE (a:Person {fingerprint:'{fprint}', trust:'{keys}'})", fprint=x, keys=y)
         return True
+
     @defer.inlineCallbacks
     def queryTrustXY(self, x, y):  # test
-        #res = yield self._conn.delete(key)
-        #defer.returnValue(res)
+        # res = yield self._conn.delete(key)
+        # defer.returnValue(res)
         self.driver.run()
 
 

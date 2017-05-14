@@ -1,3 +1,14 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
+from twisted.test.proto_helpers import StringTransport
+import binascii
+from ...utils.timedTests import TimedTestCase
+from ..httphex import app, hex_compat
+
+
 class test_http(TimedTestCase):
 
     def setUp(self):
@@ -14,12 +25,12 @@ class test_http(TimedTestCase):
         print('IMPLEMENT term/test/test_http StringTransport')
         self.threshold = .1
         a = app
-        k = key
-        assert a != k
-        get_auths()
-        next_key()
-        check_online()
-        set_value(None, None)
-        get_value(None, None)
-        tell_index(None, None, None, None, None)
-        search_term(None, None, None, None)
+        if a is not None:
+            print('Test for app...')
+
+        class re():
+
+            def __init__(self, con):
+                self.content = binascii.hexlify(con)
+        req = re('One')
+        hex_compat(req)

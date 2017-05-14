@@ -10,6 +10,8 @@ else:  # not used in py2 coverage
     # base_str = (bytes, str)
     text_type = str
     bin_type = (bytes, bytearray)
+
+
 def ensureBinary(statement):
     if not isinstance(statement, bin_type):
         print('EnsureBinary: swapping to binary from %s' % type(statement))

@@ -1,6 +1,8 @@
 from difflib import unified_diff, ndiff, restore
 from ..utils.compat import ensureString
 from .chunks import compressDiff, uncompressDiff
+
+
 def resolveUnifiedDiff(md1, md2, l1, l2):
     """Resolving unified diff instead of using libgit (design/feature - make one of them work #G)"""
     # must use python-patch to use unified diffs...

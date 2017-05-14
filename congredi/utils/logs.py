@@ -14,13 +14,13 @@ def passLevel(args):
     formatLevel(level)
 
 
-
 def formatLevel(level):
     """set formatting based on a level"""
     formatting = "%(levelname)s %(filename)s(%(lineno)d) %(funcName)s: %(message)s"
     if level == logging.DEBUG:
         formatting = "%(asctime)s[%(name)s:%(levelname)s]%(filename)s(%(lineno)d) %(funcName)s: %(message)s"
     setLog(level, formatting)
+
 
 def setLog(level, formatting):
     """Set log level"""

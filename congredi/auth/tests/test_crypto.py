@@ -1,37 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-test the STV implementation
-ThresholdPGP tests...
-tests for curve
-Testing hashes (currently testing only one hash, should test more?)
-    test via oracle? Use external utility? sha256sum with ps/shell?
-
-    - check number of KDFs
-Testing the padding (and underlying function I suppose)
-Still hanging around with a KDF...
-
-    check # of KDF rounds
-test AES
-
-    - document
-
-"""
 from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
-from .utils import TimedTestCase
-from .crypto import default_aes
-from .utils import random, hexify, phony
 from six.moves import range
-from .crypto import default_kdf, random_password
-from .crypto import stvVote, stvPoll
-from .crypto import ThresholdPGP
-from .crypto import make_hash
-from .crypto import default_rsa
-from .utils import pick_range
 import binascii
-from .crypto import AONTencrypt, AONTdecrypt
+from ...utils.timedTests import TimedTestCase
+from ...utils.oracle import random, hexify, phony, pick_range
+from ..crypto import default_aes
+from ..crypto import default_kdf, random_password
+from ..crypto import stvVote, stvPoll
+from ..crypto import ThresholdPGP
+from ..crypto import make_hash
+from ..crypto import default_rsa
+from ..crypto import AONTencrypt, AONTdecrypt
 
 
 class test_default_aes(TimedTestCase):

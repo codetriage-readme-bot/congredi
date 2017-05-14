@@ -1,94 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-Remove keys no subscribed user cares about.
-
-    Uses orphaning test code (mostly through directed children)
-
-    user -> trees
-
-    user <- trees
-
-    check every tree, if it has a user, check to see if the user cares.
-    if not, delete it.
-
-Diff utils (instead of using a raw git library - a design problem)
-
-    move to unified diff forward/backward
-Neo4j Mock code
-
-    will need to pull from Neo4j examples
-
-Compression/packetization functions
-
-    splitting diffs / compressing for sending
-PGP key & IP routing
-Resolves routes (usefull for commands I have now misplaced)
-
-This has the same name as another file in proofs/router.py...
-
-Also, need to find a Zero Knowledge Proof of the length
-of a connection without indicating where on the connection
-someone is (which would tell people if their neighbor can
-be harassed).
-Map a directed acyclic graph from one user to another,
-and map objects that people use (possibly a minimum number of people use)
-
-    pull from Neo4j examples
-Redis Mock code
-
-    The actual code is using RSet/RGet, outside of classes.
-    Need the @defer.inlineCallbacks to work within a class :/
-
-censor things objectionable to you, rather than store/query/communicate them
-the current library is old and might simply need to include regexes...
-(Feature: Should add the ability to publish your router's censor settings - #E)
-
-These functions operate very primatively, if you wanted to censor content you'll
-**REALLY** have to beef them up.
-
-Encrypted Storage pretty-much wants content to be a binary mess, so I suppose
-that's another use for the censor.
-
-What it needs to do is provide that the object in question is a valid:
-
-* diff
-* sig
-* pubkey
-* markdown object
-
-And that it contains no information that could be harmful. It'll be decoded,
-escaped, into a markdown format, so XSS is still a problem, but should obey
-the encoding we give it (ASCII/UTF-8/others?)
-
-
-    this object doesn't update censor properties in tests
-Render markdown. (possibly not needed on the python end of things)
-py-gfm>=0.1.3
-
-    migrate this out
-
-Mock Storage code
-
-    should abstract the get/set methods into a mock storage.
-Redis database commands & mutexes, not exactly the objects needed
-
-Interface, in the case that someone wants to use something besides Redis/Neo4j,
-for instance hadoop or bigtable....
-Check if peer is online, check latest trees that people subscribe to
-
-    Two functions are missusing Ask() parameters from the rewrite.
-    Make sure to neaten everything and set that in the spec.
-periodically resolve a git tree
-
-    recursive ask from contacts on tree contents.
-Periodically audit a vote
-
-    recursive on vote process (see commands/proofs/vote)
-
-    delete? send error back to other clients? certify bit?
-
-"""
 from __future__ import absolute_import
 from __future__ import unicode_literals
 import logging
@@ -98,7 +9,6 @@ from twisted.internet import reactor
 # from twisted.internet import defer
 # from twisted.internet import reactor
 from ..storage.impl.redis import Rget, Rset, Rdelete
-
 
 
 # RedLock()

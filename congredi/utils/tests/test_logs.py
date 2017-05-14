@@ -1,3 +1,14 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import print_function
+from __future__ import unicode_literals
+import logging
+from ..timedTests import TimedTestCase
+from ..logs import formatLevel, passLevel
+logger = logging.getLogger('congredi')
+
+
 def check_level():
     logging_code = logger.getEffectiveLevel()
     human_readable = logging.getLevelName(logging_code)

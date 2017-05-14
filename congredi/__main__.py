@@ -17,7 +17,10 @@ from .startup.run import run
 if __name__ == '__main__':
     Conf = configplugin()
     defaultHost = socket.gethostname()
-    Conf.setRedis(RedisStore,"localhost",5432)
-    Conf.setNeo4j(Neo4jStore,"localhost",5432)
-    Conf.setJWT(token,'onetwothree')
+    red = RedisStore("localhost", 5432)
+    neo = Neo4jStore("localhost", 5432)
+    tok = token('onetwothree')
+    Conf.setRedis(red)
+    Conf.setNeo4j(neo)
+    Conf.setJWT(tok)
     run(Conf)

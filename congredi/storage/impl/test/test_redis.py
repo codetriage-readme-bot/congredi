@@ -1,8 +1,13 @@
+from ....utils.timedTests import TimedTestCase
+from ..redis import RedisStore
+from ..MockRedis import RedisMock
+
+
 class test_redis(TimedTestCase):
 
     def setUp(self):
-        self.conn = RedisMock(b'redis v1')
-        self.RedisStore = RedisStore(self.conn)
+        self.conn = RedisMock(b'redis v1',1345)
+        self.RedisStore = RedisStore(b'redis 1', 1234)
         super(test_redis, self).setUp()
 
     def test_redis(self):

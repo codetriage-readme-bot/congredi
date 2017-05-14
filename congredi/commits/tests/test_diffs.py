@@ -1,3 +1,11 @@
+import hashlib
+import binascii
+
+from ...utils.timedTests import TimedTestCase, source, source2, empty, empty2
+from ..diffs import resolveUnifiedDiff, resolveDiff, rebuildFile, tick, tock
+from ..chunks import chunkSplit, compressDiff, uncompressDiff
+
+
 class test_zlib(TimedTestCase):
     things = [
         'a',
@@ -32,6 +40,8 @@ class test_zlib(TimedTestCase):
     # test split error-raising
 
     # test compression error-raising
+
+
 class test_diff(TimedTestCase):
 
     def test_resolve_ndiff(self):
