@@ -6,6 +6,8 @@ from __future__ import unicode_literals
 import argparse
 from ...utils.timedTests import TimedTestCase
 from ..arguments import MainOptions
+from ..defaultpath import defaultPath, defaultFile
+from ..conffile import makePath, defaultConfig, generateConfig, writeConfig
 goodOpts = {
     'client': ['client'],
     'peer': ['peer']
@@ -21,6 +23,9 @@ class test_options(TimedTestCase):
     def test_good_options(self):
         """All of these options should be good: NO ASSERT"""
         self.threshold = .4
+        makePath(defaultPath)
+        config = generateConfig(defaultConfig)
+        writeConfig(defaultPath + defaultFile, config)
         for opts in goodOpts.values():
             print(opts)
             MainOptions.parse_args(opts)

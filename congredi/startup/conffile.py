@@ -98,10 +98,11 @@ def prep():
 def openTest(configFilePath):
     with open(configFilePath, 'r') as f:
         config = yaml.load(f.read())
+    print(config)
     # pylint: disable=undefined-variable
-    if any(k not in config for k in ('admins', 'users')):  # need test case
-        logger.warning('Config does not contain "admins" or "users"')
-        raise BadConfig('Config missing %s' % k)
+    # if any(k not in config for k in ('admins', 'users')):  # need test case
+    #     logger.warning('Config does not contain "admins" or "users"')
+    #     raise BadConfig('Config missing %s' % k)
     # pylint: enable=undefined-variable
     return config
 
