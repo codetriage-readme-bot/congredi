@@ -11,18 +11,12 @@ from __future__ import print_function
 from __future__ import unicode_literals
 import multiprocessing
 import time
-from .httphex import app
+#from .httphex import HexFactory
 import os
 from stem.control import Controller
 from stem import process
+# https://txtorcon.readthedocs.io/en/latest/guide.html#launching-a-new-tor - useful for run.py
 # small rendesvous pieces (see MainLoop)
-
-
-class api(multiprocessing.Process):
-
-    def run(self):  # test
-        app.run(host="0.0.0.0", port=5000)  # , debug=False)
-
 
 class proxy(multiprocessing.Process):
 
@@ -30,15 +24,12 @@ class proxy(multiprocessing.Process):
         prox()
 
 if __name__ == "__main__":  # test
-    dork = api()
-    dork.start()
     lone = proxy()
     lone.start()
     try:
         while True:
             time.sleep(1)
     finally:
-        dork.terminate()
         lone.terminate()
 
 

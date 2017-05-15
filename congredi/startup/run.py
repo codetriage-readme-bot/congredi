@@ -1,14 +1,21 @@
 import sys
 import logging
-from twisted.internet import reactor
+from twisted.internet import reactor, endpoints
 from twisted.internet.error import CannotListenError
 from ..packets.factory import BareFactory
+from ..paranoid.httphex import HexFactory
 from .arguments import MainOptions
 #from .defaultpath import normalConfigPath
 from ..utils.logs import passLevel
 from ..utils.errors import CongrediError
 # ChatFactory(RedisVar,)
 logger = logging.getLogger('congredi')
+
+"""
+starts TCP & HTTP ports
+needs to start Tor proxy...
+# https://txtorcon.readthedocs.io/en/latest/guide.html#launching-a-new-tor - useful for run.py
+"""
 
 
 def run(GivenConfig):
@@ -21,7 +28,16 @@ def run(GivenConfig):
         print('listening as server')
     except CannotListenError:
         print('Whoops, being a client')
+        reactor.listenTCP(f)
         reactor.connectTCP("localhost", 8123, f)
+    try:
+        endpoint = endpoints.TCP4ServerEndpoint(reactor, 8880)
+        endpoint.listen(HexFactory)
+        print('Hex compatibile port:{}'.format(8880))
+    except CannotListenError:
+        print('Hex port ocuppied. Using ephemeral.')
+        endpoint = endpoints.TCP4ServerEndpoint(reactor, 8880)
+        endpoint.listen(HexFactory)
     try:
         reactor.run()
     except KeyboardInterrupt:

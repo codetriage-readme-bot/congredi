@@ -1,53 +1,32 @@
 """Example flask routes (will probably still be using twisted HTTP libs..."""
-from klein import Klein
 import binascii
-app = Klein()
+from twisted.web.server import Site
+from twisted.web.resource import Resource
 
-
+hexdev = None
+with open('scripts/hexdev.html','r') as h:
+    hexdev = h.read()
 def process(req):
     return req
 
+class HexPage(Resource):
+    isLeaf = True
 
-@app.route('/HEX', methods=['GET', 'POST'])
-def hex_compat(request):
-    req = binascii.unhexlify(request.content)
-    median = process(req)
-    resp = binascii.hexlify(median)
-    return resp
+    # todo: make this async so nothing's blocked while this is running....
+    # def _delayedRender(self, request):
+    #     request.write("<html><body>Sorry to keep you waiting.</body></html>")
+    #     request.finish()
+    # def render_GET(self, request):
+    #     d = deferLater(reactor, 5, lambda: request)
+    #     d.addCallback(self._delayedRender)
+    #     return NOT_DONE_YET
+    # pylint: disable=no-self-use
+    def render_GET(self, request):
+        return hexdev
+    def render_POST(self, request):
+        req = binascii.unhexlify(request.content.read())
+        median = process(req)
+        resp = binascii.hexlify(median)
+        return resp
 
-
-@app.route('/auth/new')
-def get_auths():
-    """checks auths within db and returns a long term JWT"""
-    pass
-#@app.route('/live/next')
-
-
-def next_key():
-    """takes a long term JWT and return the current short term JWT"""
-    pass
-#@app.route('/live/online')
-
-
-def check_online():
-    pass
-#@app.route('/set/<int:permission>/<typeOf>')
-
-
-def set_value(permission, typeOf):
-    pass
-#@app.route('/get/<int:permission>/<typeOf>')
-
-
-def get_value(permission, typeOf):
-    pass
-#@app.route('/index/<typeOf>/<direction>/<offset>/<float:count>/<hashPtr>')
-
-
-def tell_index(typeOf, direction, offset, count, hashPtr):
-    pass
-#@app.route('/search/<typeOf>/<offset>/<float:count>/<term>')
-
-
-def search_term(typeOf, offset, count, term):
-    pass
+HexFactory = Site(HexPage())

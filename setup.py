@@ -34,7 +34,6 @@ setup(name='congredi',
       license='GPL3',
       install_requires=[
           'chardet>=2.3.0',
-          'klein>=16.12.0',
           'patch>=1.16',
           'py2neo>=3.1.2',
           'pycryptodome>=3.4.3',

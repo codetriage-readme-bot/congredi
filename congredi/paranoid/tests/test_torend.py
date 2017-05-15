@@ -8,7 +8,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 from ...utils.timedTests import TimedTestCase
-from ..torend import api, proxy
+from ..torend import proxy
 from ..torend import prox, start_rendesvous, print_bootstrap_lines, stop_rendesvous
 
 
@@ -17,10 +17,7 @@ class test_daemon(TimedTestCase):
     b = None
 
     def test_daemon(self):
-        a = api
         b = proxy
-        assert a != b
-        self.a = a
         self.b = b
         print('IMPLEMENT: extra/test/test_daemon:test_daemon')
 

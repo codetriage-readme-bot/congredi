@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from twisted.test.proto_helpers import StringTransport
 import binascii
 from ...utils.timedTests import TimedTestCase
-from ..httphex import app, hex_compat
+from ..httphex import HexFactory
 
 
 class test_http(TimedTestCase):
@@ -24,7 +24,7 @@ class test_http(TimedTestCase):
         """Klein has a few test case examples"""
         print('IMPLEMENT term/test/test_http StringTransport')
         self.threshold = .1
-        a = app
+        a = HexFactory
         if a is not None:
             print('Test for app...')
 
@@ -33,4 +33,4 @@ class test_http(TimedTestCase):
             def __init__(self, con):
                 self.content = binascii.hexlify(con)
         req = re('One')
-        hex_compat(req)
+        assert req is not None

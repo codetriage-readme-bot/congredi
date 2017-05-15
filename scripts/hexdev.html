@@ -1,0 +1,23 @@
+<html>
+<body>
+  <h1>Hex-Dev page</h1>
+  <h2>Paste Binary</h2>
+<form id="main" method="POST">
+  <input name="the-field" type="text" />
+</form>
+</body>
+<script>
+  bin2hex = function(bin){
+    return parseInt(bin, 2).toString(16);
+  }
+  hex2bin = function(hex){
+    return parseInt(hex, 16).toString(2);
+  }
+document.getElementById("main").addEventListener("click", function(event){
+    event.preventDefault()
+});
+
+command = document.getElementById('the-field').value;
+
+</script>
+</html>
