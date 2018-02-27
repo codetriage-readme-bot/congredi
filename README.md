@@ -25,6 +25,7 @@ Windows tests only run green & setup.py install across 2.7, 3.3-3.6 x32 + 3.5-6 
 Linux/Mac: [![Build Status Travis](https://travis-ci.org/congredi/congredi.svg?branch=master)](https://travis-ci.org/congredi/congredi)
 Windows: [![Build status Windows](https://ci.appveyor.com/api/projects/status/mo003x9ygpnb316q?svg=true)](https://ci.appveyor.com/project/Thetoxicarcade/congredi)
 Docker: [![Build status Codeship](https://codeship.com/projects/d1cee4c0-b9b1-0134-40ad-5e5884b780cb/status?branch=master)]()
+[![Open Source Helpers](https://www.codetriage.com/thetoxicarcade/congredi/badges/users.svg)](https://www.codetriage.com/thetoxicarcade/congredi)
 
 [![Documentation Status](https://readthedocs.org/projects/congredi/badge/?version=latest)](http://congredi.readthedocs.io/en/latest/?badge=latest)
 [![GitHub commits](https://img.shields.io/github/commits-since/congredi/congredi/v0.0.2-alpha.svg)](https://github.com/congredi/congredi)
